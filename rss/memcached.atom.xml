@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/memcached.atom.xml" rel="self"></atom:link><lastBuildDate>Fri, 14 May 2010 16:34:38 -0400</lastBuildDate><item><title>Automated Install Script for memcached on RHEL5</title><link>http://kencochrane.net/blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/</link><description>&lt;p&gt;I created this script that will download memcached build,install and set it up to start up automatically on reboot. It also installs the init.d script to manage memcache so you can restart etc.&lt;/p&gt;
+&lt;p&gt;You can either copy and paste it into your shell prompt using a user that has install privileges (root,admin,etc) or you can copy into a .sh file and execute it.&lt;/p&gt;
+&lt;p&gt;The code for most of this was take from this blog post: &lt;a class="reference external" href="http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/"&gt;http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/&lt;/a&gt; it doesn't seem to be around anymore so I put it here for anyone else looking for this very helpful info.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+tar -xvzf memcached-1.4.5.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;memcached-1.4.5
+./configure
+make
+make &lt;span class="nb"&gt;test&lt;/span&gt;
+make install
+
+touch /etc/memcached.conf
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;#Memory a user&lt;/span&gt;
+&lt;span class="s"&gt;-m 64&lt;/span&gt;
+&lt;span class="s"&gt;# default port&lt;/span&gt;
+&lt;span class="s"&gt;-p 11211&lt;/span&gt;
+&lt;span class="s"&gt;# user to run daemon nobody/apache/www-data&lt;/span&gt;
+&lt;span class="s"&gt;-u nobody&lt;/span&gt;
+&lt;span class="s"&gt;# only listen locally&lt;/span&gt;
+&lt;span class="s"&gt;-l 127.0.0.1&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /etc/init.d/memcached
+chmod +x /etc/init.d/memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/init.d/memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# memcached    This shell script takes care of starting and stopping&lt;/span&gt;
+&lt;span class="s"&gt;#              standalone memcached.&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# chkconfig: - 80 12&lt;/span&gt;
+&lt;span class="s"&gt;# description: memcached is a high-performance, distributed memory&lt;/span&gt;
+&lt;span class="s"&gt;#              object caching system, generic in nature, but&lt;/span&gt;
+&lt;span class="s"&gt;#              intended for use in speeding up dynamic web&lt;/span&gt;
+&lt;span class="s"&gt;#              applications by alleviating database load.&lt;/span&gt;
+&lt;span class="s"&gt;# processname: memcached&lt;/span&gt;
+&lt;span class="s"&gt;# config: /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;# Source function library.&lt;/span&gt;
+&lt;span class="s"&gt;. /etc/rc.d/init.d/functions&lt;/span&gt;
+&lt;span class="s"&gt;PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin&lt;/span&gt;
+&lt;span class="s"&gt;DAEMON=/usr/local/bin/memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONBOOTSTRAP=/usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONCONF=/etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;NAME=memcached&lt;/span&gt;
+&lt;span class="s"&gt;DESC=memcached&lt;/span&gt;
+&lt;span class="s"&gt;PIDFILE=/var/run/$NAME.pid&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMON ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMONBOOTSTRAP ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;RETVAL=0&lt;/span&gt;
+&lt;span class="s"&gt;start() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Starting $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; daemon $DAEMONBOOTSTRAP $DAEMONCONF&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; touch $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;stop() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Shutting down $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; killproc $NAME&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; rm -f $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# See how we were called.&lt;/span&gt;
+&lt;span class="s"&gt;case &amp;quot;$1&amp;quot; in&lt;/span&gt;
+&lt;span class="s"&gt; start)&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; stop)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; restart|reload)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; status)&lt;/span&gt;
+&lt;span class="s"&gt;  status $prog&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; *)&lt;/span&gt;
+&lt;span class="s"&gt;  echo $&amp;quot;Usage: $0 {start|stop|restart|status}&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;  exit 1&lt;/span&gt;
+&lt;span class="s"&gt;esac&lt;/span&gt;
+&lt;span class="s"&gt;exit $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /usr/local/bin/start-memcached
+chmod +x /usr/local/bin/start-memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/usr/bin/perl -w&lt;/span&gt;
+&lt;span class="s"&gt;# start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;# 2003/2004 - Jay Bonci &amp;lt;jaybonci@debian.org&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;# This script handles the parsing of the /etc/memcached.conf file&lt;/span&gt;
+&lt;span class="s"&gt;# and was originally created for the Debian distribution.&lt;/span&gt;
+&lt;span class="s"&gt;# Anyone may use this little script under the same terms as&lt;/span&gt;
+&lt;span class="s"&gt;# memcached itself.&lt;/span&gt;
+&lt;span class="s"&gt;use strict;&lt;/span&gt;
+&lt;span class="s"&gt;if ($&amp;gt; != 0 and $&amp;lt; != 0) {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Only root wants to run start-memcached.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $etcfile = shift || &amp;quot;/etc/memcached.conf&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $params = [];&lt;/span&gt;
+&lt;span class="s"&gt;my $etchandle;&lt;/span&gt;
+&lt;span class="s"&gt;# This script assumes that memcached is located at /usr/bin/memcached, and&lt;/span&gt;
+&lt;span class="s"&gt;# that the pidfile is writable at /var/run/memcached.pid&lt;/span&gt;
+&lt;span class="s"&gt;my $memcached = &amp;quot;/usr/local/bin/memcached&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $pidfile = &amp;quot;/var/run/memcached.pid&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;# If we don&amp;#39;t get a valid logfile parameter in the /etc/memcached.conf file,&lt;/span&gt;
+&lt;span class="s"&gt;# we&amp;#39;ll just throw away all of our in-daemon output. We need to re-tie it so&lt;/span&gt;
+&lt;span class="s"&gt;# that non-bash shells will not hang on logout. Thanks to Michael Renner for&lt;/span&gt;
+&lt;span class="s"&gt;# the tip&lt;/span&gt;
+&lt;span class="s"&gt;my $fd_reopened = &amp;quot;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;sub handle_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;sub reopen_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDERR, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDOUT, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDIN, &amp;quot;&amp;gt;&amp;gt;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# This is set up in place here to support other non -[a-z] directives&lt;/span&gt;
+&lt;span class="s"&gt;my $conf_directives = {&lt;/span&gt;
+&lt;span class="s"&gt; &amp;quot;logfile&amp;quot; =&amp;gt; \&amp;amp;handle_logfile&lt;/span&gt;
+&lt;span class="s"&gt;};&lt;/span&gt;
+&lt;span class="s"&gt;if (open $etchandle, $etcfile) {&lt;/span&gt;
+&lt;span class="s"&gt; foreach my $line (&amp;lt;$etchandle&amp;gt;) {&lt;/span&gt;
+&lt;span class="s"&gt;  $line =~ s/\#.*//go;&lt;/span&gt;
+&lt;span class="s"&gt;  $line = join &amp;#39; &amp;#39;, split &amp;#39; &amp;#39;, $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next unless $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next if $line =~ /^\-[dh]/o;&lt;/span&gt;
+&lt;span class="s"&gt;  if ($line =~ /^[^\-]/o) {&lt;/span&gt;
+&lt;span class="s"&gt;   my ($directive, $arg) = $line =~ /^(.*?)\s+(.*)/;&lt;/span&gt;
+&lt;span class="s"&gt;   $conf_directives-&amp;gt;{$directive}-&amp;gt;($arg);&lt;/span&gt;
+&lt;span class="s"&gt;   next;&lt;/span&gt;
+&lt;span class="s"&gt;  }&lt;/span&gt;
+&lt;span class="s"&gt;  push @$params, $line;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;unshift @$params, &amp;quot;-u root&amp;quot; unless (grep $_ eq &amp;#39;-u&amp;#39;, @$params);&lt;/span&gt;
+&lt;span class="s"&gt;$params = join &amp;quot; &amp;quot;, @$params;&lt;/span&gt;
+&lt;span class="s"&gt;if (-e $pidfile) {&lt;/span&gt;
+&lt;span class="s"&gt; open PIDHANDLE, &amp;quot;$pidfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; my $localpid = &amp;lt;PIDHANDLE&amp;gt;;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt; chomp $localpid;&lt;/span&gt;
+&lt;span class="s"&gt; if (-d &amp;quot;/proc/$localpid&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt;  print STDERR &amp;quot;memcached is already running.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;  exit;&lt;/span&gt;
+&lt;span class="s"&gt; } else {&lt;/span&gt;
+&lt;span class="s"&gt;  `rm -f $localpid`;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $pid = fork();&lt;/span&gt;
+&lt;span class="s"&gt;if ($pid == 0) {&lt;/span&gt;
+&lt;span class="s"&gt; reopen_logfile($fd_reopened);&lt;/span&gt;
+&lt;span class="s"&gt; exec &amp;quot;$memcached $params&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit(0);&lt;/span&gt;
+&lt;span class="s"&gt;} elsif (open PIDHANDLE,&amp;quot;&amp;gt;$pidfile&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt; print PIDHANDLE $pid;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt;} else {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Can&amp;#39;t write pidfile to $pidfile.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+/etc/init.d/memcached restart
+/sbin/chkconfig memcached on
+&lt;/pre&gt;&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 14 May 2010 16:34:38 -0400</pubDate><guid>tag:kencochrane.net,2010-05-14:blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/</guid><category>linux</category><category>memcached</category><category>RHEL5</category><category>install</category><category>script</category></item></channel></rss>

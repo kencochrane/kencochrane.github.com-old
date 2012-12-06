@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>KenCochrane.net - heroku</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
+                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href=".././about/index.html">About Me</a></li>
+                
+                    <li><a href=".././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li ><a href=".././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href=".././blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/">Installing DjangoCMS on Heroku in 13 easy steps</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2011-12-31T14:25:11">
+                Sat 31 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/djangocms.html">djangocms</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info --><p>Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.</p>
+<ol class="arabic">
+<li><p class="first">Create a place to store your project</p>
+<blockquote>
+<p>$ mkdir -p ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the projects directory</p>
+<blockquote>
+<p>$ cd ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Clone git repo from github, requires git client.</p>
+<blockquote>
+<p>$ git clone git://github.com/kencochrane/django-cms-heroku.git</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the new project directory</p>
+<blockquote>
+<p>$ cd django-cms-heroku</p>
+</blockquote>
+</li>
+<li><p class="first">Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)</p>
+<blockquote>
+<p>$ mkvirtualenv --no-site-packages --distribute django-cms-heroku</p>
+</blockquote>
+</li>
+<li><p class="first">Sign-Up for a Heroku account. <a class="reference external" href="https://api.heroku.com/signup">https://api.heroku.com/signup</a></p>
+</li>
+<li><p class="first">Install the Heroku client. <a class="reference external" href="http://devcenter.heroku.com/articles/quickstart">http://devcenter.heroku.com/articles/quickstart</a></p>
+</li>
+<li><p class="first">The first time you use the Heroku client you will need to login using the same information you used when you signed up. Follow the prompts, and it will finish your install.</p>
+<blockquote>
+<p>$ heroku login</p>
+</blockquote>
+</li>
+<li><p class="first">Create your heroku application</p>
+<blockquote>
+<p>$ heroku create --stack cedar</p>
+</blockquote>
+</li>
+<li><p class="first">Push your code into heroku</p>
+<blockquote>
+<p>$ git push heroku master</p>
+</blockquote>
+</li>
+<li><p class="first">Sync your database and create your admin account.</p>
+<blockquote>
+<p>$ heroku run python mycms/manage.py syncdb --all</p>
+</blockquote>
+</li>
+<li><p class="first">Run your database migrations.</p>
+<blockquote>
+<p>$ heroku run python mycms/manage.py migrate --fake</p>
+</blockquote>
+</li>
+<li><p class="first">Open application in your browser and start using djangoCMS on heroku.</p>
+<blockquote>
+<p>$ heroku open</p>
+</blockquote>
+</li>
+</ol>
+<p>Once you get comfortable with how things work, you could add more plug-ins, create your own custom templates and then change your DEBUG setting to False. So go ahead <a class="reference external" href="https://github.com/kencochrane/django-cms-heroku/fork">fork my project on github</a>  and get started.</p>
+<p>After you make changes to your local project directory, you can test it on the server by running the git push command again.</p>
+<dl class="docutils">
+<dt>For more info about Heroku and django-cms and what you can do with with it. check out their docs</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://devcenter.heroku.com/categories/platform-basics">http://devcenter.heroku.com/categories/platform-basics</a></li>
+<li><a class="reference external" href="https://www.django-cms.org/en/documentation/">https://www.django-cms.org/en/documentation/</a></li>
+</ul>
+</dd>
+<dt>Links:</dt>
+<dd><ul class="first last simple">
+<li><strong>Virtualenv</strong> : <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a></li>
+<li><strong>pip</strong> : <a class="reference external" href="http://www.pip-installer.org/">http://www.pip-installer.org/</a></li>
+<li><strong>virtualenvwrapper</strong> : <a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></li>
+<li><strong>git</strong> : <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
+</ul>
+</dd>
+</dl>
+<p>There are <a href=".././blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/" rel="bookmark"
+                           title="Permalink to Developers guide to Running Django Applications on Heroku">Developers guide to Running Django Applications on Heroku</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-11-30T10:00:00">
+                Wed 30 November 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/python.html">python</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/hosting.html">hosting</a><a href=".././tag/deployment.html">deployment</a><a href=".././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p><a class="reference external" href="http://Heroku.com">Heroku</a> the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still ...</p>
+                <a class="readmore" href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/">read more</a>
+                <p>There are <a href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/" rel="bookmark"
+                           title="Permalink to Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?">Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-06-06T22:03:59">
+                Mon 06 June 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/hosting.html">hosting</a><a href=".././tag/apphosted.html">apphosted</a><a href=".././tag/python.html">python</a><a href=".././tag/deployment.html">deployment</a><a href=".././tag/dotcloud.html">dotcloud</a><a href=".././tag/epio.html">epio</a><a href=".././tag/gondor.html">gondor</a><a href=".././tag/djangozoom.html">djangozoom</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <div class="section" id="updates">
+<h2>Updates</h2>
+<ul class="simple">
+<li>Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.</li>
+<li>Updated 1/26/2012: Updated Gondor ...</li></ul></div>
+                <a class="readmore" href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/">read more</a>
+                <p>There are <a href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            </ol><!-- /#posts-list -->
+            
+                
+<p class="paginator">
+    
+    Page 1 / 1
+    
+</p>
+
+            
+            </section><!-- /#content -->
+        
+    
+
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

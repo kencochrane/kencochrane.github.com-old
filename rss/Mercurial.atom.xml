@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/Mercurial.atom.xml" rel="self"></atom:link><lastBuildDate>Thu, 13 May 2010 20:09:33 -0400</lastBuildDate><item><title>Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5</title><link>http://kencochrane.net/blog/2010/May/13/mercurial-1_5_1-on-RHEL5-using-python2_5/</link><description>&lt;div class="section" id="installing-mercurial-1-5-1-on-red-hat-enterprise-linux-5-rhel5-using-python-2-5"&gt;
+&lt;h2&gt;Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5&lt;/h2&gt;
+&lt;p&gt;My RHEL5 setup uses python2.5 which I compiled from source, since RHEL5 only comes with python2.4.&lt;/p&gt;
+&lt;p&gt;Because I didn't use the built in python 2.4 version I couldn't do the simple&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead I need to build mercurial from source, which isn't too bad. Just do the following.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;as Root&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://mercurial.selenic.com/release/mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvzf mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you get the following error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python2.5 setup.py build
+&lt;span class="nv"&gt;$ &lt;/span&gt;Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t import standard bz2 &lt;span class="o"&gt;(&lt;/span&gt;incomplete Python install&lt;span class="o"&gt;)&lt;/span&gt;.
+     make:  &lt;span class="o"&gt;[&lt;/span&gt;build&lt;span class="o"&gt;]&lt;/span&gt; Error 1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then when you installed python 2.5 you didn't have the bzip2 libs installed so it didn't include them in the python2.5 install. No big deal all you need to do is install those libs and then recomplile python 2.5&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;install bzip2 libs&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install bzip2 bzip2-devel bzip2-libs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Download 2.5.4 from python.org&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvjf Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;Python-2.5.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;switch to root:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./configure
+&lt;span class="nv"&gt;$ &lt;/span&gt;make
+&lt;span class="nv"&gt;$ &lt;/span&gt;make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once complete (this will take a few minutes) rerun the steps above and then you should be good.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;go back to where you untared the mercurial bundle&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check to make sure you are running 1.5.1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hg --version
+     Mercurial Distributed SCM &lt;span class="o"&gt;(&lt;/span&gt;version 1.5.1&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That is all, now you are running Mercurial 1.5.1 on RHEL5 with python2.5!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Thu, 13 May 2010 20:09:33 -0400</pubDate><guid>tag:kencochrane.net,2010-05-13:blog/2010/May/13/mercurial-1_5_1-on-RHEL5-using-python2_5/</guid><category>Mercurial</category><category>RHEL5</category><category>python</category><category>linux</category></item></channel></rss>

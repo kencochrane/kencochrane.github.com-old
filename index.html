@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>KenCochrane.net</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href=".">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="./about/index.html">About Me</a></li>
+                
+                    <li><a href="./projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li ><a href="./category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="./blog/2012/Mar/23/deploying-a-django-application-on-dotcloud/">Deploying my Django application to dotCloud: Part 2</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2012-03-23T14:58:01">
+                Fri 23 March 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/dotcloud.html">dotcloud</a><a href="./tag/django.html">django</a><a href="./tag/paas.html">paas</a><a href="./tag/python.html">python</a><a href="./tag/hosting.html">hosting</a><a href="./tag/deployment.html">deployment</a></p>
+
+
+</footer><!-- /.post-info --><p>As I mentioned in a <a class="reference external" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/">recent blog post</a>, in the 11 months since I wrote my <a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">first post on dotCloud</a>, I now work there. Besides me working there, there has been a lot of other changes at <a class="reference external" href="http://www.dotcloud.com">dotCloud</a>, and I wanted to take the time to update my original post so that it was up to date and had all the recent information. I'm going to completely rewrite the old blog post here, with updated information, and leave the old one around for posterity.</p>
+<p>dotCloud's goal is to provide a bunch of different independent services that you can use as building blocks to build your application. If you need a database, take your pick from one of the many they support. Need an application that uses Django or Rails on the front end, and Java in the backend, that is fine, you can do that too. They realize that most developers don't stick to one standard technology stack for all of their applications, so this allows you the flexibility to use the best tool for the job. It also gives you a nice playground to try out new services and see how they run without having to install, configure and maintain the service just for testing.</p>
+<p>I'm going to go over the steps that it took to install my blog onto dotCloud, and hopefully answer some common questions along the way.</p>
+<div class="section" id="documentation">
+<h2>Documentation</h2>
+<p>Before I get started with any new service the first thing I usually do is look at the documentation. DotCloud has a nice list of documents along with some tutorials on how to get started. These 4 documents were the ones that I used the most.</p>
+<p><a class="reference external" href="http://docs.dotcloud.com/firststeps/platform-overview/">http://docs.dotcloud.com/firststeps/platform-overview/</a></p>
+<p><a class="reference external" href="http://docs.dotcloud.com/tutorials/python/django/">http://docs.dotcloud.com/tutorials/python/django/</a></p>
+<p><a class="reference external" href="http://docs.dotcloud.com/services/mysql/">http://docs.dotcloud.com/services/mysql/</a></p>
+<p><a class="reference external" href="http://docs.dotcloud.com/services/mysql-masterslave/">http://docs.dotcloud.com/services/mysql-masterslave/</a></p>
+</div>
+<div class="section" id="first-steps">
+<h2>First Steps:</h2>
+<p>Like all cool services these days, dotCloud uses a python based CLI, so before we can get started we need to install the dotCloud client and configure it so that we can start using it.</p>
+<div class="highlight"><pre><span class="c"># create my dotcloud virtual environment.</span>
+<span class="nv">$ </span>mkvirtualenv dotcloud
+
+<span class="c"># install dotcloud client using pip</span>
+<span class="nv">$ </span>pip install dotcloud
+
+<span class="c"># create our application called blog</span>
+<span class="nv">$ </span>dotcloud create blog
+
+<span class="c">#enter api key that we got from: http://www.dotcloud.com/account/settings when prompted</span>
+<span class="c">#&lt;key goes here&gt;</span>
+
+<span class="c"># if you were not prompted to enter your key you can run this command, and it will let you enter your API key again.</span>
+<span class="nv">$ </span>dotcloud register
+</pre></div>
+<p>Now that we have the client all setup, and an application created, now we can start building our service. I have forked my blog repository on github so that I could make dotCloud specific changes to it and not effect my original repo.</p>
+<div class="highlight"><pre><span class="c"># go into projects directory</span>
+<span class="nb">cd</span> ~/projects
+
+<span class="c"># forked kencochranenet to kencochranenet_dotcloud, now clone that. locally</span>
+git clone git://github.com/kencochrane/kencochranenet_dotcloud.git kencochranenet_dotcloud
+
+<span class="c"># go into the new directory.</span>
+<span class="nb">cd </span>kencochrane_dotcloud
+</pre></div>
+<p>Reading through the documentation tells me that I need to create a wsgi.py file and put in the root of my project. Using <a class="reference external" href="http://docs.dotcloud.com/tutorials/python/django/#wsgi-py">http://docs.dotcloud.com/tutorials/python/django/#wsgi-py</a> as a template, I created my wsgi.py file below. I had issues with the default template and I needed to add a directory to the sys.path so that wsgi could find my django apps correctly. Here is my finished file.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c"># Ken added this, only thing that is different from the example template (not counting settings file name)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span><span class="s">&#39;mysite&#39;</span><span class="p">)))</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;mysite.settings&#39;</span>
+
+<span class="kn">import</span> <span class="nn">django.core.handlers.wsgi</span>
+<span class="n">djangoapplication</span> <span class="o">=</span> <span class="n">django</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">wsgi</span><span class="o">.</span><span class="n">WSGIHandler</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">&#39;SCRIPT_NAME&#39;</span> <span class="ow">in</span> <span class="n">environ</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">environ</span><span class="p">[</span><span class="s">&#39;SCRIPT_NAME&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">djangoapplication</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">)</span>
+</pre></div>
+<p>DotCloud uses <a class="reference external" href="http://www.pip-installer.org/en/latest/#requirements-files">PIP requirements files</a> to manage your project dependencies. We already have our pip requirements file where it needs to be and named correctly so we don't need to do anything, but if we didn't have one, we would need to create one and put it in the root, and call it requirements.txt</p>
+<div class="section" id="services">
+<h3>Services</h3>
+<p>When we add a service to our deployment stack, dotCloud gives us the appropriate connection information in a file called '/home/dotcloud/environment.json' that is available to us on our deployment container. This allows us to not have to hard code username/password and server urls in our settings.py file, and it also makes it a little more secure for us since we don't have to have that info in our source repository.</p>
+<p>This is how we use it. At the top of your settings.py file you will need to add the following. snippet.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/home/dotcloud/environment.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">env</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+<p>Once we have that added to the settings.py file, we now have a variable env that has all of the env settings we need.</p>
+<p>You could go a little further add some custom code to check if the environment.json file exists, and if it does, you know you are in production, so use that setup, or if not, then you must be in local mode, so use your local settings. If you want to get really cool, you can have your own json file that has a similar setup for local development, and if it doesn't find the dotcloud one, it could look for your own, and load your settings from that. This will allow you to use the same settings file for both production and dev, with only a little bit of code at the top to load the correct env file.</p>
+</div>
+<div class="section" id="database">
+<h3>Database</h3>
+<p>Most applications need a database, and this blog is no different. This is how we setup our database to work with our blog on dotcloud. We are going to be using mysql for our database. With Django you need to set your database settings in your settings.py. This is how we setup a mysql database connection inside of our settings.py. Notice that the name of the database doesn't come from the env, you pick that yourself.</p>
+<div class="highlight"><pre><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;blogdb&#39;</span><span class="p">,</span>
+        <span class="s">&#39;USER&#39;</span><span class="p">:</span> <span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_DB_MYSQL_LOGIN&#39;</span><span class="p">],</span>
+        <span class="s">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_DB_MYSQL_PASSWORD&#39;</span><span class="p">],</span>
+        <span class="s">&#39;HOST&#39;</span><span class="p">:</span> <span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_DB_MYSQL_HOST&#39;</span><span class="p">],</span>
+        <span class="s">&#39;PORT&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_DB_MYSQL_PORT&#39;</span><span class="p">]),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="create-the-database">
+<h3>Create the Database</h3>
+<p>dotCloud gives you your own dedicated database, with full root access. With great power comes great responsibilities. One of those responsibilities is that you need to create your own database schemas, and users yourself. Which means you normally need to do something like this.</p>
+<div class="highlight"><pre><span class="c"># connect to dotcloud mysql server instance</span>
+<span class="nv">$ </span>dotcloud run blog.db -- mysql -u root -p
+
+<span class="c"># mysql -u root -p</span>
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or <span class="se">\g</span>.
+Your MySQL connection id is 34
+Server version: 5.1.41-3ubuntu12.10 <span class="o">(</span>Ubuntu<span class="o">)</span>
+
+<span class="c"># create the user and database and give user permissions to database.</span>
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for </span>help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt; create database blogdb;
+Query OK, 1 row affected <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+mysql&gt; create user <span class="s1">&#39;blog_username&#39;</span> identified by <span class="s1">&#39;strong_password&#39;</span>;
+Query OK, 0 rows affected <span class="o">(</span>0.05 sec<span class="o">)</span>
+
+mysql&gt; grant all on blogdb.* to <span class="s1">&#39;blog_user&#39;</span>@<span class="s1">&#39;%&#39;</span>;
+Query OK, 0 rows affected <span class="o">(</span>0.04 sec<span class="o">)</span>
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+mysql&gt; <span class="nb">exit</span>;Bye
+Shared connection to database closed.
+</pre></div>
+<p>Does that look familiar? I have it here in case you want to do it the long way.</p>
+<p>To make things easier, we are going to create a small python script that will check to see if we have our database created, and if not, it will create it for us. This will make it so that we don't have to login into our database and do it by hand before we deploy. The file is called createdb.py and this is what it looks like. This script is for mysql. If you want a postgreSQL database, you can use this as a template and change it so that it will work with postgreSQL.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">MySQLdb</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">wsgi</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">create_dbs</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;create_dbs: let&#39;s go.&quot;</span><span class="p">)</span>
+    <span class="n">django_settings</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">],</span> <span class="n">fromlist</span><span class="o">=</span><span class="s">&#39;DATABASES&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;create_dbs: got settings.&quot;</span><span class="p">)</span>
+    <span class="n">databases</span> <span class="o">=</span> <span class="n">django_settings</span><span class="o">.</span><span class="n">DATABASES</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">db</span> <span class="ow">in</span> <span class="n">databases</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="ow">and</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;ENGINE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;mysql&#39;</span><span class="p">):</span>
+            <span class="n">host</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;HOST&#39;</span><span class="p">]</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;USER&#39;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;PASSWORD&#39;</span><span class="p">]</span>
+            <span class="n">port</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;PORT&#39;</span><span class="p">]</span>
+            <span class="n">db_name</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;NAME&#39;</span><span class="p">]</span>
+            <span class="k">print</span> <span class="s">&#39;creating database </span><span class="si">%s</span><span class="s"> on </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">db_name</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                                <span class="n">passwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+                                <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
+                                <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Check if database is already there.&quot;</span><span class="p">)</span>
+            <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;&quot;&quot;SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA</span>
+<span class="s">                         WHERE SCHEMA_NAME = </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">db_name</span><span class="p">,))</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Database </span><span class="si">%s</span><span class="s"> doesn&#39;t exist, lets create it.&quot;</span> <span class="o">%</span> <span class="n">db_name</span><span class="p">)</span>
+                <span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;CREATE DATABASE IF NOT EXISTS </span><span class="si">%s</span><span class="s"> &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">db_name</span><span class="p">,)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;&gt; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">sql</span><span class="p">)</span>
+                <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;.....&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;database already exists, moving on to next step.&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;create_dbs start&quot;</span><span class="p">)</span>
+    <span class="n">create_dbs</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;create_dbs all done&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="adding-a-cache">
+<h3>Adding a cache</h3>
+<p>Since most of the blog content doesn't change much, it is a great candidate for caching. So we are going to take advantage of Django's built in caching abilities and add some caching to our blog. Normally I use <a class="reference external" href="http://memcached.org">memcached</a> for my caching, but dotCloud's memcached support is limited right now. The reason why it is limited is because memcached doesn't have any built in authentication mechanism, and in order to make sure it is secure, you need to run a special version of memcached that supports <a class="reference external" href="http://code.google.com/p/memcached/wiki/SASLAuthProtocol">SASL</a>, and most of the memcached clients don't support this. So instead of deploying an insecure service, they decided to not support it fully. There are ways to use it, but it involves all kind of complicated firewall rules and running something like stunnel. So it is possible, but it isn't very clean.</p>
+<p>Instead they recommend that you use <a class="reference external" href="http://redis.io">redis</a> instead, redis has the same caching abilities that memcached has, plus a lot more, including authentication. So we are going to use redis for our cache. In order to use redis, we will need to add the redis library because redis caching support isn't built into Django. In your requirements.txt file you will need to add <tt class="docutils literal"><span class="pre">django-redis==1.4.5</span></tt> so that the libraries will be available for Django to use.</p>
+<p>Once you have the library installed, you will need to add these settings to your settings.py file so that django knows which redis server and password to use.</p>
+<div class="highlight"><pre><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;redis_cache.cache.RedisCache&#39;</span><span class="p">,</span>
+        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_CACHE_REDIS_HOST&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;:&#39;</span><span class="o">+</span><span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_CACHE_REDIS_PORT&#39;</span><span class="p">],</span>
+        <span class="s">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;DB&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">env</span><span class="p">[</span><span class="s">&#39;DOTCLOUD_CACHE_REDIS_PASSWORD&#39;</span><span class="p">],</span>
+            <span class="s">&#39;PARSER_CLASS&#39;</span><span class="p">:</span> <span class="s">&#39;redis.connection.HiredisParser&#39;</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="c"># we also are going to use redis for our session cache as well.</span>
+<span class="n">SESSION_ENGINE</span> <span class="o">=</span> <span class="s">&#39;django.contrib.sessions.backends.cached_db&#39;</span>
+</pre></div>
+<p>For more information about using redis as your cache for Django, check out these links.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/niwibe/django-redis">https://github.com/niwibe/django-redis</a></li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/django-redis/1.4.5">http://pypi.python.org/pypi/django-redis/1.4.5</a></li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.3/topics/cache/">https://docs.djangoproject.com/en/1.3/topics/cache/</a></li>
+<li><a class="reference external" href="http://answers.dotcloud.com/question/213/redis-cache-settings-for-django">http://answers.dotcloud.com/question/213/redis-cache-settings-for-django</a></li>
+</ul>
+</div>
+<div class="section" id="django-admin">
+<h3>Django Admin</h3>
+<p>We also need an easy way to create our django admin account for us. In order to do that I have this mkadmin.py script. This will default the password to <a class="reference external" href="mailto:'P&#64;s$w0rd1">'P&#64;s$w0rd1</a>', once you have your code installed, you will need to login to the admin account and change your password to something more secure.</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">wsgi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;admin&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">created</span><span class="p">:</span>
+    <span class="n">u</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s">&#39;P@s$w0rd1&#39;</span><span class="p">)</span>
+    <span class="n">u</span><span class="o">.</span><span class="n">is_superuser</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">u</span><span class="o">.</span><span class="n">is_staff</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">u</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="media">
+<h3>Media</h3>
+<p>We need to put our static and media files in the following locations: <tt class="docutils literal"><span class="pre">static=/home/dotcloud/data/static/</span></tt> and <tt class="docutils literal"><span class="pre">media=/home/dotcloud/data/media/</span></tt>. Because of this we need to make sure we change our settings.py file, and setup an nginx.conf file to map to the correct locations. Here are the settings.py file changes.</p>
+<div class="highlight"><pre><span class="c"># media settings</span>
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="s">&#39;/home/dotcloud/data/media/&#39;</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s">&#39;/media/&#39;</span>
+
+<span class="c"># static settings</span>
+<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="s">&#39;/home/dotcloud/data/static/&#39;</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">&#39;/static/&#39;</span>
+
+<span class="c"># admin prefix</span>
+<span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s">&#39;/static/admin/&#39;</span>
+</pre></div>
+<p>Here is the nginx.conf</p>
+<div class="highlight"><pre><span class="k">location</span> <span class="s">/media/</span> <span class="p">{</span> <span class="kn">root</span> <span class="s">/home/dotcloud/data</span> <span class="p">;</span> <span class="p">}</span>
+<span class="k">location</span> <span class="s">/static/</span> <span class="p">{</span> <span class="kn">root</span> <span class="s">/home/dotcloud/data</span> <span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="post-install">
+<h3>Post Install</h3>
+<p>We are going to create a <a class="reference external" href="http://docs.dotcloud.com/guides/postinstall/">postinstall</a> script to handle all of the tasks we need to do after we install our code on the server. This is what will call our createdb.py, and mkadmin.py files from above, as well as syncing our database, running migrations and running collectstatic to move all static files into the right locations.</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+python createdb.py default
+python mysite/manage.py syncdb --noinput
+python mysite/manage.py migrate
+python mkadmin.py
+mkdir -p /home/dotcloud/data/media /home/dotcloud/data/static
+python mysite/manage.py collectstatic --noinput
+</pre></div>
+<p>Don't forget to make sure your postinstall, createdb.py and mkadmin.py scripts are executable.</p>
+<div class="highlight"><pre><span class="c"># make the script executable.</span>
+<span class="nv">$ </span>chmod +x postinstall createdb.py mkadmin.py
+</pre></div>
+</div>
+<div class="section" id="dotcloud-yml">
+<h3>dotcloud.yml</h3>
+<p>Now that we have our application's project structure all setup and configured the way dotCloud wants it, we can configure our deployment stack. This is done with a file called dotcloud.yml. For more information about the dotcloud.yml file check out this link: <a class="reference external" href="http://docs.dotcloud.com/guides/build-file/">http://docs.dotcloud.com/guides/build-file/</a></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">www</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">python</span>
+<span class="l-Scalar-Plain">db</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql</span>
+<span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">redis</span>
+</pre></div>
+<p>This is telling us that we want 3 services, a python www service, a mysql db service, and a redis cache service. This is a very basic setup, and you can get a lot more complicated depending on what you want to achieve. Notice that this isn't setup for high availability because none of the instances are scaled. See the section about scaling below for more information. If you are running in a production app on dotCloud it is recommended that you scale all of your services so that they can withstand EC2 server crashes, and other unforeseen issues.</p>
+</div>
+<div class="section" id="deployment">
+<h3>Deployment</h3>
+<p>Now we are ready to deploy our Django app, but before I go any further it is important to know the following. Dotcloud will pay attention to your .gitignore files. If you have a settings file in your .gitignore file so that it doesn't get saved in the repo, it will not push those changes up to the cloud. You will need to remove it from the .gitignore in order to get those files out there. It is also import to remember that only changes that are committed are pushed, so don't forget to commit your changes. If you wanted to be tricky you could use a post install script to pull down the file from a secure location and install it that way, if you want to make things super secure.</p>
+<p>Everything is all setup, so all we have to do is push our application to dotCloud.</p>
+<div class="highlight"><pre><span class="c"># push out your changes to the server</span>
+<span class="nv">$ </span>dotcloud push blog .
+</pre></div>
+</div>
+<div class="section" id="service-info">
+<h3>Service info</h3>
+<p>Once you push your code to dotCloud you can see what it looks like by running the info command.</p>
+<div class="highlight"><pre><span class="c"># get the information about our new services</span>
+<span class="nv">$ </span>dotcloud info blog
+cache:
+    config:
+        redis_password: &lt;password&gt;
+        redis_replication: <span class="nb">true</span>
+<span class="nb">    </span>instances: 1
+    <span class="nb">type</span>: redis
+db:
+    config:
+        mysql_masterslave: <span class="nb">true</span>
+<span class="nb">        </span>mysql_password: &lt;password&gt;
+    instances: 1
+    <span class="nb">type</span>: mysql
+www:
+    config:
+        static: static
+        uwsgi_processes: 4
+    instances: 1
+    <span class="nb">type</span>: python
+    url: &lt;url was here&gt;
+</pre></div>
+</div>
+<div class="section" id="scaling">
+<h3>Scaling</h3>
+<p>Scaling is the ability to grow your application so that it can handle more traffic, or possible failures that might occur. With a normal non PaaS setup, scaling an application can be quite painful and time consuming, but with a PaaS it can be as easy as running a few commands. There are three types of scaling, Vertical, Horizontal, High Availability.</p>
+<p>Vertical scaling, means growing the service you have now so that it can get bigger. This is popular with databases, the bigger a database gets the more space and memory it needs.</p>
+<p>Horizontal scaling means creating more then one instance of a service so it spread the work between the different services, giving you greater capacity.</p>
+<p>High Availability means that you have more then one service running at a time, so that if one of the services has an issue, the other one will pick up the slack. This will help avoid downtime, when failures occur (EC2 instance crashes). Ideally when running in production, all of your services should be scaled for High Availability.</p>
+<p>There are two kinds of services, stateful, and stateless. Stateful services are services that holds persistent data. Examples of stateful services are mysql, redis, postgresql, solr, MongoDB and RabbitMQ.</p>
+<p>Horizontally High availability scaling a stateful service on dotCloud means creating a master/slave setup, which can switch the slave with the master automatically if the master has any issues. dotCloud supports HA scaling on MySQL, redis, and MongoDB.</p>
+<p>Stateful services scale like this</p>
+<blockquote>
+<ul class="simple">
+<li>mysql : 2 (master/slave)</li>
+<li>redis : 2 (master/slave)</li>
+<li>mongodb : 3 or 5 (using replica sets)</li>
+</ul>
+</blockquote>
+<p>Scaling a stateless and one of the supported stateful services is the same. You would just run the scale command line command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud scale app <span class="nv">db</span><span class="o">=</span>2
+</pre></div>
+<p>For stateless applications, you are limited to a set number of scaling units, unless you are on the enterprise plan. If you need to have an application with lots of scale units, you should contact dotCloud, and let them know what you are planning to do, and they will advise you on how best to accomplish your goals.</p>
+<p>Link: <a class="reference external" href="http://docs.dotcloud.com/guides/scaling/">http://docs.dotcloud.com/guides/scaling/</a></p>
+</div>
+<div class="section" id="database-backups">
+<h3>Database Backups</h3>
+<p>Just because you are hosting your application on dotCloud doesn't mean you shouldn't backup your data. The most important data to backup is your database. Luckily dotCloud makes it easy to back up your database. There is a very helpful guide on how to setup your database backups here: <a class="reference external" href="http://docs.dotcloud.com/guides/backups/">http://docs.dotcloud.com/guides/backups/</a></p>
+</div>
+<div class="section" id="email">
+<h3>Email</h3>
+<p>If you need to send or receive email from your application, you can do that to. Because dotCloud runs on EC2, and EC2 is a popular place where SPAMMERS send SPAM from, it is best to use a 3rd party email provider to send your emails for you. Popular ones are <a class="reference external" href="http://mailgun.net/">MailGun</a>, <a class="reference external" href="http://sendgrid.com/">SendGrid</a>, <a class="reference external" href="http://www.critsend.com/">CritSend</a>, and <a class="reference external" href="http://aws.amazon.com/ses/">Amazon SES</a>.</p>
+<p>You can set this up a couple of different ways. The first way is the easiest way possible, it allows you to configure the SMTP settings for each service. You would do it like this (see below). You can manually set the smtp settings for that service, and when your application needs to send an email it will use those settings. This is the most simple setup, but there are downsides to this approach. You would need to set this for each service, if you have more then one that will be duplicated everywhere. Also if you want to change your settings, you will need to destroy your service and recreate it, since those configs can only be set once when the service is created.</p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">www</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">python</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">smtp_server</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">smtp.mailgun.org</span>
+    <span class="l-Scalar-Plain">smtp_port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">25</span>
+    <span class="l-Scalar-Plain">smtp_username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postmaster@company.com</span>
+    <span class="l-Scalar-Plain">smtp_password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YourMailGunPassword</span>
+</pre></div>
+<p>A better approach would be to use dotCloud's SMTP service. The SMTP service is built to receive emails from your services and forward them to the appropriate location. It is best to use a 3rd party email provider, but you can also use the typical poor mans solution, where you use gmail to send your emails. Be careful when using gmail, because you aren't aloud to send a lot of emails via gmail, once you hit your daily limit you will be blocked, so this is fine for a few emails a day, don't trust it for everyday stuff. Also, the emails will always be coming from your gmail address, fine for system emails, but not if you are trying to run a legit business.</p>
+<p>Here is an example using mailgun.</p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">mailer</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">smtp</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">smtp_relay_server</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">smtp.mailgun.org</span>
+    <span class="l-Scalar-Plain">smtp_relay_port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">587</span>
+    <span class="l-Scalar-Plain">smtp_relay_username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postmaster@yourmailgundomain.com</span>
+    <span class="l-Scalar-Plain">smtp_relay_password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YourMailgunPassword</span>
+</pre></div>
+<p>Here is an example using gmail.</p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">mailer</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">smtp</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">smtp_relay_server</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">smtp.gmail.com</span>
+    <span class="l-Scalar-Plain">smtp_relay_port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">587</span>
+    <span class="l-Scalar-Plain">smtp_relay_username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">your_gmail_username@gmail.com</span>
+    <span class="l-Scalar-Plain">smtp_relay_password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Your_Gmail_Password</span>
+</pre></div>
+<p>Once you have these all setup, they will be available in your environment.json file.</p>
+<p>If you want to receive email, it is best to use a service like <a class="reference external" href="http://mailgun.net/">MailGun</a> .</p>
+<p>Links:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.dotcloud.com/guides/emails/">http://docs.dotcloud.com/guides/emails/</a></li>
+<li><a class="reference external" href="http://docs.dotcloud.com/services/smtp/">http://docs.dotcloud.com/services/smtp/</a></li>
+</ul>
+</div>
+<div class="section" id="cron-jobs">
+<h3>Cron jobs</h3>
+<p>If your app needs to run cron jobs, follow the steps in this guide: <a class="reference external" href="http://docs.dotcloud.com/guides/periodic-tasks/">http://docs.dotcloud.com/guides/periodic-tasks/</a></p>
+</div>
+<div class="section" id="celery">
+<h3>Celery</h3>
+<p>This blog doesn't really have a need for celery, but dotCloud does support it. For more information follow this link: <a class="reference external" href="http://docs.dotcloud.com/tutorials/python/django-celery/">http://docs.dotcloud.com/tutorials/python/django-celery/</a></p>
+</div>
+<div class="section" id="s3fs">
+<h3>S3FS</h3>
+<p>If you store data on s3 you can mount your s3 bucket so that you can have access to s3 from your application, just like it was a local directory on your container. This is helpful for storing files that are uploaded by your visitors, or to share files between different web processes. Follow these instructions to set it up: <a class="reference external" href="http://docs.dotcloud.com/guides/s3fs/">http://docs.dotcloud.com/guides/s3fs/</a></p>
+</div>
+<div class="section" id="logs">
+<h3>Logs</h3>
+<p>If you need to look at the logs to see how it is going you can do it two ways. The first way will tail your logs for you to your console.</p>
+<div class="highlight"><pre><span class="c"># look at logs of your service, it will tail them to your console. ctrl-c to stop.</span>
+<span class="nv">$ </span>dotcloud logs blog.www
+</pre></div>
+<p>Or login via ssh and look at your logs.</p>
+<div class="highlight"><pre><span class="c"># Open up a shell</span>
+<span class="nv">$ </span>dotcloud ssh blog.www
+</pre></div>
+<p>Here are the ones you most likely care about.</p>
+<div class="highlight"><pre><span class="c"># nginx access and error logs.</span>
+/var/log/nginx/&lt;app_name&gt;.<span class="o">{</span>access,error<span class="o">}</span>.log
+
+<span class="c"># wsgi error logs</span>
+/var/log/supervisor/uswgi.log
+</pre></div>
+</div>
+<div class="section" id="restart-service">
+<h3>Restart Service</h3>
+<p>If you need to restart your service just issue this command.</p>
+<div class="highlight"><pre><span class="c"># restart the service</span>
+dotcloud restart blog.www
+</pre></div>
+</div>
+<div class="section" id="links">
+<h3>Links</h3>
+<ul class="simple">
+<li>Read how this service stacks up against other services like it in my <a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a></li>
+<li><a class="reference external" href="http://www.dotCloud.com">http://www.dotCloud.com</a></li>
+</ul>
+</div>
+</div>
+<p>There are <a href="./blog/2012/Mar/23/deploying-a-django-application-on-dotcloud/#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2012/Mar/23/im-now-working-for-dotcloud/" rel="bookmark"
+                           title="Permalink to I'm now working for dotCloud">I'm now working for dotCloud</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-03-23T12:20:29">
+                Fri 23 March 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/dotcloud.html">dotcloud</a><a href="./tag/cashstar.html">cashstar</a><a href="./tag/job.html">job</a><a href="./tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>A lot has happened in the 11 months since I wrote my <a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">first blog article on dotCloud</a>. There was an Egyptian revolution, a royal wedding, a new iPhone and iPad, Osama bin Laden was killed, and on a more personal note, I left my job at CashStar and I now ...</p>
+                <a class="readmore" href="./blog/2012/Mar/23/im-now-working-for-dotcloud/">read more</a>
+                <p>There are <a href="./blog/2012/Mar/23/im-now-working-for-dotcloud/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2012/Jan/28/running-sentry-on-dotcloud/" rel="bookmark"
+                           title="Permalink to Running sentry on DotCloud">Running sentry on DotCloud</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-01-28T23:00:33">
+                Sat 28 January 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/dotcloud.html">dotcloud</a><a href="./tag/django.html">django</a><a href="./tag/sentry.html">sentry</a><a href="./tag/python.html">python</a><a href="./tag/.html"></a></p>
+
+
+</footer><!-- /.post-info -->
+                <p><a class="reference external" href="https://github.com/dcramer/sentry">Sentry</a> is a realtime event logging and aggregation platform. At it’s core it specializes in monitoring errors and extracting all the information needed to do a proper post-mortum without any of the hassle of the standard user feedback loop.</p>
+<p>The main feature of sentry and the ability to send ...</p>
+                <a class="readmore" href="./blog/2012/Jan/28/running-sentry-on-dotcloud/">read more</a>
+                <p>There are <a href="./blog/2012/Jan/28/running-sentry-on-dotcloud/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2012/Jan/25/developers-guide-to-pci-compliant-web-applications/" rel="bookmark"
+                           title="Permalink to The Developers Guide to PCI Compliant Web applications">The Developers Guide to PCI Compliant Web applications</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-01-25T17:10:54">
+                Wed 25 January 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/pci.html">pci</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p><em>Work in progress last updated: 01-26-2012 by Ken Cochrane</em></p>
+<p><strong>Update: 04-05-2012</strong> This article has been <a class="reference external" href="http://www.ituring.com.cn/article/1372">translated into chinese</a> , by Wujun Shen (吴峻申)</p>
+<p>When I first started working at <a class="reference external" href="http://CashStar.com">CashStar.com</a> three and a half years ago, I had heard about PCI before, but I didn't really know what that ...</p>
+                <a class="readmore" href="./blog/2012/Jan/25/developers-guide-to-pci-compliant-web-applications/">read more</a>
+                <p>There are <a href="./blog/2012/Jan/25/developers-guide-to-pci-compliant-web-applications/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2012/Jan/15/getting-djangocms-up-and-running-on-stackato/" rel="bookmark"
+                           title="Permalink to Getting DjangoCMS up and running on ActiveState's Stackato">Getting DjangoCMS up and running on ActiveState's Stackato</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-01-15T13:30:13">
+                Sun 15 January 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/django.html">django</a><a href="./tag/djangocms.html">djangocms</a><a href="./tag/stackato.html">stackato</a><a href="./tag/python.html">python</a><a href="./tag/hosting.html">hosting</a><a href="./tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>ActiveState has recently started their own PAAS based on <a class="reference external" href="http://cloudfoundry.org/">CloudFoundry</a> this blog post is to help you get up and running quickly with a Django CMS installation, and hopefully give you enough information to get your own applications on there as well.</p>
+<p>To keep things simple, I'll just go ...</p>
+                <a class="readmore" href="./blog/2012/Jan/15/getting-djangocms-up-and-running-on-stackato/">read more</a>
+                <p>There are <a href="./blog/2012/Jan/15/getting-djangocms-up-and-running-on-stackato/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2012/Jan/14/installing-django-application-on-openshift/" rel="bookmark"
+                           title="Permalink to Installing a Django application on Red Hat's OpenShift PAAS">Installing a Django application on Red Hat's OpenShift PAAS</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-01-14T14:05:52">
+                Sat 14 January 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/django.html">django</a><a href="./tag/djangocms.html">djangocms</a><a href="./tag/openshift.html">openshift</a><a href="./tag/python.html">python</a><a href="./tag/hosting.html">hosting</a><a href="./tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>It seems like everyone has their own <a class="reference external" href="http://en.wikipedia.org/wiki/Platform_as_a_service">PAAS</a> solution these days, and if they don't have one yet, it is just a matter of time before they will. Red Hat has recently joined in on the fun with their <a class="reference external" href="https://openshift.redhat.com">OpenShift</a> platform.</p>
+<p>I decided to take it for a test ...</p>
+                <a class="readmore" href="./blog/2012/Jan/14/installing-django-application-on-openshift/">read more</a>
+                <p>There are <a href="./blog/2012/Jan/14/installing-django-application-on-openshift/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/" rel="bookmark"
+                           title="Permalink to Installing DjangoCMS on Heroku in 13 easy steps">Installing DjangoCMS on Heroku in 13 easy steps</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-12-31T14:25:11">
+                Sat 31 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/django.html">django</a><a href="./tag/djangocms.html">djangocms</a><a href="./tag/heroku.html">heroku</a><a href="./tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.</p>
+<ol class="arabic">
+<li><p class="first">Create a place to store your project</p>
+<blockquote>
+<p>$ mkdir -p ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the projects directory</p>
+<blockquote>
+<p>$ cd ...</p></blockquote></li></ol>
+                <a class="readmore" href="./blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/">read more</a>
+                <p>There are <a href="./blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/" rel="bookmark"
+                           title="Permalink to Installing DjangoCMS on dotCloud in 12 easy steps">Installing DjangoCMS on dotCloud in 12 easy steps</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-12-31T13:26:42">
+                Sat 31 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/django.html">django</a><a href="./tag/djangocms.html">djangocms</a><a href="./tag/dotcloud.html">dotcloud</a><a href="./tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Do you want to use Django-cms on dotcloud but don't know where to start? All you need to do is follow these 12 easy steps, they will get you on your way.</p>
+<ol class="arabic">
+<li><p class="first">Create a place to store your project</p>
+<blockquote>
+<p>$ mkdir -p ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the projects directory</p>
+<blockquote>
+<p>$ cd ~/projects ...</p></blockquote></li></ol>
+                <a class="readmore" href="./blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/">read more</a>
+                <p>There are <a href="./blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/" rel="bookmark"
+                           title="Permalink to Using New Relic with supervisord and gunicorn">Using New Relic with supervisord and gunicorn</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-12-30T14:53:35">
+                Fri 30 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/django.html">django</a><a href="./tag/supervisor.html">supervisor</a><a href="./tag/gunicorn.html">gunicorn</a><a href="./tag/newrelic.html">newrelic</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>New Relic recently added support for python to their awesome web application performance tool, and I have been playing with it on a number of projects.</p>
+<p>Installing and configuring new relic is pretty well covered in their own <a class="reference external" href="http://newrelic.com/docs/python/">documentation</a>, so there is no reason for me to repeat that here ...</p>
+                <a class="readmore" href="./blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/">read more</a>
+                <p>There are <a href="./blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./blog/2011/Dec/30/what-are-the-best-python-companies-to-work-for/" rel="bookmark"
+                           title="Permalink to What are the best python companies to work for?">What are the best python companies to work for?</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-12-30T14:08:16">
+                Fri 30 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>tags: <a href="./tag/python.html">python</a><a href="./tag/work.html">work</a><a href="./tag/.html"></a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>I was looking at the pycon US 2012 website when I stumbled upon the huge list of <a class="reference external" href="https://us.pycon.org/2012/sponsors/">sponsors</a>, which is really impressive. It got me thinking. Are all of these companies using python? If so, which ones are the best companies to work for?</p>
+<p>If it was up to you ...</p>
+                <a class="readmore" href="./blog/2011/Dec/30/what-are-the-best-python-companies-to-work-for/">read more</a>
+                <p>There are <a href="./blog/2011/Dec/30/what-are-the-best-python-companies-to-work-for/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            </ol><!-- /#posts-list -->
+            
+                
+<p class="paginator">
+    
+    Page 1 / 4
+    
+        <a href="./index2.html">&raquo;</a>
+    
+</p>
+
+            
+            </section><!-- /#content -->
+        
+    
+
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

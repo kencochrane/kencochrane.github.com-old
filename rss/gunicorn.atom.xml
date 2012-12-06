@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/gunicorn.atom.xml" rel="self"></atom:link><lastBuildDate>Fri, 30 Dec 2011 14:53:35 -0500</lastBuildDate><item><title>Using New Relic with supervisord and gunicorn</title><link>http://kencochrane.net/blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/</link><description>&lt;p&gt;New Relic recently added support for python to their awesome web application performance tool, and I have been playing with it on a number of projects.&lt;/p&gt;
+&lt;p&gt;Installing and configuring new relic is pretty well covered in their own &lt;a class="reference external" href="http://newrelic.com/docs/python/"&gt;documentation&lt;/a&gt;, so there is no reason for me to repeat that here. One thing that isn't covered in the documentation is how to use new relic if you are using supervisord to control your gunicorn processes, and I'll take this time right now to show you what I did.&lt;/p&gt;
+&lt;p&gt;Setting up new relic with supervisord and gunicorn is pretty easy. All that you need to do, is change your supervisor.conf file and then update your supevisor config, and you are good to go.&lt;/p&gt;
+&lt;p&gt;Here is the supervisor.conf file for my awesome app, before I installed new relic.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: These are not my real conf files, they have been changed to protect the guilty, so please excuse any typos.&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[program:awesome_app]
+directory=/opt/apps/awesome_home/awesome_app/
+command=/opt/apps/awesome_home/bin/python2.6 /opt/apps/awesome_home/bin/gunicorn_django -c /opt/apps/awesome_home/awesome_app/conf/gunicorn.conf
+user=aweman
+autostart=true
+autorestart=true
+environment=HOME=&amp;#39;/opt/apps/awesome_home/awesome_app/&amp;#39;,DJANGO_SETTINGS_MODULE=&amp;#39;settings&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After I installed new relic. All you need to do is add the 'newrelic-admin run-program' command before the 'gunicorn_django' command and add an ENV variable called NEW_RELIC_CONFIG_FILE that is pointing to your newrelic.ini file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[program:awesome_app]
+directory=/opt/apps/awesome_home/awesome_app/
+command=/opt/apps/awesome_home/bin/newrelic-admin run-program /opt/apps/awesome_home/bin/gunicorn_django -c /opt/apps/awesome_home/awesome_app/conf/gunicorn.conf
+user=aweman
+autostart=true
+autorestart=true
+environment=HOME=&amp;#39;/opt/apps/awesome_home/awesome_app/&amp;#39;,DJANGO_SETTINGS_MODULE=&amp;#39;settings&amp;#39;,NEW_RELIC_CONFIG_FILE=/opt/apps/awesome_home/awesome_app/conf/newrelic.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that you have the new configuration setup, you will need to let supervisord know that you have changed t he configuration for that app. If you run the update command it will prompt supervisord to reread the configuration file for that app, and reload the config, and then restart the application with the new configuration.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;supervisorctl update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Another thing that is important to note here, is the fact that New Relic currently doesn't work well with Gunicorn in gevent mode. If you try to use gevent with gunicorn and new relic, it may not start up at all, or just not work as it should. Here is what they say in the &lt;a class="reference external" href="http://newrelic.com/docs/python/status-of-python-agent"&gt;Known Issues&lt;/a&gt; section of their docs.&lt;/p&gt;
+&lt;blockquote&gt;
+Gunicorn gevent mode - When using gevent mode of gunicorn and the 'newrelic-admin run-program' command is used to wrap the invocation of gunicorn, the hosted web application can fail in strange ways. One way this is manifesting is with requests blocking for a period of 1 minute.
+The cause of the problem is believed in this case to specifically relate to the order in which module imports are occuring. The monkey patching performed by gevent is not working properly for the case where the Python threading module is imported before the gevent monkey patching routine is run.&lt;/blockquote&gt;
+&lt;p&gt;Because of this, I have changed my gunicorn's to use eventlet when using new relic, and that seems to work fine. I normally prefer to use gevent, so hopefully they will be able to fix the issue with gevent so I can revert back to that setup.&lt;/p&gt;
+&lt;p&gt;All and all I have been pretty happy with new relic, it has helped us find issues with our code that would have been a pain otherwise. There support has been awesome, and they have been adding new fixes/ improvements all the time. Can't wait to see what else they have in store for the future. I would try it out if you can, they have a lite version that is free which even includes server monitoring.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 30 Dec 2011 14:53:35 -0500</pubDate><guid>tag:kencochrane.net,2011-12-30:blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/</guid><category>django</category><category>supervisor</category><category>gunicorn</category><category>newrelic</category></item><item><title>Setting up Django with Green Unicorn, nginx, supervisord and fabric on CentOS 5.5</title><link>http://kencochrane.net/blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/</link><description>&lt;p&gt;When I first started working with django I deployed my apps using apache and mod_python. Then after a little while I started playing with nginx and switched my setup so that nginx was serving the static content and reverse proxied requests back to apache and mod_python. Not too long after that, I switched out mod_python with mod_wsgi and ran mod_wsgi in daemon mode.&lt;/p&gt;
+&lt;p&gt;This setup worked well for a while, but one thing I never really liked was the fact that I needed to run apache which is pretty heavy even when you strip out all the unused modules. Apache is great, but all I was really using it for was a router between nginx and mod_wsgi, I wasn't using any of the other features in apache.&lt;/p&gt;
+&lt;p&gt;I looked at fastcgi and uswgi and they looked good, but for one reason or another I never made the jump. Recently I have been hearing a lot of good things about green unicorn, so I decided to check it out. When I first looked at it, it was fairly new and because of this a little concerned with stability, so I kept and eye on it and watched it mature.&lt;/p&gt;
+&lt;p&gt;While I was waiting for green unicorn to mature I ended up doing a lot of research on the &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;new python hosting services&lt;/a&gt; that recently hit the market. Three out of the five services that I looked were using green unicorn, the other two were using uWSGI.&lt;/p&gt;
+&lt;p&gt;The fact that these three services are basing there new businesses on green unicorn gave it a lot of credibility. Not too long after that I started playing with green unicorn to see what it would take to get my sites up and running.&lt;/p&gt;
+&lt;p&gt;The first thing that I noticed was that I didn't need to create a wsgi file if I used their gunicorn_django command, which was pretty sweet. The fact that they built it into the service shows you that django is a first class citizen.&lt;/p&gt;
+&lt;p&gt;The second thing that I noticed was that I needed a way to start up green unicorn and keep it running, something that apache does for you with mod_wsgi. I did a little bit of research and found out that supervisord would work perfectly for what I needed to do with green unicorn.&lt;/p&gt;
+&lt;p&gt;Because seeing is better then reading, I'll guide you throw the steps that you will need to do in order to get your system setup in a way that will make using green unicorn very easy, especially if you want to run more then one website on your server. I'm going to use a 256MB rackspace cloud instance running centos 5.5.&lt;/p&gt;
+&lt;div class="section" id="create-a-rackspace-cloud-server"&gt;
+&lt;h2&gt;Create a rackspace cloud server&lt;/h2&gt;
+&lt;p&gt;Go into the rackspace cloud server management website and allocate yourself a new 256MB CentOS 5.5 server or if you prefer do the same thing using their API. Now that you have a server and the root password, follow along step by step to get you system all setup.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-and-versions"&gt;
+&lt;h2&gt;Software and versions&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;RackSpace Cloud Server 256MB&lt;/li&gt;
+&lt;li&gt;CentOS 5.5&lt;/li&gt;
+&lt;li&gt;Python 2.6.6&lt;/li&gt;
+&lt;li&gt;nginx 1.0.4&lt;/li&gt;
+&lt;li&gt;supervisord 3.0a10&lt;/li&gt;
+&lt;li&gt;virtualenv 1.6.1&lt;/li&gt;
+&lt;li&gt;pip 1.0.1&lt;/li&gt;
+&lt;li&gt;gunicorn 0.12.2&lt;/li&gt;
+&lt;li&gt;fabric 1.1.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bitbucket-project"&gt;
+&lt;h2&gt;Bitbucket project&lt;/h2&gt;
+&lt;p&gt;To make things easier I have created a django bootstrap project directory with all of the file used in the blog post. It is located here, so feel free to clone and fork.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap/"&gt;https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="login-to-server"&gt;
+&lt;h2&gt;Login to server&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ssh root@&amp;lt;RackSpaceIP&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update-packages"&gt;
+&lt;h2&gt;Update packages&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum -y update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-packages"&gt;
+&lt;h2&gt;Install packages&lt;/h2&gt;
+&lt;p&gt;You might not need all of these right now, but I normally need these down the line, so doing them all now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum -y install emacs readline-devel ncurses-devel libevent-devel glib2-devel libjpeg-devel freetype-devel bzip2 bzip2-devel bzip2-libs openssl-devel pcre pcre-devel gpg make gcc yum-utils unzip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-a-django-user-as-a-system-user"&gt;
+&lt;h2&gt;Add a django user as a system user&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;useradd -d /opt/django -m -r django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="set-password-for-django-to-what-ever-you-want"&gt;
+&lt;h2&gt;Set password for django to what ever you want&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;passwd django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="setup-directories"&gt;
+&lt;h2&gt;Setup directories&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /opt/django
+mkdir -p /opt/django/apps
+mkdir -p /opt/django/logs
+mkdir -p /opt/django/logs/nginx
+mkdir -p /opt/django/logs/apps
+mkdir -p /opt/django/configs
+mkdir -p /opt/django/scripts
+mkdir -p /opt/django/htdocs
+mkdir -p /opt/django/tmp
+mkdir -p /opt/django/configs/nginx
+mkdir -p /opt/django/configs/supervisord
+mkdir -p /opt/django/apps/my_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-blank-html-page"&gt;
+&lt;h2&gt;Add blank html page&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;nothing here&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; &amp;quot;&lt;/span&gt; &amp;gt; /opt/django/htdocs/index.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-zlib"&gt;
+&lt;h2&gt;Install Zlib&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# download from zlib.net&lt;/span&gt;
+mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.zlib.net/zlib-1.2.5.tar.gz
+tar -xvzf zlib-1.2.5.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;zlib-1.2.5
+./configure -s
+make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-python-2-6-6"&gt;
+&lt;h2&gt;Install python 2.6.6&lt;/h2&gt;
+&lt;p&gt;CentOS 5.5 doesn't come with python2.6 pre installed so we need to do that on our own.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.python.org/ftp/python/2.6.6/Python-2.6.6.tgz
+tar -xvzf Python-2.6.6.tgz
+&lt;span class="nb"&gt;cd &lt;/span&gt;Python-2.6.6
+./configure --enable-shared
+make
+make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-the-following-to-etc-profile"&gt;
+&lt;h2&gt;Add the following to /etc/profile&lt;/h2&gt;
+&lt;p&gt;We need to add the lib path to the LD_LIBRARY_PATH or else you will get an error saying it can't find libpython2.6.so.1.0&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LD_LIBRARY_PATH&lt;/span&gt;:/usr/local/lib/:/usr/local/lib64/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="source-the-new-profile"&gt;
+&lt;h2&gt;Source the new profile&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;source&lt;/span&gt; /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-distribute"&gt;
+&lt;h2&gt;Install distribute&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+curl -O http://python-distribute.org/distribute_setup.py
+python2.6 distribute_setup.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-pip-virtualenv"&gt;
+&lt;h2&gt;Install Pip &amp;amp; virtualenv&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+curl -O -k https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python2.6 get-pip.py
+pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-supervisor"&gt;
+&lt;h2&gt;Install supervisor&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install supervisor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-mercurial"&gt;
+&lt;h2&gt;Install mercurial&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-nginx"&gt;
+&lt;h2&gt;Install NGINX&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://nginx.org/download/nginx-1.0.4.tar.gz
+tar -xzvf nginx-1.0.4.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;nginx-1.0.4
+./configure --sbin-path&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/sbin --with-http_ssl_module --with-http_stub_status_module
+make
+/etc/init.d/nginx stop
+sleep 2
+sudo make install
+sudo chmod +x /usr/local/sbin/nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="install-my-app"&gt;
+&lt;h3&gt;Install my app&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-first-virtualenv"&gt;
+&lt;h2&gt;Add first virtualenv&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/
+virtualenv --distribute --no-site-packages v0.1
+
+&lt;span class="c"&gt;# make this a post_create hook?&lt;/span&gt;
+touch /opt/django/apps/my_app/v0.1/.venv
+
+&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/v0.1/
+hg clone https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap my_app
+
+ln -s /opt/django/apps/my_app/v0.1 /opt/django/apps/my_app/current
+
+ln -s /opt/django/apps/my_app/current/my_app/conf/nginx.conf /opt/django/configs/nginx/myapp.conf
+
+ln -s /opt/django/apps/my_app/current/my_app/conf/supervisord.conf /opt/django/configs/supervisord/myapp.conf
+
+&lt;span class="c"&gt;# activate the ve&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /opt/django/apps/my_app/current/bin/activate
+&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/current/my_app/
+./bootstrap.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configure-nginx"&gt;
+&lt;h2&gt;Configure nginx&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# as root&lt;/span&gt;
+mkdir -p /etc/nginx
+ln -s /opt/django/apps/my_app/current/my_app/server/etc/nginx.conf /etc/nginx/nginx.conf
+ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
+ln -s /opt/django/apps/my_app/current/my_app/server/init.d/nginx /etc/init.d/nginx
+chmod 755 /etc/init.d/nginx
+chkconfig --add nginx
+chkconfig nginx on
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configure-supervisord"&gt;
+&lt;h2&gt;Configure Supervisord&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# as root&lt;/span&gt;
+ln -s /opt/django/apps/my_app/current/my_app/server/etc/supervisord.conf  /etc/supervisord.conf
+ln -s /opt/django/apps/my_app/current/my_app/server/init.d/supervisord /etc/init.d/supervisord
+chmod 755 /etc/init.d/supervisord
+chkconfig --add supervisord
+chkconfig supervisord on
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="firewall"&gt;
+&lt;h2&gt;Firewall&lt;/h2&gt;
+&lt;p&gt;We need to open up the firewall so that we are allowed connection, if you don't know anything about this, check out these links.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Firewalls"&gt;http://cloudservers.rackspacecloud.com/index.php/Firewalls&lt;/a&gt;
+&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables"&gt;http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables&lt;/a&gt;
+&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset"&gt;http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Open http port 80&lt;/span&gt;
+iptables -I RH-Firewall-1-INPUT -p tcp --dport 80 -j ACCEPT
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bashrc-file-changes"&gt;
+&lt;h2&gt;.bashrc file changes&lt;/h2&gt;
+&lt;p&gt;I can't remember where I saw this little trick, if you know please let me know so that I can give them credit. If you put a file in your mercurial directory called .venv, when you cd into the directory this little bash hack will automatically activate your virtual environment for you. This allows you to have something similar to virtualenvwrapper in this custom setup.&lt;/p&gt;
+&lt;p&gt;Add this code to the .bashrc file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;emacs /opt/django/.bashrc
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# User specific aliases and functions&lt;/span&gt;
+has_virtualenv&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e .venv &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;        &lt;/span&gt;deactivate &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+        &lt;span class="nb"&gt;source &lt;/span&gt;bin/activate
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+venv_cd &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$@&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; has_virtualenv
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nb"&gt;alias cd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;venv_cd&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;#end of changes&lt;/span&gt;
+
+&lt;span class="c"&gt;# source the file to get new changes in active shell&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /opt/django/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="change-permissions-of-the-django-home-directory-to-django"&gt;
+&lt;h2&gt;Change permissions of the django home directory to django&lt;/h2&gt;
+&lt;p&gt;This cleans up and left over root ownership&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chown -R django:django /opt/django/*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="switch-to-django-user"&gt;
+&lt;h2&gt;Switch to django user&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;su - django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="start-up-nginx"&gt;
+&lt;h2&gt;Start up nginx&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service nginx start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="startup-supervisord"&gt;
+&lt;h2&gt;Startup supervisord&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service supervisord start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-nginx-and-supervisord"&gt;
+&lt;h2&gt;Test Nginx and supervisord&lt;/h2&gt;
+&lt;p&gt;Check supervisord status&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;supervisorctl status
+my_app                           RUNNING    pid 13594, uptime 0:00:05
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To check nginx go to the IP or domain name for your rackspace server in your browser and make sure it worked.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="updating-the-application-using-fabric"&gt;
+&lt;h2&gt;Updating the application using fabric&lt;/h2&gt;
+&lt;p&gt;Inside of the bitbucket project directory there is a file called fabfile.py. This file will allow you to update the application from your machine whenever you want just by calling one command.&lt;/p&gt;
+&lt;p&gt;It will prompt you for your hostname and password for the django user. Then it will go out to the rackspace server and pull and update the app and restart the application in supervisord. It is very basic for right now, but should get you started if you want to do more advanced stuff.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;fab update_server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Now that we have everything setup, if you want to add a new application to our setup all we need to do is.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;create a new directory under apps&lt;/li&gt;
+&lt;li&gt;create the virtualenv&lt;/li&gt;
+&lt;li&gt;run the bootstrap to install the software&lt;/li&gt;
+&lt;li&gt;make sure that the application has a supervisord and nginx configuration file&lt;/li&gt;
+&lt;li&gt;symlink those files to the correct locations in the config directory&lt;/li&gt;
+&lt;li&gt;run any python management commands you might need to run (syncdb, migrate, etc)&lt;/li&gt;
+&lt;li&gt;reload supervisord and nginx&lt;/li&gt;
+&lt;li&gt;you should be good to go.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope this was helpful to someone besides myself, if it was helpful for you please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Mon, 27 Jun 2011 06:48:18 -0400</pubDate><guid>tag:kencochrane.net,2011-06-27:blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/</guid><category>django</category><category>python</category><category>deployment</category><category>gunicorn</category><category>supervisord</category><category>fabric</category><category>centos5</category><category>nginx</category><category>linux</category></item></channel></rss>

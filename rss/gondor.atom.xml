@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/gondor.atom.xml" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/Jun/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
+&lt;h2&gt;Updates&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
+&lt;li&gt;Updated 1/26/2012: Updated Gondor.io with info from Donald Stufft.&lt;/li&gt;
+&lt;li&gt;Updated 01/24/2012: changed gondor.io to include SSL support&lt;/li&gt;
+&lt;li&gt;Updated 01/01/2012: Added Heroku and updated ep.io, gondor.io, and dotcloud.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;For the past 6 weeks I have been trying out all of the new django/python hosting services that are currently available today, and I have been writing about my experiences along the way. It only makes sense to conclude this series of articles with one last article comparing all of the services against each other. It is important to note that many of these services are still in development and aren't even available to the general public, so I'll try to keep this article up to date as these services change over time. With that said, don't take my word for it, go out and try all of these services on your own and find out which one you like the best, you won't be disappointed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="quick-recap"&gt;
+&lt;h2&gt;Quick Recap&lt;/h2&gt;
+&lt;div class="section" id="ep-io"&gt;
+&lt;h3&gt;ep.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pretty solid offering, with a nice set of features and a decent price. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Update&lt;/strong&gt;: Epio closed down on May 31st 2012 ]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gondor-io"&gt;
+&lt;h3&gt;gondor.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My day in gondor.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Their website has a nice list of features that they expect to have once they officially launch, but most of those features aren't available yet. The documentation is a little light, but the service has a lot of potential.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dotcloud-com"&gt;
+&lt;h3&gt;dotCloud.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to dotcloud.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They have a ton of money ($10M), and with it, a ton of features. They are very developer friendly, but you need to be pretty technical, it isn't quite ready for beginners. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Full disclosure&lt;/strong&gt;: I now work for dotCloud]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="apphosted-com"&gt;
+&lt;h3&gt;AppHosted.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com Django Hosting Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built with security, stability and scalability on their mind from the beginning. They have a solid offering, and they look to be targeting enterprise customers who will pay more for that peace of mind.  They are currently lacking some key features, which I'm sure they will be adding soon.  Good set of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="djangozoom-com"&gt;
+&lt;h3&gt;DjangoZoom.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built to be fast and easy to use, still missing some key features, but I'm sure they will be available by the time they go live. Decent amount of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="heroku-com"&gt;
+&lt;h3&gt;Heroku.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide for running django apps on Heroku&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Originally built as a Ruby on Rails service, they have now added support for python. The service is still in beta, but it has a lot of potential. It looks a lot like what dotCloud is offering, with the ability to run code from almost any language, and a ton of different add-ons for lots of different services.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="awards"&gt;
+&lt;h2&gt;Awards&lt;/h2&gt;
+&lt;div class="section" id="fastest-deployments"&gt;
+&lt;h3&gt;Fastest Deployments:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - Zoom is right, it doesn't take long to configure your application and have it up and running on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-to-use"&gt;
+&lt;h3&gt;Easiest To Use:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - No command line interface needed, just a web browser, a project in a git repo that it has access too, and a few questions answered and your app is up and running.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-features"&gt;
+&lt;h3&gt;Most Features:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They raised $10 Million, and they are spending it on hiring people, buying companies, and building services. They have a bunch of services currently and they don't plan on stopping, their roadmap has everything on it, and I think if you give them enough time they will eventually have a service for everything.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-developer-friendly"&gt;
+&lt;h3&gt;Most Developer Friendly:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They give lots of features without handcuffing the developer. They are the only company with full database and shell access. They do a good job of offering the same type of service a developer could get if they built it themselves.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="best-overall-value"&gt;
+&lt;h3&gt;Best Overall Value:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; - This one is hard since most of the services don't have any pricing listed, but currently ep.io is in the lead, they offer reasonable prices with a nice Free tier. This allows developers to try out the service for FREE, as well as run smaller pet projects that they might not have tried before because they didn't want to pay for hosting. They have the second most features available, second to only dotCloud, and there service is pretty solid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-project-setup"&gt;
+&lt;h3&gt;Easiest Project Setup:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://apphosted.com"&gt;apphosted.com&lt;/a&gt; - Their goal was to make it real easy to get your project up onto their servers without having to change your project, and they did that, there was very little if any changes I needed to make in order to get my application up on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-feature-hosting-matrix"&gt;
+&lt;h2&gt;Django Feature Hosting Matrix&lt;/h2&gt;
+&lt;p&gt;To make things easier when comparing all of the different services I have built this matrix with all of the information I compiled from each of the services. I don't know the answers for all services, but I'll update it when I find out those answers. If you know the answers feel free to post a comment to let me know.&lt;/p&gt;
+&lt;p&gt;I have included all of the new django services as well as google app engine and webfaction.com, a tradition hosting service. This should make it a little easier to see how these new services compare to other hosting options.&lt;/p&gt;
+&lt;iframe width='775' height='500' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtuyQoTrXCavdDdyQ1RCX29FcDhQeDgzMXp0NGpGeWc&amp;single=true&amp;gid=0&amp;output=html&amp;widget=true'&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;div class="section" id="who-wins"&gt;
+&lt;h2&gt;Who wins?&lt;/h2&gt;
+&lt;p&gt;It is really hard to pick just one winner,  mainly because most of these services are still in beta and not quite finished yet. Also because each service is a little different, and it will depend on what you are trying to do. So, go out try them out, and let me know which one you picked.&lt;/p&gt;
+&lt;p&gt;The real winner is us, the developers, and the python community in general. We now have a bunch of really cool services that will make our lives better, and that is awesome.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="thank-you"&gt;
+&lt;h2&gt;Thank you!&lt;/h2&gt;
+&lt;p&gt;I want to thank all of the people who made these services, and gave me early access to their systems so that I could play around with them. I wish them the best of luck, and hope they all are really successful, and they are around for a long time.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Mon, 06 Jun 2011 22:03:59 -0400</pubDate><guid>tag:kencochrane.net,2011-06-06:blog/2011/Jun/06/django-hosting-roundup-who-wins/</guid><category>django</category><category>hosting</category><category>apphosted</category><category>python</category><category>deployment</category><category>dotcloud</category><category>epio</category><category>gondor</category><category>djangozoom</category><category>heroku</category><category>paas</category></item><item><title>My Day in Gondor.io</title><link>http://kencochrane.net/blog/2011/Apr/22/my-day-gondorio/</link><description>&lt;p&gt;The other day I wrote about a new &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;Django hosting service called ep.io&lt;/a&gt;
+, after I made that post, I was lucky enough to get an invite for the private beta of &lt;a class="reference external" href="http://gondor.io"&gt;gondor.io&lt;/a&gt;, which is similar to &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; but from the folks over at &lt;a class="reference external" href="http://eldarion.com/"&gt;Eldarion&lt;/a&gt;. In order to test out the service I decided to take my Dango blog application and deploy it to Gondor and I kept notes along the way, here are those notes.&lt;/p&gt;
+&lt;p&gt;The sign up process was pretty typical, register and then validate your email address. Once into the system you are offered the ability to create a site. So I created my site &amp;quot;KenCochrane_blog&amp;quot; and it gave me a key which I'll use later on. Not knowing where to start I headed over to the &lt;a class="reference external" href="https://gondor.io/support/"&gt;documentation&lt;/a&gt;. Which, as of this writing, is pretty basic, which is understandable since they are still in beta. I'm assuming the documentation will get better as they move forward. The current documentation and this blog post should get you enough information to get going.&lt;/p&gt;
+&lt;div class="section" id="setting-up-my-development-environment"&gt;
+&lt;h2&gt;Setting up my development environment:&lt;/h2&gt;
+&lt;p&gt;Gondor uses a file to store your login credentials, so that you don't need to type it in everytime. It is pretty basic, here is how I installed mine on my MacBook Pro (OSX 10.6).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# create the file, and edit it.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;emacs ~/.gondor
+
+&lt;span class="c"&gt;# copy this into the file.&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;auth&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;my_username&amp;gt;
+&lt;span class="nv"&gt;password&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;my_password&amp;gt;
+
+&lt;span class="c"&gt;# change the permissions so that only you can access it.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;chmod 600 ~/.gondor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Like all cool projects these days, gondor uses pip and virtualenv, I'm assuming you already have virtualenv and pip installed so I'll move onto the fun stuff.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make my virtualenv called gondor&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv gondor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;From this point on, all of these commands are done in the new gondor virtual environment that I just created. Gondor uses a command line client to manage your application, we need to install that before we can do anything.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install gondor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since I'm going to need to make changes to my blog, I decided to fork it and make all of my changes to gondor on the new fork. The new fork is on bitbucket and it is called kencochranenet_gondor. Now that I have it forked I can pull it down locally.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# go to my projects directory and clone my blog.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/projects
+&lt;span class="nv"&gt;$ &lt;/span&gt;hg clone https://bitbucket.org/kencochrane/kencochranenet_gondor kencochranenet_gondor
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;kencochranenet_gondor/mysite
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that we have some code to deploy, lets introduce the code to gondor. We use the init command inside of our django project and it will create a .gondor directory with a config file and some defaults.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor init &amp;lt;site_key&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gondor expects your project to be in a certain layout in order to work. For more info see the documentation: &lt;a class="reference external" href="https://gondor.io/support/project-layout/"&gt;https://gondor.io/support/project-layout/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Since my blog didn't have everything in the right place, I need to add some directories and move some files around. One of the files I needed to add was deploy/wsgi.py, here is what it contains. Notice the two sys.path.insert lines. I added those because the &lt;a class="reference external" href="https://gondor.io/support/setting-up-django/"&gt;gondor documentation&lt;/a&gt; told me too.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.handlers.wsgi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;WSGIHandler&lt;/span&gt;
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;DJANGO_SETTINGS_MODULE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;mysite.settings&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;application&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;WSGIHandler&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I also had to add the same sys.path lines to my manage.py settings. Here is my new manage.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.management&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;execute_manager&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pardir&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;settings&lt;/span&gt; &lt;span class="c"&gt;# Assumed to be in the same directory.&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error: Can&amp;#39;t find the file &amp;#39;settings.py&amp;#39; in the directory containing &lt;/span&gt;&lt;span class="si"&gt;%r&lt;/span&gt;&lt;span class="s"&gt;. It appears you&amp;#39;ve customized things.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;You&amp;#39;ll have to run django-admin.py, passing it your settings module.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;(If the file settings.py does indeed exist, it&amp;#39;s causing an ImportError somehow.)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;execute_manager&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gondor will automagically add your database and other settings to your app for you at deployment, and in order for that to work correctly you need to add the following at the end of your settings.py file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;local_settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My blog is using south to manage south migrations, so we need to edit the .gondor/config file to enable this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# edit .gondor/config changed migrations to migrations=south&lt;/span&gt;
+emacs .gondor/config
+
+&lt;span class="c"&gt;# change this line&lt;/span&gt;
+&lt;span class="nv"&gt;migrations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; None
+&lt;span class="c"&gt;# to&lt;/span&gt;
+&lt;span class="nv"&gt;migrations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; south
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that we have made all of the changes that we need. I need to commit all of my changes. It is important to note that because gondor uses mecurial or git for managing your project files, you need to always remember to add new files and commit all changes before you try to deploy your application.&lt;/p&gt;
+&lt;div class="section" id="deployment"&gt;
+&lt;h3&gt;Deployment:&lt;/h3&gt;
+&lt;p&gt;Next step is deployment. Before we get there, we need to create a new instance. Gondor allows you to deploy multiple versions of your code, this lets you have a production version and development versions all running at the same time. Gondor calls these different deployments 'instances'. We run the 'gondor create master' command, which will create a new instance called, you guessed it, 'master', and this is what you should see.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor create master
+Reading configuration... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Creating instance on Gondor... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+
+Run: gondor deploy master HEAD
+Visit: http://jg437.o1.gondor.io/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This created the master instance and tells us what our url for the instance will be. Now according to the log message I just need to run 'gondor deploy master HEAD' and that will deploy my app. Lets do that now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor deploy master HEAD
+  Reading configuration... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+  ERROR: could not map &lt;span class="s1"&gt;&amp;#39;HEAD&amp;#39;&lt;/span&gt; to a SHA
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, it didn't work, after lots of digging, I realized that the code was assuming I was on a branch called HEAD, which wasn't correct. I think HEAD is the default git branch, and in mercirual, it is default. Just to be sure, I checked my mercurial branch.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hg summary
+
+parent: 122:76f0c2271b7f tip
+ gondor settings
+branch: default
+commit: &lt;span class="o"&gt;(&lt;/span&gt;clean&lt;span class="o"&gt;)&lt;/span&gt;
+
+update: &lt;span class="o"&gt;(&lt;/span&gt;current&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Running the quick 'hg summary' command lets me know that my branch is default, so I then made the changes to my command and reran the script.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor deploy master default
+
+Reading configuration... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Building tarball from default... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Pushing tarball to Gondor...
+Deploying... &lt;span class="o"&gt;[&lt;/span&gt;failed&lt;span class="o"&gt;]&lt;/span&gt;
+
+pip has failed installing your requirements. Here is the output we saw:
+
+Downloading/unpacking &lt;span class="nv"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.5 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 1&lt;span class="o"&gt;))&lt;/span&gt;
+Creating supposed download cache at /var/gondor/instances/.cache-i194/pip-download
+  Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FD%2FDjango%2FDjango-1.2.5.tar.gz
+  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package Django
+
+Downloading/unpacking MySQL-python&lt;span class="o"&gt;==&lt;/span&gt;1.2.3c1 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 2&lt;span class="o"&gt;))&lt;/span&gt;
+  Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FM%2FMySQL-python%2FMySQL-python-1.2.3c1.tar.gz
+  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package MySQL-python
+    sh: mysql_config: not found
+    Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
+      File &lt;span class="s2"&gt;&amp;quot;&amp;lt;string&amp;gt;&amp;quot;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;
+      File &lt;span class="s2"&gt;&amp;quot;/var/gondor/instances/.cache-i194/pip-build/MySQL-python/setup.py&amp;quot;&lt;/span&gt;, line 15, in &amp;lt;module&amp;gt;
+        metadata, &lt;span class="nv"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; get_config&lt;span class="o"&gt;()&lt;/span&gt;
+      File &lt;span class="s2"&gt;&amp;quot;setup_posix.py&amp;quot;&lt;/span&gt;, line 43, in get_config
+        &lt;span class="nv"&gt;libs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; mysql_config&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;libs_r&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+      File &lt;span class="s2"&gt;&amp;quot;setup_posix.py&amp;quot;&lt;/span&gt;, line 24, in mysql_config
+        raise EnvironmentError&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%s not found&amp;quot;&lt;/span&gt; % &lt;span class="o"&gt;(&lt;/span&gt;mysql_config.path,&lt;span class="o"&gt;))&lt;/span&gt;
+    EnvironmentError: mysql_config not found
+    Complete output from &lt;span class="nb"&gt;command &lt;/span&gt;python setup.py egg_info:
+    sh: mysql_config: not found
+
+Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
+
+  File &lt;span class="s2"&gt;&amp;quot;&amp;lt;string&amp;gt;&amp;quot;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;
+
+  File &lt;span class="s2"&gt;&amp;quot;/var/gondor/instances/.cache-i194/pip-build/MySQL-python/setup.py&amp;quot;&lt;/span&gt;, line 15, in &amp;lt;module&amp;gt;
+
+    metadata, &lt;span class="nv"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; get_config&lt;span class="o"&gt;()&lt;/span&gt;
+
+  File &lt;span class="s2"&gt;&amp;quot;setup_posix.py&amp;quot;&lt;/span&gt;, line 43, in get_config
+
+    &lt;span class="nv"&gt;libs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; mysql_config&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;libs_r&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+  File &lt;span class="s2"&gt;&amp;quot;setup_posix.py&amp;quot;&lt;/span&gt;, line 24, in mysql_config
+
+    raise EnvironmentError&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%s not found&amp;quot;&lt;/span&gt; % &lt;span class="o"&gt;(&lt;/span&gt;mysql_config.path,&lt;span class="o"&gt;))&lt;/span&gt;
+
+EnvironmentError: mysql_config not found
+
+
+Command python setup.py egg_info failed with error code 1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We had mysql-python in our requirements file, and gondor doesn't support mysql, so we need to remove that, commit and try again.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor deploy master default
+
+Reading configuration... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Building tarball from default... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Pushing tarball to Gondor...
+Deploying... &lt;span class="o"&gt;[&lt;/span&gt;failed&lt;span class="o"&gt;]&lt;/span&gt;
+
+unable to build static &lt;span class="o"&gt;(&lt;/span&gt;collectstatic or build_static not found&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;closer but no cigar, gondor uses staticfiles (new in django 1.3 or django-staticfiles) to manage static files. If you aren't currently using static files add django-staticfiles to your pre django 1.3 app, or upgrade to django 1.3 and configure static files. To be honest, this was the biggest problem I had, it took me a while to get this correct. I was lucky enough to get some help on the #gondor IRC channel, which helped me along the way. With all of my changes made I committed them and tried again.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor deploy master default
+Reading configuration... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Building tarball from default... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+Pushing tarball to Gondor...
+Deploying... &lt;span class="o"&gt;[&lt;/span&gt;ok&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That worked!! woo hoo! now if I go to the URL (&lt;a class="reference external" href="http://jg437.o1.gondor.io/"&gt;http://jg437.o1.gondor.io/&lt;/a&gt;) I got earlier, I should see something if all went well. I went to the site, and bingo, all working.. no data but it is there. Now how do I create my django admin user? Normally that is done when you do your initial syncdb, and since that is done by gondor, it doesn't give you a chance. Looking thru all of the documentation I didn't find anything. So I went and looked at the gondor client source code, and I found my answer. I kicked off the following command, answered the prompts and bingo, I was in business.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;gondor run master createsuperuser
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Now that I have my app up and running and I have admin access I could switch over my blog to the new service if I wanted. I'll hold off for right now, but you get the picture. All and all I think this is going to be a nice service once they are fully up and running. It isn't as far along as ep.io, but I'm sure it won't be long before they are caught up. I'll try and keep this post updated as I learn more about the service and they release new features.&lt;/p&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h4&gt;Update:&lt;/h4&gt;
+&lt;p&gt;Read how this service stacks up against other services like it in my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to gondor.io. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 22 Apr 2011 06:12:41 -0400</pubDate><guid>tag:kencochrane.net,2011-04-22:blog/2011/Apr/22/my-day-gondorio/</guid><category>gondor</category><category>django</category><category>python</category><category>hosting</category><category>paas</category></item></channel></rss>

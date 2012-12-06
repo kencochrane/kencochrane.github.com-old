@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../../../.././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie.css"/>
+                <script src="../../../../.././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../../../../../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="../../../../.././about/index.html">About Me</a></li>
+                
+                    <li><a href="../../../../.././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li class="active"><a href="../../../../.././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="blog/2011/Apr/14/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/" rel="bookmark"
+           title="Permalink to Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5">Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</a></h1>
+      
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2011-04-14T10:55:09">
+                Thu 14 April 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../../.././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="../../../../.././category/blog.html">blog</a>. </p>
+<p>tags: <a href="../../../../.././tag/percona.html">percona</a><a href="../../../../.././tag/mysql.html">mysql</a><a href="../../../../.././tag/upgrade.html">upgrade</a><a href="../../../../.././tag/centos5.html">centos5</a><a href="../../../../.././tag/rhel5.html">rhel5</a><a href="../../../../.././tag/linux.html">linux</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p>Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.</p>
+<p>First we need to stop mysql</p>
+<div class="highlight"><pre>service mysql stop;
+</pre></div>
+<p>I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. <a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start">Setting up Percona RPM Repo</a></p>
+<div class="highlight"><pre>mkdir -p /tmp/downloads
+<span class="nb">cd</span> /tmp/downloads
+wget http://www.percona.com/redir/downloads/percona-release/percona-release-0.0-1.i386.rpm
+sudo rpm -Uhv percona-release-0.0-1.i386.rpm
+</pre></div>
+<p>Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)</p>
+<div class="highlight"><pre>yum remove -y mysql-server mysql mysql-devel mysql-test mysql-bench
+</pre></div>
+<p>Now install the new Percona MySQL 5.1.x binaries. (depending on your connection this might take a few minutes)</p>
+<div class="highlight"><pre>yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
+</pre></div>
+<p>During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.</p>
+<div class="highlight"><pre>110208 16:44:52 <span class="o">[</span>Warning<span class="o">]</span> <span class="s1">&#39;--log_slow_queries&#39;</span> is deprecated and will be removed in a future release. Please use <span class="s1">&#39;&#39;</span>--slow_query_log<span class="s1">&#39;/&#39;</span>--slow_query_log_file<span class="s1">&#39;&#39;</span> instead.
+110208 16:44:52 <span class="o">[</span>Warning<span class="o">]</span> <span class="s1">&#39;--log&#39;</span> is deprecated and will be removed in a future release. Please use <span class="s1">&#39;&#39;</span>--general_log<span class="s1">&#39;/&#39;</span>--general_log_file<span class="s1">&#39;&#39;</span> instead.
+</pre></div>
+<p>Assuming the install went well, now we need to upgrade the data to the new format. (replace &lt;mysql admin user&gt; with your mysql admin username, and enter password when prompted)</p>
+<div class="highlight"><pre>mysql_upgrade -u &lt;mysql admin username&gt; -p
+</pre></div>
+<p>Now if your upgrade was anything like mine it had a bunch of errors like this.</p>
+<div class="highlight"><pre>db_name.table_name
+error    : Table upgrade required. Please <span class="k">do</span> <span class="s2">&quot;REPAIR TABLE table_name&quot;</span> or dump/reload to fix it!
+</pre></div>
+<p>When you try to repair the table you get this.</p>
+<div class="highlight"><pre>db_name.table_name
+note     : The storage engine <span class="k">for </span>the table doesn<span class="err">&#39;</span>t support repair
+</pre></div>
+<p>Thanks to Peter Zaitsev <a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/">mysql_upgrade and Innodb Tables</a> we know that we can do the following to fix it.</p>
+<div class="highlight"><pre><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">db_name</span><span class="p">.</span><span class="k">table_name</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">INNODB</span><span class="p">;</span>
+</pre></div>
+<p>We just need to run this command for each table that threw an error and it should fix it. (If you have lots of data this might take a while, I had some tables that took over 2 hours)</p>
+<p>Once you think that you have all of the tables fixed, you can run this command and it will check all of your tables and let you know if you are good or not. If you still have errors, repeat the steps above until all tables pass.</p>
+<div class="highlight"><pre>mysqlcheck -A --check-upgrade
+</pre></div>
+<p>Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.</p>
+
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "blog/2011/Apr/14/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://kencochrane.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

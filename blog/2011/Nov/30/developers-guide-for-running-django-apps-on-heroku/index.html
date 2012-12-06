@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Developers guide to Running Django Applications on Heroku</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../../../.././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie.css"/>
+                <script src="../../../../.././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../../../../../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="../../../../.././about/index.html">About Me</a></li>
+                
+                    <li><a href="../../../../.././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li class="active"><a href="../../../../.././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/" rel="bookmark"
+           title="Permalink to Developers guide to Running Django Applications on Heroku">Developers guide to Running Django Applications on Heroku</a></h1>
+      
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2011-11-30T10:00:00">
+                Wed 30 November 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../../.././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="../../../../.././category/blog.html">blog</a>. </p>
+<p>tags: <a href="../../../../.././tag/django.html">django</a><a href="../../../../.././tag/python.html">python</a><a href="../../../../.././tag/heroku.html">heroku</a><a href="../../../../.././tag/hosting.html">hosting</a><a href="../../../../.././tag/deployment.html">deployment</a><a href="../../../../.././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p><a class="reference external" href="http://Heroku.com">Heroku</a> the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still in beta, but that shouldn't stop you from trying it out, and that is just what I'm going to do.</p>
+<p>6 months ago I wrote a series of blog posts that reviewed all of the cool new django hosting services that were popping up. My goal was to look at them all, and compare them to find out what they had to offer, and to see if I could use them on my future projects. I'm going to review Heroku using the same process that I used to review those other services, so that I can we can compare apples to apples.</p>
+<p>For those of you who are not familiar with my other blog posts, feel free to check them out now <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/">ep.io</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/">apphosted.com</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/">gondor.io</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">dotcloud.com</a>, <a class="reference external" href="http://DjangoZoom.com">DjangoZoom.com</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a>.</p>
+<p>For those of you that are lazy, I'll sum it up pretty quickly. What I'm trying to do is pretty simple, I sign up for the service, and just looking at the documentation available, can I get my blog application up and running, and what did I have to do, in order for it to work. I'll describe each step along the way, as a helpful guide for others who might be trying to do the same with their application. If I come across an error, I will tell you what the error was, and how I fixed it, so that if you get the same error, hopefully what I did to fix my problem, will also fix yours.</p>
+<div class="section" id="heroku-django-documentation">
+<h2>Heroku Django Documentation</h2>
+<p>Before you start using any new platform, you should take the time to read the documentation. I know it doesn't sound like fun,but trust me, it will save you a lot of pain and frustration later on. Here are some links that I found helpful.</p>
+<ul class="simple">
+<li><strong>Quickstart guide</strong>: <a class="reference external" href="http://devcenter.heroku.com/articles/quickstart">http://devcenter.heroku.com/articles/quickstart</a></li>
+<li><strong>Python articles</strong>: <a class="reference external" href="http://devcenter.heroku.com/articles/python">http://devcenter.heroku.com/articles/python</a></li>
+<li><strong>Django article</strong>: <a class="reference external" href="http://devcenter.heroku.com/articles/django">http://devcenter.heroku.com/articles/django</a></li>
+<li><strong>Dev Center</strong>: <a class="reference external" href="http://devcenter.heroku.com/">http://devcenter.heroku.com/</a></li>
+</ul>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+<ul class="simple">
+<li>Heroku account</li>
+<li>Heroku command line client</li>
+<li>Python 2.7, virtualenv, pip, git</li>
+<li>Must use pip to manage dependencies with a requirements.txt file</li>
+</ul>
+</div>
+<div class="section" id="signing-up-for-heroku">
+<h2>Signing up for Heroku</h2>
+<p>Signing up was as simple as can be, all I needed to do was follow this link: <a class="reference external" href="https://api.heroku.com/signup">https://api.heroku.com/signup</a> and fill out my email address. Go into my email and click on the link they sent, which took me to a page that had me pick my password, and I was done. The whole process took less then 1 minute. Can't beat that.</p>
+</div>
+<div class="section" id="verifying-you-heroku-account">
+<h2>Verifying you Heroku account</h2>
+<p>When you sign up for an account, you have limited access to some features (add-ons, etc.) until you verify your account. Verifing your account is easy all you have to do is enter your credit card information. This proves to them you are real, and also allows you to use some of the paid features. I recommend that you verify your account so that you can get access to some of the nice free add-ons that are available.</p>
+</div>
+<div class="section" id="installing-the-heroku-command-line-client">
+<h2>Installing the heroku command line client</h2>
+<p>I'm using a mac so I'm going to install the following version of the heroku command line client (toolbelt).
+<a class="reference external" href="http://toolbelt.herokuapp.com/osx/download">http://toolbelt.herokuapp.com/osx/download</a></p>
+<ol class="arabic simple">
+<li>Click on link, download the file.</li>
+<li>Find the file that was downloaded (heroku-toolbelt.pkg) and double click it.</li>
+<li>Follow prompts; enter password when prompted, and click close.</li>
+</ol>
+</div>
+<div class="section" id="test-heroku-command-line-client">
+<h2>Test heroku command line client</h2>
+<ol class="arabic simple">
+<li>Open terminial</li>
+<li>Type &quot;heroku version&quot; you should see something like this &quot;heroku-gem/2.14.0&quot; if so, it worked. if not, you did something wrong.</li>
+</ol>
+</div>
+<div class="section" id="login-to-heroku-from-command-line-client">
+<h2>Login to heroku from command line client</h2>
+<p>Logging into the client will try to find your ssh key, and upload it to heroku for pushing code later on. If you don't have a key it will prompt you to create one. If you have more then one it will ask you which one you want to use.</p>
+<div class="section" id="no-key-found-example">
+<h3>No key found example</h3>
+<div class="highlight"><pre><span class="nv">$ </span>heroku login
+Enter your Heroku credentials.
+Email: adam@example.comPassword:
+Could not find an existing public key.
+Would you like to generate one? <span class="o">[</span>Yn<span class="o">]</span>
+Generating new SSH public key.
+Uploading ssh public key /Users/adam/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<div class="section" id="found-more-then-one-key-example">
+<h3>Found more then one key example</h3>
+<div class="highlight"><pre><span class="nv">$ </span>heroku login
+Enter your Heroku credentials.
+Email: &lt;my email&gt;
+Password:
+Found the following SSH public keys:
+1<span class="o">)</span> apphosted.key.pub
+2<span class="o">)</span> id_rsa.pub
+Which would you like to use with your Heroku account? 2
+Uploading ssh public key /Users/ken/.ssh/id_rsa.pub
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-your-django-application-ready">
+<h2>Getting your Django application ready</h2>
+<p>Now that you have an account and the client installed, you are ready to get started. If you are starting from scratch I recommend following the steps in this tutorial. <a class="reference external" href="http://devcenter.heroku.com/articles/django">http://devcenter.heroku.com/articles/django</a> . If you are like me and already have an application that you want to install on to Heroku, keep reading.</p>
+<p>Since I already have a project, I'm going to tell you what I needed to do in order to get my blog application up and running on heroku. I followed the instructions from the heroku tutorial and went from there. Heroku depends on git, so I'm using a copy of my blog app that is hosted on github: <a class="reference external" href="https://github.com/kencochrane/kencochrane_blog_heroku">https://github.com/kencochrane/kencochrane_blog_heroku</a></p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /Users/ken/projects/github
+
+<span class="nv">$ </span>git clone https://kencochrane@github.com/kencochrane/kencochrane_blog_heroku.git kencochrane_heroku
+<span class="nv">$ </span><span class="nb">cd </span>kencochrane_heroku
+
+<span class="c"># making a new virtual environment using virtualenvwrapper.</span>
+<span class="nv">$ </span>mkvirtualenv --no-site-packages --distribute kencochrane_heroku
+</pre></div>
+<p>It should automatically activate the environment for you. If it doesn't, run this command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>workon kencochrane_heroku
+</pre></div>
+<p>Now that I have my virtualenv, I need to install my requirements using pip.</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</div>
+<div class="section" id="creating-django-application-on-heroku">
+<h2>Creating django application on heroku</h2>
+<p>Creating an application on heroku is easy, you just need to run the following command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku create --stack cedar
+Creating some-name-4741... <span class="k">done</span>, stack is cedar
+http://some-name-4741.herokuapp.com/ | git@heroku.com:some-name-4741.git
+Git remote heroku added
+</pre></div>
+</div>
+<div class="section" id="deploying-django-application-to-heroku">
+<h2>Deploying django application to Heroku</h2>
+<p>Once you are ready you can deploy your django application to Heroku.</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push heroku master
+</pre></div>
+<p>If everything went well, it should look something like this.</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push heroku master
+Counting objects: 209, <span class="k">done</span>.
+Delta compression using up to 4 threads.
+Compressing objects: 100% <span class="o">(</span>176/176<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: 100% <span class="o">(</span>209/209<span class="o">)</span>, 271.89 KiB, <span class="k">done</span>.
+Total 209 <span class="o">(</span>delta 28<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+
+-----&gt; Heroku receiving push
+-----&gt; Python/Django app detected
+-----&gt; Preparing virtualenv version 1.6.4
+       New python executable in ./bin/python
+       Installing setuptools............done.
+       Installing pip...............done.
+-----&gt; Django settings injection
+       Injecting code into blog/settings.py to <span class="nb">read </span>from DATABASE_URL
+
+&lt;removed a lot of output that doesn<span class="err">&#39;</span>t need to be shown&gt;
+
+       Successfully installed South django-activitysync django-debug-toolbar django-disqus django-memcache-status django-tagging django-xmlrpc feedparser httplib2 oauth2 python-memcached python-twitter simplejson yolk docutils Pygments psycopg2 Django
+       Cleaning up...
+-----&gt; Discovering process types
+       Procfile declares types         -&gt; <span class="o">(</span>none<span class="o">)</span>
+       Default types <span class="k">for </span>Python/Django -&gt; web
+-----&gt; Compiled slug size is 10.3MB
+-----&gt; Launching... <span class="k">done</span>, v5
+       http://some-name-4741.herokuapp.com deployed to Heroku
+</pre></div>
+</div>
+<div class="section" id="deploying-application-to-heroku-failed-now-what">
+<h2>Deploying application to Heroku failed, now what?</h2>
+<p>The very first time you push to master you will get something like this.</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push heroku master
+
+The authenticity of host <span class="s1">&#39;heroku.com (50.19.85.132)&#39;</span> can<span class="err">&#39;</span>t be established.
+RSA key fingerprint is 8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad.
+Are you sure you want to <span class="k">continue </span>connecting <span class="o">(</span>yes/no<span class="o">)</span>? yes
+</pre></div>
+<p>This is normal, just type 'yes', and you will never be prompted for this again.</p>
+<div class="section" id="django-app-must-be-in-a-package-subdirectory">
+<h3>Django app must be in a package subdirectory</h3>
+<p>If you django project isn't setup correctly, you will get an error like this.</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push heroku master
+Counting objects: 199, <span class="k">done</span>.
+Delta compression using up to 4 threads.
+Compressing objects: 100% <span class="o">(</span>167/167<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: 100% <span class="o">(</span>199/199<span class="o">)</span>, 270.86 KiB, <span class="k">done</span>.
+Total 199 <span class="o">(</span>delta 26<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+
+
+-----&gt; Heroku receiving push
+-----&gt; Python app detected
+ !     Django app must be in a package subdirectory
+ !     Heroku push rejected, failed to compile Python app
+
+
+To git@heroku.com:some-name-4741.git
+ ! <span class="o">[</span>remote rejected<span class="o">]</span> master -&gt; master <span class="o">(</span>pre-receive hook declined<span class="o">)</span>
+error: failed to push some refs to <span class="s1">&#39;git@heroku.com:some-name-4741.git&#39;</span>
+</pre></div>
+<p>This failed, because django app must be in a package subdirectory.. So you need to change the way my django app is setup. Move all of the files under a django project directory except the .git directory and .gitignore and requirements.txt files. For an example of what this looks like, check out the project directory structure on my repo in github.</p>
+</div>
+<div class="section" id="heroku-push-rejected-no-cedar-supported-app-detected">
+<h3>Heroku push rejected, no Cedar-supported app detected</h3>
+<p>Another error you can get is this one. &quot;Heroku push rejected, no Cedar-supported app detected&quot;</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push heroku master
+Counting objects: 204, <span class="k">done</span>.
+Delta compression using up to 4 threads.
+Compressing objects: 100% <span class="o">(</span>171/171<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: 100% <span class="o">(</span>204/204<span class="o">)</span>, 271.34 KiB, <span class="k">done</span>.
+Total 204 <span class="o">(</span>delta 27<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+
+-----&gt; Heroku receiving push
+ !     Heroku push rejected, no Cedar-supported app detected
+
+To git@heroku.com:cold-summer-4741.git
+ ! <span class="o">[</span>remote rejected<span class="o">]</span> master -&gt; master <span class="o">(</span>pre-receive hook declined<span class="o">)</span>
+error: failed to push some refs to <span class="s1">&#39;git@heroku.com:cold-summer-4741.git&#39;</span>
+</pre></div>
+<p>I had this error and I couldn't figure it out. After searching through all of the heroku python docs (all 2 of them), I didn't find anything, so I started doing some trial and error testing, and I finally figure out what was wrong. My django project directory was kencochrane_blog, and this had an underscore, and when I changed it to just kenblog (no more underscore), it worked. I couldn't find anything anywhere that said you can't use underscores for your django app name, so they might want to update their documentation, or possibly fix the bug. I'm not sure if this is by design or not, maybe someone can let me know.</p>
+</div>
+</div>
+<div class="section" id="check-django-application-status-on-heroku">
+<h2>Check Django application status on heroku</h2>
+<p>Now that you have pushed your application out onto Heroku how do you know if it is actually running? The Heroku client has a command called ps, which will tell you what your processes are doing.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku ps
+
+Process       State               Command
+------------  ------------------  ------------------------------
+web.1         crashed <span class="k">for </span>2m      python kenblog/manage.py runserver 0...
+</pre></div>
+<p>My django application looks like it crashed. Most likely because I didn't setup the database yet, lets look at the logs to see what is causing the problems to be sure.</p>
+</div>
+<div class="section" id="checking-django-application-logs-on-heroku">
+<h2>Checking Django application logs on Heroku</h2>
+<p>The Heroku client has a nifty logs command that you can use to view the last chunk of logs for your application. It will combine all of your logs into one view, so that you don't have to have more then one log process running. You can call it directly and get an output similar to the shell command 'tail' and you can all use the '--tail' option to follow the logs.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku logs --tail
+2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Deploy 5f194d2 by kencochrane@2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Release v7 created by kencochrane@
+2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from crashed to created
+2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from created to starting
+2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>slugc<span class="o">]</span>: Slug compilation finished
+2011-11-27T18:40:03+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: Starting process with <span class="nb">command</span> <span class="sb">`</span>python kenblog/manage.py runserver 0.0.0.0:12033 --noreload<span class="sb">`</span>
+2011-11-27T18:40:04+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: Unexpected error: <span class="o">(</span>&lt;<span class="nb">type</span> <span class="s1">&#39;exceptions.NameError&#39;</span>&gt;, NameError<span class="o">(</span><span class="s2">&quot;name &#39;DATABASES&#39; is not defined&quot;</span>,<span class="o">)</span>, &lt;traceback object at 0x1a7b128&gt;<span class="o">)</span>
+2011-11-27T18:40:05+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: There is no South database module <span class="s1">&#39;south.db.None&#39;</span> <span class="k">for </span>your database. Please either choose a supported database, check <span class="k">for </span>SOUTH_DATABASE_ADAPTER<span class="o">[</span>S<span class="o">]</span> settings, or remove South from INSTALLED_APPS.
+2011-11-27T18:40:06+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from starting to crashed
+</pre></div>
+<p>Looks like it is an issue with the settings file. If you wanted to take a look at the settings file to see if we can find out what is wrong you can run the following command.</p>
+<div class="highlight"><pre><span class="c"># (your path will be different)</span>
+<span class="nv">$ </span>heroku run cat kenblog/settings.py
+
+&lt;normal settings file stuff with the following added at the end.&gt;
+</pre></div>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">urlparse</span>
+<span class="n">urlparse</span><span class="o">.</span><span class="n">uses_netloc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;postgres&#39;</span><span class="p">)</span>
+<span class="n">urlparse</span><span class="o">.</span><span class="n">uses_netloc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;mysql&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;DATABASE_URL&#39;</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DATABASE_URL&#39;</span><span class="p">])</span>
+        <span class="n">DATABASES</span><span class="p">[</span><span class="s">&#39;default&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;NAME&#39;</span><span class="p">:</span>     <span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+            <span class="s">&#39;USER&#39;</span><span class="p">:</span>     <span class="n">url</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">url</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+            <span class="s">&#39;HOST&#39;</span><span class="p">:</span>     <span class="n">url</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
+            <span class="s">&#39;PORT&#39;</span><span class="p">:</span>     <span class="n">url</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">&#39;postgres&#39;</span><span class="p">:</span>
+            <span class="n">DATABASES</span><span class="p">[</span><span class="s">&#39;default&#39;</span><span class="p">][</span><span class="s">&#39;ENGINE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;django.db.backends.postgresql_psycopg2&#39;</span>
+        <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s">&#39;mysql&#39;</span><span class="p">:</span>
+            <span class="n">DATABASES</span><span class="p">[</span><span class="s">&#39;default&#39;</span><span class="p">][</span><span class="s">&#39;ENGINE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;django.db.backends.mysql&#39;</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Unexpected error:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+</pre></div>
+<p>This is odd, not sure why this is like this since I'm seeing the DATABASES variable above. Let's check to see if the environment variables are there. (the output has been changed to protect the innocent, but you still get the picture). You can also use the command 'heroku config' if you just want to see your application configuration options.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku run env
+Running env attached to terminal... up, run.6
+<span class="nv">DATABASE_URL</span><span class="o">=</span>postgres://blah:somethingelse@ec2-555-55-555-555.compute-1.amazonaws.com/morestuff
+<span class="nv">PORT</span><span class="o">=</span>37265
+<span class="nv">HOME</span><span class="o">=</span>/app
+<span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">TERM</span><span class="o">=</span>xterm
+<span class="nv">COLUMNS</span><span class="o">=</span>153
+
+<span class="nv">PATH</span><span class="o">=</span>bin:/usr/local/bin:/usr/bin:/bin
+<span class="nv">PWD</span><span class="o">=</span>/app
+<span class="nv">SHARED_DATABASE_URL</span><span class="o">=</span>postgres://blah:evenmorestuff@ec2-555-55-555-555.compute-1.amazonaws.com/morestuff
+<span class="nv">LINES</span><span class="o">=</span>32
+</pre></div>
+<p>This output looks good the DATABASE_URL env variable is there, so that is OK. Looking more closely at my settings.py file I didn't have a DATABASES variable because the last time I used this project, the other hosting provider didn't require that I have one. So I have added a blank DATABASES variable, and that seems to have fixed my issue. Heroku, should make the error message a little nicer, add more notes to their documentation, or even better make their code handle the case when there is no DATABASES variable in the settings file.  I have submitted a patch to fix this, so hopefully that will get rolled out in the near future. (<a class="reference external" href="https://github.com/heroku/heroku-buildpack-python/pull/8">https://github.com/heroku/heroku-buildpack-python/pull/8</a>)</p>
+<p>Now if we redeploy the app and look at the logs, they look much better.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku logs
+2011-11-27T18:59:25+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Deploy 96be00f by kencochrane@
+2011-11-27T18:59:25+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Release v8 created by kencochrane@
+2011-11-27T18:59:25+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from crashed to created
+2011-11-27T18:59:26+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from created to starting
+2011-11-27T18:59:26+00:00 heroku<span class="o">[</span>slugc<span class="o">]</span>: Slug compilation finished
+2011-11-27T18:59:31+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: 0 errors found
+2011-11-27T18:59:31+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from starting to up
+</pre></div>
+</div>
+<div class="section" id="running-django-management-commands-on-heroku">
+<h2>Running django management commands on Heroku</h2>
+<p>Running django management commands are easy you just need to run the following command and replace &lt;command&gt; with the management command you want to run. There are a few examples below.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku run python kenblog/manage.py &lt;<span class="nb">command</span>&gt;
+</pre></div>
+<div class="section" id="running-django-shell-on-heroku">
+<h3>Running django shell on Heroku</h3>
+<p>If you need to use the interactive python shell with django, you still can, you just need to run the following command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku run python kenblog/manage.py shell
+</pre></div>
+</div>
+<div class="section" id="syncing-django-database-on-heroku">
+<h3>Syncing Django Database on Heroku</h3>
+<p>Now that our application is starting like it should let's sync the db.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku run python kenblog/manage.py syncdb
+</pre></div>
+</div>
+<div class="section" id="running-django-south-migrations-on-heroku">
+<h3>Running Django South Migrations on Heroku</h3>
+<div class="highlight"><pre><span class="nv">$ </span>heroku run python kenblog/manage.py migrate
+</pre></div>
+<p>Now lets look at our processes now</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku ps
+Process       State               Command
+------------  ------------------  ------------------------------
+run.5         <span class="nb">complete </span><span class="k">for </span>21m    cat kenblog/settings.py
+run.6         <span class="nb">complete </span><span class="k">for </span>18m    env
+run.7         <span class="nb">complete </span><span class="k">for </span>1m     python kenblog/manage.py syncdb
+run.8         <span class="nb">complete </span><span class="k">for </span>1m     python kenblog/manage.py migrate
+web.1         up <span class="k">for </span>4m           python kenblog/manage.py runserver..
+</pre></div>
+<p>Things are looking better, we are up, and it also shows our old commands that we ran.</p>
+<p>if you need to work with the processes you have the following options.</p>
+<div class="highlight"><pre>ps:dynos <span class="o">[</span>QTY<span class="o">]</span>                 <span class="c"># scale to QTY web processes</span>
+ps:restart <span class="o">[</span>PROCESS<span class="o">]</span>           <span class="c"># restart an app process</span>
+ps:scale <span class="nv">PROCESS1</span><span class="o">=</span>AMOUNT1 ...  <span class="c"># scale processes by the given amount</span>
+ps:stop PROCESS                <span class="c"># stop an app process</span>
+ps:workers <span class="o">[</span>QTY<span class="o">]</span>               <span class="c"># scale to QTY background processes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opening-your-django-application-in-a-web-browser">
+<h2>Opening your django application in a web browser</h2>
+<p>If you run this command it will open a web browser and hopefully your site is running as it should</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku open
+</pre></div>
+</div>
+<div class="section" id="running-django-and-gunicorn-on-heroku">
+<h2>Running django and gunicorn on heroku</h2>
+<p>By default heroku deploys with the built in django runserver, which isn't recommended for production. If you are playing around it is ok, but once you get past that, the first thing you should do is switch to something better like guincorn. Switching is quick and painless, and you will be glad that you did.</p>
+<ol class="arabic simple">
+<li>Add gunicorn==0.13.4 to your requirements file.</li>
+<li>create a new file called Procfile at the same level as your requirements.txt file with the following in it.</li>
+</ol>
+<div class="highlight"><pre>web: python kenblog/manage.py run_gunicorn -b <span class="s2">&quot;0.0.0.0:$PORT&quot;</span> -w 3
+</pre></div>
+<p>Add gunicorn to the installed_apps in settings.py</p>
+<p>then</p>
+<div class="highlight"><pre><span class="nv">$ </span>git commit -am <span class="s2">&quot;use gunicorn&quot;</span>
+<span class="nv">$ </span>git push heroku master
+</pre></div>
+<p>Looking at your logs you will see it up and running</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku logs
+2011-11-27T21:06:24+00:00 heroku<span class="o">[</span>slugc<span class="o">]</span>: Slug compilation started
+2011-11-27T21:06:32+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Deploy 7b2eec1 by kencochrane@
+2011-11-27T21:06:32+00:00 heroku<span class="o">[</span>api<span class="o">]</span>: Release v8 created by kencochrane@
+2011-11-27T21:06:32+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from created to starting
+2011-11-27T21:06:35+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: Starting process with <span class="nb">command</span> <span class="sb">`</span>python kenblog/manage.py run_gunicorn -b <span class="s2">&quot;0.0.0.0:4075&quot;</span> -w 3<span class="sb">`</span>
+2011-11-27T21:06:36+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: Validating models...
+2011-11-27T21:06:37+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from starting to up
+</pre></div>
+</div>
+<div class="section" id="running-django-celery-background-tasks-on-heroku">
+<h2>Running django/celery background tasks on Heroku</h2>
+<p>Heroku offers you two types of processes, a web process and a worker process. Web processes are used for serving web pages, etc. Worker processes are used for items that run in the background. The heroku tutorial goes over how to setup background task using celery and kombu (<a class="reference external" href="http://devcenter.heroku.com/articles/django">http://devcenter.heroku.com/articles/django</a>) if you want more info I would check that out.</p>
+</div>
+<div class="section" id="serving-django-static-media-on-heroku">
+<h2>Serving Django Static media on Heroku</h2>
+<p>I'm not sure how to serve up static media on heroku, to get my app working I just used the built in &quot;django.views.static.serve&quot; views for now, this isn't ideal and you would want a more permanent solution. A more long term solution would be to push all static media into Amazon s3 and then use Amazon cloudfront to serve everything.</p>
+</div>
+<div class="section" id="uploading-files-to-heroku-with-django">
+<h2>Uploading files to Heroku with Django</h2>
+<p>Heroku allows you to upload files to their app's &quot;Emphemeral Filesystem&quot;: <a class="reference external" href="http://devcenter.heroku.com/articles/dyno-isolation#ephemeral_filesystem">http://devcenter.heroku.com/articles/dyno-isolation#ephemeral_filesystem</a></p>
+<blockquote>
+&quot;Which the app can use as a temporary scratchpad, but no files it writes are visible to any other &quot;Each dyno gets its own ephemeral filesystem, with a fresh copy of the most recently deployed code. During its lifetime the dyno can use the filesystem as a temporary scratchpad, but no files it writes are visible to any other dyno (including other dynos in the application) and any files written will be discarded the moment the dyno is stopped or restarted.&quot;</blockquote>
+<p>This means you can't use this space to store uploaded files, but it should allow you to upload it there for a minute, and then send it over to Amazon S3 for a more permant storage solution. You could use a tool like Django Queued storage for this: <a class="reference external" href="https://github.com/jezdez/django-queued-storage">https://github.com/jezdez/django-queued-storage</a></p>
+</div>
+<div class="section" id="databases">
+<h2>Databases</h2>
+<p>Heroku gives each app a 5MB shared postgresql database for FREE. If you pay $15/month you get upgraded to 20GB of space. They also offer dedicated database instances if you need that. See this page for more details. <a class="reference external" href="http://www.heroku.com/pricing#0-0">http://www.heroku.com/pricing#0-0</a></p>
+<p>They also have a bunch of other addons (redis, mongodb, couchdb, amazon RDS) that you should be able to tie into, see the addons page for a complete list. <a class="reference external" href="http://addons.heroku.com/">http://addons.heroku.com/</a></p>
+</div>
+<div class="section" id="setting-up-django-caching-on-herku">
+<h2>Setting up Django Caching on Herku</h2>
+<p>To use memcache on Heroku, I went to the add-on page and installed the free memcache addon. Once I did this I can run the heroku config command to find out my config settings. I then use that information in my django settings file so that I can have access to caching in my app.</p>
+<div class="highlight"><pre><span class="nv">$ </span>heroku config
+...
+<span class="nv">MEMCACHE_PASSWORD</span>    <span class="o">=</span>&gt; xxxxxxxxxxxx
+<span class="nv">MEMCACHE_SERVERS</span>     <span class="o">=</span>&gt; instance.hostname.net
+<span class="nv">MEMCACHE_USERNAME</span>    <span class="o">=</span>&gt; xxxxxxxxxxxx
+...
+</pre></div>
+<p>They also offer redis if you prefer that.</p>
+</div>
+<div class="section" id="sending-email-from-django-on-heroku">
+<h2>Sending Email from django on Heroku</h2>
+<p>If you need to send or receive email in your application there are a few email add-ons that you can use. Pick the one you want and then run the 'heroku config' command described above to get your settings, and update your django settings accordingly.</p>
+</div>
+<div class="section" id="application-size">
+<h2>Application size</h2>
+<p>You application and all of it's dependencies can't be more then 100MB in size.</p>
+</div>
+<div class="section" id="heroku-pricing">
+<h2>Heroku Pricing</h2>
+<p>Directly from this page: <a class="reference external" href="http://devcenter.heroku.com/articles/how-much-does-a-dyno-cost">http://devcenter.heroku.com/articles/how-much-does-a-dyno-cost</a></p>
+<p>Dynos cost $0.05 per hour, prorated to the second. For example, an app with four dynos is charged $0.20 per hour for each hour that the four dynos are running.</p>
+<p>Pricing is based on calendar time. If you set your app to four dynos, you will be charged $0.20 per hour regardless of the traffic your site serves during that time.</p>
+<p>Each application receives 750 free dyno hours per month. For example if you have 1 web dyno running for all of April, and a worker dyno running half the time you would have 330 dyno-hours billed that month or $16.50 (720 web dyno hours + 360 worker dyno hours - 750 free dyno hours).</p>
+<p>See this page for more details: <a class="reference external" href="http://www.heroku.com/pricing#0-0">http://www.heroku.com/pricing#0-0</a></p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>I haven't really had much time to really play with Heroku, and stress test it at all, but I have to say it is pretty impressive to begin with. There are still some rough edges, but I'm sure they will have those smoothed out before they remove the beta tag. The thing that impresses me the most is all of the addons that you have access to out of the box. I'm not sure how many of these work with the new platform, or with django right now, but I'm sure it is only a matter of time before they are available.</p>
+<p>I would highly recommend signing up and trying out their service, it is free so what do you have to lose?</p>
+<div class="section" id="update">
+<h3>Update</h3>
+<p>2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to Heroku. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.</p>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://kencochrane.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

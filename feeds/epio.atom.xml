@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/epio.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2011-06-06T22:03:59-04:00</updated><entry><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link href="http://kencochrane.net/blog/2011/Jun/06/django-hosting-roundup-who-wins/" rel="alternate"></link><updated>2011-06-06T22:03:59-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-06-06:blog/2011/Jun/06/django-hosting-roundup-who-wins/</id><summary type="html">&lt;div class="section" id="updates"&gt;
+&lt;h2&gt;Updates&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
+&lt;li&gt;Updated 1/26/2012: Updated Gondor.io with info from Donald Stufft.&lt;/li&gt;
+&lt;li&gt;Updated 01/24/2012: changed gondor.io to include SSL support&lt;/li&gt;
+&lt;li&gt;Updated 01/01/2012: Added Heroku and updated ep.io, gondor.io, and dotcloud.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;For the past 6 weeks I have been trying out all of the new django/python hosting services that are currently available today, and I have been writing about my experiences along the way. It only makes sense to conclude this series of articles with one last article comparing all of the services against each other. It is important to note that many of these services are still in development and aren't even available to the general public, so I'll try to keep this article up to date as these services change over time. With that said, don't take my word for it, go out and try all of these services on your own and find out which one you like the best, you won't be disappointed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="quick-recap"&gt;
+&lt;h2&gt;Quick Recap&lt;/h2&gt;
+&lt;div class="section" id="ep-io"&gt;
+&lt;h3&gt;ep.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pretty solid offering, with a nice set of features and a decent price. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Update&lt;/strong&gt;: Epio closed down on May 31st 2012 ]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gondor-io"&gt;
+&lt;h3&gt;gondor.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My day in gondor.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Their website has a nice list of features that they expect to have once they officially launch, but most of those features aren't available yet. The documentation is a little light, but the service has a lot of potential.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dotcloud-com"&gt;
+&lt;h3&gt;dotCloud.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to dotcloud.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They have a ton of money ($10M), and with it, a ton of features. They are very developer friendly, but you need to be pretty technical, it isn't quite ready for beginners. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Full disclosure&lt;/strong&gt;: I now work for dotCloud]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="apphosted-com"&gt;
+&lt;h3&gt;AppHosted.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com Django Hosting Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built with security, stability and scalability on their mind from the beginning. They have a solid offering, and they look to be targeting enterprise customers who will pay more for that peace of mind.  They are currently lacking some key features, which I'm sure they will be adding soon.  Good set of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="djangozoom-com"&gt;
+&lt;h3&gt;DjangoZoom.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built to be fast and easy to use, still missing some key features, but I'm sure they will be available by the time they go live. Decent amount of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="heroku-com"&gt;
+&lt;h3&gt;Heroku.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide for running django apps on Heroku&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Originally built as a Ruby on Rails service, they have now added support for python. The service is still in beta, but it has a lot of potential. It looks a lot like what dotCloud is offering, with the ability to run code from almost any language, and a ton of different add-ons for lots of different services.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="awards"&gt;
+&lt;h2&gt;Awards&lt;/h2&gt;
+&lt;div class="section" id="fastest-deployments"&gt;
+&lt;h3&gt;Fastest Deployments:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - Zoom is right, it doesn't take long to configure your application and have it up and running on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-to-use"&gt;
+&lt;h3&gt;Easiest To Use:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - No command line interface needed, just a web browser, a project in a git repo that it has access too, and a few questions answered and your app is up and running.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-features"&gt;
+&lt;h3&gt;Most Features:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They raised $10 Million, and they are spending it on hiring people, buying companies, and building services. They have a bunch of services currently and they don't plan on stopping, their roadmap has everything on it, and I think if you give them enough time they will eventually have a service for everything.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-developer-friendly"&gt;
+&lt;h3&gt;Most Developer Friendly:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They give lots of features without handcuffing the developer. They are the only company with full database and shell access. They do a good job of offering the same type of service a developer could get if they built it themselves.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="best-overall-value"&gt;
+&lt;h3&gt;Best Overall Value:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; - This one is hard since most of the services don't have any pricing listed, but currently ep.io is in the lead, they offer reasonable prices with a nice Free tier. This allows developers to try out the service for FREE, as well as run smaller pet projects that they might not have tried before because they didn't want to pay for hosting. They have the second most features available, second to only dotCloud, and there service is pretty solid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-project-setup"&gt;
+&lt;h3&gt;Easiest Project Setup:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://apphosted.com"&gt;apphosted.com&lt;/a&gt; - Their goal was to make it real easy to get your project up onto their servers without having to change your project, and they did that, there was very little if any changes I needed to make in order to get my application up on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-feature-hosting-matrix"&gt;
+&lt;h2&gt;Django Feature Hosting Matrix&lt;/h2&gt;
+&lt;p&gt;To make things easier when comparing all of the different services I have built this matrix with all of the information I compiled from each of the services. I don't know the answers for all services, but I'll update it when I find out those answers. If you know the answers feel free to post a comment to let me know.&lt;/p&gt;
+&lt;p&gt;I have included all of the new django services as well as google app engine and webfaction.com, a tradition hosting service. This should make it a little easier to see how these new services compare to other hosting options.&lt;/p&gt;
+&lt;iframe width='775' height='500' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtuyQoTrXCavdDdyQ1RCX29FcDhQeDgzMXp0NGpGeWc&amp;single=true&amp;gid=0&amp;output=html&amp;widget=true'&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;div class="section" id="who-wins"&gt;
+&lt;h2&gt;Who wins?&lt;/h2&gt;
+&lt;p&gt;It is really hard to pick just one winner,  mainly because most of these services are still in beta and not quite finished yet. Also because each service is a little different, and it will depend on what you are trying to do. So, go out try them out, and let me know which one you picked.&lt;/p&gt;
+&lt;p&gt;The real winner is us, the developers, and the python community in general. We now have a bunch of really cool services that will make our lives better, and that is awesome.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="thank-you"&gt;
+&lt;h2&gt;Thank you!&lt;/h2&gt;
+&lt;p&gt;I want to thank all of the people who made these services, and gave me early access to their systems so that I could play around with them. I wish them the best of luck, and hope they all are really successful, and they are around for a long time.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="hosting"></category><category term="apphosted"></category><category term="python"></category><category term="deployment"></category><category term="dotcloud"></category><category term="epio"></category><category term="gondor"></category><category term="djangozoom"></category><category term="heroku"></category><category term="paas"></category></entry><entry><title>My Experiences with ep.io</title><link href="http://kencochrane.net/blog/2011/Apr/18/my-experiences-with-epio/" rel="alternate"></link><updated>2011-04-18T21:09:57-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-04-18:blog/2011/Apr/18/my-experiences-with-epio/</id><summary type="html">&lt;p&gt;Over the last decade I have deployed my applications many different ways, I have used, self managed dedicated servers, fully managed dedicated servers, Virtual Privates Servers from Linode, RackSpace and Amazon, shared hosting from webfaction, and I also used Google App Engine. I have learned a lot of things along the way, but the one thing I learned the most is that managing the server and keeping it up and running isn't fun. The fun part is writing the applications, and watching them grow as people start to use them. If there was only a way to write the application and then let someone else manage all of the server stuff for you, for a reasonable price.&lt;/p&gt;
+&lt;p&gt;The Ruby on Rails folks have had services like this for a while, both Heroku and EngineYard are pretty popular and make hosting your Rails applications much easier. When Heroku was bought by salesforce.com for $212M, it opened people eyes, and started to get them thinking. Why can't we do that for Django? I have been wanting to build a Django service like this for a while now, but with limited time and not knowing where to begin, my idea went no where. Recently there have been a bunch of  new services that have popped up that provided turn key Django hosting, very similar in nature to Heroku, and Google App Engine (Python, and Java). This has gotten me very excited, and I plan on trying them all out.&lt;/p&gt;
+&lt;p&gt;One of these new services is called &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt;, and it is run by Andrew Godwin (of Django South fame) and Ben Firshman. They are trying to make the hosting as simple as possible, so that you don't have to worry about servers at all. You write your application, deploy it to their service and they handle the rest. If you need to scale up your application, add load balancing, add more disk space, they will take care of that. This allows you the developer to spend your valuable time writing code instead of doing server maintenance. Best of all their pricing is based on usage, and they have a free tier, so if you have an application that you put out there, but it isn't using any resources, or very few resources, it might not cost you anything at all. So there is nothing stopping you from trying it out.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; is still in beta, and not available to the public yet. The only way to get access is to put your name on a waiting list, and wait until you are sent an invite. I was lucky enough to get an invite early on, and I have been playing around with &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; for a new project that I'm working on.  I'm still in development with my application so it isn't public yet, but I have an app deployed and running. I personally feel that if you are lucky enough to be selected to a closed beta, that it is your duty to give as much feedback as possible, so that you can help make the application great. If you aren't going to be doing this, then you don't deserve the early access. That is why I'm writing this post, to help spread the word about ep.io, and to show people getting started with the service how easy it is to deploy their app.&lt;/p&gt;
+&lt;p&gt;Before you start using a service like &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt;, you need to do your research to make sure you know what it is you are getting with the service. Services like this aim to make hard tasks easy, and sometimes in doing so, they need to sacrifice features and flexibility. Knowing the pros and cons about a service before hand will help set your expectations accordingly so that you aren't disappointed later on in the process. It is important to note that as of this writing, they are still in beta, and thus still a work in progress, so if you are reading this, make sure you look at their website for the most up to date information. I will try and come back and update this post as the service deploys new features, and my experience with the service grows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Application setup:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Like most managed application services, you won't be able to deploy your application as is, you will need to make a few changes in order to get everything to work. Luckily for us, this step wasn't too hard. I used the documentation that ep.io provides along with the ep.io project skeleton (&lt;a class="reference external" href="https://github.com/idangazit/epio_skel"&gt;https://github.com/idangazit/epio_skel&lt;/a&gt;) as a good starting point. ep.io uses an ini based configuration file called epio.ini for all of your configuration information. The documentation does a pretty good job explaining the different sections, and if you look at the ep.io project skeleton, there is a good example of one already created for you.&lt;/p&gt;
+&lt;p&gt;ep.io controls all aspects of your environment and because of this you don't know what your database information is, but that is OK, because if you setup your django settings.py file correctly, they will handle all of that for you. Once again, checkout the skeleton project or the documentation for the recommended settings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dependencies:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If your project is already using virtualenv and pip, this shouldn't be too difficult. If not, you will need to read up a little on pip and it's requirements files (&lt;a class="reference external" href="http://pip.openplans.org/requirement-format.html"&gt;http://pip.openplans.org/requirement-format.html&lt;/a&gt;) in order to make sure you load all of your dependencies correctly. ep.io already has some of the most common libraries installed, for a full list, follow this link: &lt;a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries"&gt;http://www.ep.io/docs/runtime/#python-libraries&lt;/a&gt;. If you need a non pure-python library that isn't on their list, just let them know and if it is reasonable, they will most likely install it for you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Deployment:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ep.io offers a simple control panel so that you can see what apps you have installed, how much they are costing you, how many resources they are using (database, bandwidth, CPU, disk usage, etc). It also allows you to configure your domains, set application permissions, and view the console log. Besides that, you need to do everything using their command line client. Before you can use the client, you will need to install it, you can do that using either pip or easy install.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install -U epio
+
+&lt;span class="c"&gt;# or&lt;/span&gt;
+
+easy_install -U epio
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once you have the client installed, this is where the fun begins. With the client you can create, suspend, resume, upload or delete your app. You can also use the client to kick off remote commands on your server such as django syncdb. See the official documentation for full details: &lt;a class="reference external" href="http://www.ep.io/docs/client/"&gt;http://www.ep.io/docs/client/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here are some notes and examples.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#create app&lt;/span&gt;
+epio create &lt;span class="o"&gt;[&lt;/span&gt;&amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# suspend app&lt;/span&gt;
+epio &lt;span class="nb"&gt;suspend&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;#resume app&lt;/span&gt;
+epio resume &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# delete app&lt;/span&gt;
+epio delete &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# django syncdb&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; syncdb
+
+&lt;span class="c"&gt;# django run south migrations for all apps&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; migrate
+
+&lt;span class="c"&gt;# django run south migrations for just one app called chicken&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; migrate chicken
+
+&lt;span class="c"&gt;# bash command&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; bash
+
+&lt;span class="c"&gt;# psql access to your database.&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; psql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Uploading App:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The epio upload command will use git in the background to sync up your local directory to your server. It will ignore the .pyc files and such, if you have other files and directories that you also want to ignore you can create a file called .epioignore and list the files and directories to ignore in it. The .epioignore file has the same syntax as a .gitignore file.&lt;/p&gt;
+&lt;p&gt;The upload command is fine for most cases, but if you are already using git or mercurial, you can push your changes directly to ep.io, this allows you to do more of a continuous deployment setup, where you want to push to a central repo, run a bunch of tests and if it works push out to production. See this link for more info on uploading via git and mercurial &lt;a class="reference external" href="http://www.ep.io/docs/vcss/"&gt;http://www.ep.io/docs/vcss/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Database:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The ep.io databases are behind a firewall for security purposes, and because of this, you don't have direct access to the database, so if you are used to using a GUI database client, you are out of luck. The only way to get to your database right now is using the psql command tool.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# psql access to your database.&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; psql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Getting data into your databases:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are two recommended ways for getting data into your database.&lt;/p&gt;
+&lt;p&gt;You can create a SQL dump file, and add it to your project, and upload. Once it is up on the server you can run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;epio run_command -- psql -f dumpname.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can also stream the dump over the network via SSH. (They suggest that you only do this with dumps that are 20MB or less in size.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;epio run_command psql &amp;lt; dumpname.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Background tasks:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ep.io supports both cronjobs and background tasks via Celery and Redis.&lt;/p&gt;
+&lt;p&gt;Cron is pretty easy to setup, you have a section in the epio.ini file called cron where you put your normal cron commands. The syntax isn't exactly the same, so see the documentation for the differences. &lt;a class="reference external" href="http://www.ep.io/docs/epioini/#cron-section"&gt;http://www.ep.io/docs/epioini/#cron-section&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can use either plain celery or django-celery, what ever you want, they support most features, but they currently don't support periodic tasks, they hope to get to that in the future. In the meantime just use a cron for those.&lt;/p&gt;
+&lt;div class="section" id="ep-io-vs-traditional-hosting"&gt;
+&lt;h2&gt;ep.io vs traditional hosting&lt;/h2&gt;
+&lt;p&gt;I originally wrote this Pro's and Con's section at stackoverflow.com, and I include it here as well.
+&lt;a class="reference external" href="http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323"&gt;http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="pros"&gt;
+&lt;h3&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;Server Management&lt;/em&gt;: You don't have to worry about your server setup at all, it handles everything for you. With a VPS, you would need to worry about making sure the server is up to date with security patches, and all that fun stuff, with this, you don't worry about anything, they take care of all that for you.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Deployment&lt;/em&gt;: It makes deploying an app and having it up and running really quickly. deploying a new version of an app is a piece of cake, I just need to run one maybe two commands, and it handles everything for me.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Pricing&lt;/em&gt;: you are only charged for what you use, so if you have a very low traffic website, it might not cost you anything at all.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Scaling&lt;/em&gt;: They handle scaling and load balancing for you out of the box, no need for you to worry about that. You still need to write your application so that it can scale efficiently, but if you do, they will handle the rest.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Background tasks&lt;/em&gt;: They have support for cronjobs as well as background workers using celery.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Customer support&lt;/em&gt;: I had a few questions, sent them an email, and had an answer really fast, they have been great, so much better then I would have expected. If you run your own VPS, you really don't have anyone to talk to, so this is a major plus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cons"&gt;
+&lt;h3&gt;&lt;strong&gt;Cons:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;DB access&lt;/em&gt;: You don't have direct access to the database, you can get to the psql shell, but you can't connect an external client GUI. This makes doing somethings a little more difficult or slow. But you can still use the django admin or fixtures to do a lot of things.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Limited services available&lt;/em&gt;: It currently only supports Postgresql and redis, so if you want to use MySQL, memcached, mongodb,etc you are out of luck.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Low level c libs&lt;/em&gt;: You can't install any dependencies that you want, similar to google app engine, they have some of the common c libs installed already, and if you want something different that isn't already installed you will need to contact them to get it added. &lt;a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries"&gt;http://www.ep.io/docs/runtime/#python-libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Email&lt;/em&gt;: You can't send or receive email, which means you will need to depend on a 3rd party for that, which is probably good practice anyway, but it just means more money.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;File system&lt;/em&gt;: You have a more limited file system available to you, and because of the distributed nature of the system you will need to be very careful when working from files. You can't (unless i missed it) connect to your account via (s)ftp to upload files, you will need to connect via the ep.io command line tool and either do an rsync or a push of a repo to get files up there.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h3&gt;Update:&lt;/h3&gt;
+&lt;p&gt;Read how this service stacks up against other services like it in my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to ep.io. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="epio"></category><category term="deployment"></category><category term="hosting"></category><category term="python"></category><category term="paas"></category></entry></feed>

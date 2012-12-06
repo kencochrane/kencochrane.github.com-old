@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>KenCochrane.net - gunicorn</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
+                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href=".././about/index.html">About Me</a></li>
+                
+                    <li><a href=".././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li ><a href=".././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href=".././blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/">Using New Relic with supervisord and gunicorn</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2011-12-30T14:53:35">
+                Fri 30 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/supervisor.html">supervisor</a><a href=".././tag/gunicorn.html">gunicorn</a><a href=".././tag/newrelic.html">newrelic</a></p>
+
+
+</footer><!-- /.post-info --><p>New Relic recently added support for python to their awesome web application performance tool, and I have been playing with it on a number of projects.</p>
+<p>Installing and configuring new relic is pretty well covered in their own <a class="reference external" href="http://newrelic.com/docs/python/">documentation</a>, so there is no reason for me to repeat that here. One thing that isn't covered in the documentation is how to use new relic if you are using supervisord to control your gunicorn processes, and I'll take this time right now to show you what I did.</p>
+<p>Setting up new relic with supervisord and gunicorn is pretty easy. All that you need to do, is change your supervisor.conf file and then update your supevisor config, and you are good to go.</p>
+<p>Here is the supervisor.conf file for my awesome app, before I installed new relic.</p>
+<p><em>Note: These are not my real conf files, they have been changed to protect the guilty, so please excuse any typos.</em></p>
+<div class="highlight"><pre>[program:awesome_app]
+directory=/opt/apps/awesome_home/awesome_app/
+command=/opt/apps/awesome_home/bin/python2.6 /opt/apps/awesome_home/bin/gunicorn_django -c /opt/apps/awesome_home/awesome_app/conf/gunicorn.conf
+user=aweman
+autostart=true
+autorestart=true
+environment=HOME=&#39;/opt/apps/awesome_home/awesome_app/&#39;,DJANGO_SETTINGS_MODULE=&#39;settings&#39;
+</pre></div>
+<p>After I installed new relic. All you need to do is add the 'newrelic-admin run-program' command before the 'gunicorn_django' command and add an ENV variable called NEW_RELIC_CONFIG_FILE that is pointing to your newrelic.ini file.</p>
+<div class="highlight"><pre>[program:awesome_app]
+directory=/opt/apps/awesome_home/awesome_app/
+command=/opt/apps/awesome_home/bin/newrelic-admin run-program /opt/apps/awesome_home/bin/gunicorn_django -c /opt/apps/awesome_home/awesome_app/conf/gunicorn.conf
+user=aweman
+autostart=true
+autorestart=true
+environment=HOME=&#39;/opt/apps/awesome_home/awesome_app/&#39;,DJANGO_SETTINGS_MODULE=&#39;settings&#39;,NEW_RELIC_CONFIG_FILE=/opt/apps/awesome_home/awesome_app/conf/newrelic.ini
+</pre></div>
+<p>Now that you have the new configuration setup, you will need to let supervisord know that you have changed t he configuration for that app. If you run the update command it will prompt supervisord to reread the configuration file for that app, and reload the config, and then restart the application with the new configuration.</p>
+<div class="highlight"><pre><span class="nv">$ </span>supervisorctl update
+</pre></div>
+<p>Another thing that is important to note here, is the fact that New Relic currently doesn't work well with Gunicorn in gevent mode. If you try to use gevent with gunicorn and new relic, it may not start up at all, or just not work as it should. Here is what they say in the <a class="reference external" href="http://newrelic.com/docs/python/status-of-python-agent">Known Issues</a> section of their docs.</p>
+<blockquote>
+Gunicorn gevent mode - When using gevent mode of gunicorn and the 'newrelic-admin run-program' command is used to wrap the invocation of gunicorn, the hosted web application can fail in strange ways. One way this is manifesting is with requests blocking for a period of 1 minute.
+The cause of the problem is believed in this case to specifically relate to the order in which module imports are occuring. The monkey patching performed by gevent is not working properly for the case where the Python threading module is imported before the gevent monkey patching routine is run.</blockquote>
+<p>Because of this, I have changed my gunicorn's to use eventlet when using new relic, and that seems to work fine. I normally prefer to use gevent, so hopefully they will be able to fix the issue with gevent so I can revert back to that setup.</p>
+<p>All and all I have been pretty happy with new relic, it has helped us find issues with our code that would have been a pain otherwise. There support has been awesome, and they have been adding new fixes/ improvements all the time. Can't wait to see what else they have in store for the future. I would try it out if you can, they have a lite version that is free which even includes server monitoring.</p>
+<p>There are <a href=".././blog/2011/Dec/30/using-new-relic-with-supervisord-and-gunicorn/#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/" rel="bookmark"
+                           title="Permalink to Setting up Django with Green Unicorn, nginx, supervisord and fabric on CentOS 5.5">Setting up Django with Green Unicorn, nginx, supervisord and fabric on CentOS 5.5</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-06-27T06:48:18">
+                Mon 27 June 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/python.html">python</a><a href=".././tag/deployment.html">deployment</a><a href=".././tag/gunicorn.html">gunicorn</a><a href=".././tag/supervisord.html">supervisord</a><a href=".././tag/fabric.html">fabric</a><a href=".././tag/centos5.html">centos5</a><a href=".././tag/nginx.html">nginx</a><a href=".././tag/linux.html">linux</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>When I first started working with django I deployed my apps using apache and mod_python. Then after a little while I started playing with nginx and switched my setup so that nginx was serving the static content and reverse proxied requests back to apache and mod_python. Not too long after ...</p>
+                <a class="readmore" href=".././blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/">read more</a>
+                <p>There are <a href=".././blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            </ol><!-- /#posts-list -->
+            
+                
+<p class="paginator">
+    
+    Page 1 / 1
+    
+</p>
+
+            
+            </section><!-- /#content -->
+        
+    
+
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

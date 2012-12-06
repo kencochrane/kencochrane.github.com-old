@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/apphosted.rss" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/Jun/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
+&lt;h2&gt;Updates&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
+&lt;li&gt;Updated 1/26/2012: Updated Gondor.io with info from Donald Stufft.&lt;/li&gt;
+&lt;li&gt;Updated 01/24/2012: changed gondor.io to include SSL support&lt;/li&gt;
+&lt;li&gt;Updated 01/01/2012: Added Heroku and updated ep.io, gondor.io, and dotcloud.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;For the past 6 weeks I have been trying out all of the new django/python hosting services that are currently available today, and I have been writing about my experiences along the way. It only makes sense to conclude this series of articles with one last article comparing all of the services against each other. It is important to note that many of these services are still in development and aren't even available to the general public, so I'll try to keep this article up to date as these services change over time. With that said, don't take my word for it, go out and try all of these services on your own and find out which one you like the best, you won't be disappointed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="quick-recap"&gt;
+&lt;h2&gt;Quick Recap&lt;/h2&gt;
+&lt;div class="section" id="ep-io"&gt;
+&lt;h3&gt;ep.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pretty solid offering, with a nice set of features and a decent price. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Update&lt;/strong&gt;: Epio closed down on May 31st 2012 ]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gondor-io"&gt;
+&lt;h3&gt;gondor.io&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My day in gondor.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Their website has a nice list of features that they expect to have once they officially launch, but most of those features aren't available yet. The documentation is a little light, but the service has a lot of potential.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dotcloud-com"&gt;
+&lt;h3&gt;dotCloud.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to dotcloud.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They have a ton of money ($10M), and with it, a ton of features. They are very developer friendly, but you need to be pretty technical, it isn't quite ready for beginners. Good set of documentation.&lt;/p&gt;
+&lt;p&gt;[&lt;strong&gt;Full disclosure&lt;/strong&gt;: I now work for dotCloud]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="apphosted-com"&gt;
+&lt;h3&gt;AppHosted.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com Django Hosting Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built with security, stability and scalability on their mind from the beginning. They have a solid offering, and they look to be targeting enterprise customers who will pay more for that peace of mind.  They are currently lacking some key features, which I'm sure they will be adding soon.  Good set of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="djangozoom-com"&gt;
+&lt;h3&gt;DjangoZoom.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Built to be fast and easy to use, still missing some key features, but I'm sure they will be available by the time they go live. Decent amount of documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="heroku-com"&gt;
+&lt;h3&gt;Heroku.com&lt;/h3&gt;
+&lt;p&gt;Blog post: &lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide for running django apps on Heroku&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Originally built as a Ruby on Rails service, they have now added support for python. The service is still in beta, but it has a lot of potential. It looks a lot like what dotCloud is offering, with the ability to run code from almost any language, and a ton of different add-ons for lots of different services.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="awards"&gt;
+&lt;h2&gt;Awards&lt;/h2&gt;
+&lt;div class="section" id="fastest-deployments"&gt;
+&lt;h3&gt;Fastest Deployments:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - Zoom is right, it doesn't take long to configure your application and have it up and running on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-to-use"&gt;
+&lt;h3&gt;Easiest To Use:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt; - No command line interface needed, just a web browser, a project in a git repo that it has access too, and a few questions answered and your app is up and running.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-features"&gt;
+&lt;h3&gt;Most Features:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They raised $10 Million, and they are spending it on hiring people, buying companies, and building services. They have a bunch of services currently and they don't plan on stopping, their roadmap has everything on it, and I think if you give them enough time they will eventually have a service for everything.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="most-developer-friendly"&gt;
+&lt;h3&gt;Most Developer Friendly:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://dotcloud.com"&gt;dotCloud.com&lt;/a&gt; - They give lots of features without handcuffing the developer. They are the only company with full database and shell access. They do a good job of offering the same type of service a developer could get if they built it themselves.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="best-overall-value"&gt;
+&lt;h3&gt;Best Overall Value:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; - This one is hard since most of the services don't have any pricing listed, but currently ep.io is in the lead, they offer reasonable prices with a nice Free tier. This allows developers to try out the service for FREE, as well as run smaller pet projects that they might not have tried before because they didn't want to pay for hosting. They have the second most features available, second to only dotCloud, and there service is pretty solid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="easiest-project-setup"&gt;
+&lt;h3&gt;Easiest Project Setup:&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://apphosted.com"&gt;apphosted.com&lt;/a&gt; - Their goal was to make it real easy to get your project up onto their servers without having to change your project, and they did that, there was very little if any changes I needed to make in order to get my application up on their servers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-feature-hosting-matrix"&gt;
+&lt;h2&gt;Django Feature Hosting Matrix&lt;/h2&gt;
+&lt;p&gt;To make things easier when comparing all of the different services I have built this matrix with all of the information I compiled from each of the services. I don't know the answers for all services, but I'll update it when I find out those answers. If you know the answers feel free to post a comment to let me know.&lt;/p&gt;
+&lt;p&gt;I have included all of the new django services as well as google app engine and webfaction.com, a tradition hosting service. This should make it a little easier to see how these new services compare to other hosting options.&lt;/p&gt;
+&lt;iframe width='775' height='500' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtuyQoTrXCavdDdyQ1RCX29FcDhQeDgzMXp0NGpGeWc&amp;single=true&amp;gid=0&amp;output=html&amp;widget=true'&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;div class="section" id="who-wins"&gt;
+&lt;h2&gt;Who wins?&lt;/h2&gt;
+&lt;p&gt;It is really hard to pick just one winner,  mainly because most of these services are still in beta and not quite finished yet. Also because each service is a little different, and it will depend on what you are trying to do. So, go out try them out, and let me know which one you picked.&lt;/p&gt;
+&lt;p&gt;The real winner is us, the developers, and the python community in general. We now have a bunch of really cool services that will make our lives better, and that is awesome.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="thank-you"&gt;
+&lt;h2&gt;Thank you!&lt;/h2&gt;
+&lt;p&gt;I want to thank all of the people who made these services, and gave me early access to their systems so that I could play around with them. I wish them the best of luck, and hope they all are really successful, and they are around for a long time.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Mon, 06 Jun 2011 22:03:59 -0400</pubDate><guid>tag:kencochrane.net,2011-06-06:blog/2011/Jun/06/django-hosting-roundup-who-wins/</guid><category>django</category><category>hosting</category><category>apphosted</category><category>python</category><category>deployment</category><category>dotcloud</category><category>epio</category><category>gondor</category><category>djangozoom</category><category>heroku</category><category>paas</category></item><item><title>AppHosted.com Django Hosting Service Review</title><link>http://kencochrane.net/blog/2011/May/18/apphosted-com-django-hosting-review/</link><description>&lt;p&gt;This post is the fourth in my series about the new Django hosting services that just recently hit the market. Previously I have reviewed &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt; , &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt; , and &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;dotCloud.com&lt;/a&gt; .This post reviews &lt;a class="reference external" href="http://AppHosted.com"&gt;AppHosted.com&lt;/a&gt; , another similar service that is currently in beta. I was lucky enough to get a sneak peak of this service before it was released to the general public, and here are my notes and impressions for the short time I had to play with the new service.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://AppHosted.com"&gt;AppHosted.com&lt;/a&gt; uses a similar concept as the other django hosting services, they provide you with a command line client called metro that you use to interact with the service. Like the other command line clients, it is pretty much just a nice wrapper around their API, so anything you can do with the metro client you can do with their API. The client is used to configure your service and push your files up into their servers. Once the application is created and your code has been uploaded to their server, you can use their web based control panel to configure or manage your application.&lt;/p&gt;
+&lt;p&gt;So that we can compare apples to apples I will go through the process of installing my blog onto the service so that we can see how it works with apphosted compared to the other services. It will also hopefully provide a very simple how to guide on how to install your application onto AppHosted.com.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="first-steps"&gt;
+&lt;h2&gt;First Steps&lt;/h2&gt;
+&lt;p&gt;Like all new projects the first thing that I like to do is create a new project directory and a new virtual environment for the project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# move into my projects directory&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~projects/
+
+&lt;span class="c"&gt;# make my virtual environment apphosted&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv apphosted
+
+&lt;span class="c"&gt;# clone my blog&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;hg clone https://bitbucket.org/kencochrane/kencochranenet kencochrane_apphosted
+
+&lt;span class="c"&gt;# move into the new project directory&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;kencochrane_apphosted
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that I have a local working copy of my blog code and a new virtual environment I'm ready to go.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="command-line-interface"&gt;
+&lt;h2&gt;Command Line Interface&lt;/h2&gt;
+&lt;p&gt;AppHosted has a command line client called Metro, it uses this client to configure and upload your application onto the apphosted servers. Metro only has three dependencies: httplib2, paramiko, and pycrypto, if you don't have them installed pip should handle that for you.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# install the metro client&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;pip install metroclient
+
+Downloading/unpacking metroclient
+Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package metroclient
+Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: httplib2 in /Users/ken/.virtualenvs/apphosted/lib/python2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
+Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: paramiko in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
+Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: pycrypto&amp;gt;&lt;span class="o"&gt;=&lt;/span&gt;1.9 in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from paramiko-&amp;gt;metroclient&lt;span class="o"&gt;)&lt;/span&gt;
+Installing collected packages: metroclient
+Running setup.py install &lt;span class="k"&gt;for &lt;/span&gt;metroclient
+changing mode of build/scripts-2.6/metro from 644 to 755
+changing mode of /Users/ken/.virtualenvs/apphosted/bin/metro to 755
+Successfully installed metroclient
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="initial-data-django-admin-user"&gt;
+&lt;h2&gt;Initial Data &amp;amp; Django admin user&lt;/h2&gt;
+&lt;p&gt;At the moment Apphosted.com doesn't provide an easy way to create a django admin user, in order to create this user in your appHosted.com database you need to create it on a local database and then export that data into a fixture called initial_data.json.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# locally I run this command to dump the data, so that I can load on app hosted.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py dumpdata &amp;gt; initial_data.json
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There is another way to create the django admin user, which I'll describe a little later. This would also be the same way that you would import any application data that you need in order for your application to run correctly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="metro-client"&gt;
+&lt;h2&gt;Metro Client&lt;/h2&gt;
+&lt;p&gt;One of the goals for appHosted.com was that they didn't want to require that you make lots of changes to your project directory structure  in order to use their service. In order to do this they need to do a lot more work to figure out what it is you want to do, and if they can't figure it out, they will ask you some questions.&lt;/p&gt;
+&lt;p&gt;Now that we have our project directory and our initial_data.json file all ready, lets go ahead and deploy the application. Activate the virtual environment and go into your project directory. Kick off the metro client and answer the questions that pop up.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# run the metro client.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;metro
+
+Metro Application Manager 1.21
+Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; Lumentica,  http://www.lumentica.com
+
+Application directory &lt;span class="o"&gt;(&lt;/span&gt;i.e. path to project&lt;span class="o"&gt;)&lt;/span&gt;: ./
+Application name: kencochraneblog
+Application version: 0.1
+Application description: Ken&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s AppHosted Blog
+Application modules &lt;span class="o"&gt;(&lt;/span&gt;extra; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;South&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.7.3, django-activitysync&lt;span class="o"&gt;==&lt;/span&gt;0.2.2, django-debug-toolbar&lt;span class="o"&gt;==&lt;/span&gt;0.8.4, django-disqus&lt;span class="o"&gt;==&lt;/span&gt;0.3.4, django-memcache-status&lt;span class="o"&gt;==&lt;/span&gt;1.0.1, django-tagging&lt;span class="o"&gt;==&lt;/span&gt;0.3.1, django-xmlrpc&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;feedparser&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;4.1, &lt;span class="nv"&gt;httplib2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6.0, &lt;span class="nv"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.0, python-memcached&lt;span class="o"&gt;==&lt;/span&gt;1.47, python-twitter&lt;span class="o"&gt;==&lt;/span&gt;0.8.1, &lt;span class="nv"&gt;simplejson&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;2.1.2, &lt;span class="nv"&gt;wsgiref&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;yolk&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.4.1, &lt;span class="nv"&gt;docutils&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6, &lt;span class="nv"&gt;Pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.3.1
+WSGI module &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
+Paste config &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
+Fixtures &lt;span class="o"&gt;(&lt;/span&gt;optional; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;:
+Sync database and load fixtures? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: y
+Use SSL? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n
+Force SSL: &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n
+Build complete.
+Upload to AppHosted? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: y
+AppHosted Username: kencochrane
+AppHosted Password:
+Deploying...
+:: Configuring application environment...
+:: Configuring application permissions...
+:: Configuring application server...
+:: Application deployed to server successfully...
+:: Application deployment complete...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What did this do for us? It takes our application, and uploads it to their server, and then it installs all of our dependencies that we listed above. Then it configures it according to our answers, and tries to start it up, if we told it to, it will sync our database and load our fixtures. It also takes all of this information and stores it in a file called metro.config, so that we don't need to type that in every time if nothing has changed.&lt;/p&gt;
+&lt;p&gt;You might have noticed that I needed to manually enter in all of my dependencies when prompted, when I asked about this, I was told that if I didn't enter all of the dependencies it would scan the project for a pip style requirements.txt file, and use that to load all of your dependencies. I haven't had a chance to test that out yet, since I already entered my requirements by hand, and once you do it, you don't need to do it again.&lt;/p&gt;
+&lt;p&gt;My blog uses south for migration management, and at the time of this writing there is a bug, and it isn't correctly kicking off the migrate command during the database sync process. They are aware of the issue and they are working on a fix, but there is a work around in the meantime. I'll describe the work around shortly.&lt;/p&gt;
+&lt;p&gt;Once your application is deployed it will almost immediately be available at &lt;a class="reference external" href="http:/"&gt;http:/&lt;/a&gt;/&amp;lt;your-app-name&amp;gt;.apphosted.com.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="log-files"&gt;
+&lt;h2&gt;Log Files&lt;/h2&gt;
+&lt;p&gt;In order to view the log files, you need to log into the web control panel and from there you can download the logs that you are interested in. At the moment they only support downloading the log files, which is a little inconvenient, it would be nice to have the ability to tail the logs, or see the last 50 or 100 lines in the control panel. I asked about this, and they agreed and said it is on their list of things to work on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="shell-access"&gt;
+&lt;h2&gt;Shell Access&lt;/h2&gt;
+&lt;p&gt;Metro gives you the ability to shell into your application directory, so that you can kick off django management commands, and other cool things. One important thing to note is that when you login to the shell, it is a jailed shell, and you only have access to your own project, and with limited command access. This is done for security reasons. It is nice to know that your application runs in it's own jailed area, and no one else's applications can access your information.&lt;/p&gt;
+&lt;p&gt;Setting up the shell access requires a few steps. Follow these directions to get the full details: &lt;a class="reference external" href="http://docs.apphosted.com/apphosted/apphosted_shell.html"&gt;http://docs.apphosted.com/apphosted/apphosted_shell.html&lt;/a&gt; , but basically it requires the following.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;create a ssh key if you don't already have one.&lt;/li&gt;
+&lt;li&gt;Login to the web console and add your public key.&lt;/li&gt;
+&lt;li&gt;In the web console browse over to your application Settings-&amp;gt;Tools page and click on the “Update Public Keys” button. (Don't forget about this step, or you won't be able to login.&lt;/li&gt;
+&lt;li&gt;Use the metro client to open the shell.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: It would be real cool if we didn't have to do step 3, why can't it automatically update the public keys for all apps? I'm guessing it is a security reason. The first time, I didn't hit the update public keys button and I couldn't figure out why it wasn't working, and luckily one quick email to the support line, and they let me know what I did wrong, and I was up and running in no time.&lt;/p&gt;
+&lt;p&gt;This is how you can kick off the shell, there are a bunch of command line args that you can pass as well, just do metro --help and it will show them all to you.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;metro -s
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: There is currently a bug that is preventing me from logging into the shell from my MacBook Pro OS X 10.6.7 using Python 2.6.1 . When I do it gives me this error. I have informed appHosted, and they said it looks like an issue with paramiko and python 2.6.1 on the Mac, not sure if it affects other python versions on other operating systems. They are working on the issue.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;metro -s
+Metro Application Manager 1.21
+Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; Lumentica,  http://www.lumentica.com
+
+Application name: kencochraneblog
+AppHosted Username: kencochrane
+AppHosted Password:
+Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
+File &lt;span class="s2"&gt;&amp;quot;/Users/ken/.virtualenvs/apphosted/bin/metro&amp;quot;&lt;/span&gt;, line 75, in run_shell
+ssh.connect&lt;span class="o"&gt;(&lt;/span&gt;host, &lt;span class="nv"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;app_name, &lt;span class="nv"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;port&lt;span class="o"&gt;)&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;/Library/Python/2.6/site-packages/paramiko/client.py&amp;quot;&lt;/span&gt;, line 278, in connect
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;family, socktype, proto, canonname, sockaddr&lt;span class="o"&gt;)&lt;/span&gt; in socket.getaddrinfo&lt;span class="o"&gt;(&lt;/span&gt;hostname, port, socket.AF_UNSPEC, socket.SOCK_STREAM&lt;span class="o"&gt;)&lt;/span&gt;:
+gaierror: &lt;span class="o"&gt;[&lt;/span&gt;Errno 8&lt;span class="o"&gt;]&lt;/span&gt; nodename nor servname provided, or not known
+Error: &lt;span class="o"&gt;[&lt;/span&gt;Errno 8&lt;span class="o"&gt;]&lt;/span&gt; nodename nor servname provided, or not known
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="work-arounds"&gt;
+&lt;h2&gt;Work Arounds&lt;/h2&gt;
+&lt;p&gt;Now that you know how to shell into your application, you can also kick off django management commands. I mentioned earlier that there was another way to create the django admin user, well here is how you do it. Login to the metro shell and then kick off the createsuperuser django management command. Logging into the shell and finding things isn't easy do to the added security so to save you some trouble this is what I did. Python isn't in your path so you need to put the fully qualified path to the virtual env's python. Not sure if the jailed shell allows you to edit your .profile if so, it might be nice to configure this so that you don't always have to do the full path.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Create superuser (django admin)&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;/ve/kencochraneblog/bin/python /app/kencochraneblog/mysite/manage.py createsuperuser
+
+&lt;span class="c"&gt;# kicking off south migrations by hand.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;/ve/kencochraneblog/bin/python /app/kencochraneblog/mysite/manage.py migrate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My application's name is kencochraneblog, so make sure you replace my application name with yours, it should be something like this. replace app_name,django_project_dir and command with your variables.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;/ve/&amp;lt;app_name&amp;gt;/bin/python /app/&amp;lt;app_name&amp;gt;/&amp;lt;django_project_dir&amp;gt;/manage.py &amp;lt;&lt;span class="nb"&gt;command&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="background-tasks"&gt;
+&lt;h2&gt;Background Tasks&lt;/h2&gt;
+&lt;p&gt;AppHosted also supports background tasks via celery, they don't have the documentation created yet, but it should be available soon. They are also planning on supporting a cron like service, not sure if it will be cron, or something similar, but it should do, what you need it to do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="api"&gt;
+&lt;h2&gt;API&lt;/h2&gt;
+&lt;p&gt;AppHosted provides a pretty nice API that allows you to do anything that the metro client does. This will allow you to write your own automation and management scripts to interact with your application. If you practice continuous deployment, it will allow you to automatically deploy the latest version of code on a post commit hook, if all of your tests pass.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="services"&gt;
+&lt;h2&gt;Services&lt;/h2&gt;
+&lt;p&gt;Right now they only support memcache for caching, and PostgreSQL for databases, but they plan on adding more services as they move forward.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I have been playing with AppHosted for a few weeks now, and I'm pretty happy with what they have so far. They still have a few issues to work out and they are still a work in progress, but I have been seeing improvements all of the time, so it will only be a matter of time before they are ready for the general public. Every time I came across an issue, they were quick to reply to my emails and solve my issues, or tell me where I was going wrong.  If you have any more questions I recommend checking out their documentation &amp;#64; &lt;a class="reference external" href="http://docs.apphosted.com/index.html"&gt;http://docs.apphosted.com/index.html&lt;/a&gt; . Check them out, and make sure you let me know what you think.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;UPDATE&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;They are now open to the general public.&lt;/p&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h3&gt;Update:&lt;/h3&gt;
+&lt;p&gt;Read how this service stacks up against other services like it in my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to apphosted. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Wed, 18 May 2011 12:17:48 -0400</pubDate><guid>tag:kencochrane.net,2011-05-18:blog/2011/May/18/apphosted-com-django-hosting-review/</guid><category>django</category><category>hosting</category><category>apphosted</category><category>python</category><category>deployment</category><category>paas</category></item></channel></rss>

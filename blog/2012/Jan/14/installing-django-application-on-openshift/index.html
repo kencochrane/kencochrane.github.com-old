@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Installing a Django application on Red Hat's OpenShift PAAS</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../../../.././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie.css"/>
+                <script src="../../../../.././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../../../../../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="../../../../.././about/index.html">About Me</a></li>
+                
+                    <li><a href="../../../../.././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li class="active"><a href="../../../../.././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="blog/2012/Jan/14/installing-django-application-on-openshift/" rel="bookmark"
+           title="Permalink to Installing a Django application on Red Hat's OpenShift PAAS">Installing a Django application on Red Hat's OpenShift PAAS</a></h1>
+      
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-01-14T14:05:52">
+                Sat 14 January 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../../.././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="../../../../.././category/blog.html">blog</a>. </p>
+<p>tags: <a href="../../../../.././tag/django.html">django</a><a href="../../../../.././tag/djangocms.html">djangocms</a><a href="../../../../.././tag/openshift.html">openshift</a><a href="../../../../.././tag/python.html">python</a><a href="../../../../.././tag/hosting.html">hosting</a><a href="../../../../.././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p>It seems like everyone has their own <a class="reference external" href="http://en.wikipedia.org/wiki/Platform_as_a_service">PAAS</a> solution these days, and if they don't have one yet, it is just a matter of time before they will. Red Hat has recently joined in on the fun with their <a class="reference external" href="https://openshift.redhat.com">OpenShift</a> platform.</p>
+<p>I decided to take it for a test drive, and share my results with you. This service is still in beta and things are changing all of the time, so these notes might not work in the future, take that into consideration when using it as a guide.</p>
+<p>There really isn't much python documentation for this platform, and what documentation there is, is either a little out of date, or missing some important steps. Hopefully this guide will help you get your application up and running.</p>
+<p>OpenShift is divided into two parts, Flex and Express.</p>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://openshift.redhat.com/app/flex">Flex</a>:</h2>
+<blockquote>
+&quot;Dedicated cloud solution.
+Get more control over your apps, or move your existing applications to the cloud with ease! Flex is a dedicated cloud solution that provides everything you need to easily scale, provision, deploy, and monitor your applications.&quot;</blockquote>
+<p>Flex runs on top of your amazon EC2 account, and currently only supports Java and PHP. It is targeting the enterprise crowd and has more features compared to Express.</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="reference external" href="https://openshift.redhat.com/app/express">Express</a>:</h2>
+<blockquote>
+&quot;Shared cloud solution. Express is a free, cloud-based application platform for Java, Perl, PHP, Python, and Ruby applications. It's super-simple—your development environment is also your deployment environment: git push, and you're in the cloud!&quot;</blockquote>
+<p>Express runs on Red Hat's servers, and currently supports Java, Ruby, PHP, Perl and Python apps. It doesn't have the same features of Flex, but if you don't need those advanced features, then express might be fine for you. Since I'm interested in deploying python apps, and Express is the only one that supports python apps, that is the one I'll show you today.</p>
+<p>To make things easier to show you how things work, I'll create a simple django application and walk you through the steps to deploying it. I'm going to deploy a djangoCMS to express that will connect to a mysql database.</p>
+<div class="section" id="steps">
+<h3>Steps:</h3>
+<div class="section" id="create-an-account">
+<h4>1. Create an account</h4>
+<p>Create an account by filling out the form at <a class="reference external" href="http://openshift.redhat.com/">http://openshift.redhat.com/</a> and don't forget your username and password, you will need that later.</p>
+</div>
+<div class="section" id="install-perquisites">
+<h4>2. Install Perquisites:</h4>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://git-scm.com/">git</a></li>
+<li><a class="reference external" href="http://python.org">python</a></li>
+<li>openshift client</li>
+</ul>
+<p><strong>Git:</strong></p>
+<p>I'm not going to go over the steps to install git, for more info, you can get it from the git website. <a class="reference external" href="http://git-scm.com/download">http://git-scm.com/download</a></p>
+<p><strong>Python:</strong></p>
+<p>If you are using a Mac or linux, it most likely already has python installed, if you are using windows, you you don't have python installed. Goto the python website and you will find instructions on how to install python on your system. <a class="reference external" href="http://python.org/download/">http://python.org/download/</a></p>
+<p><strong>OpenShift client:</strong></p>
+<p>For instructions on how to Install the client go to this page.  <a class="reference external" href="https://openshift.redhat.com/app/express#mac">https://openshift.redhat.com/app/express#mac</a> Here are my steps for Mac OSX</p>
+</blockquote>
+<div class="highlight"><pre><span class="nv">$ </span>sudo gem install json_pure
+<span class="nv">$ </span>sudo gem install rhc
+</pre></div>
+</div>
+<div class="section" id="create-a-domain">
+<h4>3. Create a domain.</h4>
+<p>Now that you have everything installed, your first step is to create a domain. Run the following command and  replace $mydoman and $loginemail with your own domain and the login email you used when creating an account.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-create-domain -n <span class="nv">$mydomain</span> -l <span class="nv">$loginemail</span>
+</pre></div>
+</div>
+<div class="section" id="create-an-application">
+<h4>4. Create an application</h4>
+<p>Now that you have a domain, you need to create an application that you can deploy to that domain. Running the following command will create a new wsgi application called 'blog'. You can name your application anything you want, within reason. We pick wsgi, because our python application will be wsgi compatible.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-create-app -a blog -t wsgi-3.2
+</pre></div>
+</div>
+<div class="section" id="add-mysql-to-your-app">
+<h4>5. Add mysql to your app</h4>
+<p>We want to use mysql as our database backend for this blog, so we need to add mysql to our application using the command below.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-ctl-app -a blog -e add-mysql-5.1
+</pre></div>
+</div>
+<div class="section" id="add-phpmyadmin-to-help-you-manage-your-database">
+<h4>6. Add phpmyadmin to help you manage your database</h4>
+<p>OpenShift doesn't give you direct access to your database, so you will need a way to manage your database a different way. They provide the ability to add PHPMyAdmin to your app so that you can get to your data. This step is optional, but recommended.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-ctl-app -a blog -e add-phpmyadmin-3.4
+</pre></div>
+</div>
+<div class="section" id="add-this-upstream-repo-from-github">
+<h4>7. Add this upstream repo from github</h4>
+<p>When you create your application, it will create a directory with a bunch of other files and directories in it. If you were starting from scratch and building up your application you would start from here. To make things easier I created a project on github that will allow you to get up and running with DjangoCMS much faster. In order to use my project you will need to run the following commands so that it will pull down the code into your project.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>blog
+<span class="nv">$ </span>git remote add upstream -m master git://github.com/kencochrane/django-cms-openshift.git
+<span class="nv">$ </span>git pull -s recursive -X theirs upstream master
+</pre></div>
+<p>Once the code is downloaded, you can take a look at the code, change anything you want and when you are ready you can deploy the app.</p>
+</div>
+<div class="section" id="deploying-the-app">
+<h4>8. Deploying the app</h4>
+<p>To deploy all you need to do is push the repo upstream into open shift. To this, you just need to run the following command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>git push
+</pre></div>
+<p>When it pushes you application into open shift it will do the following. (without jenkins add-on installed)</p>
+<blockquote>
+<ol class="arabic simple">
+<li>stop app</li>
+<li>*pre_build</li>
+<li>*build</li>
+<li>start_dbs</li>
+<li>*deploy</li>
+<li>start_app</li>
+<li>*post_deploy</li>
+</ol>
+</blockquote>
+<p>The steps marked with a * are scripts that are located in <em>.openshift/action_hooks/&lt;script_name&gt;</em> if you have something in those files it will run them, and if not, it will pass right by. These are very helpful if you want something to happen at points of the deployment process. For example, in the deploy script you will notice that I have some code to kick off the django syncdb, migrate, and collect static commands. These will run every time I deploy the app.</p>
+<p>I have also created a django management command that will check to see if there is a django admin account created and if not, it will create one and set the default password. I had to do this because there is currently no way that I know of where you can kick off django management commands after the deployment is finished. It will only create the admin account once, and every other time it will just get ignored.</p>
+<p><strong>IMPORTANT:</strong> It is important to note that if you want to do anything related to the database, you can't do it in the <em>pre_build</em> or <em>build</em> scripts, because the database isn't available yet. This one thing caused me lots of pain, because I couldn't figure out by my migrations were not working. If you do make the mistake of trying to do something database related in the <em>build</em> script you will see an error like this.</p>
+<blockquote>
+&quot;remote: ERROR 2003 (HY000): Can't connect to MySQL server on 'xxx.x.xx.x' (111)&quot;</blockquote>
+<p>That's it, you can now checkout your application at (default admin account is admin/&lt;password given at deploy time&gt;):</p>
+<blockquote>
+<a class="reference external" href="http://blog-$yourdomain.rhcloud.com">http://blog-$yourdomain.rhcloud.com</a></blockquote>
+<p>Once you visit the page you should see the djangoCMS default page. First things first, login to the django admin, and change the password from the default password to something secure. Then get started building your own app.</p>
+</div>
+</div>
+<div class="section" id="helpful-tips">
+<h3>Helpful tips:</h3>
+<div class="section" id="viewing-logs">
+<h4>Viewing logs:</h4>
+<p>If you would like to view your logs to see what is going on with your application you just need to run this command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-tail-files -a blog
+</pre></div>
+</div>
+<div class="section" id="application-information">
+<h4>Application information:</h4>
+<p>If you would like more information about your application you can run this command.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-user-info
+</pre></div>
+<p>Also checkout the README file they add when you create an application, it is pretty helpful, and might answer some common questions.</p>
+</div>
+<div class="section" id="application-dependencies">
+<h4>Application dependencies:</h4>
+<p>OpenShift uses virtualenv but it doesn't use pip, it depends on the dependencies be listed in the setup.py file. During the deploy process I did notice that it installed pip, so it might be possible to add a requirements.txt file, and then in your build action_hook script call pip install -r &lt;path&gt;/requirements.txt but I'm not sure if this is supported, or if it will cause problems, so it might be best to stick with what they have for now.</p>
+</div>
+<div class="section" id="static-media">
+<h4>Static media:</h4>
+<p>If you look in wsgi/static/.htaccess there a rewrite rule to get the media to work correctly, you can use this trick for other apache tricks if you want. For more information on this checkout the README file.</p>
+</div>
+<div class="section" id="what-is-it-open-shift-running">
+<h4>What is it open shift running:</h4>
+<p>Red Hat linux with Apache / mod_wsgi, and mysql 5.1</p>
+</div>
+<div class="section" id="what-type-of-apps-do-they-support">
+<h4>What type of apps do they support?</h4>
+<p>Here is the current link which can be found if you run this commands and look at the types.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-create-app -h
+
+raw-0.1, php-5.3, jbossas-7.0, rack-1.1, jenkins-1.4, perl-5.10, wsgi-3.2
+</pre></div>
+</div>
+<div class="section" id="what-else-does-it-support">
+<h4>What else does it support?</h4>
+<p>Things are changing all of the time, but if you run this command you will get a list of the current supported addons.</p>
+<div class="highlight"><pre><span class="nv">$ </span>rhc-ctl-app -L
+
+List of supported embedded cartridges:
+
+Obtaining list of cartridges <span class="o">(</span>please excuse the delay<span class="o">)</span>...
+
+    - metrics-0.1
+    - mysql-5.1
+    - jenkins-client-1.4
+    - 10gen-mms-agent-0.1
+    - phpmyadmin-3.4
+    - rockmongo-1.1
+    - mongodb-2.0
+</pre></div>
+</div>
+<div class="section" id="web-based-control-panel">
+<h4>Web based control panel:</h4>
+<p>They offer a web based control panel to do some of the things you can do with the command line, which will be nice, but it doesn't work right now. It doesn't display the correct information, and it doesn't even show the applications I have created, so I don't trust it. Hopefully these issues will get fixed in the future, and this tool will make it easier for less technical people to get started.</p>
+</div>
+<div class="section" id="conclusion">
+<h4>Conclusion:</h4>
+<p>It is nice to see another platform on the market, it is still pretty rough, and there isn't much documentation, but I found it usable. I'm sure once they stabilize things, they will spend more time on the documentation side of things.</p>
+</div>
+<div class="section" id="other-helpful-openshift-links">
+<h4>Other Helpful OpenShift links:</h4>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/kencochrane/django-cms-openshift">My GitHub repo for this article</a></li>
+<li><a class="reference external" href="https://github.com/openshift/django-example">https://github.com/openshift/django-example</a></li>
+<li><a class="reference external" href="http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/">http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/</a></li>
+</ul>
+</div>
+<div class="section" id="my-other-articles-related-to-paas">
+<h4>My other articles related to PAAS:</h4>
+<ul class="simple">
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/">My Experiences with ep.io</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/">AppHosted.com Django Hosting Service Review</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/">My Day in Gondor.io</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">Deploying my Django application to DotCloud.com</a></li>
+<li><a class="reference external" href="http://DjangoZoom.com">DjangoZoom.com Review</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/">Installing DjangoCMS on Heroku in 13 easy steps</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/">Installing DjangoCMS on dotCloud in 12 easy steps</a></li>
+<li><a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/">Developers guide to Running Django Applications on Heroku</a></li>
+</ul>
+</div>
+<div class="section" id="update">
+<h4>Update</h4>
+<p>2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to openShift. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.</p>
+</div>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "blog/2012/Jan/14/installing-django-application-on-openshift/";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://kencochrane.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

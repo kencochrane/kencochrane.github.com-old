@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/linux.rss" rel="self"></atom:link><lastBuildDate>Mon, 27 Jun 2011 06:48:18 -0400</lastBuildDate><item><title>Setting up Django with Green Unicorn, nginx, supervisord and fabric on CentOS 5.5</title><link>http://kencochrane.net/blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/</link><description>&lt;p&gt;When I first started working with django I deployed my apps using apache and mod_python. Then after a little while I started playing with nginx and switched my setup so that nginx was serving the static content and reverse proxied requests back to apache and mod_python. Not too long after that, I switched out mod_python with mod_wsgi and ran mod_wsgi in daemon mode.&lt;/p&gt;
+&lt;p&gt;This setup worked well for a while, but one thing I never really liked was the fact that I needed to run apache which is pretty heavy even when you strip out all the unused modules. Apache is great, but all I was really using it for was a router between nginx and mod_wsgi, I wasn't using any of the other features in apache.&lt;/p&gt;
+&lt;p&gt;I looked at fastcgi and uswgi and they looked good, but for one reason or another I never made the jump. Recently I have been hearing a lot of good things about green unicorn, so I decided to check it out. When I first looked at it, it was fairly new and because of this a little concerned with stability, so I kept and eye on it and watched it mature.&lt;/p&gt;
+&lt;p&gt;While I was waiting for green unicorn to mature I ended up doing a lot of research on the &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;new python hosting services&lt;/a&gt; that recently hit the market. Three out of the five services that I looked were using green unicorn, the other two were using uWSGI.&lt;/p&gt;
+&lt;p&gt;The fact that these three services are basing there new businesses on green unicorn gave it a lot of credibility. Not too long after that I started playing with green unicorn to see what it would take to get my sites up and running.&lt;/p&gt;
+&lt;p&gt;The first thing that I noticed was that I didn't need to create a wsgi file if I used their gunicorn_django command, which was pretty sweet. The fact that they built it into the service shows you that django is a first class citizen.&lt;/p&gt;
+&lt;p&gt;The second thing that I noticed was that I needed a way to start up green unicorn and keep it running, something that apache does for you with mod_wsgi. I did a little bit of research and found out that supervisord would work perfectly for what I needed to do with green unicorn.&lt;/p&gt;
+&lt;p&gt;Because seeing is better then reading, I'll guide you throw the steps that you will need to do in order to get your system setup in a way that will make using green unicorn very easy, especially if you want to run more then one website on your server. I'm going to use a 256MB rackspace cloud instance running centos 5.5.&lt;/p&gt;
+&lt;div class="section" id="create-a-rackspace-cloud-server"&gt;
+&lt;h2&gt;Create a rackspace cloud server&lt;/h2&gt;
+&lt;p&gt;Go into the rackspace cloud server management website and allocate yourself a new 256MB CentOS 5.5 server or if you prefer do the same thing using their API. Now that you have a server and the root password, follow along step by step to get you system all setup.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-and-versions"&gt;
+&lt;h2&gt;Software and versions&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;RackSpace Cloud Server 256MB&lt;/li&gt;
+&lt;li&gt;CentOS 5.5&lt;/li&gt;
+&lt;li&gt;Python 2.6.6&lt;/li&gt;
+&lt;li&gt;nginx 1.0.4&lt;/li&gt;
+&lt;li&gt;supervisord 3.0a10&lt;/li&gt;
+&lt;li&gt;virtualenv 1.6.1&lt;/li&gt;
+&lt;li&gt;pip 1.0.1&lt;/li&gt;
+&lt;li&gt;gunicorn 0.12.2&lt;/li&gt;
+&lt;li&gt;fabric 1.1.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bitbucket-project"&gt;
+&lt;h2&gt;Bitbucket project&lt;/h2&gt;
+&lt;p&gt;To make things easier I have created a django bootstrap project directory with all of the file used in the blog post. It is located here, so feel free to clone and fork.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap/"&gt;https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="login-to-server"&gt;
+&lt;h2&gt;Login to server&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ssh root@&amp;lt;RackSpaceIP&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update-packages"&gt;
+&lt;h2&gt;Update packages&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum -y update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-packages"&gt;
+&lt;h2&gt;Install packages&lt;/h2&gt;
+&lt;p&gt;You might not need all of these right now, but I normally need these down the line, so doing them all now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum -y install emacs readline-devel ncurses-devel libevent-devel glib2-devel libjpeg-devel freetype-devel bzip2 bzip2-devel bzip2-libs openssl-devel pcre pcre-devel gpg make gcc yum-utils unzip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-a-django-user-as-a-system-user"&gt;
+&lt;h2&gt;Add a django user as a system user&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;useradd -d /opt/django -m -r django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="set-password-for-django-to-what-ever-you-want"&gt;
+&lt;h2&gt;Set password for django to what ever you want&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;passwd django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="setup-directories"&gt;
+&lt;h2&gt;Setup directories&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /opt/django
+mkdir -p /opt/django/apps
+mkdir -p /opt/django/logs
+mkdir -p /opt/django/logs/nginx
+mkdir -p /opt/django/logs/apps
+mkdir -p /opt/django/configs
+mkdir -p /opt/django/scripts
+mkdir -p /opt/django/htdocs
+mkdir -p /opt/django/tmp
+mkdir -p /opt/django/configs/nginx
+mkdir -p /opt/django/configs/supervisord
+mkdir -p /opt/django/apps/my_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-blank-html-page"&gt;
+&lt;h2&gt;Add blank html page&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;nothing here&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; &amp;quot;&lt;/span&gt; &amp;gt; /opt/django/htdocs/index.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-zlib"&gt;
+&lt;h2&gt;Install Zlib&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# download from zlib.net&lt;/span&gt;
+mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.zlib.net/zlib-1.2.5.tar.gz
+tar -xvzf zlib-1.2.5.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;zlib-1.2.5
+./configure -s
+make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-python-2-6-6"&gt;
+&lt;h2&gt;Install python 2.6.6&lt;/h2&gt;
+&lt;p&gt;CentOS 5.5 doesn't come with python2.6 pre installed so we need to do that on our own.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.python.org/ftp/python/2.6.6/Python-2.6.6.tgz
+tar -xvzf Python-2.6.6.tgz
+&lt;span class="nb"&gt;cd &lt;/span&gt;Python-2.6.6
+./configure --enable-shared
+make
+make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-the-following-to-etc-profile"&gt;
+&lt;h2&gt;Add the following to /etc/profile&lt;/h2&gt;
+&lt;p&gt;We need to add the lib path to the LD_LIBRARY_PATH or else you will get an error saying it can't find libpython2.6.so.1.0&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LD_LIBRARY_PATH&lt;/span&gt;:/usr/local/lib/:/usr/local/lib64/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="source-the-new-profile"&gt;
+&lt;h2&gt;Source the new profile&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;source&lt;/span&gt; /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-distribute"&gt;
+&lt;h2&gt;Install distribute&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+curl -O http://python-distribute.org/distribute_setup.py
+python2.6 distribute_setup.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-pip-virtualenv"&gt;
+&lt;h2&gt;Install Pip &amp;amp; virtualenv&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+curl -O -k https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python2.6 get-pip.py
+pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-supervisor"&gt;
+&lt;h2&gt;Install supervisor&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install supervisor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-mercurial"&gt;
+&lt;h2&gt;Install mercurial&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-nginx"&gt;
+&lt;h2&gt;Install NGINX&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://nginx.org/download/nginx-1.0.4.tar.gz
+tar -xzvf nginx-1.0.4.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;nginx-1.0.4
+./configure --sbin-path&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/sbin --with-http_ssl_module --with-http_stub_status_module
+make
+/etc/init.d/nginx stop
+sleep 2
+sudo make install
+sudo chmod +x /usr/local/sbin/nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="install-my-app"&gt;
+&lt;h3&gt;Install my app&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-first-virtualenv"&gt;
+&lt;h2&gt;Add first virtualenv&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/
+virtualenv --distribute --no-site-packages v0.1
+
+&lt;span class="c"&gt;# make this a post_create hook?&lt;/span&gt;
+touch /opt/django/apps/my_app/v0.1/.venv
+
+&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/v0.1/
+hg clone https://bitbucket.org/kencochrane/django-gunicorn-nginx-supervisord-bootstrap my_app
+
+ln -s /opt/django/apps/my_app/v0.1 /opt/django/apps/my_app/current
+
+ln -s /opt/django/apps/my_app/current/my_app/conf/nginx.conf /opt/django/configs/nginx/myapp.conf
+
+ln -s /opt/django/apps/my_app/current/my_app/conf/supervisord.conf /opt/django/configs/supervisord/myapp.conf
+
+&lt;span class="c"&gt;# activate the ve&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /opt/django/apps/my_app/current/bin/activate
+&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/django/apps/my_app/current/my_app/
+./bootstrap.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configure-nginx"&gt;
+&lt;h2&gt;Configure nginx&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# as root&lt;/span&gt;
+mkdir -p /etc/nginx
+ln -s /opt/django/apps/my_app/current/my_app/server/etc/nginx.conf /etc/nginx/nginx.conf
+ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
+ln -s /opt/django/apps/my_app/current/my_app/server/init.d/nginx /etc/init.d/nginx
+chmod 755 /etc/init.d/nginx
+chkconfig --add nginx
+chkconfig nginx on
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configure-supervisord"&gt;
+&lt;h2&gt;Configure Supervisord&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# as root&lt;/span&gt;
+ln -s /opt/django/apps/my_app/current/my_app/server/etc/supervisord.conf  /etc/supervisord.conf
+ln -s /opt/django/apps/my_app/current/my_app/server/init.d/supervisord /etc/init.d/supervisord
+chmod 755 /etc/init.d/supervisord
+chkconfig --add supervisord
+chkconfig supervisord on
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="firewall"&gt;
+&lt;h2&gt;Firewall&lt;/h2&gt;
+&lt;p&gt;We need to open up the firewall so that we are allowed connection, if you don't know anything about this, check out these links.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Firewalls"&gt;http://cloudservers.rackspacecloud.com/index.php/Firewalls&lt;/a&gt;
+&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables"&gt;http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables&lt;/a&gt;
+&lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset"&gt;http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Open http port 80&lt;/span&gt;
+iptables -I RH-Firewall-1-INPUT -p tcp --dport 80 -j ACCEPT
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bashrc-file-changes"&gt;
+&lt;h2&gt;.bashrc file changes&lt;/h2&gt;
+&lt;p&gt;I can't remember where I saw this little trick, if you know please let me know so that I can give them credit. If you put a file in your mercurial directory called .venv, when you cd into the directory this little bash hack will automatically activate your virtual environment for you. This allows you to have something similar to virtualenvwrapper in this custom setup.&lt;/p&gt;
+&lt;p&gt;Add this code to the .bashrc file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;emacs /opt/django/.bashrc
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# User specific aliases and functions&lt;/span&gt;
+has_virtualenv&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e .venv &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;        &lt;/span&gt;deactivate &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+        &lt;span class="nb"&gt;source &lt;/span&gt;bin/activate
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+venv_cd &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$@&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; has_virtualenv
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nb"&gt;alias cd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;venv_cd&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;#end of changes&lt;/span&gt;
+
+&lt;span class="c"&gt;# source the file to get new changes in active shell&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /opt/django/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="change-permissions-of-the-django-home-directory-to-django"&gt;
+&lt;h2&gt;Change permissions of the django home directory to django&lt;/h2&gt;
+&lt;p&gt;This cleans up and left over root ownership&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chown -R django:django /opt/django/*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="switch-to-django-user"&gt;
+&lt;h2&gt;Switch to django user&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;su - django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="start-up-nginx"&gt;
+&lt;h2&gt;Start up nginx&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service nginx start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="startup-supervisord"&gt;
+&lt;h2&gt;Startup supervisord&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service supervisord start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-nginx-and-supervisord"&gt;
+&lt;h2&gt;Test Nginx and supervisord&lt;/h2&gt;
+&lt;p&gt;Check supervisord status&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;supervisorctl status
+my_app                           RUNNING    pid 13594, uptime 0:00:05
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To check nginx go to the IP or domain name for your rackspace server in your browser and make sure it worked.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="updating-the-application-using-fabric"&gt;
+&lt;h2&gt;Updating the application using fabric&lt;/h2&gt;
+&lt;p&gt;Inside of the bitbucket project directory there is a file called fabfile.py. This file will allow you to update the application from your machine whenever you want just by calling one command.&lt;/p&gt;
+&lt;p&gt;It will prompt you for your hostname and password for the django user. Then it will go out to the rackspace server and pull and update the app and restart the application in supervisord. It is very basic for right now, but should get you started if you want to do more advanced stuff.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;fab update_server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Now that we have everything setup, if you want to add a new application to our setup all we need to do is.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;create a new directory under apps&lt;/li&gt;
+&lt;li&gt;create the virtualenv&lt;/li&gt;
+&lt;li&gt;run the bootstrap to install the software&lt;/li&gt;
+&lt;li&gt;make sure that the application has a supervisord and nginx configuration file&lt;/li&gt;
+&lt;li&gt;symlink those files to the correct locations in the config directory&lt;/li&gt;
+&lt;li&gt;run any python management commands you might need to run (syncdb, migrate, etc)&lt;/li&gt;
+&lt;li&gt;reload supervisord and nginx&lt;/li&gt;
+&lt;li&gt;you should be good to go.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope this was helpful to someone besides myself, if it was helpful for you please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Mon, 27 Jun 2011 06:48:18 -0400</pubDate><guid>tag:kencochrane.net,2011-06-27:blog/2011/Jun/27/django-gunicorn-nginx-supervisord-fabric-centos55/</guid><category>django</category><category>python</category><category>deployment</category><category>gunicorn</category><category>supervisord</category><category>fabric</category><category>centos5</category><category>nginx</category><category>linux</category></item><item><title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link>http://kencochrane.net/blog/2011/Apr/14/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</link><description>&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.percona.com/redir/downloads/percona-release/percona-release-0.0-1.i386.rpm
+sudo rpm -Uhv percona-release-0.0-1.i386.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum remove -y mysql-server mysql mysql-devel mysql-test mysql-bench
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now install the new Percona MySQL 5.1.x binaries. (depending on your connection this might take a few minutes)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now if your upgrade was anything like mine it had a bunch of errors like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;REPAIR TABLE table_name&amp;quot;&lt;/span&gt; or dump/reload to fix it!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We just need to run this command for each table that threw an error and it should fix it. (If you have lots of data this might take a while, I had some tables that took over 2 hours)&lt;/p&gt;
+&lt;p&gt;Once you think that you have all of the tables fixed, you can run this command and it will check all of your tables and let you know if you are good or not. If you still have errors, repeat the steps above until all tables pass.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysqlcheck -A --check-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Thu, 14 Apr 2011 10:55:09 -0400</pubDate><guid>tag:kencochrane.net,2011-04-14:blog/2011/Apr/14/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</guid><category>percona</category><category>mysql</category><category>upgrade</category><category>centos5</category><category>rhel5</category><category>linux</category></item><item><title>Upgrading Percona MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link>http://kencochrane.net/blog/2011/Feb/15/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</link><description>&lt;p&gt;I have been using the Percona build of MySQL 5.0.x for a little while now, and I have been impressed. Now it is time to upgrade to the new stable MySQL 5.1.x version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you have the percona repo installed on your machine, if not see follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum remove -y Percona-SQL*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now install the new Percona MySQL 5.1.x binaries. (depending on your connection this might take a few minutes)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now if your upgrade was anything like mine it had a bunch of errors like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;REPAIR TABLE table_name&amp;quot;&lt;/span&gt; or dump/reload to fix it!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We just need to run this command for each table that threw an error and it should fix it. (If you have lots of data this might take a while, I had some tables that took over 2 hours)&lt;/p&gt;
+&lt;p&gt;Once you think that you have all of the tables fixed, you can run this command and it will check all of your tables and let you know if you are good or not. If you still have errors, repeat the steps above until all tables pass.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysqlcheck -A --check-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Tue, 15 Feb 2011 09:07:26 -0500</pubDate><guid>tag:kencochrane.net,2011-02-15:blog/2011/Feb/15/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</guid><category>percona</category><category>mysql</category><category>upgrade</category><category>centos5</category><category>rhel5</category><category>linux</category></item><item><title>Automated Install Script for memcached on RHEL5</title><link>http://kencochrane.net/blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/</link><description>&lt;p&gt;I created this script that will download memcached build,install and set it up to start up automatically on reboot. It also installs the init.d script to manage memcache so you can restart etc.&lt;/p&gt;
+&lt;p&gt;You can either copy and paste it into your shell prompt using a user that has install privileges (root,admin,etc) or you can copy into a .sh file and execute it.&lt;/p&gt;
+&lt;p&gt;The code for most of this was take from this blog post: &lt;a class="reference external" href="http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/"&gt;http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/&lt;/a&gt; it doesn't seem to be around anymore so I put it here for anyone else looking for this very helpful info.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+tar -xvzf memcached-1.4.5.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;memcached-1.4.5
+./configure
+make
+make &lt;span class="nb"&gt;test&lt;/span&gt;
+make install
+
+touch /etc/memcached.conf
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;#Memory a user&lt;/span&gt;
+&lt;span class="s"&gt;-m 64&lt;/span&gt;
+&lt;span class="s"&gt;# default port&lt;/span&gt;
+&lt;span class="s"&gt;-p 11211&lt;/span&gt;
+&lt;span class="s"&gt;# user to run daemon nobody/apache/www-data&lt;/span&gt;
+&lt;span class="s"&gt;-u nobody&lt;/span&gt;
+&lt;span class="s"&gt;# only listen locally&lt;/span&gt;
+&lt;span class="s"&gt;-l 127.0.0.1&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /etc/init.d/memcached
+chmod +x /etc/init.d/memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/init.d/memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# memcached    This shell script takes care of starting and stopping&lt;/span&gt;
+&lt;span class="s"&gt;#              standalone memcached.&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# chkconfig: - 80 12&lt;/span&gt;
+&lt;span class="s"&gt;# description: memcached is a high-performance, distributed memory&lt;/span&gt;
+&lt;span class="s"&gt;#              object caching system, generic in nature, but&lt;/span&gt;
+&lt;span class="s"&gt;#              intended for use in speeding up dynamic web&lt;/span&gt;
+&lt;span class="s"&gt;#              applications by alleviating database load.&lt;/span&gt;
+&lt;span class="s"&gt;# processname: memcached&lt;/span&gt;
+&lt;span class="s"&gt;# config: /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;# Source function library.&lt;/span&gt;
+&lt;span class="s"&gt;. /etc/rc.d/init.d/functions&lt;/span&gt;
+&lt;span class="s"&gt;PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin&lt;/span&gt;
+&lt;span class="s"&gt;DAEMON=/usr/local/bin/memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONBOOTSTRAP=/usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONCONF=/etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;NAME=memcached&lt;/span&gt;
+&lt;span class="s"&gt;DESC=memcached&lt;/span&gt;
+&lt;span class="s"&gt;PIDFILE=/var/run/$NAME.pid&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMON ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMONBOOTSTRAP ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;RETVAL=0&lt;/span&gt;
+&lt;span class="s"&gt;start() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Starting $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; daemon $DAEMONBOOTSTRAP $DAEMONCONF&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; touch $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;stop() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Shutting down $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; killproc $NAME&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; rm -f $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# See how we were called.&lt;/span&gt;
+&lt;span class="s"&gt;case &amp;quot;$1&amp;quot; in&lt;/span&gt;
+&lt;span class="s"&gt; start)&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; stop)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; restart|reload)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; status)&lt;/span&gt;
+&lt;span class="s"&gt;  status $prog&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; *)&lt;/span&gt;
+&lt;span class="s"&gt;  echo $&amp;quot;Usage: $0 {start|stop|restart|status}&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;  exit 1&lt;/span&gt;
+&lt;span class="s"&gt;esac&lt;/span&gt;
+&lt;span class="s"&gt;exit $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /usr/local/bin/start-memcached
+chmod +x /usr/local/bin/start-memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/usr/bin/perl -w&lt;/span&gt;
+&lt;span class="s"&gt;# start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;# 2003/2004 - Jay Bonci &amp;lt;jaybonci@debian.org&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;# This script handles the parsing of the /etc/memcached.conf file&lt;/span&gt;
+&lt;span class="s"&gt;# and was originally created for the Debian distribution.&lt;/span&gt;
+&lt;span class="s"&gt;# Anyone may use this little script under the same terms as&lt;/span&gt;
+&lt;span class="s"&gt;# memcached itself.&lt;/span&gt;
+&lt;span class="s"&gt;use strict;&lt;/span&gt;
+&lt;span class="s"&gt;if ($&amp;gt; != 0 and $&amp;lt; != 0) {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Only root wants to run start-memcached.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $etcfile = shift || &amp;quot;/etc/memcached.conf&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $params = [];&lt;/span&gt;
+&lt;span class="s"&gt;my $etchandle;&lt;/span&gt;
+&lt;span class="s"&gt;# This script assumes that memcached is located at /usr/bin/memcached, and&lt;/span&gt;
+&lt;span class="s"&gt;# that the pidfile is writable at /var/run/memcached.pid&lt;/span&gt;
+&lt;span class="s"&gt;my $memcached = &amp;quot;/usr/local/bin/memcached&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $pidfile = &amp;quot;/var/run/memcached.pid&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;# If we don&amp;#39;t get a valid logfile parameter in the /etc/memcached.conf file,&lt;/span&gt;
+&lt;span class="s"&gt;# we&amp;#39;ll just throw away all of our in-daemon output. We need to re-tie it so&lt;/span&gt;
+&lt;span class="s"&gt;# that non-bash shells will not hang on logout. Thanks to Michael Renner for&lt;/span&gt;
+&lt;span class="s"&gt;# the tip&lt;/span&gt;
+&lt;span class="s"&gt;my $fd_reopened = &amp;quot;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;sub handle_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;sub reopen_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDERR, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDOUT, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDIN, &amp;quot;&amp;gt;&amp;gt;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# This is set up in place here to support other non -[a-z] directives&lt;/span&gt;
+&lt;span class="s"&gt;my $conf_directives = {&lt;/span&gt;
+&lt;span class="s"&gt; &amp;quot;logfile&amp;quot; =&amp;gt; \&amp;amp;handle_logfile&lt;/span&gt;
+&lt;span class="s"&gt;};&lt;/span&gt;
+&lt;span class="s"&gt;if (open $etchandle, $etcfile) {&lt;/span&gt;
+&lt;span class="s"&gt; foreach my $line (&amp;lt;$etchandle&amp;gt;) {&lt;/span&gt;
+&lt;span class="s"&gt;  $line =~ s/\#.*//go;&lt;/span&gt;
+&lt;span class="s"&gt;  $line = join &amp;#39; &amp;#39;, split &amp;#39; &amp;#39;, $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next unless $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next if $line =~ /^\-[dh]/o;&lt;/span&gt;
+&lt;span class="s"&gt;  if ($line =~ /^[^\-]/o) {&lt;/span&gt;
+&lt;span class="s"&gt;   my ($directive, $arg) = $line =~ /^(.*?)\s+(.*)/;&lt;/span&gt;
+&lt;span class="s"&gt;   $conf_directives-&amp;gt;{$directive}-&amp;gt;($arg);&lt;/span&gt;
+&lt;span class="s"&gt;   next;&lt;/span&gt;
+&lt;span class="s"&gt;  }&lt;/span&gt;
+&lt;span class="s"&gt;  push @$params, $line;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;unshift @$params, &amp;quot;-u root&amp;quot; unless (grep $_ eq &amp;#39;-u&amp;#39;, @$params);&lt;/span&gt;
+&lt;span class="s"&gt;$params = join &amp;quot; &amp;quot;, @$params;&lt;/span&gt;
+&lt;span class="s"&gt;if (-e $pidfile) {&lt;/span&gt;
+&lt;span class="s"&gt; open PIDHANDLE, &amp;quot;$pidfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; my $localpid = &amp;lt;PIDHANDLE&amp;gt;;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt; chomp $localpid;&lt;/span&gt;
+&lt;span class="s"&gt; if (-d &amp;quot;/proc/$localpid&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt;  print STDERR &amp;quot;memcached is already running.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;  exit;&lt;/span&gt;
+&lt;span class="s"&gt; } else {&lt;/span&gt;
+&lt;span class="s"&gt;  `rm -f $localpid`;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $pid = fork();&lt;/span&gt;
+&lt;span class="s"&gt;if ($pid == 0) {&lt;/span&gt;
+&lt;span class="s"&gt; reopen_logfile($fd_reopened);&lt;/span&gt;
+&lt;span class="s"&gt; exec &amp;quot;$memcached $params&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit(0);&lt;/span&gt;
+&lt;span class="s"&gt;} elsif (open PIDHANDLE,&amp;quot;&amp;gt;$pidfile&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt; print PIDHANDLE $pid;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt;} else {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Can&amp;#39;t write pidfile to $pidfile.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+/etc/init.d/memcached restart
+/sbin/chkconfig memcached on
+&lt;/pre&gt;&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 14 May 2010 16:34:38 -0400</pubDate><guid>tag:kencochrane.net,2010-05-14:blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/</guid><category>linux</category><category>memcached</category><category>RHEL5</category><category>install</category><category>script</category></item><item><title>Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5</title><link>http://kencochrane.net/blog/2010/May/13/mercurial-1_5_1-on-RHEL5-using-python2_5/</link><description>&lt;div class="section" id="installing-mercurial-1-5-1-on-red-hat-enterprise-linux-5-rhel5-using-python-2-5"&gt;
+&lt;h2&gt;Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5&lt;/h2&gt;
+&lt;p&gt;My RHEL5 setup uses python2.5 which I compiled from source, since RHEL5 only comes with python2.4.&lt;/p&gt;
+&lt;p&gt;Because I didn't use the built in python 2.4 version I couldn't do the simple&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead I need to build mercurial from source, which isn't too bad. Just do the following.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;as Root&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://mercurial.selenic.com/release/mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvzf mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you get the following error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python2.5 setup.py build
+&lt;span class="nv"&gt;$ &lt;/span&gt;Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t import standard bz2 &lt;span class="o"&gt;(&lt;/span&gt;incomplete Python install&lt;span class="o"&gt;)&lt;/span&gt;.
+     make:  &lt;span class="o"&gt;[&lt;/span&gt;build&lt;span class="o"&gt;]&lt;/span&gt; Error 1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then when you installed python 2.5 you didn't have the bzip2 libs installed so it didn't include them in the python2.5 install. No big deal all you need to do is install those libs and then recomplile python 2.5&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;install bzip2 libs&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install bzip2 bzip2-devel bzip2-libs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Download 2.5.4 from python.org&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvjf Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;Python-2.5.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;switch to root:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./configure
+&lt;span class="nv"&gt;$ &lt;/span&gt;make
+&lt;span class="nv"&gt;$ &lt;/span&gt;make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once complete (this will take a few minutes) rerun the steps above and then you should be good.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;go back to where you untared the mercurial bundle&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check to make sure you are running 1.5.1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hg --version
+     Mercurial Distributed SCM &lt;span class="o"&gt;(&lt;/span&gt;version 1.5.1&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That is all, now you are running Mercurial 1.5.1 on RHEL5 with python2.5!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Thu, 13 May 2010 20:09:33 -0400</pubDate><guid>tag:kencochrane.net,2010-05-13:blog/2010/May/13/mercurial-1_5_1-on-RHEL5-using-python2_5/</guid><category>Mercurial</category><category>RHEL5</category><category>python</category><category>linux</category></item></channel></rss>

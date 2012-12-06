@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>KenCochrane.net - script</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
+                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href=".././about/index.html">About Me</a></li>
+                
+                    <li><a href=".././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li ><a href=".././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href=".././blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/">Automated Install Script for memcached on RHEL5</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2010-05-14T16:34:38">
+                Fri 14 May 2010
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/linux.html">linux</a><a href=".././tag/memcached.html">memcached</a><a href=".././tag/rhel5.html">RHEL5</a><a href=".././tag/install.html">install</a><a href=".././tag/script.html">script</a></p>
+
+
+</footer><!-- /.post-info --><p>I created this script that will download memcached build,install and set it up to start up automatically on reboot. It also installs the init.d script to manage memcache so you can restart etc.</p>
+<p>You can either copy and paste it into your shell prompt using a user that has install privileges (root,admin,etc) or you can copy into a .sh file and execute it.</p>
+<p>The code for most of this was take from this blog post: <a class="reference external" href="http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/">http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/</a> it doesn't seem to be around anymore so I put it here for anyone else looking for this very helpful info.</p>
+<div class="highlight"><pre>wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+tar -xvzf memcached-1.4.5.tar.gz
+<span class="nb">cd </span>memcached-1.4.5
+./configure
+make
+make <span class="nb">test</span>
+make install
+
+touch /etc/memcached.conf
+cat <span class="s">&lt;&lt; EOF &gt;&gt; /etc/memcached.conf</span>
+<span class="s">#Memory a user</span>
+<span class="s">-m 64</span>
+<span class="s"># default port</span>
+<span class="s">-p 11211</span>
+<span class="s"># user to run daemon nobody/apache/www-data</span>
+<span class="s">-u nobody</span>
+<span class="s"># only listen locally</span>
+<span class="s">-l 127.0.0.1</span>
+<span class="s">EOF</span>
+
+touch /etc/init.d/memcached
+chmod +x /etc/init.d/memcached
+
+cat <span class="s">&lt;&lt; EOF &gt;&gt; /etc/init.d/memcached</span>
+<span class="s">#!/bin/bash</span>
+<span class="s">#</span>
+<span class="s"># memcached    This shell script takes care of starting and stopping</span>
+<span class="s">#              standalone memcached.</span>
+<span class="s">#</span>
+<span class="s"># chkconfig: - 80 12</span>
+<span class="s"># description: memcached is a high-performance, distributed memory</span>
+<span class="s">#              object caching system, generic in nature, but</span>
+<span class="s">#              intended for use in speeding up dynamic web</span>
+<span class="s">#              applications by alleviating database load.</span>
+<span class="s"># processname: memcached</span>
+<span class="s"># config: /etc/memcached.conf</span>
+<span class="s"># Source function library.</span>
+<span class="s">. /etc/rc.d/init.d/functions</span>
+<span class="s">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span>
+<span class="s">DAEMON=/usr/local/bin/memcached</span>
+<span class="s">DAEMONBOOTSTRAP=/usr/local/bin/start-memcached</span>
+<span class="s">DAEMONCONF=/etc/memcached.conf</span>
+<span class="s">NAME=memcached</span>
+<span class="s">DESC=memcached</span>
+<span class="s">PIDFILE=/var/run/$NAME.pid</span>
+<span class="s">[ -x $DAEMON ] || exit 0</span>
+<span class="s">[ -x $DAEMONBOOTSTRAP ] || exit 0</span>
+<span class="s">RETVAL=0</span>
+<span class="s">start() {</span>
+<span class="s"> echo -n $&quot;Starting $DESC: &quot;</span>
+<span class="s"> daemon $DAEMONBOOTSTRAP $DAEMONCONF</span>
+<span class="s"> RETVAL=$?</span>
+<span class="s"> [ $RETVAL -eq 0 ] &amp;&amp; touch $PIDFILE</span>
+<span class="s"> echo</span>
+<span class="s"> return $RETVAL</span>
+<span class="s">}</span>
+<span class="s">stop() {</span>
+<span class="s"> echo -n $&quot;Shutting down $DESC: &quot;</span>
+<span class="s"> killproc $NAME</span>
+<span class="s"> RETVAL=$?</span>
+<span class="s"> echo</span>
+<span class="s"> [ $RETVAL -eq 0 ] &amp;&amp; rm -f $PIDFILE</span>
+<span class="s"> return $RETVAL</span>
+<span class="s">}</span>
+<span class="s"># See how we were called.</span>
+<span class="s">case &quot;$1&quot; in</span>
+<span class="s"> start)</span>
+<span class="s">  start</span>
+<span class="s">  ;;</span>
+<span class="s"> stop)</span>
+<span class="s">  stop</span>
+<span class="s">  ;;</span>
+<span class="s"> restart|reload)</span>
+<span class="s">  stop</span>
+<span class="s">  start</span>
+<span class="s">  RETVAL=$?</span>
+<span class="s">  ;;</span>
+<span class="s"> status)</span>
+<span class="s">  status $prog</span>
+<span class="s">  RETVAL=$?</span>
+<span class="s">  ;;</span>
+<span class="s"> *)</span>
+<span class="s">  echo $&quot;Usage: $0 {start|stop|restart|status}&quot;</span>
+<span class="s">  exit 1</span>
+<span class="s">esac</span>
+<span class="s">exit $RETVAL</span>
+<span class="s">EOF</span>
+
+touch /usr/local/bin/start-memcached
+chmod +x /usr/local/bin/start-memcached
+
+cat <span class="s">&lt;&lt; EOF &gt;&gt; /usr/local/bin/start-memcached</span>
+<span class="s">#!/usr/bin/perl -w</span>
+<span class="s"># start-memcached</span>
+<span class="s"># 2003/2004 - Jay Bonci &lt;jaybonci@debian.org&gt;</span>
+<span class="s"># This script handles the parsing of the /etc/memcached.conf file</span>
+<span class="s"># and was originally created for the Debian distribution.</span>
+<span class="s"># Anyone may use this little script under the same terms as</span>
+<span class="s"># memcached itself.</span>
+<span class="s">use strict;</span>
+<span class="s">if ($&gt; != 0 and $&lt; != 0) {</span>
+<span class="s"> print STDERR &quot;Only root wants to run start-memcached.\n&quot;;</span>
+<span class="s"> exit;</span>
+<span class="s">}</span>
+<span class="s">my $etcfile = shift || &quot;/etc/memcached.conf&quot;;</span>
+<span class="s">my $params = [];</span>
+<span class="s">my $etchandle;</span>
+<span class="s"># This script assumes that memcached is located at /usr/bin/memcached, and</span>
+<span class="s"># that the pidfile is writable at /var/run/memcached.pid</span>
+<span class="s">my $memcached = &quot;/usr/local/bin/memcached&quot;;</span>
+<span class="s">my $pidfile = &quot;/var/run/memcached.pid&quot;;</span>
+<span class="s"># If we don&#39;t get a valid logfile parameter in the /etc/memcached.conf file,</span>
+<span class="s"># we&#39;ll just throw away all of our in-daemon output. We need to re-tie it so</span>
+<span class="s"># that non-bash shells will not hang on logout. Thanks to Michael Renner for</span>
+<span class="s"># the tip</span>
+<span class="s">my $fd_reopened = &quot;/dev/null&quot;;</span>
+<span class="s">sub handle_logfile {</span>
+<span class="s"> my ($logfile) = @_;</span>
+<span class="s"> $fd_reopened = $logfile;</span>
+<span class="s">}</span>
+<span class="s">sub reopen_logfile {</span>
+<span class="s"> my ($logfile) = @_;</span>
+<span class="s"> open *STDERR, &quot;&gt;&gt;$logfile&quot;;</span>
+<span class="s"> open *STDOUT, &quot;&gt;&gt;$logfile&quot;;</span>
+<span class="s"> open *STDIN, &quot;&gt;&gt;/dev/null&quot;;</span>
+<span class="s"> $fd_reopened = $logfile;</span>
+<span class="s">}</span>
+<span class="s"># This is set up in place here to support other non -[a-z] directives</span>
+<span class="s">my $conf_directives = {</span>
+<span class="s"> &quot;logfile&quot; =&gt; \&amp;handle_logfile</span>
+<span class="s">};</span>
+<span class="s">if (open $etchandle, $etcfile) {</span>
+<span class="s"> foreach my $line (&lt;$etchandle&gt;) {</span>
+<span class="s">  $line =~ s/\#.*//go;</span>
+<span class="s">  $line = join &#39; &#39;, split &#39; &#39;, $line;</span>
+<span class="s">  next unless $line;</span>
+<span class="s">  next if $line =~ /^\-[dh]/o;</span>
+<span class="s">  if ($line =~ /^[^\-]/o) {</span>
+<span class="s">   my ($directive, $arg) = $line =~ /^(.*?)\s+(.*)/;</span>
+<span class="s">   $conf_directives-&gt;{$directive}-&gt;($arg);</span>
+<span class="s">   next;</span>
+<span class="s">  }</span>
+<span class="s">  push @$params, $line;</span>
+<span class="s"> }</span>
+<span class="s">}</span>
+<span class="s">unshift @$params, &quot;-u root&quot; unless (grep $_ eq &#39;-u&#39;, @$params);</span>
+<span class="s">$params = join &quot; &quot;, @$params;</span>
+<span class="s">if (-e $pidfile) {</span>
+<span class="s"> open PIDHANDLE, &quot;$pidfile&quot;;</span>
+<span class="s"> my $localpid = &lt;PIDHANDLE&gt;;</span>
+<span class="s"> close PIDHANDLE;</span>
+<span class="s"> chomp $localpid;</span>
+<span class="s"> if (-d &quot;/proc/$localpid&quot;) {</span>
+<span class="s">  print STDERR &quot;memcached is already running.\n&quot;;</span>
+<span class="s">  exit;</span>
+<span class="s"> } else {</span>
+<span class="s">  `rm -f $localpid`;</span>
+<span class="s"> }</span>
+<span class="s">}</span>
+<span class="s">my $pid = fork();</span>
+<span class="s">if ($pid == 0) {</span>
+<span class="s"> reopen_logfile($fd_reopened);</span>
+<span class="s"> exec &quot;$memcached $params&quot;;</span>
+<span class="s"> exit(0);</span>
+<span class="s">} elsif (open PIDHANDLE,&quot;&gt;$pidfile&quot;) {</span>
+<span class="s"> print PIDHANDLE $pid;</span>
+<span class="s"> close PIDHANDLE;</span>
+<span class="s">} else {</span>
+<span class="s"> print STDERR &quot;Can&#39;t write pidfile to $pidfile.\n&quot;;</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+
+/etc/init.d/memcached restart
+/sbin/chkconfig memcached on
+</pre></div>
+<p>There are <a href=".././blog/2010/May/14/Automated-Install-Script-for-memcached-on-RHEL5/#disqus_thread">comments</a>.</p>
+                </article>
+                
+                    
+<p class="paginator">
+    
+    Page 1 / 1
+    
+</p>
+
+                
+            </aside><!-- /#featured -->
+            
+        
+        
+        
+            </ol><!-- /#posts-list -->
+            
+            </section><!-- /#content -->
+        
+    
+
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

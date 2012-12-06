@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/djangocms.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2012-01-15T13:30:13-05:00</updated><entry><title>Getting DjangoCMS up and running on ActiveState's Stackato</title><link href="http://kencochrane.net/blog/2012/Jan/15/getting-djangocms-up-and-running-on-stackato/" rel="alternate"></link><updated>2012-01-15T13:30:13-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2012-01-15:blog/2012/Jan/15/getting-djangocms-up-and-running-on-stackato/</id><summary type="html">&lt;p&gt;ActiveState has recently started their own PAAS based on &lt;a class="reference external" href="http://cloudfoundry.org/"&gt;CloudFoundry&lt;/a&gt; this blog post is to help you get up and running quickly with a Django CMS installation, and hopefully give you enough information to get your own applications on there as well.&lt;/p&gt;
+&lt;p&gt;To keep things simple, I'll just go through the steps that are required in order to get this up and running and add some comments along the way. If I missed anything or if you have any questions, please ask in the comments.&lt;/p&gt;
+&lt;div class="section" id="running-on-stackato"&gt;
+&lt;h2&gt;Running on Stackato&lt;/h2&gt;
+&lt;div class="section" id="register-for-an-account"&gt;
+&lt;h3&gt;1. Register for an account&lt;/h3&gt;
+&lt;p&gt;Go to &lt;a class="reference external" href="http://community.activestate.com/stackato"&gt;http://community.activestate.com/stackato&lt;/a&gt; and register for your account. They are currently in beta, and you need to be approved before they will give you access.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-the-client"&gt;
+&lt;h3&gt;2. Install the client&lt;/h3&gt;
+&lt;p&gt;There are a few different options, follow the steps outlined here. &lt;a class="reference external" href="http://docs.stackato.com/quick-start.html#stackato-client-setup"&gt;http://docs.stackato.com/quick-start.html#stackato-client-setup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I tried the option where you download the file, and rename it and put it in your path. It wasn't complicated, but it wasn't clean either. I chose this option because I didn't want to install &lt;a class="reference external" href="http://code.activestate.com/pypm/"&gt;pypm&lt;/a&gt;, so I'm not sure if that way is easier or not.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="register-your-client-to-the-cloud"&gt;
+&lt;h3&gt;3. Register your client to the cloud&lt;/h3&gt;
+&lt;p&gt;Now that you have the client installed you need to tell it which cloud to deploy too. With Stackato, you can run your own local cloud as well as using the sandbox that ActiveState provided. To make things simple, I'm going to use the sandbox. If you want to use the local cloud you will need to &lt;a class="reference external" href="http://docs.stackato.com/quick-start.html#accesssing-the-micro-cloud"&gt;read the directions&lt;/a&gt; on how to use the local cloud option.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato target api.sandbox.activestate.com
+&amp;gt; Successfully targeted to &lt;span class="o"&gt;[&lt;/span&gt;https://api.sandbox.activestate.com&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="login-to-stackato"&gt;
+&lt;h3&gt;4. Login to stackato&lt;/h3&gt;
+&lt;p&gt;Once you point your client in the correct location, you will need to login to the cloud. You can find your login information on your &lt;a class="reference external" href="https://account.activestate.com/"&gt;activestate account page&lt;/a&gt;. Type the following and answer the questions when prompted.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato login
+&amp;gt; Successfully logged into &lt;span class="o"&gt;[&lt;/span&gt;https://api.sandbox.activestate.com&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="download-this-github-repo"&gt;
+&lt;h3&gt;5. Download this github repo&lt;/h3&gt;
+&lt;p&gt;To make things easier, I have made a simple django project that has all of the configuration information setup so that you don't need to do anything if you want to use djangoCMS. Look at my &lt;a class="reference external" href="https://github.com/kencochrane/django-cms-stackato"&gt;github repo&lt;/a&gt;, and see how I did things if you want to get your own application up and running. If you want to use djangoCMS, then all you have to do is follow these steps.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/projects
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone git://github.com/kencochrane/django-cms-stackato.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;django-cms-stackato
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploy-the-project-to-stackato"&gt;
+&lt;h3&gt;6. Deploy the project to stackato&lt;/h3&gt;
+&lt;p&gt;Once you have your application ready, you can push the application to the cloud. When you do this it will prompt you for a bunch of questions, answer them and keep track of what you picked for a website url, because you will need that later. My application is called myblog, but you can put whatever you want, just change myblog with your name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato push myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="initialize-the-database-optional"&gt;
+&lt;h3&gt;7. Initialize the database (optional)&lt;/h3&gt;
+&lt;p&gt;I have set this up so that it should happen automatically at deployment see the stackato.yml file for more details. If you want to run the commands outside of deployments this is what you can do.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog python mycms/manage.py syncdb --noinput
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="run-south-migrations-optional"&gt;
+&lt;h3&gt;8. Run south migrations (optional)&lt;/h3&gt;
+&lt;p&gt;I have set this up so that it should happen automatically at deployment see the stackato.yml file for more details. If you want to run the commands outside of deployments this is what you can do. It is important to note &lt;em&gt;I had to run more then once since it was killed the first time. Maybe it took too long?&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog python mycms/manage.py migrate --noinput
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="collect-the-static-files-optional"&gt;
+&lt;h3&gt;9. Collect the static files (optional)&lt;/h3&gt;
+&lt;p&gt;I have set this up so that it should happen automatically at deployment see the stackato.yml file for more details. If you want to run the commands outside of deployments this is what you can do.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog python mycms/manage.py collectstatic --noinput
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-the-django-admin-account"&gt;
+&lt;h3&gt;10. Create the django admin account&lt;/h3&gt;
+&lt;p&gt;Now that you have your application installed and you have your database setup, you need to create the django admin, you can do that with ths django management command.
+Make sure you replace the variables with your values.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog python mycms/manage.py createsuperuser --username&lt;span class="o"&gt;=&lt;/span&gt;admin --email&lt;span class="o"&gt;=&lt;/span&gt;admin@example.com --noinput
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="change-the-password-for-the-admin-user"&gt;
+&lt;h3&gt;11. Change the password for the admin user&lt;/h3&gt;
+&lt;p&gt;You need to set a password for the admin account so that you can login. Pick a more secure password then the example I have here. &lt;em&gt;(notice it is changepassword2 not changepassword)&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog python mycms/manage.py changepassword2 admin secret123P@ssw0rd!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="open-up-the-url-in-your-browser"&gt;
+&lt;h3&gt;12. Open up the url in your browser&lt;/h3&gt;
+&lt;p&gt;When you open up the URL that you picked when you deployed in your browser you should find the DjangoCMS pony welcome page. If not, try debugging using some of the tips below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;That is it, I did all the hard work, so you should be able to follow those simple steps and get djangoCMS up and running in no time. Once you get that working, play around with it, and let me know what you think. Have you tried the other PAAS options yet, if not check those out as well, and then let me know which ones you like better and why. I have written blog posts about most of them at this point, so feel free to check those out (links below), and have fun playing around.&lt;/p&gt;
+&lt;div class="section" id="other-useful-information"&gt;
+&lt;h3&gt;Other Useful Information&lt;/h3&gt;
+&lt;div class="section" id="starting-an-application-if-it-isn-t-running"&gt;
+&lt;h4&gt;Starting an application if it isn't running&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato start myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="restarting-an-application"&gt;
+&lt;h4&gt;Restarting an application&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato restart myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stopping-an-application"&gt;
+&lt;h4&gt;Stopping an application&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato stop myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="updating-application-after-it-is-already-deployed"&gt;
+&lt;h4&gt;Updating application after it is already deployed&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato update myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="find-out-how-many-instances-you-have-running"&gt;
+&lt;h4&gt;Find out how many instances you have running&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; stackato stats myblog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="find-out-which-apps-you-have-installed-and-their-status"&gt;
+&lt;h4&gt;Find out which apps you have installed, and their status&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato apps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="find-out-what-logs-you-have-for-your-applications"&gt;
+&lt;h4&gt;Find out what logs you have for your applications&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato files myblog logs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="viewing-logs-for-your-app"&gt;
+&lt;h4&gt;Viewing logs for your app&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato logs myblog --all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="running-cat-on-a-particular-log-file"&gt;
+&lt;h4&gt;Running cat on a particular log file&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;stackato run myblog cat ../logs/myapp-err.log
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="links"&gt;
+&lt;h2&gt;Links&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;My github repo for this blog post: &lt;a class="reference external" href="https://github.com/kencochrane/django-cms-stackato"&gt;https://github.com/kencochrane/django-cms-stackato&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stackato Client command reference: &lt;a class="reference external" href="http://docs.stackato.com/commands.html#command-ref-client"&gt;http://docs.stackato.com/commands.html#command-ref-client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;stackato.yml reference: &lt;a class="reference external" href="http://docs.stackato.com/client.html#configure-stackato-yml"&gt;http://docs.stackato.com/client.html#configure-stackato-yml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stackato quick start guide: &lt;a class="reference external" href="http://docs.stackato.com/quick-start.html"&gt;http://docs.stackato.com/quick-start.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stackato Sandbox Ground Rules, Content Policy and Quotas: &lt;a class="reference external" href="http://docs.stackato.com/sandbox.html"&gt;http://docs.stackato.com/sandbox.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ActiveState Account page: &lt;a class="reference external" href="https://account.activestate.com/"&gt;https://account.activestate.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;pip : &lt;a class="reference external" href="http://www.pip-installer.org/"&gt;http://www.pip-installer.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;git : &lt;a class="reference external" href="http://git-scm.com/"&gt;http://git-scm.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="my-other-articles-related-to-paas"&gt;
+&lt;h3&gt;My other articles related to PAAS:&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;AppHosted.com Django Hosting Service Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My Day in Gondor.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to DotCloud.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;Installing DjangoCMS on Heroku in 13 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;Installing DjangoCMS on dotCloud in 12 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide to Running Django Applications on Heroku&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2012/01/installing-django-application-on-openshift/"&gt;Installing a Django application on Red Hat's OpenShift PAAS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h3&gt;Update&lt;/h3&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to Stackato. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="djangocms"></category><category term="stackato"></category><category term="python"></category><category term="hosting"></category><category term="paas"></category></entry><entry><title>Installing a Django application on Red Hat's OpenShift PAAS</title><link href="http://kencochrane.net/blog/2012/Jan/14/installing-django-application-on-openshift/" rel="alternate"></link><updated>2012-01-14T14:05:52-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2012-01-14:blog/2012/Jan/14/installing-django-application-on-openshift/</id><summary type="html">&lt;p&gt;It seems like everyone has their own &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Platform_as_a_service"&gt;PAAS&lt;/a&gt; solution these days, and if they don't have one yet, it is just a matter of time before they will. Red Hat has recently joined in on the fun with their &lt;a class="reference external" href="https://openshift.redhat.com"&gt;OpenShift&lt;/a&gt; platform.&lt;/p&gt;
+&lt;p&gt;I decided to take it for a test drive, and share my results with you. This service is still in beta and things are changing all of the time, so these notes might not work in the future, take that into consideration when using it as a guide.&lt;/p&gt;
+&lt;p&gt;There really isn't much python documentation for this platform, and what documentation there is, is either a little out of date, or missing some important steps. Hopefully this guide will help you get your application up and running.&lt;/p&gt;
+&lt;p&gt;OpenShift is divided into two parts, Flex and Express.&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://openshift.redhat.com/app/flex"&gt;Flex&lt;/a&gt;:&lt;/h2&gt;
+&lt;blockquote&gt;
+&amp;quot;Dedicated cloud solution.
+Get more control over your apps, or move your existing applications to the cloud with ease! Flex is a dedicated cloud solution that provides everything you need to easily scale, provision, deploy, and monitor your applications.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;Flex runs on top of your amazon EC2 account, and currently only supports Java and PHP. It is targeting the enterprise crowd and has more features compared to Express.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://openshift.redhat.com/app/express"&gt;Express&lt;/a&gt;:&lt;/h2&gt;
+&lt;blockquote&gt;
+&amp;quot;Shared cloud solution. Express is a free, cloud-based application platform for Java, Perl, PHP, Python, and Ruby applications. It's super-simple—your development environment is also your deployment environment: git push, and you're in the cloud!&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;Express runs on Red Hat's servers, and currently supports Java, Ruby, PHP, Perl and Python apps. It doesn't have the same features of Flex, but if you don't need those advanced features, then express might be fine for you. Since I'm interested in deploying python apps, and Express is the only one that supports python apps, that is the one I'll show you today.&lt;/p&gt;
+&lt;p&gt;To make things easier to show you how things work, I'll create a simple django application and walk you through the steps to deploying it. I'm going to deploy a djangoCMS to express that will connect to a mysql database.&lt;/p&gt;
+&lt;div class="section" id="steps"&gt;
+&lt;h3&gt;Steps:&lt;/h3&gt;
+&lt;div class="section" id="create-an-account"&gt;
+&lt;h4&gt;1. Create an account&lt;/h4&gt;
+&lt;p&gt;Create an account by filling out the form at &lt;a class="reference external" href="http://openshift.redhat.com/"&gt;http://openshift.redhat.com/&lt;/a&gt; and don't forget your username and password, you will need that later.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-perquisites"&gt;
+&lt;h4&gt;2. Install Perquisites:&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://git-scm.com/"&gt;git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://python.org"&gt;python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;openshift client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Git:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I'm not going to go over the steps to install git, for more info, you can get it from the git website. &lt;a class="reference external" href="http://git-scm.com/download"&gt;http://git-scm.com/download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are using a Mac or linux, it most likely already has python installed, if you are using windows, you you don't have python installed. Goto the python website and you will find instructions on how to install python on your system. &lt;a class="reference external" href="http://python.org/download/"&gt;http://python.org/download/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenShift client:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For instructions on how to Install the client go to this page.  &lt;a class="reference external" href="https://openshift.redhat.com/app/express#mac"&gt;https://openshift.redhat.com/app/express#mac&lt;/a&gt; Here are my steps for Mac OSX&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gem install json_pure
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gem install rhc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-a-domain"&gt;
+&lt;h4&gt;3. Create a domain.&lt;/h4&gt;
+&lt;p&gt;Now that you have everything installed, your first step is to create a domain. Run the following command and  replace $mydoman and $loginemail with your own domain and the login email you used when creating an account.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-domain -n &lt;span class="nv"&gt;$mydomain&lt;/span&gt; -l &lt;span class="nv"&gt;$loginemail&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-an-application"&gt;
+&lt;h4&gt;4. Create an application&lt;/h4&gt;
+&lt;p&gt;Now that you have a domain, you need to create an application that you can deploy to that domain. Running the following command will create a new wsgi application called 'blog'. You can name your application anything you want, within reason. We pick wsgi, because our python application will be wsgi compatible.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-app -a blog -t wsgi-3.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-mysql-to-your-app"&gt;
+&lt;h4&gt;5. Add mysql to your app&lt;/h4&gt;
+&lt;p&gt;We want to use mysql as our database backend for this blog, so we need to add mysql to our application using the command below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -a blog -e add-mysql-5.1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-phpmyadmin-to-help-you-manage-your-database"&gt;
+&lt;h4&gt;6. Add phpmyadmin to help you manage your database&lt;/h4&gt;
+&lt;p&gt;OpenShift doesn't give you direct access to your database, so you will need a way to manage your database a different way. They provide the ability to add PHPMyAdmin to your app so that you can get to your data. This step is optional, but recommended.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -a blog -e add-phpmyadmin-3.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-this-upstream-repo-from-github"&gt;
+&lt;h4&gt;7. Add this upstream repo from github&lt;/h4&gt;
+&lt;p&gt;When you create your application, it will create a directory with a bunch of other files and directories in it. If you were starting from scratch and building up your application you would start from here. To make things easier I created a project on github that will allow you to get up and running with DjangoCMS much faster. In order to use my project you will need to run the following commands so that it will pull down the code into your project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;blog
+&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add upstream -m master git://github.com/kencochrane/django-cms-openshift.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;git pull -s recursive -X theirs upstream master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once the code is downloaded, you can take a look at the code, change anything you want and when you are ready you can deploy the app.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploying-the-app"&gt;
+&lt;h4&gt;8. Deploying the app&lt;/h4&gt;
+&lt;p&gt;To deploy all you need to do is push the repo upstream into open shift. To this, you just need to run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When it pushes you application into open shift it will do the following. (without jenkins add-on installed)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;stop app&lt;/li&gt;
+&lt;li&gt;*pre_build&lt;/li&gt;
+&lt;li&gt;*build&lt;/li&gt;
+&lt;li&gt;start_dbs&lt;/li&gt;
+&lt;li&gt;*deploy&lt;/li&gt;
+&lt;li&gt;start_app&lt;/li&gt;
+&lt;li&gt;*post_deploy&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The steps marked with a * are scripts that are located in &lt;em&gt;.openshift/action_hooks/&amp;lt;script_name&amp;gt;&lt;/em&gt; if you have something in those files it will run them, and if not, it will pass right by. These are very helpful if you want something to happen at points of the deployment process. For example, in the deploy script you will notice that I have some code to kick off the django syncdb, migrate, and collect static commands. These will run every time I deploy the app.&lt;/p&gt;
+&lt;p&gt;I have also created a django management command that will check to see if there is a django admin account created and if not, it will create one and set the default password. I had to do this because there is currently no way that I know of where you can kick off django management commands after the deployment is finished. It will only create the admin account once, and every other time it will just get ignored.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; It is important to note that if you want to do anything related to the database, you can't do it in the &lt;em&gt;pre_build&lt;/em&gt; or &lt;em&gt;build&lt;/em&gt; scripts, because the database isn't available yet. This one thing caused me lots of pain, because I couldn't figure out by my migrations were not working. If you do make the mistake of trying to do something database related in the &lt;em&gt;build&lt;/em&gt; script you will see an error like this.&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;remote: ERROR 2003 (HY000): Can't connect to MySQL server on 'xxx.x.xx.x' (111)&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;That's it, you can now checkout your application at (default admin account is admin/&amp;lt;password given at deploy time&amp;gt;):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;a class="reference external" href="http://blog-$yourdomain.rhcloud.com"&gt;http://blog-$yourdomain.rhcloud.com&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Once you visit the page you should see the djangoCMS default page. First things first, login to the django admin, and change the password from the default password to something secure. Then get started building your own app.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="helpful-tips"&gt;
+&lt;h3&gt;Helpful tips:&lt;/h3&gt;
+&lt;div class="section" id="viewing-logs"&gt;
+&lt;h4&gt;Viewing logs:&lt;/h4&gt;
+&lt;p&gt;If you would like to view your logs to see what is going on with your application you just need to run this command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-tail-files -a blog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-information"&gt;
+&lt;h4&gt;Application information:&lt;/h4&gt;
+&lt;p&gt;If you would like more information about your application you can run this command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-user-info
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also checkout the README file they add when you create an application, it is pretty helpful, and might answer some common questions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-dependencies"&gt;
+&lt;h4&gt;Application dependencies:&lt;/h4&gt;
+&lt;p&gt;OpenShift uses virtualenv but it doesn't use pip, it depends on the dependencies be listed in the setup.py file. During the deploy process I did notice that it installed pip, so it might be possible to add a requirements.txt file, and then in your build action_hook script call pip install -r &amp;lt;path&amp;gt;/requirements.txt but I'm not sure if this is supported, or if it will cause problems, so it might be best to stick with what they have for now.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="static-media"&gt;
+&lt;h4&gt;Static media:&lt;/h4&gt;
+&lt;p&gt;If you look in wsgi/static/.htaccess there a rewrite rule to get the media to work correctly, you can use this trick for other apache tricks if you want. For more information on this checkout the README file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-is-it-open-shift-running"&gt;
+&lt;h4&gt;What is it open shift running:&lt;/h4&gt;
+&lt;p&gt;Red Hat linux with Apache / mod_wsgi, and mysql 5.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-type-of-apps-do-they-support"&gt;
+&lt;h4&gt;What type of apps do they support?&lt;/h4&gt;
+&lt;p&gt;Here is the current link which can be found if you run this commands and look at the types.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-app -h
+
+raw-0.1, php-5.3, jbossas-7.0, rack-1.1, jenkins-1.4, perl-5.10, wsgi-3.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-else-does-it-support"&gt;
+&lt;h4&gt;What else does it support?&lt;/h4&gt;
+&lt;p&gt;Things are changing all of the time, but if you run this command you will get a list of the current supported addons.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -L
+
+List of supported embedded cartridges:
+
+Obtaining list of cartridges &lt;span class="o"&gt;(&lt;/span&gt;please excuse the delay&lt;span class="o"&gt;)&lt;/span&gt;...
+
+    - metrics-0.1
+    - mysql-5.1
+    - jenkins-client-1.4
+    - 10gen-mms-agent-0.1
+    - phpmyadmin-3.4
+    - rockmongo-1.1
+    - mongodb-2.0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="web-based-control-panel"&gt;
+&lt;h4&gt;Web based control panel:&lt;/h4&gt;
+&lt;p&gt;They offer a web based control panel to do some of the things you can do with the command line, which will be nice, but it doesn't work right now. It doesn't display the correct information, and it doesn't even show the applications I have created, so I don't trust it. Hopefully these issues will get fixed in the future, and this tool will make it easier for less technical people to get started.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h4&gt;Conclusion:&lt;/h4&gt;
+&lt;p&gt;It is nice to see another platform on the market, it is still pretty rough, and there isn't much documentation, but I found it usable. I'm sure once they stabilize things, they will spend more time on the documentation side of things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-helpful-openshift-links"&gt;
+&lt;h4&gt;Other Helpful OpenShift links:&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/kencochrane/django-cms-openshift"&gt;My GitHub repo for this article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openshift/django-example"&gt;https://github.com/openshift/django-example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/"&gt;http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="my-other-articles-related-to-paas"&gt;
+&lt;h4&gt;My other articles related to PAAS:&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;AppHosted.com Django Hosting Service Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My Day in Gondor.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to DotCloud.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;Installing DjangoCMS on Heroku in 13 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;Installing DjangoCMS on dotCloud in 12 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide to Running Django Applications on Heroku&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h4&gt;Update&lt;/h4&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to openShift. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="djangocms"></category><category term="openshift"></category><category term="python"></category><category term="hosting"></category><category term="paas"></category></entry><entry><title>Installing DjangoCMS on Heroku in 13 easy steps</title><link href="http://kencochrane.net/blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/" rel="alternate"></link><updated>2011-12-31T14:25:11-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-12-31:blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/</id><summary type="html">&lt;p&gt;Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create a place to store your project&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkdir -p ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the projects directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Clone git repo from github, requires git client.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ git clone git://github.com/kencochrane/django-cms-heroku.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the new project directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd django-cms-heroku&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkvirtualenv --no-site-packages --distribute django-cms-heroku&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Sign-Up for a Heroku account. &lt;a class="reference external" href="https://api.heroku.com/signup"&gt;https://api.heroku.com/signup&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Install the Heroku client. &lt;a class="reference external" href="http://devcenter.heroku.com/articles/quickstart"&gt;http://devcenter.heroku.com/articles/quickstart&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The first time you use the Heroku client you will need to login using the same information you used when you signed up. Follow the prompts, and it will finish your install.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ heroku login&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create your heroku application&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ heroku create --stack cedar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Push your code into heroku&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ git push heroku master&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Sync your database and create your admin account.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ heroku run python mycms/manage.py syncdb --all&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Run your database migrations.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ heroku run python mycms/manage.py migrate --fake&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Open application in your browser and start using djangoCMS on heroku.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ heroku open&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once you get comfortable with how things work, you could add more plug-ins, create your own custom templates and then change your DEBUG setting to False. So go ahead &lt;a class="reference external" href="https://github.com/kencochrane/django-cms-heroku/fork"&gt;fork my project on github&lt;/a&gt;  and get started.&lt;/p&gt;
+&lt;p&gt;After you make changes to your local project directory, you can test it on the server by running the git push command again.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;For more info about Heroku and django-cms and what you can do with with it. check out their docs&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://devcenter.heroku.com/categories/platform-basics"&gt;http://devcenter.heroku.com/categories/platform-basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.django-cms.org/en/documentation/"&gt;https://www.django-cms.org/en/documentation/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Links:&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;strong&gt;Virtualenv&lt;/strong&gt; : &lt;a class="reference external" href="http://pypi.python.org/pypi/virtualenv"&gt;http://pypi.python.org/pypi/virtualenv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pip&lt;/strong&gt; : &lt;a class="reference external" href="http://www.pip-installer.org/"&gt;http://www.pip-installer.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;virtualenvwrapper&lt;/strong&gt; : &lt;a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/"&gt;http://www.doughellmann.com/projects/virtualenvwrapper/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;git&lt;/strong&gt; : &lt;a class="reference external" href="http://git-scm.com/"&gt;http://git-scm.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+</summary><category term="django"></category><category term="djangocms"></category><category term="heroku"></category><category term="paas"></category></entry><entry><title>Installing DjangoCMS on dotCloud in 12 easy steps</title><link href="http://kencochrane.net/blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/" rel="alternate"></link><updated>2011-12-31T13:26:42-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-12-31:blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/</id><summary type="html">&lt;p&gt;Do you want to use Django-cms on dotcloud but don't know where to start? All you need to do is follow these 12 easy steps, they will get you on your way.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create a place to store your project&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkdir -p ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the projects directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Clone git repo from github, requires git client.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ git clone git://github.com/kencochrane/django-cms-dotcloud.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the new project directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd django-cms-dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkvirtualenv --no-site-packages --distribute django-cms-dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Installing the dotCloud client  &lt;a class="reference external" href="http://docs.dotcloud.com/firststeps/install/"&gt;http://docs.dotcloud.com/firststeps/install/&lt;/a&gt; (here are the steps for Linux and Mac OSX)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ sudo pip install -U dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Sign up for a dotcloud account &lt;a class="reference external" href="https://www.dotcloud.com/accounts/register/"&gt;https://www.dotcloud.com/accounts/register/&lt;/a&gt; if you haven't already.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The first time you use the dotcloud account you will need to add your api key. So type dotcloud and follow the steps. You can find your API key at &lt;a class="reference external" href="http://www.dotcloud.com/account/settings"&gt;http://www.dotcloud.com/account/settings&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create your dotcloud application&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ dotcloud create mycmsapp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Push your code into dotcloud&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ dotcloud push mycmsapp .&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Find out your application url.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ dotcloud url mycmsapp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Open url in your browser and start using djangoCMS on dotcloud.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Optional: If you don't like the URL they gave you, you can use your custom domain. Assuming your application was ramen.www and your domain was www.example.com you would do the following.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ dotcloud alias add ramen.www www.example.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once you get comfortable with how things work, you could add more plug-ins, create your own custom templates and then change your DEBUG setting to False. So go ahead &lt;a class="reference external" href="https://github.com/kencochrane/django-cms-dotcloud/fork"&gt;fork my project on github&lt;/a&gt;  and get started.&lt;/p&gt;
+&lt;p&gt;After you make changes to your local project directory, you can test it on the server by running the dotcloud push command again.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;For more info about dotcloud and django-cms and what you can do with with it. check out their docs&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://docs.dotcloud.com/firststeps/platform-overview/"&gt;http://docs.dotcloud.com/firststeps/platform-overview/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.django-cms.org/en/documentation/"&gt;https://www.django-cms.org/en/documentation/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Links:&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;strong&gt;dotcloud&lt;/strong&gt; : &lt;a class="reference external" href="http://dotcloud.com"&gt;http://dotcloud.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtualenv&lt;/strong&gt; : &lt;a class="reference external" href="http://pypi.python.org/pypi/virtualenv"&gt;http://pypi.python.org/pypi/virtualenv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pip&lt;/strong&gt; : &lt;a class="reference external" href="http://www.pip-installer.org/"&gt;http://www.pip-installer.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;virtualenvwrapper&lt;/strong&gt; : &lt;a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/"&gt;http://www.doughellmann.com/projects/virtualenvwrapper/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;git&lt;/strong&gt; : &lt;a class="reference external" href="http://git-scm.com/"&gt;http://git-scm.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+</summary><category term="django"></category><category term="djangocms"></category><category term="dotcloud"></category><category term="paas"></category></entry></feed>

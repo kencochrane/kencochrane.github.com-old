@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>AppHosted.com Django Hosting Service Review</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../../../.././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie.css"/>
+                <script src="../../../../.././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../../../../../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="../../../../.././about/index.html">About Me</a></li>
+                
+                    <li><a href="../../../../.././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li class="active"><a href="../../../../.././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="blog/2011/May/18/apphosted-com-django-hosting-review/" rel="bookmark"
+           title="Permalink to AppHosted.com Django Hosting Service Review">AppHosted.com Django Hosting Service Review</a></h1>
+      
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2011-05-18T12:17:48">
+                Wed 18 May 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../../.././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="../../../../.././category/blog.html">blog</a>. </p>
+<p>tags: <a href="../../../../.././tag/django.html">django</a><a href="../../../../.././tag/hosting.html">hosting</a><a href="../../../../.././tag/apphosted.html">apphosted</a><a href="../../../../.././tag/python.html">python</a><a href="../../../../.././tag/deployment.html">deployment</a><a href="../../../../.././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p>This post is the fourth in my series about the new Django hosting services that just recently hit the market. Previously I have reviewed <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/">ep.io</a> , <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/">gondor.io</a> , and <a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">dotCloud.com</a> .This post reviews <a class="reference external" href="http://AppHosted.com">AppHosted.com</a> , another similar service that is currently in beta. I was lucky enough to get a sneak peak of this service before it was released to the general public, and here are my notes and impressions for the short time I had to play with the new service.</p>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p><a class="reference external" href="http://AppHosted.com">AppHosted.com</a> uses a similar concept as the other django hosting services, they provide you with a command line client called metro that you use to interact with the service. Like the other command line clients, it is pretty much just a nice wrapper around their API, so anything you can do with the metro client you can do with their API. The client is used to configure your service and push your files up into their servers. Once the application is created and your code has been uploaded to their server, you can use their web based control panel to configure or manage your application.</p>
+<p>So that we can compare apples to apples I will go through the process of installing my blog onto the service so that we can see how it works with apphosted compared to the other services. It will also hopefully provide a very simple how to guide on how to install your application onto AppHosted.com.</p>
+</div>
+<div class="section" id="first-steps">
+<h2>First Steps</h2>
+<p>Like all new projects the first thing that I like to do is create a new project directory and a new virtual environment for the project.</p>
+<div class="highlight"><pre><span class="c"># move into my projects directory</span>
+<span class="nv">$ </span><span class="nb">cd</span> ~projects/
+
+<span class="c"># make my virtual environment apphosted</span>
+<span class="nv">$ </span>mkvirtualenv apphosted
+
+<span class="c"># clone my blog</span>
+<span class="nv">$ </span>hg clone https://bitbucket.org/kencochrane/kencochranenet kencochrane_apphosted
+
+<span class="c"># move into the new project directory</span>
+<span class="nv">$ </span><span class="nb">cd </span>kencochrane_apphosted
+</pre></div>
+<p>Now that I have a local working copy of my blog code and a new virtual environment I'm ready to go.</p>
+</div>
+<div class="section" id="command-line-interface">
+<h2>Command Line Interface</h2>
+<p>AppHosted has a command line client called Metro, it uses this client to configure and upload your application onto the apphosted servers. Metro only has three dependencies: httplib2, paramiko, and pycrypto, if you don't have them installed pip should handle that for you.</p>
+<div class="highlight"><pre><span class="c"># install the metro client</span>
+<span class="nv">$ </span>pip install metroclient
+
+Downloading/unpacking metroclient
+Running setup.py egg_info <span class="k">for </span>package metroclient
+Requirement already satisfied <span class="o">(</span>use --upgrade to upgrade<span class="o">)</span>: httplib2 in /Users/ken/.virtualenvs/apphosted/lib/python2.6/site-packages <span class="o">(</span>from metroclient<span class="o">)</span>
+Requirement already satisfied <span class="o">(</span>use --upgrade to upgrade<span class="o">)</span>: paramiko in /Library/Python/2.6/site-packages <span class="o">(</span>from metroclient<span class="o">)</span>
+Requirement already satisfied <span class="o">(</span>use --upgrade to upgrade<span class="o">)</span>: pycrypto&gt;<span class="o">=</span>1.9 in /Library/Python/2.6/site-packages <span class="o">(</span>from paramiko-&gt;metroclient<span class="o">)</span>
+Installing collected packages: metroclient
+Running setup.py install <span class="k">for </span>metroclient
+changing mode of build/scripts-2.6/metro from 644 to 755
+changing mode of /Users/ken/.virtualenvs/apphosted/bin/metro to 755
+Successfully installed metroclient
+</pre></div>
+</div>
+<div class="section" id="initial-data-django-admin-user">
+<h2>Initial Data &amp; Django admin user</h2>
+<p>At the moment Apphosted.com doesn't provide an easy way to create a django admin user, in order to create this user in your appHosted.com database you need to create it on a local database and then export that data into a fixture called initial_data.json.</p>
+<div class="highlight"><pre><span class="c"># locally I run this command to dump the data, so that I can load on app hosted.</span>
+<span class="nv">$ </span>python manage.py dumpdata &gt; initial_data.json
+</pre></div>
+<p>There is another way to create the django admin user, which I'll describe a little later. This would also be the same way that you would import any application data that you need in order for your application to run correctly.</p>
+</div>
+<div class="section" id="metro-client">
+<h2>Metro Client</h2>
+<p>One of the goals for appHosted.com was that they didn't want to require that you make lots of changes to your project directory structure  in order to use their service. In order to do this they need to do a lot more work to figure out what it is you want to do, and if they can't figure it out, they will ask you some questions.</p>
+<p>Now that we have our project directory and our initial_data.json file all ready, lets go ahead and deploy the application. Activate the virtual environment and go into your project directory. Kick off the metro client and answer the questions that pop up.</p>
+<div class="highlight"><pre><span class="c"># run the metro client.</span>
+<span class="nv">$ </span>metro
+
+Metro Application Manager 1.21
+Copyright <span class="o">(</span>c<span class="o">)</span> Lumentica,  http://www.lumentica.com
+
+Application directory <span class="o">(</span>i.e. path to project<span class="o">)</span>: ./
+Application name: kencochraneblog
+Application version: 0.1
+Application description: Ken<span class="err">&#39;</span>s AppHosted Blog
+Application modules <span class="o">(</span>extra; comma-separated<span class="o">)</span>: <span class="nv">South</span><span class="o">==</span>0.7.3, django-activitysync<span class="o">==</span>0.2.2, django-debug-toolbar<span class="o">==</span>0.8.4, django-disqus<span class="o">==</span>0.3.4, django-memcache-status<span class="o">==</span>1.0.1, django-tagging<span class="o">==</span>0.3.1, django-xmlrpc<span class="o">==</span>0.1.2, <span class="nv">feedparser</span><span class="o">==</span>4.1, <span class="nv">httplib2</span><span class="o">==</span>0.6.0, <span class="nv">oauth2</span><span class="o">==</span>1.2.0, python-memcached<span class="o">==</span>1.47, python-twitter<span class="o">==</span>0.8.1, <span class="nv">simplejson</span><span class="o">==</span>2.1.2, <span class="nv">wsgiref</span><span class="o">==</span>0.1.2, <span class="nv">yolk</span><span class="o">==</span>0.4.1, <span class="nv">docutils</span><span class="o">==</span>0.6, <span class="nv">Pygments</span><span class="o">==</span>1.3.1
+WSGI module <span class="o">(</span>optional<span class="o">)</span>:
+Paste config <span class="o">(</span>optional<span class="o">)</span>:
+Fixtures <span class="o">(</span>optional; comma-separated<span class="o">)</span>:
+Sync database and load fixtures? <span class="o">(</span>y/n<span class="o">)</span>: y
+Use SSL? <span class="o">(</span>y/n<span class="o">)</span>: n
+Force SSL: <span class="o">(</span>y/n<span class="o">)</span>: n
+Build complete.
+Upload to AppHosted? <span class="o">(</span>y/n<span class="o">)</span>: y
+AppHosted Username: kencochrane
+AppHosted Password:
+Deploying...
+:: Configuring application environment...
+:: Configuring application permissions...
+:: Configuring application server...
+:: Application deployed to server successfully...
+:: Application deployment complete...
+</pre></div>
+<p>What did this do for us? It takes our application, and uploads it to their server, and then it installs all of our dependencies that we listed above. Then it configures it according to our answers, and tries to start it up, if we told it to, it will sync our database and load our fixtures. It also takes all of this information and stores it in a file called metro.config, so that we don't need to type that in every time if nothing has changed.</p>
+<p>You might have noticed that I needed to manually enter in all of my dependencies when prompted, when I asked about this, I was told that if I didn't enter all of the dependencies it would scan the project for a pip style requirements.txt file, and use that to load all of your dependencies. I haven't had a chance to test that out yet, since I already entered my requirements by hand, and once you do it, you don't need to do it again.</p>
+<p>My blog uses south for migration management, and at the time of this writing there is a bug, and it isn't correctly kicking off the migrate command during the database sync process. They are aware of the issue and they are working on a fix, but there is a work around in the meantime. I'll describe the work around shortly.</p>
+<p>Once your application is deployed it will almost immediately be available at <a class="reference external" href="http:/">http:/</a>/&lt;your-app-name&gt;.apphosted.com.</p>
+</div>
+<div class="section" id="log-files">
+<h2>Log Files</h2>
+<p>In order to view the log files, you need to log into the web control panel and from there you can download the logs that you are interested in. At the moment they only support downloading the log files, which is a little inconvenient, it would be nice to have the ability to tail the logs, or see the last 50 or 100 lines in the control panel. I asked about this, and they agreed and said it is on their list of things to work on.</p>
+</div>
+<div class="section" id="shell-access">
+<h2>Shell Access</h2>
+<p>Metro gives you the ability to shell into your application directory, so that you can kick off django management commands, and other cool things. One important thing to note is that when you login to the shell, it is a jailed shell, and you only have access to your own project, and with limited command access. This is done for security reasons. It is nice to know that your application runs in it's own jailed area, and no one else's applications can access your information.</p>
+<p>Setting up the shell access requires a few steps. Follow these directions to get the full details: <a class="reference external" href="http://docs.apphosted.com/apphosted/apphosted_shell.html">http://docs.apphosted.com/apphosted/apphosted_shell.html</a> , but basically it requires the following.</p>
+<ol class="arabic simple">
+<li>create a ssh key if you don't already have one.</li>
+<li>Login to the web console and add your public key.</li>
+<li>In the web console browse over to your application Settings-&gt;Tools page and click on the “Update Public Keys” button. (Don't forget about this step, or you won't be able to login.</li>
+<li>Use the metro client to open the shell.</li>
+</ol>
+<p><em>Note</em>: It would be real cool if we didn't have to do step 3, why can't it automatically update the public keys for all apps? I'm guessing it is a security reason. The first time, I didn't hit the update public keys button and I couldn't figure out why it wasn't working, and luckily one quick email to the support line, and they let me know what I did wrong, and I was up and running in no time.</p>
+<p>This is how you can kick off the shell, there are a bunch of command line args that you can pass as well, just do metro --help and it will show them all to you.</p>
+<div class="highlight"><pre><span class="nv">$ </span>metro -s
+</pre></div>
+<p><em>Note</em>: There is currently a bug that is preventing me from logging into the shell from my MacBook Pro OS X 10.6.7 using Python 2.6.1 . When I do it gives me this error. I have informed appHosted, and they said it looks like an issue with paramiko and python 2.6.1 on the Mac, not sure if it affects other python versions on other operating systems. They are working on the issue.</p>
+<div class="highlight"><pre><span class="nv">$ </span>metro -s
+Metro Application Manager 1.21
+Copyright <span class="o">(</span>c<span class="o">)</span> Lumentica,  http://www.lumentica.com
+
+Application name: kencochraneblog
+AppHosted Username: kencochrane
+AppHosted Password:
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+File <span class="s2">&quot;/Users/ken/.virtualenvs/apphosted/bin/metro&quot;</span>, line 75, in run_shell
+ssh.connect<span class="o">(</span>host, <span class="nv">username</span><span class="o">=</span>app_name, <span class="nv">port</span><span class="o">=</span>port<span class="o">)</span>
+File <span class="s2">&quot;/Library/Python/2.6/site-packages/paramiko/client.py&quot;</span>, line 278, in connect
+<span class="k">for</span> <span class="o">(</span>family, socktype, proto, canonname, sockaddr<span class="o">)</span> in socket.getaddrinfo<span class="o">(</span>hostname, port, socket.AF_UNSPEC, socket.SOCK_STREAM<span class="o">)</span>:
+gaierror: <span class="o">[</span>Errno 8<span class="o">]</span> nodename nor servname provided, or not known
+Error: <span class="o">[</span>Errno 8<span class="o">]</span> nodename nor servname provided, or not known
+</pre></div>
+</div>
+<div class="section" id="work-arounds">
+<h2>Work Arounds</h2>
+<p>Now that you know how to shell into your application, you can also kick off django management commands. I mentioned earlier that there was another way to create the django admin user, well here is how you do it. Login to the metro shell and then kick off the createsuperuser django management command. Logging into the shell and finding things isn't easy do to the added security so to save you some trouble this is what I did. Python isn't in your path so you need to put the fully qualified path to the virtual env's python. Not sure if the jailed shell allows you to edit your .profile if so, it might be nice to configure this so that you don't always have to do the full path.</p>
+<div class="highlight"><pre><span class="c"># Create superuser (django admin)</span>
+<span class="nv">$ </span>/ve/kencochraneblog/bin/python /app/kencochraneblog/mysite/manage.py createsuperuser
+
+<span class="c"># kicking off south migrations by hand.</span>
+<span class="nv">$ </span>/ve/kencochraneblog/bin/python /app/kencochraneblog/mysite/manage.py migrate
+</pre></div>
+<p>My application's name is kencochraneblog, so make sure you replace my application name with yours, it should be something like this. replace app_name,django_project_dir and command with your variables.</p>
+<div class="highlight"><pre><span class="nv">$ </span>/ve/&lt;app_name&gt;/bin/python /app/&lt;app_name&gt;/&lt;django_project_dir&gt;/manage.py &lt;<span class="nb">command</span>&gt;
+</pre></div>
+</div>
+<div class="section" id="background-tasks">
+<h2>Background Tasks</h2>
+<p>AppHosted also supports background tasks via celery, they don't have the documentation created yet, but it should be available soon. They are also planning on supporting a cron like service, not sure if it will be cron, or something similar, but it should do, what you need it to do.</p>
+</div>
+<div class="section" id="api">
+<h2>API</h2>
+<p>AppHosted provides a pretty nice API that allows you to do anything that the metro client does. This will allow you to write your own automation and management scripts to interact with your application. If you practice continuous deployment, it will allow you to automatically deploy the latest version of code on a post commit hook, if all of your tests pass.</p>
+</div>
+<div class="section" id="services">
+<h2>Services</h2>
+<p>Right now they only support memcache for caching, and PostgreSQL for databases, but they plan on adding more services as they move forward.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>I have been playing with AppHosted for a few weeks now, and I'm pretty happy with what they have so far. They still have a few issues to work out and they are still a work in progress, but I have been seeing improvements all of the time, so it will only be a matter of time before they are ready for the general public. Every time I came across an issue, they were quick to reply to my emails and solve my issues, or tell me where I was going wrong.  If you have any more questions I recommend checking out their documentation &#64; <a class="reference external" href="http://docs.apphosted.com/index.html">http://docs.apphosted.com/index.html</a> . Check them out, and make sure you let me know what you think.</p>
+<p><em>UPDATE</em>:</p>
+<p>They are now open to the general public.</p>
+<div class="section" id="update">
+<h3>Update:</h3>
+<p>Read how this service stacks up against other services like it in my <a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a></p>
+<p>2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to apphosted. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.</p>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "blog/2011/May/18/apphosted-com-django-hosting-review/";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://kencochrane.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>

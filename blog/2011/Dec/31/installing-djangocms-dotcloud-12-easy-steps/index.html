@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Installing DjangoCMS on dotCloud in 12 easy steps</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../../../.././theme/css/main.css" type="text/css" />
+        
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie.css"/>
+                <script src="../../../../.././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../../../.././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/kencochrane/kencochrane.github.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href="../../../../../.">KenCochrane.net </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="../../../../.././about/index.html">About Me</a></li>
+                
+                    <li><a href="../../../../.././projects/index.html">Projects</a></li>
+                
+                
+                
+                    <li class="active"><a href="../../../../.././category/blog.html">blog</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/" rel="bookmark"
+           title="Permalink to Installing DjangoCMS on dotCloud in 12 easy steps">Installing DjangoCMS on dotCloud in 12 easy steps</a></h1>
+      
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2011-12-31T13:26:42">
+                Sat 31 December 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../../.././author/ken-cochrane.html">Ken Cochrane</a>
+        </address>
+        
+<p>In <a href="../../../../.././category/blog.html">blog</a>. </p>
+<p>tags: <a href="../../../../.././tag/django.html">django</a><a href="../../../../.././tag/djangocms.html">djangocms</a><a href="../../../../.././tag/dotcloud.html">dotcloud</a><a href="../../../../.././tag/paas.html">paas</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p>Do you want to use Django-cms on dotcloud but don't know where to start? All you need to do is follow these 12 easy steps, they will get you on your way.</p>
+<ol class="arabic">
+<li><p class="first">Create a place to store your project</p>
+<blockquote>
+<p>$ mkdir -p ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the projects directory</p>
+<blockquote>
+<p>$ cd ~/projects</p>
+</blockquote>
+</li>
+<li><p class="first">Clone git repo from github, requires git client.</p>
+<blockquote>
+<p>$ git clone git://github.com/kencochrane/django-cms-dotcloud.git</p>
+</blockquote>
+</li>
+<li><p class="first">Go into the new project directory</p>
+<blockquote>
+<p>$ cd django-cms-dotcloud</p>
+</blockquote>
+</li>
+<li><p class="first">Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)</p>
+<blockquote>
+<p>$ mkvirtualenv --no-site-packages --distribute django-cms-dotcloud</p>
+</blockquote>
+</li>
+<li><p class="first">Installing the dotCloud client  <a class="reference external" href="http://docs.dotcloud.com/firststeps/install/">http://docs.dotcloud.com/firststeps/install/</a> (here are the steps for Linux and Mac OSX)</p>
+<blockquote>
+<p>$ sudo pip install -U dotcloud</p>
+</blockquote>
+</li>
+<li><p class="first">Sign up for a dotcloud account <a class="reference external" href="https://www.dotcloud.com/accounts/register/">https://www.dotcloud.com/accounts/register/</a> if you haven't already.</p>
+</li>
+<li><p class="first">The first time you use the dotcloud account you will need to add your api key. So type dotcloud and follow the steps. You can find your API key at <a class="reference external" href="http://www.dotcloud.com/account/settings">http://www.dotcloud.com/account/settings</a></p>
+<blockquote>
+<p>$ dotcloud</p>
+</blockquote>
+</li>
+<li><p class="first">Create your dotcloud application</p>
+<blockquote>
+<p>$ dotcloud create mycmsapp</p>
+</blockquote>
+</li>
+<li><p class="first">Push your code into dotcloud</p>
+<blockquote>
+<p>$ dotcloud push mycmsapp .</p>
+</blockquote>
+</li>
+<li><p class="first">Find out your application url.</p>
+<blockquote>
+<p>$ dotcloud url mycmsapp</p>
+</blockquote>
+</li>
+<li><p class="first">Open url in your browser and start using djangoCMS on dotcloud.</p>
+</li>
+<li><p class="first">Optional: If you don't like the URL they gave you, you can use your custom domain. Assuming your application was ramen.www and your domain was www.example.com you would do the following.</p>
+<blockquote>
+<p>$ dotcloud alias add ramen.www www.example.com</p>
+</blockquote>
+</li>
+</ol>
+<p>Once you get comfortable with how things work, you could add more plug-ins, create your own custom templates and then change your DEBUG setting to False. So go ahead <a class="reference external" href="https://github.com/kencochrane/django-cms-dotcloud/fork">fork my project on github</a>  and get started.</p>
+<p>After you make changes to your local project directory, you can test it on the server by running the dotcloud push command again.</p>
+<dl class="docutils">
+<dt>For more info about dotcloud and django-cms and what you can do with with it. check out their docs</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://docs.dotcloud.com/firststeps/platform-overview/">http://docs.dotcloud.com/firststeps/platform-overview/</a></li>
+<li><a class="reference external" href="https://www.django-cms.org/en/documentation/">https://www.django-cms.org/en/documentation/</a></li>
+</ul>
+</dd>
+<dt><strong>Links:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>dotcloud</strong> : <a class="reference external" href="http://dotcloud.com">http://dotcloud.com</a></li>
+<li><strong>Virtualenv</strong> : <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a></li>
+<li><strong>pip</strong> : <a class="reference external" href="http://www.pip-installer.org/">http://www.pip-installer.org/</a></li>
+<li><strong>virtualenvwrapper</strong> : <a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></li>
+<li><strong>git</strong> : <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
+</ul>
+</dd>
+</dl>
+
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "blog/2011/Dec/31/installing-djangocms-dotcloud-12-easy-steps/";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://kencochrane.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
+                        
+                            <li><a href="https://github.com/kencochrane">github</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-67696-11']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'kencochrane';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
+</html>
