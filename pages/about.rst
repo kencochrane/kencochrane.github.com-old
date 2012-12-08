@@ -12,6 +12,10 @@ My name is Ken Cochrane, I live in Maine and I'm a software developer.
 
 By day I work for `dotCloud.com <http://www.dotCloud.com>`_ and on nights and weekends I work for my software consulting company `Zanbow inc <http://zanbow.com>`_ where I write web based applications and iPhone apps.
 
+This blog and all of it's content is available on github. Feel free to `fork it <https://github.com/kencochrane/kencochrane.github.com>`_, add changes, corrections, and features, and then send me a pull request. 
+
+
+
 .. image:: /static/linkedin_32.png
    :name: Ken Cochrane's Linked in
    :align: center
