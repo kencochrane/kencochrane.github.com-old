@@ -1,10 +1,9 @@
 :title: Projects
 :slug: projects
 :author: Ken Cochrane
+:date: 2012-12-07 12:18:48
 
 .. html::
-
-    <h2>Projects</h2>
 
     <div id='entry-body'>
     <ul>

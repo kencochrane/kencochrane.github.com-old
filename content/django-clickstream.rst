@@ -1,6 +1,6 @@
 
 :date: 2011-08-12 10:48:29
-:tags: 
+:tags: django,clickstream
 :category: blog
 :slug: django-clickstream
 :author: Ken Cochrane

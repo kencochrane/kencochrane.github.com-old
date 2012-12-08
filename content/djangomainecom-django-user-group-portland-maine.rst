@@ -1,6 +1,6 @@
 
 :date: 2011-09-26 22:04:10
-:tags: django,django-maine,python,
+:tags: django,django-maine,python
 :category: blog
 :slug: djangomainecom-django-user-group-portland-maine
 :author: Ken Cochrane

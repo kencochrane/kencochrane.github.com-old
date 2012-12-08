@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>KenCochrane.net</title>
+	<meta name="description" content="">
+	<meta name="author" content="Ken Cochrane">
+	<link rel="icon" href="../../../../static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../static/favicon.ico" type="image/x-icon"> 
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="../../../../theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../../theme/local.css" rel="stylesheet">
+	<link href="../../../../theme/css/font-awesome.css" rel="stylesheet">
+	<link href="../../../../theme/pygments.css" rel="stylesheet">
+	<style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+	<script type="text/javascript">
+	var disqus_identifier = "blog/2012/01/running-sentry-on-dotcloud/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+</head>
+<body>
+		<a href="https://github.com/kencochrane/kencochrane.github.com"><img style="position: absolute; top: 39px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="../../../../index.html">KenCochrane.net</a>
+			<ul class="nav">
+																			<li><a href="../../../../about/index.html">About Me</a></li>
+											<li><a href="../../../../projects/index.html">Projects</a></li>
+																		<li class="active"><a href="../../../../category/blog.html">blog</a></li>
+							</ul>
+			<p class="pull-right"><a href="../../../../archives.html">[archives]</a> <a href="../../../../tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+		    						<div class="social">
+			<h3>Social</h3>
+			<ul>
+								<li><a href="http://twitter.com/kencochrane">twitter</a></li>
+								<li><a href="https://github.com/kencochrane">github</a></li>
+							</ul>
+			</div>
+			
+            <h4><i class="icon-tags icon-large"></i>Tags</h4>
+            <ul>
+                            <li class="tag-2">
+                    <a href="../../../../tag/dotcloud.html">
+                        <i class="icon-tag icon-large"></i>dotcloud
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/supervisor.html">
+                        <i class="icon-tag icon-large"></i>supervisor
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/script.html">
+                        <i class="icon-tag icon-large"></i>script
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/paas.html">
+                        <i class="icon-tag icon-large"></i>paas
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/newrelic.html">
+                        <i class="icon-tag icon-large"></i>newrelic
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/gondor.html">
+                        <i class="icon-tag icon-large"></i>gondor
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/work.html">
+                        <i class="icon-tag icon-large"></i>work
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/django.html">
+                        <i class="icon-tag icon-large"></i>django
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/apache.html">
+                        <i class="icon-tag icon-large"></i>apache
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/gunicorn.html">
+                        <i class="icon-tag icon-large"></i>gunicorn
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/install.html">
+                        <i class="icon-tag icon-large"></i>install
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/mysql.html">
+                        <i class="icon-tag icon-large"></i>mysql
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/percona.html">
+                        <i class="icon-tag icon-large"></i>percona
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/memcached.html">
+                        <i class="icon-tag icon-large"></i>memcached
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/job.html">
+                        <i class="icon-tag icon-large"></i>job
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>RHEL5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/deployment.html">
+                        <i class="icon-tag icon-large"></i>deployment
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/openshift.html">
+                        <i class="icon-tag icon-large"></i>openshift
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/macosx.html">
+                        <i class="icon-tag icon-large"></i>macosx
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/upgrade.html">
+                        <i class="icon-tag icon-large"></i>upgrade
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/fabric.html">
+                        <i class="icon-tag icon-large"></i>fabric
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/linux.html">
+                        <i class="icon-tag icon-large"></i>linux
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/django-maine.html">
+                        <i class="icon-tag icon-large"></i>django-maine
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/stackato.html">
+                        <i class="icon-tag icon-large"></i>stackato
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/mercurial.html">
+                        <i class="icon-tag icon-large"></i>Mercurial
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/pci.html">
+                        <i class="icon-tag icon-large"></i>pci
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/supervisord.html">
+                        <i class="icon-tag icon-large"></i>supervisord
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/centos5.html">
+                        <i class="icon-tag icon-large"></i>centos5
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/epio.html">
+                        <i class="icon-tag icon-large"></i>epio
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/python.html">
+                        <i class="icon-tag icon-large"></i>python
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/nginx.html">
+                        <i class="icon-tag icon-large"></i>nginx
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/sentry.html">
+                        <i class="icon-tag icon-large"></i>sentry
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/djangozoom.html">
+                        <i class="icon-tag icon-large"></i>djangozoom
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/jobs.html">
+                        <i class="icon-tag icon-large"></i>jobs
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/djangocms.html">
+                        <i class="icon-tag icon-large"></i>djangocms
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/startup.html">
+                        <i class="icon-tag icon-large"></i>startup
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/apphosted.html">
+                        <i class="icon-tag icon-large"></i>apphosted
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/heroku.html">
+                        <i class="icon-tag icon-large"></i>heroku
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/cashstar.html">
+                        <i class="icon-tag icon-large"></i>cashstar
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>rhel5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/hosting.html">
+                        <i class="icon-tag icon-large"></i>hosting
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/clickstream.html">
+                        <i class="icon-tag icon-large"></i>clickstream
+                    </a>
+                </li>
+                        </ul>
+			
+		</div>
+	  </div>
+	  <div class="content">
+							<div class='article'>
+		<div class="page-header"><h1>Running sentry on DotCloud</h1></div>
+		<div class="well small">Permalink: <a class="more" href="../../../../blog/2012/01/running-sentry-on-dotcloud/">2012-01-28 23:00:33</a>
+by <a class="url fn" href="../../../../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../../../../category/blog.html">blog</a>
+tags: <a href="../../../../tag/dotcloud.html">dotcloud</a> <a href="../../../../tag/django.html">django</a> <a href="../../../../tag/sentry.html">sentry</a> <a href="../../../../tag/python.html">python</a> </div>
+		<div><p><a class="reference external" href="https://github.com/dcramer/sentry">Sentry</a> is a realtime event logging and aggregation platform. At it’s core it specializes in monitoring errors and extracting all the information needed to do a proper post-mortum without any of the hassle of the standard user feedback loop.</p>
+<p>The main feature of sentry and the ability to send all of your application logs to one place, and then aggregate them, so that you only get one error email for the same error. This will keep your mailbox from flooding, when something goes wrong.</p>
+<p>Putting your logging server on a different server or network then your production servers is a good idea. If something goes wrong, and you can't access your servers, you can still see what errors were getting thrown before the servers started having problems.</p>
+<p>Follow these easy steps to get sentry up and running on DotCloud.</p>
+<ol class="arabic simple">
+<li>Create a place to store your project</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir -p ~/projects
+</pre></div>
+<ol class="arabic simple" start="2">
+<li>Go into the projects directory</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/projects
+</pre></div>
+<ol class="arabic simple" start="3">
+<li>Clone git repo from github, requires git client</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>git clone git://github.com/kencochrane/sentry-on-dotcloud.git
+</pre></div>
+<ol class="arabic simple" start="4">
+<li>Go into the new project directory</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>sentry-on-dotcloud
+</pre></div>
+<ol class="arabic simple" start="5">
+<li>Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv --no-site-packages --distribute sentry-on-dotcloud
+</pre></div>
+<ol class="arabic simple" start="6">
+<li>Install all of the Sentry requirements via pip and the requirements.txt file.</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+<ol class="arabic simple" start="7">
+<li>Installing the dotCloud client  <a class="reference external" href="http://docs.dotcloud.com/firststeps/install/">http://docs.dotcloud.com/firststeps/install/</a> (here are the steps for Linux and Mac OSX)</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install -U dotcloud
+</pre></div>
+<ol class="arabic simple" start="8">
+<li>Sign up for a dotcloud account <a class="reference external" href="https://www.dotcloud.com/accounts/register/">https://www.dotcloud.com/accounts/register/</a> if you haven't already.</li>
+<li>The first time you use the dotCloud account you will need to add your api key. So type dotcloud and follow the steps. You can find your API key at <a class="reference external" href="http://www.dotcloud.com/account/settings">http://www.dotcloud.com/account/settings</a></li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud
+</pre></div>
+<ol class="arabic simple" start="10">
+<li>Create your dotcloud application</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud create sentry
+</pre></div>
+<ol class="arabic simple" start="11">
+<li>Change the SENTRY_KEY settings in these files, to the same unique value.<ul>
+<li>sentry_conf.py</li>
+<li>sentryproj/settings.py</li>
+</ul>
+</li>
+</ol>
+<p>Here is an example on how to generate a good unique key that you can use in the files above.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">base64</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">KEY_LENGTH</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">))</span>
+<span class="s">&#39;6+tSEh1qYwDuTaaQRcxUjMDkvlj4z9BU/caCFV5QKtvnH7ZF3i0knA==&#39;</span>
+</pre></div>
+<ol class="arabic simple" start="12">
+<li>Add your email address to SENTRY_ADMINS in sentryproj/settings.py . This will send you emails when an error occurs.</li>
+</ol>
+<div class="highlight"><pre><span class="n">SENTRY_ADMINS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;youremail@example.com&#39;</span><span class="p">,)</span>
+</pre></div>
+<ol class="arabic simple" start="13">
+<li>Push your code into dotcloud</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud push sentry .
+</pre></div>
+<ol class="arabic simple" start="14">
+<li>Find out your application url</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud url sentry
+</pre></div>
+<ol class="arabic simple" start="15">
+<li>Open url in your browser and start using sentry on dotcloud.</li>
+<li>First things first you should change the admin password from the default one that was created on deployment. The default username and password are found in the mkadmin.py file.</li>
+<li>Test out sentry using the raven client to make sure it is working as it should. Open up a python shell on your local machine and do the following.</li>
+</ol>
+<p>Replace the server_url with your sentry url you found out in step 14. Make sure it ends in /store/ . Also make sure you replace my_key with your sentry key</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">raven</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">server_url</span> <span class="o">=</span> <span class="s">&quot;http://sentry-username.dotcloud.com/store/&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_key</span><span class="o">=</span><span class="s">&#39;1234-CHANGEME-WITH-YOUR-OWN-KEY-567890&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">servers</span><span class="o">=</span><span class="p">[</span><span class="n">server_url</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">my_key</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">client</span><span class="o">.</span><span class="n">create_from_text</span><span class="p">(</span><span class="s">&#39;My event just happened!&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;48ba88039e0f425399118f82173682dd&#39;</span><span class="p">,</span> <span class="s">&#39;3313fc5636650cccaee55dfc2f2ee7dd&#39;</span><span class="p">)</span>
+</pre></div>
+<p>If you go to the sentry webpage you should see your test message. If not, double check everything, and see if there was any errors during the send.</p>
+<p>Once this is all up and running you can install the raven client in your applications, and start sending your logs to sentry.</p>
+<ol class="arabic simple" start="18">
+<li>Optional: If you don't like the URL they gave you, you can use your custom domain. Assuming your application was sentry.www and your domain was www.example.com you would do the following</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>dotcloud <span class="nb">alias </span>add sentry.www www.example.com
+</pre></div>
+<p>Once you get comfortable with how things work, don't forget to change your DEBUG setting to False. Go ahead and fork my project and get started today.</p>
+<dl class="docutils">
+<dt>For more info about dotcloud, sentry, and Raven and what you can do with with it. Check out their docs</dt>
+<dd><ul class="first last simple">
+<li>Sentry on DotCloud GitHub repo : <a class="reference external" href="https://github.com/kencochrane/sentry-on-dotcloud">https://github.com/kencochrane/sentry-on-dotcloud</a></li>
+<li>DotCloud overview: <a class="reference external" href="http://docs.dotcloud.com/firststeps/platform-overview/">http://docs.dotcloud.com/firststeps/platform-overview/</a></li>
+<li>Sentry Documentation: <a class="reference external" href="http://sentry.readthedocs.org/en/latest/index.html">http://sentry.readthedocs.org/en/latest/index.html</a></li>
+<li>Raven Documentation: <a class="reference external" href="http://raven.readthedocs.org/en/latest/index.html">http://raven.readthedocs.org/en/latest/index.html</a></li>
+</ul>
+</dd>
+<dt>Links:</dt>
+<dd><ul class="first last simple">
+<li>Virtualenv : <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a></li>
+<li>pip : <a class="reference external" href="http://www.pip-installer.org/">http://www.pip-installer.org/</a></li>
+<li>virtualenvwrapper : <a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></li>
+<li>git : <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+		<div>
+			<h2>Comments</h2>
+		 	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			<div id="disqus_thread"></div>					<div>
+	</div>	
+		<footer>
+		  <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+		  <p>&copy; Ken Cochrane 2012</p>
+		  <a title="Real Time Web Analytics" href="http://getclicky.com/66415850"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+		</footer>
+	  </div>
+
+	</div>
+<div class="container-fluid">
+<script>var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /></p></noscript>
+</div>
+</body>
+</html>

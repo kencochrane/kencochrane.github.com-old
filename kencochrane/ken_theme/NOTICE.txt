@@ -1,0 +1,3 @@
+This work is derived in part from Bootstrap, from Twitter http://twitter.github.com/bootstrap/
+
+Also https://github.com/getpelican/pelican-themes/tree/master/bootstrap

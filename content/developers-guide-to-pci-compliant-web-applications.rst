@@ -6,7 +6,9 @@
 :author: Ken Cochrane
 :title: The Developers Guide to PCI Compliant Web applications
 
-*Work in progress last updated: 01-26-2012 by Ken Cochrane*
+*Work in progress last updated: 12-07-2012 by Ken Cochrane*
+
+**Update: 12-07-2012** I have added the youtube video and slides from a recent talk I did on Building PCI Complaint Django Applications.
 
 **Update: 04-05-2012** This article has been `translated into chinese <http://www.ituring.com.cn/article/1372>`_ , by Wujun Shen (吴峻申)
 
@@ -501,6 +503,25 @@ In the event of a security incident, merchants must take immediate action to:
 2. Alert all necessary parties. Be sure to notify: * Merchant Account Provider * Visa Fraud Control Group at (650) 432-2978 * Local FBI Office * U.S. Secret Service (if Visa payment data is compromised)
 3. Provide the compromised Visa accounts to Visa Fraud Control Group within 24 hours.
 4. Within four business days of the reported compromise, provide Visa with an incident report.
+
+Build PCI Complaint Django Applications
+---------------------------------------
+I recently gave a talk on Build PCI Complaint Django Applications, at DjangoCon US 2012 in Washington D.C. Here are my slides and the video of my talk.
+
+Slides
+~~~~~~
+
+.. html::
+    <div style="width: 710px;height: 612px;" id="slides_container">
+    <script async class="speakerdeck-embed" data-id="5048f7b290b276000202452f" data-ratio="1.2994923857868" src="//speakerdeck.com/assets/embed.js"></script>
+    </div>
+
+Video
+~~~~~
+
+.. html::
+
+    <iframe width="640" height="360" src="http://www.youtube.com/embed/9ZIPNWqjIEI?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
 Links:

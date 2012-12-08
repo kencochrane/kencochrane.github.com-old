@@ -1,6 +1,6 @@
 
 :date: 2011-12-30 14:08:16
-:tags: python,work,
+:tags: python,work
 :category: blog
 :slug: what-are-the-best-python-companies-to-work-for
 :author: Ken Cochrane

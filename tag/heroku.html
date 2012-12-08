@@ -1,74 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>KenCochrane.net - heroku</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
-        
-        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
-        
-        
+	<meta charset="utf-8">
+	<title>KenCochrane.net</title>
+	<meta name="description" content="">
+	<meta name="author" content="Ken Cochrane">
+	<link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon"> 
 
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="../theme/html5.js"></script>
+	<![endif]-->
 
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
-                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+	<!-- Le styles -->
+	<link href="../theme/bootstrap.min.css" rel="stylesheet">
+	<link href="../theme/local.css" rel="stylesheet">
+	<link href="../theme/css/font-awesome.css" rel="stylesheet">
+	<link href="../theme/pygments.css" rel="stylesheet">
+	<style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+	</head>
+<body>
+		<a href="https://github.com/kencochrane/kencochrane.github.com"><img style="position: absolute; top: 39px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="../index.html">KenCochrane.net</a>
+			<ul class="nav">
+																			<li><a href="../about/index.html">About Me</a></li>
+											<li><a href="../projects/index.html">Projects</a></li>
+																		<li ><a href="../category/blog.html">blog</a></li>
+							</ul>
+			<p class="pull-right"><a href="../archives.html">[archives]</a> <a href="../tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
 
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
-
-</head>
-
-<body id="index" class="home">
-
-<a href="https://github.com/kencochrane/kencochrane.github.com">
-
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-
-</a>
-
-        <header id="banner" class="body">
-                <h1><a href="../.">KenCochrane.net </a></h1>
-                <nav><ul>
-                
-                
-                
-                    <li><a href=".././about/index.html">About Me</a></li>
-                
-                    <li><a href=".././projects/index.html">Projects</a></li>
-                
-                
-                
-                    <li ><a href=".././category/blog.html">blog</a></li>
-                
-                </ul></nav>
-        </header><!-- /#banner -->
-                
-
-            
-
-        
-        
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href=".././blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/">Installing DjangoCMS on Heroku in 13 easy steps</a></h1> 
-                    <footer class="post-info">
-        <abbr class="published" title="2011-12-31T14:25:11">
-                Sat 31 December 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/djangocms.html">djangocms</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/paas.html">paas</a></p>
-
-
-</footer><!-- /.post-info --><p>Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.</p>
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+		    						<div class="social">
+			<h3>Social</h3>
+			<ul>
+								<li><a href="http://twitter.com/kencochrane">twitter</a></li>
+								<li><a href="https://github.com/kencochrane">github</a></li>
+							</ul>
+			</div>
+			
+            <h4><i class="icon-tags icon-large"></i>Tags</h4>
+            <ul>
+                            <li class="tag-2">
+                    <a href="../tag/dotcloud.html">
+                        <i class="icon-tag icon-large"></i>dotcloud
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/supervisor.html">
+                        <i class="icon-tag icon-large"></i>supervisor
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/script.html">
+                        <i class="icon-tag icon-large"></i>script
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../tag/paas.html">
+                        <i class="icon-tag icon-large"></i>paas
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/newrelic.html">
+                        <i class="icon-tag icon-large"></i>newrelic
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/gondor.html">
+                        <i class="icon-tag icon-large"></i>gondor
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/work.html">
+                        <i class="icon-tag icon-large"></i>work
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../tag/django.html">
+                        <i class="icon-tag icon-large"></i>django
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/apache.html">
+                        <i class="icon-tag icon-large"></i>apache
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/gunicorn.html">
+                        <i class="icon-tag icon-large"></i>gunicorn
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/install.html">
+                        <i class="icon-tag icon-large"></i>install
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/mysql.html">
+                        <i class="icon-tag icon-large"></i>mysql
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/percona.html">
+                        <i class="icon-tag icon-large"></i>percona
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/memcached.html">
+                        <i class="icon-tag icon-large"></i>memcached
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/job.html">
+                        <i class="icon-tag icon-large"></i>job
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>RHEL5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../tag/deployment.html">
+                        <i class="icon-tag icon-large"></i>deployment
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/openshift.html">
+                        <i class="icon-tag icon-large"></i>openshift
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/macosx.html">
+                        <i class="icon-tag icon-large"></i>macosx
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/upgrade.html">
+                        <i class="icon-tag icon-large"></i>upgrade
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/fabric.html">
+                        <i class="icon-tag icon-large"></i>fabric
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../tag/linux.html">
+                        <i class="icon-tag icon-large"></i>linux
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/django-maine.html">
+                        <i class="icon-tag icon-large"></i>django-maine
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/stackato.html">
+                        <i class="icon-tag icon-large"></i>stackato
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/mercurial.html">
+                        <i class="icon-tag icon-large"></i>Mercurial
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/pci.html">
+                        <i class="icon-tag icon-large"></i>pci
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/supervisord.html">
+                        <i class="icon-tag icon-large"></i>supervisord
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../tag/centos5.html">
+                        <i class="icon-tag icon-large"></i>centos5
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/epio.html">
+                        <i class="icon-tag icon-large"></i>epio
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../tag/python.html">
+                        <i class="icon-tag icon-large"></i>python
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/nginx.html">
+                        <i class="icon-tag icon-large"></i>nginx
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/sentry.html">
+                        <i class="icon-tag icon-large"></i>sentry
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/djangozoom.html">
+                        <i class="icon-tag icon-large"></i>djangozoom
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/jobs.html">
+                        <i class="icon-tag icon-large"></i>jobs
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../tag/djangocms.html">
+                        <i class="icon-tag icon-large"></i>djangocms
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/startup.html">
+                        <i class="icon-tag icon-large"></i>startup
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/apphosted.html">
+                        <i class="icon-tag icon-large"></i>apphosted
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../tag/heroku.html">
+                        <i class="icon-tag icon-large"></i>heroku
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/cashstar.html">
+                        <i class="icon-tag icon-large"></i>cashstar
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>rhel5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../tag/hosting.html">
+                        <i class="icon-tag icon-large"></i>hosting
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../tag/clickstream.html">
+                        <i class="icon-tag icon-large"></i>clickstream
+                    </a>
+                </li>
+                        </ul>
+			
+		</div>
+	  </div>
+	  <div class="content">
+			<div class="page-header"><h1>KenCochrane.net <small>heroku</small></h1></div>			
+<div class='article'>
+    <a href="../blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"><h2>Installing DjangoCMS on Heroku in 13 easy steps</h2></a>
+    <div class="well small">Permalink: <a class="more" href="../blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/">2011-12-31 14:25:11</a>
+by <a class="url fn" href="../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../category/blog.html">blog</a>
+tags: <a href="../tag/django.html">django</a> <a href="../tag/djangocms.html">djangocms</a> <a href="../tag/heroku.html">heroku</a> <a href="../tag/paas.html">paas</a> </div>
+    <div class="summary"><p>Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.</p>
 <ol class="arabic">
 <li><p class="first">Create a place to store your project</p>
 <blockquote>
@@ -97,207 +319,62 @@
 </li>
 <li><p class="first">Sign-Up for a Heroku account. <a class="reference external" href="https://api.heroku.com/signup">https://api.heroku.com/signup</a></p>
 </li>
-<li><p class="first">Install the Heroku client. <a class="reference external" href="http://devcenter.heroku.com/articles/quickstart">http://devcenter.heroku.com/articles/quickstart</a></p>
-</li>
-<li><p class="first">The first time you use the Heroku client you will need to login using the same information you used when you signed up. Follow the prompts, and it will finish your install.</p>
-<blockquote>
-<p>$ heroku login</p>
-</blockquote>
-</li>
-<li><p class="first">Create your heroku application</p>
-<blockquote>
-<p>$ heroku create --stack cedar</p>
-</blockquote>
-</li>
-<li><p class="first">Push your code into heroku</p>
-<blockquote>
-<p>$ git push heroku master</p>
-</blockquote>
-</li>
-<li><p class="first">Sync your database and create your admin account.</p>
-<blockquote>
-<p>$ heroku run python mycms/manage.py syncdb --all</p>
-</blockquote>
-</li>
-<li><p class="first">Run your database migrations.</p>
-<blockquote>
-<p>$ heroku run python mycms/manage.py migrate --fake</p>
-</blockquote>
-</li>
-<li><p class="first">Open application in your browser and start using djangoCMS on heroku.</p>
-<blockquote>
-<p>$ heroku open</p>
-</blockquote>
-</li>
-</ol>
-<p>Once you get comfortable with how things work, you could add more plug-ins, create your own custom templates and then change your DEBUG setting to False. So go ahead <a class="reference external" href="https://github.com/kencochrane/django-cms-heroku/fork">fork my project on github</a>  and get started.</p>
-<p>After you make changes to your local project directory, you can test it on the server by running the git push command again.</p>
-<dl class="docutils">
-<dt>For more info about Heroku and django-cms and what you can do with with it. check out their docs</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="http://devcenter.heroku.com/categories/platform-basics">http://devcenter.heroku.com/categories/platform-basics</a></li>
-<li><a class="reference external" href="https://www.django-cms.org/en/documentation/">https://www.django-cms.org/en/documentation/</a></li>
-</ul>
-</dd>
-<dt>Links:</dt>
-<dd><ul class="first last simple">
-<li><strong>Virtualenv</strong> : <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a></li>
-<li><strong>pip</strong> : <a class="reference external" href="http://www.pip-installer.org/">http://www.pip-installer.org/</a></li>
-<li><strong>virtualenvwrapper</strong> : <a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/">http://www.doughellmann.com/projects/virtualenvwrapper/</a></li>
-<li><strong>git</strong> : <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
-</ul>
-</dd>
-</dl>
-<p>There are <a href=".././blog/2011/Dec/31/installing-djangocms-on-heroku-in-13-easy-steps/#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/" rel="bookmark"
-                           title="Permalink to Developers guide to Running Django Applications on Heroku">Developers guide to Running Django Applications on Heroku</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2011-11-30T10:00:00">
-                Wed 30 November 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/python.html">python</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/hosting.html">hosting</a><a href=".././tag/deployment.html">deployment</a><a href=".././tag/paas.html">paas</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p><a class="reference external" href="http://Heroku.com">Heroku</a> the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still ...</p>
-                <a class="readmore" href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/">read more</a>
-                <p>There are <a href=".././blog/2011/Nov/30/developers-guide-for-running-django-apps-on-heroku/#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/" rel="bookmark"
-                           title="Permalink to Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?">Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2011-06-06T22:03:59">
-                Mon 06 June 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ken-cochrane.html">Ken Cochrane</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/django.html">django</a><a href=".././tag/hosting.html">hosting</a><a href=".././tag/apphosted.html">apphosted</a><a href=".././tag/python.html">python</a><a href=".././tag/deployment.html">deployment</a><a href=".././tag/dotcloud.html">dotcloud</a><a href=".././tag/epio.html">epio</a><a href=".././tag/gondor.html">gondor</a><a href=".././tag/djangozoom.html">djangozoom</a><a href=".././tag/heroku.html">heroku</a><a href=".././tag/paas.html">paas</a></p>
-
-
-</footer><!-- /.post-info -->
-                <div class="section" id="updates">
+<li><p class="first">Install the Heroku ...</p></li></ol> <a class="btn primary xsmall" href="../blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/">more…</a>
+    </div>
+</div>  
+<div class='article'>
+    <a href="../blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"><h2>Developers guide to Running Django Applications on Heroku</h2></a>
+    <div class="well small">Permalink: <a class="more" href="../blog/2011/11/developers-guide-for-running-django-apps-on-heroku/">2011-11-30 10:00:00</a>
+by <a class="url fn" href="../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../category/blog.html">blog</a>
+tags: <a href="../tag/django.html">django</a> <a href="../tag/python.html">python</a> <a href="../tag/heroku.html">heroku</a> <a href="../tag/hosting.html">hosting</a> <a href="../tag/deployment.html">deployment</a> <a href="../tag/paas.html">paas</a> </div>
+    <div class="summary"><p><a class="reference external" href="http://Heroku.com">Heroku</a> the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still in beta, but that shouldn't stop you from trying it out, and that is just what I'm going to do.</p>
+<p>6 months ago I wrote a series of blog posts that reviewed all of the cool new django hosting services that were popping up. My goal was to ...</p> <a class="btn primary xsmall" href="../blog/2011/11/developers-guide-for-running-django-apps-on-heroku/">more…</a>
+    </div>
+</div>  
+<div class='article'>
+    <a href="../blog/2011/06/django-hosting-roundup-who-wins/"><h2>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</h2></a>
+    <div class="well small">Permalink: <a class="more" href="../blog/2011/06/django-hosting-roundup-who-wins/">2011-06-06 22:03:59</a>
+by <a class="url fn" href="../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../category/blog.html">blog</a>
+tags: <a href="../tag/django.html">django</a> <a href="../tag/hosting.html">hosting</a> <a href="../tag/apphosted.html">apphosted</a> <a href="../tag/python.html">python</a> <a href="../tag/deployment.html">deployment</a> <a href="../tag/dotcloud.html">dotcloud</a> <a href="../tag/epio.html">epio</a> <a href="../tag/gondor.html">gondor</a> <a href="../tag/djangozoom.html">djangozoom</a> <a href="../tag/heroku.html">heroku</a> <a href="../tag/paas.html">paas</a> </div>
+    <div class="summary"><div class="section" id="updates">
 <h2>Updates</h2>
 <ul class="simple">
 <li>Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.</li>
-<li>Updated 1/26/2012: Updated Gondor ...</li></ul></div>
-                <a class="readmore" href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/">read more</a>
-                <p>There are <a href=".././blog/2011/Jun/06/django-hosting-roundup-who-wins/#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            </ol><!-- /#posts-list -->
-            
-                
-<p class="paginator">
-    
-    Page 1 / 1
-    
-</p>
-
-            
-            </section><!-- /#content -->
-        
-    
+<li>Updated 1/26/2012: Updated Gondor.io with info from Donald Stufft.</li>
+<li>Updated 01/24/2012: changed gondor.io to include SSL support</li>
+<li>Updated 01/01/2012: Added Heroku and updated ep.io, gondor.io, and dotcloud.</li>
+</ul>
+</div>
+<div class="section" id="intro">
+<h2>Intro</h2>
+<p>For the past 6 weeks I have been trying out all of the new django/python hosting services ...</p></div> <a class="btn primary xsmall" href="../blog/2011/06/django-hosting-roundup-who-wins/">more…</a>
+    </div>
+</div>  
 
 
-        <section id="extras" class="body">
-        
-        
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            
+		<footer>
+		  <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+		  <p>&copy; Ken Cochrane 2012</p>
+		  <a title="Real Time Web Analytics" href="http://getclicky.com/66415850"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+		</footer>
+	  </div>
 
-                        
-                            <li><a href="http://twitter.com/kencochrane">twitter</a></li>
-                        
-                            <li><a href="https://github.com/kencochrane">github</a></li>
-                        
-                        </ul>
-                </div><!-- /.social -->
-        
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-67696-11']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
-
-
+	</div>
+<div class="container-fluid">
+<script>var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
 
 <script type="text/javascript">
-    var disqus_shortname = 'kencochrane';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
 </script>
-
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /></p></noscript>
+</div>
 </body>
 </html>

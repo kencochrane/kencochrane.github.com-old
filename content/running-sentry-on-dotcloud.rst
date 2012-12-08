@@ -1,6 +1,6 @@
 
 :date: 2012-01-28 23:00:33
-:tags: dotcloud,django,sentry,python,
+:tags: dotcloud,django,sentry,python
 :category: blog
 :slug: running-sentry-on-dotcloud
 :author: Ken Cochrane

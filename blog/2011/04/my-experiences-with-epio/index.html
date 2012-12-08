@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>KenCochrane.net</title>
+	<meta name="description" content="">
+	<meta name="author" content="Ken Cochrane">
+	<link rel="icon" href="../../../../static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../static/favicon.ico" type="image/x-icon"> 
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="../../../../theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../../theme/local.css" rel="stylesheet">
+	<link href="../../../../theme/css/font-awesome.css" rel="stylesheet">
+	<link href="../../../../theme/pygments.css" rel="stylesheet">
+	<style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+	<script type="text/javascript">
+	var disqus_identifier = "blog/2011/04/my-experiences-with-epio/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+</head>
+<body>
+		<a href="https://github.com/kencochrane/kencochrane.github.com"><img style="position: absolute; top: 39px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="../../../../index.html">KenCochrane.net</a>
+			<ul class="nav">
+																			<li><a href="../../../../about/index.html">About Me</a></li>
+											<li><a href="../../../../projects/index.html">Projects</a></li>
+																		<li class="active"><a href="../../../../category/blog.html">blog</a></li>
+							</ul>
+			<p class="pull-right"><a href="../../../../archives.html">[archives]</a> <a href="../../../../tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+		    						<div class="social">
+			<h3>Social</h3>
+			<ul>
+								<li><a href="http://twitter.com/kencochrane">twitter</a></li>
+								<li><a href="https://github.com/kencochrane">github</a></li>
+							</ul>
+			</div>
+			
+            <h4><i class="icon-tags icon-large"></i>Tags</h4>
+            <ul>
+                            <li class="tag-2">
+                    <a href="../../../../tag/dotcloud.html">
+                        <i class="icon-tag icon-large"></i>dotcloud
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/supervisor.html">
+                        <i class="icon-tag icon-large"></i>supervisor
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/script.html">
+                        <i class="icon-tag icon-large"></i>script
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/paas.html">
+                        <i class="icon-tag icon-large"></i>paas
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/newrelic.html">
+                        <i class="icon-tag icon-large"></i>newrelic
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/gondor.html">
+                        <i class="icon-tag icon-large"></i>gondor
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/work.html">
+                        <i class="icon-tag icon-large"></i>work
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/django.html">
+                        <i class="icon-tag icon-large"></i>django
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/apache.html">
+                        <i class="icon-tag icon-large"></i>apache
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/gunicorn.html">
+                        <i class="icon-tag icon-large"></i>gunicorn
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/install.html">
+                        <i class="icon-tag icon-large"></i>install
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/mysql.html">
+                        <i class="icon-tag icon-large"></i>mysql
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/percona.html">
+                        <i class="icon-tag icon-large"></i>percona
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/memcached.html">
+                        <i class="icon-tag icon-large"></i>memcached
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/job.html">
+                        <i class="icon-tag icon-large"></i>job
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>RHEL5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/deployment.html">
+                        <i class="icon-tag icon-large"></i>deployment
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/openshift.html">
+                        <i class="icon-tag icon-large"></i>openshift
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/macosx.html">
+                        <i class="icon-tag icon-large"></i>macosx
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/upgrade.html">
+                        <i class="icon-tag icon-large"></i>upgrade
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/fabric.html">
+                        <i class="icon-tag icon-large"></i>fabric
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/linux.html">
+                        <i class="icon-tag icon-large"></i>linux
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/django-maine.html">
+                        <i class="icon-tag icon-large"></i>django-maine
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/stackato.html">
+                        <i class="icon-tag icon-large"></i>stackato
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/mercurial.html">
+                        <i class="icon-tag icon-large"></i>Mercurial
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/pci.html">
+                        <i class="icon-tag icon-large"></i>pci
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/supervisord.html">
+                        <i class="icon-tag icon-large"></i>supervisord
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/centos5.html">
+                        <i class="icon-tag icon-large"></i>centos5
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/epio.html">
+                        <i class="icon-tag icon-large"></i>epio
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/python.html">
+                        <i class="icon-tag icon-large"></i>python
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/nginx.html">
+                        <i class="icon-tag icon-large"></i>nginx
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/sentry.html">
+                        <i class="icon-tag icon-large"></i>sentry
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/djangozoom.html">
+                        <i class="icon-tag icon-large"></i>djangozoom
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/jobs.html">
+                        <i class="icon-tag icon-large"></i>jobs
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/djangocms.html">
+                        <i class="icon-tag icon-large"></i>djangocms
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/startup.html">
+                        <i class="icon-tag icon-large"></i>startup
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/apphosted.html">
+                        <i class="icon-tag icon-large"></i>apphosted
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="../../../../tag/heroku.html">
+                        <i class="icon-tag icon-large"></i>heroku
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/cashstar.html">
+                        <i class="icon-tag icon-large"></i>cashstar
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="../../../../tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>rhel5
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="../../../../tag/hosting.html">
+                        <i class="icon-tag icon-large"></i>hosting
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="../../../../tag/clickstream.html">
+                        <i class="icon-tag icon-large"></i>clickstream
+                    </a>
+                </li>
+                        </ul>
+			
+		</div>
+	  </div>
+	  <div class="content">
+							<div class='article'>
+		<div class="page-header"><h1>My Experiences with ep.io</h1></div>
+		<div class="well small">Permalink: <a class="more" href="../../../../blog/2011/04/my-experiences-with-epio/">2011-04-18 21:09:57</a>
+by <a class="url fn" href="../../../../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../../../../category/blog.html">blog</a>
+tags: <a href="../../../../tag/django.html">django</a> <a href="../../../../tag/epio.html">epio</a> <a href="../../../../tag/deployment.html">deployment</a> <a href="../../../../tag/hosting.html">hosting</a> <a href="../../../../tag/python.html">python</a> <a href="../../../../tag/paas.html">paas</a> </div>
+		<div><p>Over the last decade I have deployed my applications many different ways, I have used, self managed dedicated servers, fully managed dedicated servers, Virtual Privates Servers from Linode, RackSpace and Amazon, shared hosting from webfaction, and I also used Google App Engine. I have learned a lot of things along the way, but the one thing I learned the most is that managing the server and keeping it up and running isn't fun. The fun part is writing the applications, and watching them grow as people start to use them. If there was only a way to write the application and then let someone else manage all of the server stuff for you, for a reasonable price.</p>
+<p>The Ruby on Rails folks have had services like this for a while, both Heroku and EngineYard are pretty popular and make hosting your Rails applications much easier. When Heroku was bought by salesforce.com for $212M, it opened people eyes, and started to get them thinking. Why can't we do that for Django? I have been wanting to build a Django service like this for a while now, but with limited time and not knowing where to begin, my idea went no where. Recently there have been a bunch of  new services that have popped up that provided turn key Django hosting, very similar in nature to Heroku, and Google App Engine (Python, and Java). This has gotten me very excited, and I plan on trying them all out.</p>
+<p>One of these new services is called <a class="reference external" href="http://ep.io">ep.io</a>, and it is run by Andrew Godwin (of Django South fame) and Ben Firshman. They are trying to make the hosting as simple as possible, so that you don't have to worry about servers at all. You write your application, deploy it to their service and they handle the rest. If you need to scale up your application, add load balancing, add more disk space, they will take care of that. This allows you the developer to spend your valuable time writing code instead of doing server maintenance. Best of all their pricing is based on usage, and they have a free tier, so if you have an application that you put out there, but it isn't using any resources, or very few resources, it might not cost you anything at all. So there is nothing stopping you from trying it out.</p>
+<p><a class="reference external" href="http://ep.io">ep.io</a> is still in beta, and not available to the public yet. The only way to get access is to put your name on a waiting list, and wait until you are sent an invite. I was lucky enough to get an invite early on, and I have been playing around with <a class="reference external" href="http://ep.io">ep.io</a> for a new project that I'm working on.  I'm still in development with my application so it isn't public yet, but I have an app deployed and running. I personally feel that if you are lucky enough to be selected to a closed beta, that it is your duty to give as much feedback as possible, so that you can help make the application great. If you aren't going to be doing this, then you don't deserve the early access. That is why I'm writing this post, to help spread the word about ep.io, and to show people getting started with the service how easy it is to deploy their app.</p>
+<p>Before you start using a service like <a class="reference external" href="http://ep.io">ep.io</a>, you need to do your research to make sure you know what it is you are getting with the service. Services like this aim to make hard tasks easy, and sometimes in doing so, they need to sacrifice features and flexibility. Knowing the pros and cons about a service before hand will help set your expectations accordingly so that you aren't disappointed later on in the process. It is important to note that as of this writing, they are still in beta, and thus still a work in progress, so if you are reading this, make sure you look at their website for the most up to date information. I will try and come back and update this post as the service deploys new features, and my experience with the service grows.</p>
+<p><strong>Application setup:</strong></p>
+<p>Like most managed application services, you won't be able to deploy your application as is, you will need to make a few changes in order to get everything to work. Luckily for us, this step wasn't too hard. I used the documentation that ep.io provides along with the ep.io project skeleton (<a class="reference external" href="https://github.com/idangazit/epio_skel">https://github.com/idangazit/epio_skel</a>) as a good starting point. ep.io uses an ini based configuration file called epio.ini for all of your configuration information. The documentation does a pretty good job explaining the different sections, and if you look at the ep.io project skeleton, there is a good example of one already created for you.</p>
+<p>ep.io controls all aspects of your environment and because of this you don't know what your database information is, but that is OK, because if you setup your django settings.py file correctly, they will handle all of that for you. Once again, checkout the skeleton project or the documentation for the recommended settings.</p>
+<p><strong>Dependencies:</strong></p>
+<p>If your project is already using virtualenv and pip, this shouldn't be too difficult. If not, you will need to read up a little on pip and it's requirements files (<a class="reference external" href="http://pip.openplans.org/requirement-format.html">http://pip.openplans.org/requirement-format.html</a>) in order to make sure you load all of your dependencies correctly. ep.io already has some of the most common libraries installed, for a full list, follow this link: <a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries">http://www.ep.io/docs/runtime/#python-libraries</a>. If you need a non pure-python library that isn't on their list, just let them know and if it is reasonable, they will most likely install it for you.</p>
+<p><strong>Deployment:</strong></p>
+<p>ep.io offers a simple control panel so that you can see what apps you have installed, how much they are costing you, how many resources they are using (database, bandwidth, CPU, disk usage, etc). It also allows you to configure your domains, set application permissions, and view the console log. Besides that, you need to do everything using their command line client. Before you can use the client, you will need to install it, you can do that using either pip or easy install.</p>
+<div class="highlight"><pre>pip install -U epio
+
+<span class="c"># or</span>
+
+easy_install -U epio
+</pre></div>
+<p>Once you have the client installed, this is where the fun begins. With the client you can create, suspend, resume, upload or delete your app. You can also use the client to kick off remote commands on your server such as django syncdb. See the official documentation for full details: <a class="reference external" href="http://www.ep.io/docs/client/">http://www.ep.io/docs/client/</a></p>
+<p>Here are some notes and examples.</p>
+<div class="highlight"><pre><span class="c">#create app</span>
+epio create <span class="o">[</span>&lt;app_name&gt;<span class="o">]</span>
+
+<span class="c"># suspend app</span>
+epio <span class="nb">suspend</span> <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span>
+
+<span class="c">#resume app</span>
+epio resume <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span>
+
+<span class="c"># delete app</span>
+epio delete <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span>
+
+<span class="c"># django syncdb</span>
+epio django <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> syncdb
+
+<span class="c"># django run south migrations for all apps</span>
+epio django <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> migrate
+
+<span class="c"># django run south migrations for just one app called chicken</span>
+epio django <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> migrate chicken
+
+<span class="c"># bash command</span>
+epio run_command <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> bash
+
+<span class="c"># psql access to your database.</span>
+epio run_command <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> psql
+</pre></div>
+<p><strong>Uploading App:</strong></p>
+<p>The epio upload command will use git in the background to sync up your local directory to your server. It will ignore the .pyc files and such, if you have other files and directories that you also want to ignore you can create a file called .epioignore and list the files and directories to ignore in it. The .epioignore file has the same syntax as a .gitignore file.</p>
+<p>The upload command is fine for most cases, but if you are already using git or mercurial, you can push your changes directly to ep.io, this allows you to do more of a continuous deployment setup, where you want to push to a central repo, run a bunch of tests and if it works push out to production. See this link for more info on uploading via git and mercurial <a class="reference external" href="http://www.ep.io/docs/vcss/">http://www.ep.io/docs/vcss/</a></p>
+<p><strong>Database:</strong></p>
+<p>The ep.io databases are behind a firewall for security purposes, and because of this, you don't have direct access to the database, so if you are used to using a GUI database client, you are out of luck. The only way to get to your database right now is using the psql command tool.</p>
+<div class="highlight"><pre><span class="c"># psql access to your database.</span>
+epio run_command <span class="o">[</span>-a &lt;app_name&gt;<span class="o">]</span> psql
+</pre></div>
+<p><strong>Getting data into your databases:</strong></p>
+<p>There are two recommended ways for getting data into your database.</p>
+<p>You can create a SQL dump file, and add it to your project, and upload. Once it is up on the server you can run the following command.</p>
+<div class="highlight"><pre>epio run_command -- psql -f dumpname.sql
+</pre></div>
+<p>You can also stream the dump over the network via SSH. (They suggest that you only do this with dumps that are 20MB or less in size.)</p>
+<div class="highlight"><pre>epio run_command psql &lt; dumpname.sql
+</pre></div>
+<p><strong>Background tasks:</strong></p>
+<p>ep.io supports both cronjobs and background tasks via Celery and Redis.</p>
+<p>Cron is pretty easy to setup, you have a section in the epio.ini file called cron where you put your normal cron commands. The syntax isn't exactly the same, so see the documentation for the differences. <a class="reference external" href="http://www.ep.io/docs/epioini/#cron-section">http://www.ep.io/docs/epioini/#cron-section</a></p>
+<p>You can use either plain celery or django-celery, what ever you want, they support most features, but they currently don't support periodic tasks, they hope to get to that in the future. In the meantime just use a cron for those.</p>
+<div class="section" id="ep-io-vs-traditional-hosting">
+<h2>ep.io vs traditional hosting</h2>
+<p>I originally wrote this Pro's and Con's section at stackoverflow.com, and I include it here as well.
+<a class="reference external" href="http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323">http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323</a></p>
+<div class="section" id="pros">
+<h3><strong>Pros:</strong></h3>
+<ul class="simple">
+<li><em>Server Management</em>: You don't have to worry about your server setup at all, it handles everything for you. With a VPS, you would need to worry about making sure the server is up to date with security patches, and all that fun stuff, with this, you don't worry about anything, they take care of all that for you.</li>
+<li><em>Deployment</em>: It makes deploying an app and having it up and running really quickly. deploying a new version of an app is a piece of cake, I just need to run one maybe two commands, and it handles everything for me.</li>
+<li><em>Pricing</em>: you are only charged for what you use, so if you have a very low traffic website, it might not cost you anything at all.</li>
+<li><em>Scaling</em>: They handle scaling and load balancing for you out of the box, no need for you to worry about that. You still need to write your application so that it can scale efficiently, but if you do, they will handle the rest.</li>
+<li><em>Background tasks</em>: They have support for cronjobs as well as background workers using celery.</li>
+<li><em>Customer support</em>: I had a few questions, sent them an email, and had an answer really fast, they have been great, so much better then I would have expected. If you run your own VPS, you really don't have anyone to talk to, so this is a major plus.</li>
+</ul>
+</div>
+<div class="section" id="cons">
+<h3><strong>Cons:</strong></h3>
+<ul class="simple">
+<li><em>DB access</em>: You don't have direct access to the database, you can get to the psql shell, but you can't connect an external client GUI. This makes doing somethings a little more difficult or slow. But you can still use the django admin or fixtures to do a lot of things.</li>
+<li><em>Limited services available</em>: It currently only supports Postgresql and redis, so if you want to use MySQL, memcached, mongodb,etc you are out of luck.</li>
+<li><em>Low level c libs</em>: You can't install any dependencies that you want, similar to google app engine, they have some of the common c libs installed already, and if you want something different that isn't already installed you will need to contact them to get it added. <a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries">http://www.ep.io/docs/runtime/#python-libraries</a></li>
+<li><em>Email</em>: You can't send or receive email, which means you will need to depend on a 3rd party for that, which is probably good practice anyway, but it just means more money.</li>
+<li><em>File system</em>: You have a more limited file system available to you, and because of the distributed nature of the system you will need to be very careful when working from files. You can't (unless i missed it) connect to your account via (s)ftp to upload files, you will need to connect via the ep.io command line tool and either do an rsync or a push of a repo to get files up there.</li>
+</ul>
+</div>
+<div class="section" id="update">
+<h3>Update:</h3>
+<p>Read how this service stacks up against other services like it in my <a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a></p>
+<p>2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to ep.io. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.</p>
+</div>
+</div>
+</div>
+		<div>
+			<h2>Comments</h2>
+		 	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			<div id="disqus_thread"></div>					<div>
+	</div>	
+		<footer>
+		  <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+		  <p>&copy; Ken Cochrane 2012</p>
+		  <a title="Real Time Web Analytics" href="http://getclicky.com/66415850"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+		</footer>
+	  </div>
+
+	</div>
+<div class="container-fluid">
+<script>var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /></p></noscript>
+</div>
+</body>
+</html>
