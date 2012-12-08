@@ -16,11 +16,17 @@ div.highlight pre {
   font-size: 11px;
 }
 
+.well ul
+{
+    list-style-type: none;
+}
+
 .summary * { display: inline; }
 .summary pre { display: none; }
 
 .social a[href*='activestate.com']:before {content: url('./images/icons/activestate.png'); margin-right: 2px; vertical-align: -3px;}
 .social a[href*='atom.xml']:before {content: url('./images/icons/rss.png'); margin-right: 2px; vertical-align: -3px;}
+.social a[href*='.rss']:before {content: url('./images/icons/rss.png'); margin-right: 2px; vertical-align: -3px;}
 .social a[href*='bitbucket.org']:before {content: url('./images/icons/bitbucket.png'); margin-right: 2px; vertical-align: -3px;}
 .social a[href*='code.google.com']:before {content: url('./images/icons/phosting.png'); margin-right: 2px; vertical-align: -3px;}
 .social a[href*='delicious.com']:before {content: url('./images/icons/delicious.png'); margin-right: 2px; vertical-align: -3px;}

@@ -1,2 +1,11 @@
 {% extends "index.html" %}
+{% block extra_head %}
+    {% if TAG_FEED_ATOM %}
+		<link href="{{ FEED_DOMAIN }}/feeds/{{ tag }}.atom.xml" type="application/atom+xml" rel="alternate" title="{{ tag }} Atom Feed" />
+	{% endif %}
+	{% if TAG_FEED_RSS %}
+		<link href="{{ FEED_DOMAIN }}/rss/{{tag}}.rss" type="application/rss+xml" rel="alternate" title="{{ tag }} RSS Feed" />
+	{% endif %}
+{% endblock extra_head %}
+
 {% block title %}{{ SITENAME }} <small>{{ tag }}</small>{% endblock %}

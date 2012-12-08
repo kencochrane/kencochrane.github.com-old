@@ -8,6 +8,7 @@ GITHUB_ACTIVITY_FEED = 'https://github.com/kencochrane.atom'
 GOOGLE_ANALYTICS='UA-67696-11'
 CLICKY_SITE_ID='66415850'
 SITEURL = 'http://kencochrane.net'
+FEED_DOMAIN = SITEURL
 SITENAME = 'KenCochrane.net'
 SOCIAL = (('twitter', 'http://twitter.com/kencochrane'),
           ('github', 'https://github.com/kencochrane'),)
