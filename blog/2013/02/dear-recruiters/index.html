@@ -39,7 +39,7 @@
      }
     </style>
 	<script type="text/javascript">
-	var disqus_identifier = "blog/2010/05/django-12-has-been-released/";
+	var disqus_identifier = "blog/2013/02/dear-recruiters/";
 	(function() {
 		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 		dsq.src = 'http://kencochrane.disqus.com/embed.js';
@@ -308,103 +308,56 @@
 	  </div>
 	  <div class="content">
 							<div class='article'>
-		<div class="page-header"><h1>Django 1.2 has been Released!</h1></div>
-		<div class="well small">Permalink: <a class="more" href="../../../../blog/2010/05/django-12-has-been-released/">2010-05-17 16:12:11</a>
+		<div class="page-header"><h1>Dear Recruiters</h1></div>
+		<div class="well small">Permalink: <a class="more" href="../../../../blog/2013/02/dear-recruiters/">2013-02-06 20:17:48</a>
 by <a class="url fn" href="../../../../author/ken-cochrane.html">Ken Cochrane</a> in <a href="../../../../category/blog.html">blog</a>
-tags: <a href="../../../../tag/django.html">django</a> <a href="../../../../tag/python.html">python</a> </div>
-		<div><div class="section" id="django-1-2-has-been-released">
-<h2>Django 1.2 has been released</h2>
-<p>I have been waiting for this release for a while now, mostly because it includes some of the features I have been dying to get my hands on. The ones I like the most are</p>
+tags: <a href="../../../../tag/recruiters.html">recruiters</a> </div>
+		<div><p>Dear Recruiters,</p>
+<p>You are probably reading this because I sent you a link in response to a recent job you contacted me about. Since most of you know nothing about me (even though most of this information is on my <a class="reference external" href="http://www.linkedin.com/in/kencochrane">LinkedIn</a> page). I'm going to tell you a little bit about myself, and after reading this if you feel the job that you are trying to fill, is a good match for me, then feel free to respond. If you are going to respond, please make sure you follow the criteria I listed at the bottom of the page.</p>
+<div class="section" id="about-me">
+<h2>About Me:</h2>
+<p>I currently work for a great company called <a class="reference external" href="http://www.dotcloud.com">dotCloud</a>, which is based in San Francisco, and I'm happy. So it would take a really good offer to even make me think about wanting to leave. What is a really good offer you might ask? I list my current minimum offer towards the bottom of the page.</p>
+<p>Even though the company that I work for is based in San Francisco, I do not live there, I live in <a class="reference external" href="http://en.wikipedia.org/wiki/Portland,_Maine">Southern Maine</a>. So, unless this job of yours allows remote workers, don't even bother. Also, unless you plan on covering the cost of selling my house, don't even mention relocation assistance.</p>
+<p>I like the following:</p>
 <ul class="simple">
-<li>support for multiple databases</li>
-<li>smart-if template tag</li>
-<li>The new Email Backends</li>
-<li>relaxed requirements for usernames.</li>
+<li><strong>Language</strong>: Python</li>
+<li><strong>Server OS</strong>: Linux</li>
+<li><strong>Desktop OS</strong>: OSX</li>
+<li><strong>Databases</strong>: MySQL, PostgreSQL</li>
+<li><strong>Data Stores</strong>: Redis, MongoDB</li>
+<li><strong>Version control</strong>: git, mercurial</li>
+<li><strong>Web Server</strong>: nginx</li>
+<li><strong>Javascript library</strong>: jQuery</li>
 </ul>
-<p>Here is a list for some of the features, and a little bit about each one.</p>
-<div class="section" id="support-for-multiple-databases">
-<h3>Support for multiple databases</h3>
-<blockquote>
-Django 1.2 adds the ability to use more than one database in your Django project. Queries can be issued at a  specific database with the using() method on QuerySet objects. Individual objects can be saved to a specific  database by providing a using argument when you call save().</blockquote>
-</div>
-<div class="section" id="model-validation">
-<h3>Model validation</h3>
-<blockquote>
-Model instances now have support for validating their own data, and both model and form fields now accept configurable lists of validators specifying reusable, encapsulated validation behavior. Note, however, that validation must still be performed explicitly. Simply invoking a model instance’s save() method will not perform any validation of the instance’s data.</blockquote>
-</div>
-<div class="section" id="improved-csrf-protection">
-<h3>Improved CSRF protection</h3>
-<blockquote>
-Django now has much improved protection against Cross-Site Request Forgery (CSRF) attacks. This type of attack occurs when a malicious Web site contains a link, a form button or some JavaScript that is intended to perform some action on your Web site, using the credentials of a logged-in user who visits the malicious site in their browser. A related type of attack, “login CSRF,” where an attacking site tricks a user’s browser into logging into a site with someone else’s credentials, is also covered.</blockquote>
-</div>
-<div class="section" id="messages-framework">
-<h3>Messages framework</h3>
-<blockquote>
-Django now includes a robust and configurable messages framework with built-in support for cookie- and session-based messaging, for both anonymous and authenticated clients. The messages framework replaces the deprecated user message API and allows you to temporarily store messages in one request and retrieve them for display in a subsequent request (usually the next one).</blockquote>
-</div>
-<div class="section" id="object-level-permissions">
-<h3>Object-level permissions</h3>
-<blockquote>
-A foundation for specifying permissions at the per-object level has been added. Although there is no implementation of this in core, a custom authentication backend can provide this implementation and it will be used by django.contrib.auth.models.User. See the authentication docs for more information.</blockquote>
-</div>
-<div class="section" id="permissions-for-anonymous-users">
-<h3>Permissions for anonymous users</h3>
-<blockquote>
-If you provide a custom auth backend with supports_anonymous_user set to True, AnonymousUser will check the backend for permissions, just like User already did. This is useful for centralizing permission handling - apps can always delegate the question of whether something is allowed or not to the authorization/authentication backend. See the authentication docs for more details.</blockquote>
-</div>
-<div class="section" id="relaxed-requirements-for-usernames">
-<h3>Relaxed requirements for usernames</h3>
-<blockquote>
-The built-in User model’s username field now allows a wider range of characters, including &#64;, +, . and - characters.</blockquote>
-</div>
-<div class="section" id="e-mail-backends">
-<h3>E-mail backends</h3>
-<blockquote>
-You can now configure the way that Django sends e-mail. Instead of using SMTP to send all e-mail, you can now choose a configurable e-mail backend to send messages. If your hosting provider uses a sandbox or some other non-SMTP technique for sending mail, you can now construct an e-mail backend that will allow Django’s standard mail sending methods to use those facilities. This also makes it easier to debug mail sending. Django ships with backend implementations that allow you to send e-mail to a file, to the console, or to memory. You can even configure all e-mail to be thrown away.</blockquote>
-</div>
-<div class="section" id="smart-if-tag">
-<h3>“Smart” if tag</h3>
-<blockquote>
-The if tag has been upgraded to be much more powerful. First, we’ve added support for comparison operators. The operators supported are ==, !=, &lt;, &gt;, &lt;=, &gt;=, in and not in, all of which work like the Python operators, in addition to and, or and not, which were already supported.</blockquote>
-</div>
-<div class="section" id="template-caching">
-<h3>Template caching</h3>
-<blockquote>
-In previous versions of Django, every time you rendered a template, it would be reloaded from disk. In Django 1.2, you can use a cached template loader to load templates once, then cache the result for every subsequent render. This can lead to a significant performance improvement if your templates are broken into lots of smaller subtemplates (using the {% extends %} or {% include %} tags). As a side effect, it is now much easier to support non-Django template languages. For more details, see the notes on supporting non-Django template languages.</blockquote>
-</div>
-<div class="section" id="natural-keys-in-fixtures">
-<h3>Natural keys in fixtures</h3>
-<blockquote>
-Fixtures can now refer to remote objects using Natural keys. This lookup scheme is an alternative to the normal primary-key based object references in a fixture, improving readability and resolving problems referring to objects whose primary key value may not be predictable or known.</blockquote>
-</div>
-<div class="section" id="fast-failure-for-tests">
-<h3>Fast failure for tests</h3>
-<blockquote>
-Both the test subcommand of django-admin.py and the runtests.py script used to run Django's own test suite now support a --failfast option. When specified, this option causes the test runner to exit after encountering a failure instead of continuing with the test run. In addition, the handling of Ctrl-C during a test run has been improved to trigger a graceful exit from the test run that reports details of the tests that were run before the interruption.</blockquote>
-</div>
-<div class="section" id="bigintegerfield">
-<h3>BigIntegerField</h3>
-<blockquote>
-Models can now use a 64-bit BigIntegerField type.</blockquote>
-</div>
-<div class="section" id="improved-localization">
-<h3>Improved localization</h3>
-<blockquote>
-Django's internationalization framework has been expanded with locale-aware formatting and form processing. That means, if enabled, dates and numbers on templates will be displayed using the format specified for the current locale. Django will also use localized formats when parsing data in forms. See Format localization for more details.</blockquote>
-</div>
-<div class="section" id="readonly-fields-in-modeladmin">
-<h3>readonly_fields in ModelAdmin</h3>
-<blockquote>
-django.contrib.admin.ModelAdmin.readonly_fields has been added to enable non-editable fields in add/change pages for models and inlines. Field and calculated values can be displayed alongside editable fields.</blockquote>
-</div>
-<div class="section" id="and-much-much-more">
-<h3>And much much more!!</h3>
+<p>The following are deal breakers for me. If I have to work with the following technologies. Don't even bother.</p>
 <ul class="simple">
-<li>To find out what else is in this release visit <a class="reference external" href="http://docs.djangoproject.com/en/dev/releases/1.2/">Django 1.2 offical release notes</a>.</li>
-<li>Download it here: <a class="reference external" href="http://www.djangoproject.com/download/1.2/tarball/">http://www.djangoproject.com/download/1.2/tarball/</a></li>
-<li>Offical website: <a class="reference external" href="http://www.djangoproject.com/">DjangoProject.com</a>.</li>
+<li>PHP</li>
+<li>.NET</li>
+<li>Microsoft Windows (any flavor)</li>
 </ul>
 </div>
+<div class="section" id="minimum-offer">
+<h2>Minimum offer:</h2>
+<p><strong>Note</strong>: I don't make this today, but like I said before, it would need to be a really good offer before I would consider leaving my current job.</p>
+<blockquote>
+<p><strong>Salary</strong>: $200,000+</p>
+<p><strong>Vacation</strong>: 6 weeks</p>
+<p><strong>Signing bonus</strong>: $25,000+ including Stock options</p>
+<p><strong>Company</strong>: Needs to be technology company doing cool and exciting things. I prefer smaller companies, and don't want to work for a big company that has lots of office politics that get in the way of getting things done.</p>
+</blockquote>
+</div>
+<div class="section" id="offer-criteria">
+<h2>Offer Criteria:</h2>
+<p>If you have read all of the above, and you still feel you have a job that is right for me, then please send me the following information. <strong>Failure to do so, will result in your message getting deleted with no reply.</strong></p>
+<ol class="arabic simple">
+<li>The name of the company and their location</li>
+<li>The salary. (Don't say, it depends on experience, look at my <a class="reference external" href="http://www.linkedin.com/in/kencochrane">LinkedIn</a> profile, figure out how much experience I have and then tell me the salary you are offering.)</li>
+<li>A description of the job you would like me to apply for.</li>
+<li>The list of the current technologies related to the job in question.</li>
+</ol>
+<p>If I read your message and I find it interesting, I will be in contact. If you don't hear from me, assume I'm not interested and please don't keep badgering me. It isn't very becoming of you.</p>
+<p>Sincerely,</p>
+<p>Ken Cochrane</p>
 </div>
 </div>
 		<div>
