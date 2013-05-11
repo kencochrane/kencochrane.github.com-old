@@ -11,8 +11,8 @@ If you would like to run `Docker <http://www.docker.io>`_ on the `RackSpace Clou
 
 I would love to expand this to other distros on Rackspace, so if you come up with more, send me a note, and so I can link to them. 
 
-12.04
------
+Ubuntu 12.04
+------------
 
 1. Build an Ubuntu 12.04 server using the "Next generation cloud servers", with your desired size. It will give you the password, keep that you will need it later.
 2. When the server is up and running ssh into the server.
@@ -96,8 +96,8 @@ I would love to expand this to other distros on Rackspace, so if you come up wit
         $ docker run busybox /bin/echo hello world
         hello world
 
-12.10
------
+Ubuntu 12.10
+------------
 
 1. Build an Ubuntu 12.10 server using the "Next generation cloud servers", with your desired size. It will give you the password, keep that you will need it later.
 2. When the server is up and running ssh into the server.
@@ -172,8 +172,8 @@ I would love to expand this to other distros on Rackspace, so if you come up wit
         $ docker run busybox /bin/echo hello world
         hello world
 
-13.04
------
+Ubuntu 13.04
+------------
 
 1. Build an Ubuntu 13.04 server using the "Next generation cloud servers", with your desired size. It will give you the password, keep that you will need it later.
 2. When the server is up and running ssh into the server.

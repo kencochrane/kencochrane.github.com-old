@@ -2,8 +2,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/dotcloud.rss" rel="self"></atom:link><lastBuildDate>Sat, 11 May 2013 12:17:48 -0400</lastBuildDate><item><title>Running Docker on Rackspace with Ubuntu</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/</link><description>&lt;p&gt;I have been playing with &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; a lot lately, and it got me wondering how hard it would be to run Docker on the different Cloud providers. I noticed there were already directions on how to install on &lt;a class="reference external" href="http://docs.docker.io/en/latest/installation/amazon.html"&gt;Amazon EC2&lt;/a&gt; but nothing for the Rackspace Cloud.&lt;/p&gt;
 &lt;p&gt;If you would like to run &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on the &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt; using &lt;a class="reference external" href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt; you're in luck. I just spent the afternoon figuring out how to get it installed on Ubuntu 12.04, 12.10, and 13.04, and I have included my notes below. 13.04 is the easiest to get up and running since it has the most recent kernel, but the others aren't too bad either, they just need a few more steps, to get them up to par.&lt;/p&gt;
 &lt;p&gt;I would love to expand this to other distros on Rackspace, so if you come up with more, send me a note, and so I can link to them.&lt;/p&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;h2&gt;12.04&lt;/h2&gt;
+&lt;div class="section" id="ubuntu-12-04"&gt;
+&lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;Build an Ubuntu 12.04 server using the &amp;quot;Next generation cloud servers&amp;quot;, with your desired size. It will give you the password, keep that you will need it later.&lt;/p&gt;
 &lt;/li&gt;
@@ -91,8 +91,8 @@ hello world
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class="section" id="id3"&gt;
-&lt;h2&gt;12.10&lt;/h2&gt;
+&lt;div class="section" id="ubuntu-12-10"&gt;
+&lt;h2&gt;Ubuntu 12.10&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;Build an Ubuntu 12.10 server using the &amp;quot;Next generation cloud servers&amp;quot;, with your desired size. It will give you the password, keep that you will need it later.&lt;/p&gt;
 &lt;/li&gt;
@@ -171,8 +171,8 @@ hello world
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class="section" id="id4"&gt;
-&lt;h2&gt;13.04&lt;/h2&gt;
+&lt;div class="section" id="ubuntu-13-04"&gt;
+&lt;h2&gt;Ubuntu 13.04&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;Build an Ubuntu 13.04 server using the &amp;quot;Next generation cloud servers&amp;quot;, with your desired size. It will give you the password, keep that you will need it later.&lt;/p&gt;
 &lt;/li&gt;
