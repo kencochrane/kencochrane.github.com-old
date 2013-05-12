@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/all.rss" rel="self"></atom:link><lastBuildDate>Sat, 11 May 2013 12:17:48 -0400</lastBuildDate><item><title>Running Docker on Rackspace with Ubuntu</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/</link><description>&lt;p&gt;I have been playing with &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; a lot lately, and it got me wondering how hard it would be to run Docker on the different Cloud providers. I noticed there were already directions on how to install on &lt;a class="reference external" href="http://docs.docker.io/en/latest/installation/amazon.html"&gt;Amazon EC2&lt;/a&gt; but nothing for the Rackspace Cloud.&lt;/p&gt;
-&lt;p&gt;If you would like to run &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on the &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt; using &lt;a class="reference external" href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt; you're in luck. I just spent the afternoon figuring out how to get it installed on Ubuntu 12.04, 12.10, and 13.04, and I have included my notes below. 13.04 is the easiest to get up and running since it has the most recent kernel, but the others aren't too bad either, they just need a few more steps, to get them up to par.&lt;/p&gt;
-&lt;p&gt;I would love to expand this to other distros on Rackspace, so if you come up with more, send me a note, and so I can link to them.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/all.rss" rel="self"></atom:link><lastBuildDate>Sun, 12 May 2013 12:41:48 -0400</lastBuildDate><item><title>Upgrading the Ubuntu linux kernel on Rackspace cloud</title><link>http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/</link><description>&lt;p&gt;Yesterday I wrote a &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;blog post&lt;/a&gt; on how to install &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on to &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt;, and one of the steps was to upgrade the kernel to the lastest one so that Docker would be nice and stable. The problem that I found out was that there wasn't much information how to upgrade the kernel on the Rackspace Cloud servers, so I thought I would put the steps here.&lt;/p&gt;
+&lt;p&gt;The goal here is to upgrade Ubuntu 12.04 and 12.10 so that it has the same kernel as 13.04. Here are the steps.&lt;/p&gt;
 &lt;div class="section" id="ubuntu-12-04"&gt;
 &lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
@@ -26,16 +25,75 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Install the 3.8.x kernel using the PPA&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# install the new kernel&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install linux-generic-lts-raring
+
+&lt;span class="c"&gt;# update grub so it will use the new kernel after we reboot&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;update-grub
+
+&lt;span class="c"&gt;# update-grub doesn&amp;#39;t always work so lets make sure. ``/boot/grub/menu.lst`` was updated.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;grep 3.8.0- /boot/grub/menu.lst
+
+&lt;span class="c"&gt;# nope it wasn&amp;#39;t lets manually update ``/boot/grub/menu.lst``  (make sure you are searching for correct kernel version, look at initial uname -a results.)&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;sed -i s/3.2.0-38-virtual/3.8.0-19-generic/ /boot/grub/menu.lst
+
+&lt;span class="c"&gt;# once again lets make sure it worked.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;grep 3.8.0- /boot/grub/menu.lst
+title          Ubuntu 12.04.2 LTS, kernel 3.8.0-19-generic
+kernel          /boot/vmlinuz-3.8.0-19-generic &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/xvda1 ro quiet splash &lt;span class="nv"&gt;console&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hvc0
+initrd          /boot/initrd.img-3.8.0-19-generic
+title          Ubuntu 12.04.2 LTS, kernel 3.8.0-19-generic &lt;span class="o"&gt;(&lt;/span&gt;recovery mode&lt;span class="o"&gt;)&lt;/span&gt;
+kernel          /boot/vmlinuz-3.8.0-19-generic &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/xvda1 ro quiet splash  single
+initrd          /boot/initrd.img-3.8.0-19-generic
+
+&lt;span class="c"&gt;# much better.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Docker runs best with a new kernel, so lets use 3.8.x&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Reboot server (either via command line or console)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;login again and check to make sure the kernel was updated&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh root@&amp;lt;server_ip&amp;gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;uname -a
+Linux docker-12-04 3.8.0-19-generic &lt;span class="c"&gt;#30~precise1-Ubuntu SMP Wed May 1 22:26:36 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+
+&lt;span class="c"&gt;# nice 3.8.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ubuntu-12-10"&gt;
+&lt;h2&gt;Ubuntu 12.10&lt;/h2&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Build an Ubuntu 12.10 server using the &amp;quot;Next generation cloud servers&amp;quot;, with your desired size. It will give you the password, keep that you will need it later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When the server is up and running ssh into the server.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh root@&amp;lt;server-ip&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Once you are logged in you should check what kernel version you are running.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;uname -a
+Linux docker-12-10 3.5.0-25-generic &lt;span class="c"&gt;#39-Ubuntu SMP Mon Feb 25 18:26:58 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Let's update the server package list&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Install the 3.8.x kernel using the ubuntu-x-swat PPA&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# add the ppa to get the right kernel package&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;deb http://ppa.launchpad.net/ubuntu-x-swat/r-lts-backport/ubuntu precise main &amp;gt; /etc/apt/sources.list.d/xswat.list
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;deb http://ppa.launchpad.net/ubuntu-x-swat/q-lts-backport/ubuntu quantal main &amp;gt; /etc/apt/sources.list.d/xswat.list
 
 &lt;span class="c"&gt;# add the key for the ppa&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B22AB97AF1CDFA9
@@ -45,6 +103,72 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 
 &lt;span class="c"&gt;# install the new kernel&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install linux-image-3.8.0-19-generic
+
+&lt;span class="c"&gt;# make sure grub has been updated.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;grep 3.8.0- /boot/grub/menu.lst
+title   Ubuntu 12.10, kernel 3.8.0-19-generic
+kernel  /boot/vmlinuz-3.8.0-19-generic &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/xvda1 ro quiet splash &lt;span class="nv"&gt;console&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hvc0
+initrd  /boot/initrd.img-3.8.0-19-generic
+title   Ubuntu 12.10, kernel 3.8.0-19-generic &lt;span class="o"&gt;(&lt;/span&gt;recovery mode&lt;span class="o"&gt;)&lt;/span&gt;
+kernel  /boot/vmlinuz-3.8.0-19-generic &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/xvda1 ro quiet splash  single
+initrd  /boot/initrd.img-3.8.0-19-generic
+
+&lt;span class="c"&gt;# looks good. If it doesn&amp;#39;t work for you, look at the notes for 12.04 to fix.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Reboot server (either via command line or console)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;login again and check to make sure the kernel was updated&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh root@&amp;lt;server_ip&amp;gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;uname -a
+Linux docker-12-10 3.8.0-19-generic &lt;span class="c"&gt;#29~precise2-Ubuntu SMP Fri Apr 19 16:15:35 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+
+&lt;span class="c"&gt;# nice 3.8.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Sun, 12 May 2013 12:41:48 -0400</pubDate><guid>tag:kencochrane.net,2013-05-12:blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/</guid><category>rackspace</category><category>kernel</category><category>ubuntu</category></item><item><title>Running Docker on Rackspace with Ubuntu</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/</link><description>&lt;p&gt;I have been playing with &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; a lot lately, and it got me wondering how hard it would be to run Docker on the different Cloud providers. I noticed there were already directions on how to install on &lt;a class="reference external" href="http://docs.docker.io/en/latest/installation/amazon.html"&gt;Amazon EC2&lt;/a&gt; but nothing for the Rackspace Cloud.&lt;/p&gt;
+&lt;p&gt;If you would like to run &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on the &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt; using &lt;a class="reference external" href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt; you're in luck. I just spent the afternoon figuring out how to get it installed on Ubuntu 12.04, 12.10, and 13.04, and I have included my notes below. 13.04 is the easiest to get up and running since it has the most recent kernel, but the others aren't too bad either, they just need a few more steps, to get them up to par.&lt;/p&gt;
+&lt;p&gt;I would love to expand this to other distros on Rackspace, so if you come up with more, send me a note, and so I can link to them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update: 05-12-2013&lt;/strong&gt; I have updated some information given some feedback by others. Also added a troubleshooting section.&lt;/p&gt;
+&lt;div class="section" id="ubuntu-12-04"&gt;
+&lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Build an Ubuntu 12.04 server using the &amp;quot;Next generation cloud servers&amp;quot;, with your desired size. It will give you the password, keep that you will need it later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When the server is up and running ssh into the server.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh root@&amp;lt;server-ip&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Once you are logged in you should check what kernel version you are running.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;uname -a
+Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb 19 12:37:47 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Let's update the server package list&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes. (see below if you want to install via package)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Docker runs best with a new kernel, so lets use 3.8.x&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# install the new kernel&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install linux-generic-lts-raring
 
 &lt;span class="c"&gt;# update grub so it will use the new kernel after we reboot&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;update-grub
@@ -90,6 +214,25 @@ hello world
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class="section" id="alternate-install"&gt;
+&lt;h3&gt;Alternate install&lt;/h3&gt;
+&lt;p&gt;If you don't want to run the get.docker.io script and want to use packages instead, you can use the docker PPA. Here is how you use it. Replace step 5 with the following 3 steps.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Add the custom package sources to your apt sources list. Copy and paste the following lines at once.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo sh -c &lt;span class="s2"&gt;&amp;quot;echo &amp;#39;deb http://ppa.launchpad.net/dotcloud/lxc-docker/ubuntu precise main&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Update your sources. You will see a warning that GPG signatures cannot be verified.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Now install it, you will see another warning that the package cannot be authenticated. Confirm install.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install lxc-docker
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="ubuntu-12-10"&gt;
 &lt;h2&gt;Ubuntu 12.10&lt;/h2&gt;
@@ -216,7 +359,27 @@ hello world
 &lt;h2&gt;What's Next&lt;/h2&gt;
 &lt;p&gt;Now that you have Docker running on a server, you can look at the different &lt;a class="reference external" href="http://docs.docker.io/en/latest/examples/"&gt;Docker examples&lt;/a&gt; in the documentation to see how it works, and then build something, and let everyone know what you have built. If you have any issues or suggestions, open a github issue and let everyone know. Docker is a new project, and it is moving quick, so any suggestions that you have might help shape the future of the project.&lt;/p&gt;
 &lt;/div&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Sat, 11 May 2013 12:17:48 -0400</pubDate><guid>tag:kencochrane.net,2013-05-11:blog/2013/05/running-docker-on-rackspace-cloud/</guid><category>docker</category><category>rackspace</category><category>dotcloud</category></item><item><title>Intro to Python and Django Presentation</title><link>http://kencochrane.net/blog/2013/02/intro-to-python-and-django-presentation/</link><description>&lt;p&gt;I recently gave a talk at a &lt;a class="reference external" href="http://www.DjangoMaine.com"&gt;DjangoMaine&lt;/a&gt; meetup introducing folks to &lt;a class="reference external" href="http://python.org"&gt;Python&lt;/a&gt; and &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;. There wasn't enough time to go over everything, so I tried to pick and choose the parts that I felt where important to go over, in order to have a good overview of what Python and Django is all about.&lt;/p&gt;
+&lt;div class="section" id="trouble-shooting"&gt;
+&lt;h2&gt;Trouble shooting&lt;/h2&gt;
+&lt;p&gt;If you are pulling a repo and you get an error like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Error: &lt;span class="nb"&gt;exit &lt;/span&gt;status 1: bsdtar: Linkname can&lt;span class="s1"&gt;&amp;#39;t be converted from UTF-8 to current locale.&lt;/span&gt;
+&lt;span class="s1"&gt;bsdtar: Linkname can&amp;#39;&lt;/span&gt;t be converted from UTF-8 to current locale.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It means the the docker daemon doesn't have the correct locales loaded on startup. To fix it make sure your init script looks something like this.&lt;/p&gt;
+&lt;p&gt;Make sure the path to the docker binary is correct because in some installs it might be &lt;tt class="docutils literal"&gt;/usr/local/bin&lt;/tt&gt; and others &lt;tt class="docutils literal"&gt;/usr/local/&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;description     &lt;span class="s2"&gt;&amp;quot;Run docker&amp;quot;&lt;/span&gt;
+
+start on runlevel &lt;span class="o"&gt;[&lt;/span&gt;2345&lt;span class="o"&gt;]&lt;/span&gt;
+stop on starting rc &lt;span class="nv"&gt;RUNLEVEL&lt;/span&gt;&lt;span class="o"&gt;=[&lt;/span&gt;016&lt;span class="o"&gt;]&lt;/span&gt;
+respawn
+
+script
+    &lt;span class="nb"&gt;test&lt;/span&gt; -f /etc/default/locale &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; . /etc/default/locale &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="nb"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LANG&lt;/span&gt; &lt;span class="nv"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LANG&lt;/span&gt; /usr/local/bin/docker -d
+end script
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Sat, 11 May 2013 12:17:48 -0400</pubDate><guid>tag:kencochrane.net,2013-05-11:blog/2013/05/running-docker-on-rackspace-cloud/</guid><category>docker</category><category>rackspace</category><category>dotcloud</category><category>ubuntu</category><category>kernel</category><category>lxc</category><category>aufs</category></item><item><title>Intro to Python and Django Presentation</title><link>http://kencochrane.net/blog/2013/02/intro-to-python-and-django-presentation/</link><description>&lt;p&gt;I recently gave a talk at a &lt;a class="reference external" href="http://www.DjangoMaine.com"&gt;DjangoMaine&lt;/a&gt; meetup introducing folks to &lt;a class="reference external" href="http://python.org"&gt;Python&lt;/a&gt; and &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;. There wasn't enough time to go over everything, so I tried to pick and choose the parts that I felt where important to go over, in order to have a good overview of what Python and Django is all about.&lt;/p&gt;
 &lt;p&gt;I hope this was useful to the folks that attended. If so, it would be really helpful to know what parts you would like to know more about. Then we can have some follow up talks doing a deeper dive into those select topics.&lt;/p&gt;
 &lt;div class="section" id="future-tutorials"&gt;
 &lt;h2&gt;Future Tutorials&lt;/h2&gt;
@@ -1310,7 +1473,7 @@ Render PAN, at minimum, unreadable anywhere it is stored .. by using any of the 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;reverse_hashed_card_number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;hashed_card_number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first_six&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;last_four&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upto&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;999_999&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
         &lt;span class="n"&gt;card_number_to_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;first_six&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%06d&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;last_four&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;
-        &lt;span class="n"&gt;hashed_to_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Digest&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;SHA1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hexdigest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;card_number_to_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;hashed_to_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;Digest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;:SHA1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hexdigest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;card_number_to_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;hashed_card_number&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;hashed_card_number_to_test&lt;/span&gt;
           &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;card_number_to_test&lt;/span&gt;
         &lt;span class="k"&gt;end&lt;/span&gt;

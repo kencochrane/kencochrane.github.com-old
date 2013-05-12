@@ -2,6 +2,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/dotcloud.rss" rel="self"></atom:link><lastBuildDate>Sat, 11 May 2013 12:17:48 -0400</lastBuildDate><item><title>Running Docker on Rackspace with Ubuntu</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/</link><description>&lt;p&gt;I have been playing with &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; a lot lately, and it got me wondering how hard it would be to run Docker on the different Cloud providers. I noticed there were already directions on how to install on &lt;a class="reference external" href="http://docs.docker.io/en/latest/installation/amazon.html"&gt;Amazon EC2&lt;/a&gt; but nothing for the Rackspace Cloud.&lt;/p&gt;
 &lt;p&gt;If you would like to run &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on the &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt; using &lt;a class="reference external" href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt; you're in luck. I just spent the afternoon figuring out how to get it installed on Ubuntu 12.04, 12.10, and 13.04, and I have included my notes below. 13.04 is the easiest to get up and running since it has the most recent kernel, but the others aren't too bad either, they just need a few more steps, to get them up to par.&lt;/p&gt;
 &lt;p&gt;I would love to expand this to other distros on Rackspace, so if you come up with more, send me a note, and so I can link to them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update: 05-12-2013&lt;/strong&gt; I have updated some information given some feedback by others. Also added a troubleshooting section.&lt;/p&gt;
 &lt;div class="section" id="ubuntu-12-04"&gt;
 &lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
@@ -26,7 +27,7 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes. (see below if you want to install via package)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
@@ -34,17 +35,8 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Docker runs best with a new kernel, so lets use 3.8.x&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# add the ppa to get the right kernel package&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;deb http://ppa.launchpad.net/ubuntu-x-swat/r-lts-backport/ubuntu precise main &amp;gt; /etc/apt/sources.list.d/xswat.list
-
-&lt;span class="c"&gt;# add the key for the ppa&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B22AB97AF1CDFA9
-
-&lt;span class="c"&gt;# update packages again&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get update
-
-&lt;span class="c"&gt;# install the new kernel&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install linux-image-3.8.0-19-generic
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# install the new kernel&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install linux-generic-lts-raring
 
 &lt;span class="c"&gt;# update grub so it will use the new kernel after we reboot&lt;/span&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;update-grub
@@ -90,6 +82,25 @@ hello world
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class="section" id="alternate-install"&gt;
+&lt;h3&gt;Alternate install&lt;/h3&gt;
+&lt;p&gt;If you don't want to run the get.docker.io script and want to use packages instead, you can use the docker PPA. Here is how you use it. Replace step 5 with the following 3 steps.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Add the custom package sources to your apt sources list. Copy and paste the following lines at once.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo sh -c &lt;span class="s2"&gt;&amp;quot;echo &amp;#39;deb http://ppa.launchpad.net/dotcloud/lxc-docker/ubuntu precise main&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Update your sources. You will see a warning that GPG signatures cannot be verified.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Now install it, you will see another warning that the package cannot be authenticated. Confirm install.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install lxc-docker
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="ubuntu-12-10"&gt;
 &lt;h2&gt;Ubuntu 12.10&lt;/h2&gt;
@@ -216,7 +227,27 @@ hello world
 &lt;h2&gt;What's Next&lt;/h2&gt;
 &lt;p&gt;Now that you have Docker running on a server, you can look at the different &lt;a class="reference external" href="http://docs.docker.io/en/latest/examples/"&gt;Docker examples&lt;/a&gt; in the documentation to see how it works, and then build something, and let everyone know what you have built. If you have any issues or suggestions, open a github issue and let everyone know. Docker is a new project, and it is moving quick, so any suggestions that you have might help shape the future of the project.&lt;/p&gt;
 &lt;/div&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Sat, 11 May 2013 12:17:48 -0400</pubDate><guid>tag:kencochrane.net,2013-05-11:blog/2013/05/running-docker-on-rackspace-cloud/</guid><category>docker</category><category>rackspace</category><category>dotcloud</category></item><item><title>Deploying my Django application to dotCloud: Part 2</title><link>http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/</link><description>&lt;p&gt;As I mentioned in a &lt;a class="reference external" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;recent blog post&lt;/a&gt;, in the 11 months since I wrote my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;first post on dotCloud&lt;/a&gt;, I now work there. Besides me working there, there has been a lot of other changes at &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt;, and I wanted to take the time to update my original post so that it was up to date and had all the recent information. I'm going to completely rewrite the old blog post here, with updated information, and leave the old one around for posterity.&lt;/p&gt;
+&lt;div class="section" id="trouble-shooting"&gt;
+&lt;h2&gt;Trouble shooting&lt;/h2&gt;
+&lt;p&gt;If you are pulling a repo and you get an error like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Error: &lt;span class="nb"&gt;exit &lt;/span&gt;status 1: bsdtar: Linkname can&lt;span class="s1"&gt;&amp;#39;t be converted from UTF-8 to current locale.&lt;/span&gt;
+&lt;span class="s1"&gt;bsdtar: Linkname can&amp;#39;&lt;/span&gt;t be converted from UTF-8 to current locale.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It means the the docker daemon doesn't have the correct locales loaded on startup. To fix it make sure your init script looks something like this.&lt;/p&gt;
+&lt;p&gt;Make sure the path to the docker binary is correct because in some installs it might be &lt;tt class="docutils literal"&gt;/usr/local/bin&lt;/tt&gt; and others &lt;tt class="docutils literal"&gt;/usr/local/&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;description     &lt;span class="s2"&gt;&amp;quot;Run docker&amp;quot;&lt;/span&gt;
+
+start on runlevel &lt;span class="o"&gt;[&lt;/span&gt;2345&lt;span class="o"&gt;]&lt;/span&gt;
+stop on starting rc &lt;span class="nv"&gt;RUNLEVEL&lt;/span&gt;&lt;span class="o"&gt;=[&lt;/span&gt;016&lt;span class="o"&gt;]&lt;/span&gt;
+respawn
+
+script
+    &lt;span class="nb"&gt;test&lt;/span&gt; -f /etc/default/locale &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; . /etc/default/locale &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="nb"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LANG&lt;/span&gt; &lt;span class="nv"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LANG&lt;/span&gt; /usr/local/bin/docker -d
+end script
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Sat, 11 May 2013 12:17:48 -0400</pubDate><guid>tag:kencochrane.net,2013-05-11:blog/2013/05/running-docker-on-rackspace-cloud/</guid><category>docker</category><category>rackspace</category><category>dotcloud</category><category>ubuntu</category><category>kernel</category><category>lxc</category><category>aufs</category></item><item><title>Deploying my Django application to dotCloud: Part 2</title><link>http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/</link><description>&lt;p&gt;As I mentioned in a &lt;a class="reference external" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;recent blog post&lt;/a&gt;, in the 11 months since I wrote my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;first post on dotCloud&lt;/a&gt;, I now work there. Besides me working there, there has been a lot of other changes at &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt;, and I wanted to take the time to update my original post so that it was up to date and had all the recent information. I'm going to completely rewrite the old blog post here, with updated information, and leave the old one around for posterity.&lt;/p&gt;
 &lt;p&gt;dotCloud's goal is to provide a bunch of different independent services that you can use as building blocks to build your application. If you need a database, take your pick from one of the many they support. Need an application that uses Django or Rails on the front end, and Java in the backend, that is fine, you can do that too. They realize that most developers don't stick to one standard technology stack for all of their applications, so this allows you the flexibility to use the best tool for the job. It also gives you a nice playground to try out new services and see how they run without having to install, configure and maintain the service just for testing.&lt;/p&gt;
 &lt;p&gt;I'm going to go over the steps that it took to install my blog onto dotCloud, and hopefully answer some common questions along the way.&lt;/p&gt;
 &lt;div class="section" id="documentation"&gt;
