@@ -19,7 +19,7 @@ I did some digging and technically speaking the Pi should be able to run Docker,
 - AUFS
 - Go
 
-Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are planes to add 32 bit support in the future, but it isn't there yet.
+Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are plans to add 32 bit support in the future, but it isn't there yet.
 
 Doing some research I was able to find blog posts on how to get LXC and AUFS up and running on the RaspberryPi. Using those guides, I was able to make some progress but I'm not all of the way there yet. I'm hoping to describe my steps here so that others can see what I have done, and if they want, help me get over the hump.
 
