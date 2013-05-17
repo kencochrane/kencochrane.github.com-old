@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>KenCochrane.net</title>
+	<meta name="description" content="">
+	<meta name="author" content="Ken Cochrane">
+        <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
+            <link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" />
+        	<link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"> 
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="http://kencochrane.net/theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet">
+	<link href="http://kencochrane.net/theme/local.css" rel="stylesheet">
+	<link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet">
+	<link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet">
+	<style type="text/css">
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+	<script type="text/javascript">
+	var disqus_identifier = "blog/2013/05/running-docker-on-a-raspberrypi/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+</head>
+<body>
+		<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="http://kencochrane.net/index.html">KenCochrane.net</a>
+			<ul class="nav">
+																			<li><a href="http://kencochrane.net/about/index.html">About Me</a></li>
+											<li><a href="http://kencochrane.net/projects/index.html">Projects</a></li>
+																		<li class="active"><a href="http://kencochrane.net/category/blog.html">blog</a></li>
+							</ul>
+			<p class="pull-right"><a href="http://kencochrane.net/archives.html">[archives]</a> <a href="http://kencochrane.net/tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+		    						<div class="social">
+			<h3>Social</h3>
+			<ul>
+								<li><a href="http://twitter.com/kencochrane">twitter</a></li>
+								<li><a href="https://github.com/kencochrane">github</a></li>
+												    <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+				                                    <li><a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate">rss feed</a></li>
+                			</ul>
+			</div>
+			
+            <h4><i class="icon-tags icon-large"></i>Tags</h4>
+            <ul>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/hosting.html">
+                        <i class="icon-tag icon-large"></i>hosting
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/epio.html">
+                        <i class="icon-tag icon-large"></i>epio
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/djangomaine.html">
+                        <i class="icon-tag icon-large"></i>djangomaine
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/aufs.html">
+                        <i class="icon-tag icon-large"></i>aufs
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/jobs.html">
+                        <i class="icon-tag icon-large"></i>jobs
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/blog.html">
+                        <i class="icon-tag icon-large"></i>blog
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>RHEL5
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/go.html">
+                        <i class="icon-tag icon-large"></i>go
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/script.html">
+                        <i class="icon-tag icon-large"></i>script
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/dotcloud.html">
+                        <i class="icon-tag icon-large"></i>dotcloud
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/lxc.html">
+                        <i class="icon-tag icon-large"></i>lxc
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/python.html">
+                        <i class="icon-tag icon-large"></i>python
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/linux.html">
+                        <i class="icon-tag icon-large"></i>linux
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/deployment.html">
+                        <i class="icon-tag icon-large"></i>deployment
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/nginx.html">
+                        <i class="icon-tag icon-large"></i>nginx
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/gunicorn.html">
+                        <i class="icon-tag icon-large"></i>gunicorn
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/apphosted.html">
+                        <i class="icon-tag icon-large"></i>apphosted
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/cashstar.html">
+                        <i class="icon-tag icon-large"></i>cashstar
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>rhel5
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/raspberrypi.html">
+                        <i class="icon-tag icon-large"></i>raspberrypi
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/heroku.html">
+                        <i class="icon-tag icon-large"></i>heroku
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/ubuntu.html">
+                        <i class="icon-tag icon-large"></i>ubuntu
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/djangocms.html">
+                        <i class="icon-tag icon-large"></i>djangocms
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/apache.html">
+                        <i class="icon-tag icon-large"></i>apache
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/supervisor.html">
+                        <i class="icon-tag icon-large"></i>supervisor
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/fabric.html">
+                        <i class="icon-tag icon-large"></i>fabric
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/supervisord.html">
+                        <i class="icon-tag icon-large"></i>supervisord
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/startup.html">
+                        <i class="icon-tag icon-large"></i>startup
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/upgrade.html">
+                        <i class="icon-tag icon-large"></i>upgrade
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/pelican.html">
+                        <i class="icon-tag icon-large"></i>pelican
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/openshift.html">
+                        <i class="icon-tag icon-large"></i>openshift
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/memcached.html">
+                        <i class="icon-tag icon-large"></i>memcached
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/recruiters.html">
+                        <i class="icon-tag icon-large"></i>recruiters
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/django.html">
+                        <i class="icon-tag icon-large"></i>django
+                    </a>
+                </li>
+                            <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/paas.html">
+                        <i class="icon-tag icon-large"></i>paas
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/djangozoom.html">
+                        <i class="icon-tag icon-large"></i>djangozoom
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/mysql.html">
+                        <i class="icon-tag icon-large"></i>mysql
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/mercurial.html">
+                        <i class="icon-tag icon-large"></i>Mercurial
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/docker.html">
+                        <i class="icon-tag icon-large"></i>docker
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/stackato.html">
+                        <i class="icon-tag icon-large"></i>stackato
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/work.html">
+                        <i class="icon-tag icon-large"></i>work
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/install.html">
+                        <i class="icon-tag icon-large"></i>install
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/rackspace.html">
+                        <i class="icon-tag icon-large"></i>rackspace
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/gondor.html">
+                        <i class="icon-tag icon-large"></i>gondor
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/centos5.html">
+                        <i class="icon-tag icon-large"></i>centos5
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/django-maine.html">
+                        <i class="icon-tag icon-large"></i>django-maine
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/clickstream.html">
+                        <i class="icon-tag icon-large"></i>clickstream
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/job.html">
+                        <i class="icon-tag icon-large"></i>job
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/macosx.html">
+                        <i class="icon-tag icon-large"></i>macosx
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/sentry.html">
+                        <i class="icon-tag icon-large"></i>sentry
+                    </a>
+                </li>
+                            <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/percona.html">
+                        <i class="icon-tag icon-large"></i>percona
+                    </a>
+                </li>
+                            <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/kernel.html">
+                        <i class="icon-tag icon-large"></i>kernel
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/newrelic.html">
+                        <i class="icon-tag icon-large"></i>newrelic
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/pci.html">
+                        <i class="icon-tag icon-large"></i>pci
+                    </a>
+                </li>
+                            <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/raspbian.html">
+                        <i class="icon-tag icon-large"></i>raspbian
+                    </a>
+                </li>
+                        </ul>
+			
+		</div>
+	  </div>
+	  <div class="content">
+							<div class='article'>
+		<div class="page-header"><h1>Getting Docker up and running on a RaspberryPi</h1></div>
+		<div class="well small">Permalink: <a class="more" href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/">2013-05-17 15:30:24</a>
+by <a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html">Ken Cochrane</a> in <a href="http://kencochrane.net/category/blog.html">blog</a>
+tags: <a href="http://kencochrane.net/tag/docker.html">docker</a> <a href="http://kencochrane.net/tag/dotcloud.html">dotcloud</a> <a href="http://kencochrane.net/tag/raspberrypi.html">raspberrypi</a> <a href="http://kencochrane.net/tag/linux.html">linux</a> <a href="http://kencochrane.net/tag/kernel.html">kernel</a> <a href="http://kencochrane.net/tag/aufs.html">aufs</a> <a href="http://kencochrane.net/tag/lxc.html">lxc</a> <a href="http://kencochrane.net/tag/go.html">go</a> <a href="http://kencochrane.net/tag/raspbian.html">raspbian</a> </div>
+		<div><p>This year I attended <a class="reference external" href="https://us.pycon.org/2013/">PyCon US</a> and I was lucky enough to get a FREE <a class="reference external" href="http://www.raspberrypi.org">RaspberryPi</a>. At the same conference <a class="reference external" href="http://www.dotcloud.com">dotCloud</a> (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. <a class="reference external" href="http://www.docker.io">Docker</a> is a tool that allows you to better manage your Linux Containers (<a class="reference external" href="http://lxc.sourceforge.net">LXC</a>). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.</p>
+<img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" />
+<p>I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.</p>
+<ul class="simple">
+<li>Linux</li>
+<li>LXC</li>
+<li>AUFS</li>
+<li>Go</li>
+</ul>
+<p>Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are planes to add 32 bit support in the future, but it isn't there yet.</p>
+<p>Doing some research I was able to find blog posts on how to get LXC and AUFS up and running on the RaspberryPi. Using those guides, I was able to make some progress but I'm not all of the way there yet. I'm hoping to describe my steps here so that others can see what I have done, and if they want, help me get over the hump.</p>
+<div class="section" id="goals">
+<h2>Goals</h2>
+<p>My goals for the project is to:</p>
+<ul class="simple">
+<li>provide a prebuilt image that people can download that has everything they needed in order to get started.</li>
+<li>I also want to provide a prebuilt kernel, people can download and use without having to build their own.</li>
+<li>Port Docker to 32bit so that it will run on RaspberryPi and provide a Debian package for easy install.</li>
+</ul>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions</h2>
+<p>Here are the steps that I used to make it so that my RaspberryPi could run Docker. These are still a work in progress, so please let me know if you have any issues, or you found a better way to do this.</p>
+<div class="section" id="install-linux-os">
+<h3>Install Linux OS</h3>
+<ol class="arabic simple">
+<li>Download <a class="reference external" href="http://www.raspberrypi.org/downloads">Raspbian</a> and <a class="reference external" href="http://elinux.org/RPi_Easy_SD_Card_Setup">make an SD card</a> (I used the 2013-02-09-wheezy-raspbian.zip image)</li>
+<li>Once you have the SD card, put it in the Pi and boot it up.</li>
+</ol>
+</div>
+<div class="section" id="update-and-prepare-raspbian">
+<h3>Update and Prepare Raspbian</h3>
+<ol class="arabic simple">
+<li>Switch to Root User on the Pi. These commands must be run as root. You can also use &quot;su&quot; or &quot;sudo&quot;, what ever you prefer:</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>sudo su root
+</pre></div>
+<ol class="arabic simple" start="2">
+<li>Expand to fill SD card and reboot after entering:</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>raspi-config
+</pre></div>
+<ol class="arabic simple" start="3">
+<li>Update Raspbian</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>apt-get update
+
+<span class="nv">$ </span>apt-get dist-upgrade
+</pre></div>
+<ol class="arabic simple" start="4">
+<li>Install git</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install git-core
+</pre></div>
+<ol class="arabic simple" start="5">
+<li>Update Firmware</li>
+</ol>
+<p>The clone will take a while. You might consider cloning on a desktop machine to save time. Just transfer the firmware/boot and modules/ directories from your desktop PC to the Pi after the checkout. Be aware that checking out on some OS's that are case insensitive, may result in some files being missing. If you see funky issues, this might be the cause.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /opt
+
+<span class="nv">$ </span>git clone git://github.com/raspberrypi/firmware.git
+
+<span class="nv">$ </span><span class="nb">cd </span>firmware/boot
+
+<span class="nv">$ </span>cp * /boot
+
+<span class="nv">$ </span><span class="nb">cd</span> ../modules
+
+<span class="nv">$ </span>cp -r * /lib/modules
+
+<span class="nv">$ </span>reboot
+</pre></div>
+<ol class="arabic simple" start="6">
+<li>Increase the Swap File Size</li>
+</ol>
+<p>I found that in order to check out the source on the Pi, you’ll need a swap file with the 256MB Pi, otherwise it will run out of RAM during the checkout (with fatal: index-pack failed).</p>
+<div class="highlight"><pre><span class="c"># use your favorite editor here.</span>
+<span class="nv">$ </span>pico /etc/dphys-swapfile
+
+<span class="c"># change to 500 (MB)</span>
+
+<span class="nv">$ </span>sudo dphys-swapfile setup
+
+<span class="nv">$ </span>sudo reboot
+</pre></div>
+<ol class="arabic simple" start="7">
+<li>Prepare to Build Kernel</li>
+</ol>
+<p>We are going to use the 3.6 kernel since it is the lastest stable one. There is an effort to get <a class="reference external" href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=87&amp;t=40664">3.8 working</a>, it isn't 100% there yet, for more info see.</p>
+<p>The clone will take a while. Again, you may consider using a desktop PC. Of course, if you do that, you’ll need to issue the “zcat” command from your Pi and copy the resulting “.config” file to the “linux” directory on your desktop PC.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /opt
+
+<span class="nv">$ </span>mkdir raspberrypi
+
+<span class="nv">$ </span><span class="nb">cd </span>raspberrypi
+
+<span class="nv">$ </span>git clone git://github.com/raspberrypi/linux.git
+
+<span class="nv">$ </span><span class="nb">cd </span>linux
+
+<span class="nv">$ </span>zcat /proc/config.gz &gt; .config
+</pre></div>
+<ol class="arabic simple" start="8">
+<li>Decrease the Swap Space File</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>pico /etc/dphys-swapfile
+
+<span class="c"># change to 100 (MB)</span>
+
+<span class="nv">$ </span>sudo dphys-swapfile setup
+
+<span class="nv">$ </span>sudo reboot
+</pre></div>
+<ol class="arabic simple" start="9">
+<li>Install Packages for Kernel Compilation</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>apt-get install ncurses-dev
+</pre></div>
+<ol class="arabic simple" start="10">
+<li>Adding AUFS Patches</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /opt/raspberrypi/linux
+
+git clone git://aufs.git.sourceforge.net/gitroot/aufs/aufs3-standalone.git
+<span class="nb">cd </span>aufs3-standalone
+git checkout origin/aufs3.6
+cp -rp *.patch ../
+cp -rp fs ../
+cp -rp Documentation/ ../
+cp -rp include/ ../
+<span class="nb">cd</span> ..
+
+patch -p1 &lt; aufs3-base.patch
+patch -p1 &lt; aufs3-proc_map.patch
+patch -p1 &lt; aufs3-standalone.patch
+patch -p1 &lt; aufs3-kbuild.patch
+</pre></div>
+<p>If you get this error</p>
+<div class="highlight"><pre>root@raspberrypi:/opt/raspberrypi/linux# patch -p1 &lt; aufs3-kbuild.patch
+patching file fs/Kconfig
+patching file fs/Makefile
+patching file include/linux/Kbuild
+Hunk <span class="c">#1 FAILED at 66.</span>
+1 out of 1 hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+</pre></div>
+<p>Then you will need to manually update include/linux/Kbuild because the patch failed.</p>
+<p>First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h</p>
+<div class="highlight"><pre>header-y +<span class="o">=</span> aufs_type.h
+</pre></div>
+<p>here is my git diff:</p>
+<div class="highlight"><pre>diff --git a/include/linux/Kbuild b/include/linux/Kbuild
+index fa21760..ee029e3 100644
+--- a/include/linux/Kbuild
++++ b/include/linux/Kbuild
+@@ -66,6 +66,7 @@ header-y +<span class="o">=</span> atmppp.h
+ header-y +<span class="o">=</span> atmsap.h
+ header-y +<span class="o">=</span> atmsvc.h
+ header-y +<span class="o">=</span> audit.h
++header-y +<span class="o">=</span> aufs_type.h
+ header-y +<span class="o">=</span> auto_fs.h
+ header-y +<span class="o">=</span> auto_fs4.h
+ header-y +<span class="o">=</span> auxvec.h
+</pre></div>
+<ol class="arabic simple" start="11">
+<li>Configuring Kernel</li>
+</ol>
+<p>You’ll now need to set some kernel options to support LXC, via the menu config tool.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /opt/raspberrypi/linx
+
+<span class="nv">$ </span>make menuconfig
+</pre></div>
+<p>You need to enable these options:</p>
+<ul class="simple">
+<li>General -&gt; Control Group Support -&gt; Memory Resource Controller for Control Groups (<em>and its three child options</em>)</li>
+</ul>
+<img alt="/static/rpi/raspberrypi_kernel_config_1.png" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" />
+<p>(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)</p>
+<ul class="simple">
+<li>General -&gt; Control Group Support -&gt; cpuset support</li>
+<li>Device Drivers -&gt; Character Devices -&gt; Support multiple instances of devpts</li>
+</ul>
+<img alt="/static/rpi/raspberrypi_kernel_config_2.png" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" />
+<ul class="simple">
+<li>Device Drivers -&gt; Network Device Support -&gt; Virtual ethernet pair device</li>
+</ul>
+<img alt="/static/rpi/raspberrypi_kernel_config_3.png" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" />
+<ul class="simple">
+<li>File Systems --&gt; Miscellaneous filesystems -&gt;select &quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&quot; (mine was the the very bottom)</li>
+</ul>
+<img alt="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" />
+<ol class="arabic simple" start="12">
+<li>Build Kernel</li>
+</ol>
+<p>This could take many hours if you compile on the Pi, there are ways to <a class="reference external" href="http://elinux.org/RPi_Kernel_Compilation#2._Cross_compiling_from_Linux">compile on another machine</a> and transfer the kernel to the Pi when completed. If you are in a hurry, use this approach.</p>
+<div class="highlight"><pre><span class="nv">$ </span>make
+
+<span class="nv">$ </span>make modules_install
+
+<span class="nv">$ </span><span class="nb">cd</span> /opt/raspberrypi
+
+<span class="nv">$ </span>git clone git://github.com/raspberrypi/tools.git
+
+<span class="nv">$ </span><span class="nb">cd </span>tools/mkimage
+
+<span class="nv">$ </span>python ./imagetool-uncompressed.py /opt/raspberrypi/linux/arch/arm/boot/Image
+
+<span class="nv">$ </span>cp /boot/kernel.img /boot/kernel-old.img
+
+<span class="nv">$ </span>cp kernel.img /boot/
+
+<span class="nv">$ </span>reboot
+</pre></div>
+<ol class="arabic simple" start="13">
+<li>Download Latest LXC</li>
+</ol>
+<p>The LXC tools provided with Raspbian are out-of-date, so let's update to the latest version.</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir /opt/lxc
+
+<span class="nv">$ </span><span class="nb">cd</span> /opt/lxc
+
+<span class="nv">$ </span>git clone https://github.com/lxc/lxc.git
+
+<span class="nv">$ </span>apt-get install automake libcap-dev
+
+<span class="nv">$ </span><span class="nb">cd </span>lxc
+
+<span class="nv">$ </span>./autogen.sh <span class="o">&amp;&amp;</span> ./configure <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<p>Testing the Install</p>
+<p>Check LXC is happy with your kernel:</p>
+<div class="highlight"><pre><span class="nv">$ </span>lxc-checkconfig
+</pre></div>
+<p>User namespace should be “missing” (it checks for a kernel option that no longer exists) and Cgroup namespace should say “required”.</p>
+<ol class="arabic simple" start="14">
+<li>Installing Go</li>
+</ol>
+<p>If you install Go using the Go package that is available (apt-get install golang). You will get a floating point issue. For more information about the floating point issues see this page.  <a class="reference external" href="http://www.raspberrypi.org/phpBB3/viewtopic.php?p=129647">http://www.raspberrypi.org/phpBB3/viewtopic.php?p=129647</a></p>
+<p>To get it to work, we will compile Go from source. Feel free to change the location on where we are installing it.</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install -y mercurial gcc libc6-dev
+
+<span class="nv">$ </span>hg clone -u default https://code.google.com/p/go <span class="nv">$HOME</span>/go
+warning: code.google.com certificate with fingerprint 9f:af:b9:ce:b5:10:97:c0:5d:16:90:11:63:78:fa:2f:37:f4:96:79 not verified <span class="o">(</span>check hostfingerprints or web.cacerts config setting<span class="o">)</span>
+destination directory: go
+requesting all changes
+adding changesets
+adding manifests
+adding file changes
+added 14430 changesets with 52478 changes to 7406 files <span class="o">(</span>+5 heads<span class="o">)</span>
+updating to branch default
+3520 files updated, 0 files merged, 0 files removed, 0 files unresolved
+
+<span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/go/src
+<span class="nv">$ </span>./all.bash
+
+ALL TESTS PASSED
+
+---
+Installed Go <span class="k">for </span>linux/arm in /home/dfc/go
+Installed commands in /home/dfc/go/bin
+</pre></div>
+<p>If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/go
+<span class="nv">$ </span>./make.bash
+</pre></div>
+<p>as an alternative to ./all.bash.</p>
+<p>The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/go/bin
+<span class="nv">$ </span>go version
+go version devel +30c566874b83 Wed May 08 16:06:25 2013 -0700 linux/arm
+</pre></div>
+<ol class="arabic simple" start="15">
+<li>Installing Docker</li>
+</ol>
+<div class="highlight"><pre><span class="nv">$ </span>apt-get -y install wget bsdtar curl git
+
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>~/docker/go/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$GOPATH</span>/bin:<span class="nv">$PATH</span>
+
+<span class="nv">$ </span>mkdir -p <span class="nv">$GOPATH</span>/src/github.com/dotcloud
+<span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$GOPATH</span>/src/github.com/dotcloud
+<span class="nv">$ </span>git clone git://github.com/dotcloud/docker.git  <span class="c"># or clone your own fork/branch</span>
+<span class="nv">$ </span><span class="nb">cd </span>docker
+
+<span class="nv">$ </span>go get -v github.com/dotcloud/docker/...
+<span class="nv">$ </span>go install -v github.com/dotcloud/docker/...
+
+<span class="nv">$ </span>docker version
+<span class="nv">$ </span>docker -d
+The docker runtime currently only supports amd64 <span class="o">(</span>not arm<span class="o">)</span>. This will change in the future. Aborting.
+</pre></div>
+<p>Docker is installed but due to current limitations it won't run. It is a start, we now have a development environment to start hacking on Docker to get it to work with the RaspberryPi.</p>
+</div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What's Next</h2>
+<ul class="simple">
+<li>Now we have everything up and running, we need to change docker so that it will work on the ARM with only 32bit support.</li>
+<li>I need to take my compiled kernel and make it downloadable to others</li>
+<li>I need to make an SD card image of my setup for easy download, so that people can get started easier.</li>
+</ul>
+</div>
+<div class="section" id="want-to-help">
+<h2>Want to Help?</h2>
+<p>If you want to help me with this, please send me a message on twitter <a class="reference external" href="https://twitter.com/kencochrane">&#64;KenCochrane</a> and also add your name to this <a class="reference external" href="https://github.com/dotcloud/docker/issues/636">Docker issue</a>.</p>
+</div>
+<div class="section" id="resources">
+<h2>Resources:</h2>
+<ul class="simple">
+<li>LXC: <a class="reference external" href="http://raspberrypicloud.wordpress.com/2013/03/12/building-an-lxc-friendly-kernel-for-the-raspberry-pi/">http://raspberrypicloud.wordpress.com/2013/03/12/building-an-lxc-friendly-kernel-for-the-raspberry-pi/</a></li>
+<li>AUFS: <a class="reference external" href="http://rpitc.blogspot.sg/p/kernel-rebuild.html">http://rpitc.blogspot.sg/p/kernel-rebuild.html</a></li>
+<li>Go: <a class="reference external" href="http://dave.cheney.net/tag/go-golang-raspberrypi">http://dave.cheney.net/tag/go-golang-raspberrypi</a></li>
+<li>Docker: <a class="reference external" href="http://docs.docker.io/en/latest/contributing/devenvironment.html">http://docs.docker.io/en/latest/contributing/devenvironment.html</a></li>
+</ul>
+</div>
+</div>
+		<div>
+			<h2>Comments</h2>
+		 	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			<div id="disqus_thread"></div>					<div>
+	</div>	
+		<footer>
+		  <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+		  <p>&copy; Ken Cochrane 2013</p>
+		  <a title="Real Time Web Analytics" href="http://getclicky.com/66415850"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+		</footer>
+	  </div>
+
+	</div>
+<div class="container-fluid">
+<script>var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /></p></noscript>
+</div>
+</body>
+</html>
