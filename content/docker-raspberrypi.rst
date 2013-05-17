@@ -383,7 +383,6 @@ Want to Help?
 -------------
 If you want to help me with this, please send me a message on twitter `@KenCochrane <https://twitter.com/kencochrane>`_ and also add your name to this `Docker issue <https://github.com/dotcloud/docker/issues/636>`_.
 
-
 Resources:
 ----------
 - LXC: http://raspberrypicloud.wordpress.com/2013/03/12/building-an-lxc-friendly-kernel-for-the-raspberry-pi/ 
