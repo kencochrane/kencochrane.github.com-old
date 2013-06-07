@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/all-en.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-05-17T15:30:24-04:00</updated><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/all-en.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-06-07T12:24:24-04:00</updated><entry><title>Running Docker on Digital Ocean with Ubuntu</title><link href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/" rel="alternate"></link><updated>2013-06-07T12:24:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</id><summary type="html">&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an Ubuntu 12.04 and 13.04 VPS up and running with Docker.&lt;/p&gt;
+&lt;div class="section" id="step-1-register"&gt;
+&lt;h2&gt;Step 1: Register&lt;/h2&gt;
+&lt;p&gt;First things first, if you don't already have a Digital Ocean account, you will need to create one. If you &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;follow this link&lt;/a&gt;, click sign up and enter this promo code &lt;strong&gt;VPSERS10&lt;/strong&gt;, you will be given a $10 credit to try out the service.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-2-billing"&gt;
+&lt;h2&gt;Step 2: Billing&lt;/h2&gt;
+&lt;p&gt;To prevent abuse, Digital Ocean requires that you enter a credit card before you can spin up a server. Go ahead and do that now. Once you put in your information you should see a screen like this.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/startup.png" class="img-polaroid align-center" id="digital-ocean-control-panel" src="/static/digital-ocean/startup.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-3-ssh-keys"&gt;
+&lt;h2&gt;Step 3 SSH keys&lt;/h2&gt;
+&lt;p&gt;To make your life easier, I would add a public SSH key to your account. If you don't add an SSH key then you will be emailed a root password when the server is setup. It is easier and more secure to add your public key, and then select that key when building the server, and they will automatically add the key to your server for you. If you don't have a SSH key, don't worry they are easy to create. Just do a quick web search, and there are a ton of different guide out there to help you get one setup.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/ssh_key.png" class="img-polaroid align-center" id="digital-ocean-control-panel-add-ssh-key" src="/static/digital-ocean/ssh_key.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-4-create-droplet"&gt;
+&lt;h2&gt;Step 4: Create Droplet&lt;/h2&gt;
+&lt;p&gt;Digital Ocean calls their servers Droplets. Lets create a droplet. Click on the big &amp;quot;Create&amp;quot; button on the control panel.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Enter a hostname&lt;/li&gt;
+&lt;li&gt;Pick your size&lt;/li&gt;
+&lt;li&gt;select your region&lt;/li&gt;
+&lt;li&gt;Select your image. Docker currently only runs on a 64bit OS, and needs a fairly recent kernel (3.8+) with AUFS enabled. The only images on Digital Ocean that will currently work with Docker are Ubuntu 13.04 x64 Server, and Ubuntu 12.04 x64 Server. I'll cover the install instructions for those two options below.&lt;/li&gt;
+&lt;li&gt;Pick your SSH key that you added previously. If you don't pick one, your root password will be emailed to you.&lt;/li&gt;
+&lt;li&gt;Enable VirtIO&lt;/li&gt;
+&lt;li&gt;Click the big &amp;quot;Create Droplet&amp;quot; button at the bottom.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img alt="/static/digital-ocean/select_distro_ubuntu_12_04.png" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
+&lt;p&gt;Droplet getting created&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/create_droplet.png" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
+&lt;p&gt;After about 60 seconds you should have a cloudlet created with an IP address. Now pick the Distro you picked below and follow the rest of the directions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ubuntu-12-04-64bit-server"&gt;
+&lt;h2&gt;Ubuntu 12.04 64bit Server&lt;/h2&gt;
+&lt;div class="section" id="upgrade-kernel"&gt;
+&lt;h3&gt;Upgrade kernel&lt;/h3&gt;
+&lt;p&gt;The default kernel with 12.04 doesn't work well with Docker so we are going to upgrade to the same one that is used by 13.04. To do this you will go into your control panel for your droplet, and go into the settings tab and change the kernel pull down to &amp;quot;Ubuntu 13.04-x64-vmlinuz-3.8.0-23-generic&amp;quot; and click change.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/change_kernel.png" class="img-polaroid align-center" id="digital-ocean-control-panel-change-kernel" src="/static/digital-ocean/change_kernel.png" /&gt;
+&lt;p&gt;In order for the kernel change to take affect you will need to power cycle the droplet. Click on the power tab, and then hit the &amp;quot;Power Cycle&amp;quot; button.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/power_cycle.png" class="img-polaroid align-center" id="digital-ocean-control-panel-power-cycle" src="/static/digital-ocean/power_cycle.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="login-to-server"&gt;
+&lt;h3&gt;Login to server&lt;/h3&gt;
+&lt;p&gt;Now that you have the new kernel you need to login to the server to install the rest of the stuff.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh root@&amp;lt;your_ip_address&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let's check to make sure you have the right kernel. It should show a 3.8 kernel if you did everything right.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;uname -a
+Linux docker-1 3.8.0-23-generic &lt;span class="c"&gt;#34-Ubuntu SMP Wed May 29 20:22:58 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let's install some dependencies now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install linux-image-generic-lts-raring
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;p&gt;Install Docker from the Docker PPA&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install python-software-properties &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo add-apt-repository ppa:dotcloud/lxc-docker
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install lxc-docker
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Docker should have been installed and started up. lets test to make sure it works.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ docker version
+Client version: 0.4.0
+Server version: 0.4.0
+Go version: go1.0.3
+
+$ docker run base /bin/echo hello world
+hello world
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully it worked. If not, feel free to ask questions on #docker on freenode, or &lt;a class="reference external" href="https://github.com/dotcloud/docker/issues?labels=doc&amp;amp;state=open"&gt;submit a support ticket&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ubuntu-13-04-64bit-server"&gt;
+&lt;h2&gt;Ubuntu 13.04 64bit Server&lt;/h2&gt;
+&lt;p&gt;13.04 comes with the 3.8 kernel, so we won't need to do anything kernel related, which makes this install much simpler compared to 12.04.&lt;/p&gt;
+&lt;p&gt;Install the dependencies&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install linux-image-extra-&lt;span class="sb"&gt;`&lt;/span&gt;uname -r&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
+&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu-2" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;p&gt;Install Docker&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install software-properties-common
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo add-apt-repository ppa:dotcloud/lxc-docker
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install lxc-docker
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Docker should have been installed and started up. lets test to make sure it works.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;docker ps
+ID                  IMAGE               COMMAND             CREATED             STATUS              PORTS
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;docker version
+Client version: 0.4.0
+Server version: 0.4.0
+Go version: go1.0.3
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;docker run base /bin/echo hello world
+hello world
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully it worked. If not, feel free to ask questions on #docker on freenode, or &lt;a class="reference external" href="https://github.com/dotcloud/docker/issues?labels=doc&amp;amp;state=open"&gt;submit a support ticket&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="docker"></category><category term="digital-ocean"></category><category term="ubuntu"></category><category term="kernel"></category><category term="lxc"></category><category term="aufs"></category></entry><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
 &lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
 &lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -8,7 +113,7 @@
 &lt;li&gt;AUFS&lt;/li&gt;
 &lt;li&gt;Go&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are planes to add 32 bit support in the future, but it isn't there yet.&lt;/p&gt;
+&lt;p&gt;Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are plans to add 32 bit support in the future, but it isn't there yet.&lt;/p&gt;
 &lt;p&gt;Doing some research I was able to find blog posts on how to get LXC and AUFS up and running on the RaspberryPi. Using those guides, I was able to make some progress but I'm not all of the way there yet. I'm hoping to describe my steps here so that others can see what I have done, and if they want, help me get over the hump.&lt;/p&gt;
 &lt;div class="section" id="goals"&gt;
 &lt;h2&gt;Goals&lt;/h2&gt;

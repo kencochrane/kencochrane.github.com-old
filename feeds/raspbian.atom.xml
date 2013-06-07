@@ -8,7 +8,7 @@
 &lt;li&gt;AUFS&lt;/li&gt;
 &lt;li&gt;Go&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are planes to add 32 bit support in the future, but it isn't there yet.&lt;/p&gt;
+&lt;p&gt;Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are plans to add 32 bit support in the future, but it isn't there yet.&lt;/p&gt;
 &lt;p&gt;Doing some research I was able to find blog posts on how to get LXC and AUFS up and running on the RaspberryPi. Using those guides, I was able to make some progress but I'm not all of the way there yet. I'm hoping to describe my steps here so that others can see what I have done, and if they want, help me get over the hump.&lt;/p&gt;
 &lt;div class="section" id="goals"&gt;
 &lt;h2&gt;Goals&lt;/h2&gt;
