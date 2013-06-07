@@ -102,6 +102,6 @@ hello world
 &lt;/div&gt;
 &lt;div class="section" id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below.&lt;/p&gt;
+&lt;p&gt;Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below or visit #docker on freenode&lt;/p&gt;
 &lt;/div&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 07 Jun 2013 12:24:24 -0400</pubDate><guid>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</guid><category>docker</category><category>digital-ocean</category><category>ubuntu</category><category>kernel</category><category>lxc</category><category>aufs</category></item></channel></rss>

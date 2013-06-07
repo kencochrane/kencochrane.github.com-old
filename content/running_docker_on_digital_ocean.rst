@@ -175,4 +175,4 @@ Hopefully it worked. If not, feel free to ask questions on #docker on freenode, 
 
 Conclusion
 ----------
-Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below.
+Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below or visit #docker on freenode
