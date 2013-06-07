@@ -33,10 +33,10 @@ Step 4: Create Droplet
 ----------------------
 Digital Ocean calls their servers Droplets. Lets create a droplet. Click on the big "Create" button on the control panel. 
 
-1. Enter a hostname
+1. Enter a hostname at the top.
 2. Pick your size 
 3. select your region
-4. Select your image. Docker currently only runs on a 64bit OS, and needs a fairly recent kernel (3.8+) with AUFS enabled. The only images on Digital Ocean that will currently work with Docker are Ubuntu 13.04 x64 Server, and Ubuntu 12.04 x64 Server. I'll cover the install instructions for those two options below.
+4. Select your image. Docker currently only runs on a **64bit OS**, and needs a fairly recent kernel (3.8+) with AUFS enabled. The only images on Digital Ocean that will currently work with Docker are **Ubuntu 13.04 x64 Server**, and **Ubuntu 12.04 x64 Server**. I'll cover the install instructions for those two options below.
 5. Pick your SSH key that you added previously. If you don't pick one, your root password will be emailed to you.
 6. Enable VirtIO
 7. Click the big "Create Droplet" button at the bottom.
@@ -54,7 +54,7 @@ Droplet getting created
    :align: center
    :class: img-polaroid
 
-After about 60 seconds you should have a cloudlet created with an IP address. Now pick the Distro you picked below and follow the rest of the directions.
+After about 60 seconds you should have a cloudlet created with an IP address. Now pick the distribution you picked below and follow the rest of the directions.
 
 Ubuntu 12.04 64bit Server
 -------------------------

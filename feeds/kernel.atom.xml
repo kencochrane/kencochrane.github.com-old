@@ -18,10 +18,10 @@
 &lt;h2&gt;Step 4: Create Droplet&lt;/h2&gt;
 &lt;p&gt;Digital Ocean calls their servers Droplets. Lets create a droplet. Click on the big &amp;quot;Create&amp;quot; button on the control panel.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Enter a hostname&lt;/li&gt;
+&lt;li&gt;Enter a hostname at the top.&lt;/li&gt;
 &lt;li&gt;Pick your size&lt;/li&gt;
 &lt;li&gt;select your region&lt;/li&gt;
-&lt;li&gt;Select your image. Docker currently only runs on a 64bit OS, and needs a fairly recent kernel (3.8+) with AUFS enabled. The only images on Digital Ocean that will currently work with Docker are Ubuntu 13.04 x64 Server, and Ubuntu 12.04 x64 Server. I'll cover the install instructions for those two options below.&lt;/li&gt;
+&lt;li&gt;Select your image. Docker currently only runs on a &lt;strong&gt;64bit OS&lt;/strong&gt;, and needs a fairly recent kernel (3.8+) with AUFS enabled. The only images on Digital Ocean that will currently work with Docker are &lt;strong&gt;Ubuntu 13.04 x64 Server&lt;/strong&gt;, and &lt;strong&gt;Ubuntu 12.04 x64 Server&lt;/strong&gt;. I'll cover the install instructions for those two options below.&lt;/li&gt;
 &lt;li&gt;Pick your SSH key that you added previously. If you don't pick one, your root password will be emailed to you.&lt;/li&gt;
 &lt;li&gt;Enable VirtIO&lt;/li&gt;
 &lt;li&gt;Click the big &amp;quot;Create Droplet&amp;quot; button at the bottom.&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;img alt="/static/digital-ocean/select_distro_ubuntu_12_04.png" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
 &lt;p&gt;Droplet getting created&lt;/p&gt;
 &lt;img alt="/static/digital-ocean/create_droplet.png" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
-&lt;p&gt;After about 60 seconds you should have a cloudlet created with an IP address. Now pick the Distro you picked below and follow the rest of the directions.&lt;/p&gt;
+&lt;p&gt;After about 60 seconds you should have a cloudlet created with an IP address. Now pick the distribution you picked below and follow the rest of the directions.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="ubuntu-12-04-64bit-server"&gt;
 &lt;h2&gt;Ubuntu 12.04 64bit Server&lt;/h2&gt;
