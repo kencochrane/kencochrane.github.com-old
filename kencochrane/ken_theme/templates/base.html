@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>{% block windowtitle %}{{ SITENAME }}{% endblock %}</title>
-	<meta name="description" content="">
-	<meta name="author" content="{{ AUTHOR }}">
+    <meta charset="utf-8">
+    <title>{% block windowtitle %}{{ SITENAME }}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="{{ AUTHOR }}">
     {% if FEED_ALL_ATOM %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
     {% endif %}
@@ -12,20 +12,20 @@
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
     {% endif %}
     {% block extra_head %}{% endblock extra_head %}
-	<link rel="icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon"> 
 
-	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="{{ SITEURL }}/theme/html5.js"></script>
-	<![endif]-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="{{ SITEURL }}/theme/html5.js"></script>
+    <![endif]-->
 
-	<!-- Le styles -->
-	<link href="{{ SITEURL }}/theme/bootstrap.min.css" rel="stylesheet">
-	<link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
-	<link href="{{ SITEURL }}/theme/css/font-awesome.css" rel="stylesheet">
-	<link href="{{ SITEURL }}/theme/pygments.css" rel="stylesheet">
-	<style type="text/css">
+    <!-- Le styles -->
+    <link href="{{ SITEURL }}/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/css/font-awesome.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/pygments.css" rel="stylesheet">
+    <style type="text/css">
 
       .sidebar-nav {
         padding: 9px 0;
@@ -43,59 +43,63 @@
         font-size: 6pt;
      }
     </style>
-	{% include "disqus.html" %}
+    {% include "disqus.html" %}
 </head>
 <body>
-	{% include "facebook.html" %}
-	<div class="topbar">
-	  <div class="topbar-inner">
-		<div class="container-fluid">
-		  <a class="brand" href="{{ SITEURL }}/index.html">{{ SITENAME }}</a>
-			<ul class="nav">
-				{% for title, link in MENUITEMS %}
-					<li><a href="{{ link }}">{{ title }}</a></li>
-				{% endfor %}
-				{% if DISPLAY_PAGES_ON_MENU %}
-					{% for page in PAGES %}
-						<li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-					{% endfor %}
-				{% endif %}
-				{% for cat, null in categories %}
-					<li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-				{% endfor %}
-			</ul>
-			<p class="pull-right"><a href="{{ SITEURL }}/archives.html">[archives]</a> <a href="{{ SITEURL }}/tags.html">[tags]</a></p>
-		</div>
-	  </div>
-	</div>
+    {% include "facebook.html" %}
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="{{ SITEURL }}/index.html">{{ SITENAME }}</a>
+            <ul class="nav">
+                {% for title, link in MENUITEMS %}
+                    <li><a href="{{ link }}">{{ title }}</a></li>
+                {% endfor %}
+                {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for page in PAGES %}
+                        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                {% for cat, null in categories %}
+                    <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                {% endfor %}
+                 <li><iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"></iframe>
+                  </li>
+            </ul>
+            <p class="pull-right"><a href="{{ SITEURL }}/archives.html">[archives]</a> <a href="{{ SITEURL }}/tags.html">[tags]</a></p>
+        </div>
+      </div>
+    </div>
 
-	<div class="container-fluid">
-	  <div class="sidebar">
-		<div class="well">
-		    {% if LINKS %}
-			<h3>Blogroll</h3>
-			<ul>
-				{% for name, link in LINKS %}
-				<li><a href="{{ link }}">{{ name }}</a></li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			{% if SOCIAL %}
-			<div class="social">
-			<h3>Social</h3>
-			<ul>
-				{% for name, link in SOCIAL %}
-				<li><a href="{{ link }}">{{ name }}</a></li>
-				{% endfor %}
-				{% if FEED_ALL_ATOM %}
-				    <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate">atom feed</a></li>
-				{% endif %}
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+            {% if LINKS %}
+            <h3>Blogroll</h3>
+            <ul>
+                {% for name, link in LINKS %}
+                <li><a href="{{ link }}">{{ name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if SOCIAL %}
+            <div class="social">
+            <h3>Social</h3>
+            <ul>
+                {% for name, link in SOCIAL %}
+                <li><a href="{{ link }}">{{ name }}</a></li>
+                {% endfor %}
+                {% if FEED_ALL_ATOM %}
+                    <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                {% endif %}
                 {% if FEED_ALL_RSS %}
                     <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate">rss feed</a></li>
                 {% endif %}
-			</ul>
-			</div>
-			{% endif %}
+            </ul>
+            </div>
+            {% endif %}
 
             <h4><i class="icon-tags icon-large"></i>Tags</h4>
             <ul>
@@ -107,20 +111,20 @@
                 </li>
             {% endfor %}
             </ul>
-			
-		</div>
-	  </div>
-	  <div class="content">
-			{% block indextitle %}<div class="page-header"><h1>{% block title %} {{ self.windowtitle() }} {% endblock %}</h1></div>{% endblock %}
-			{% block content %}{% endblock %}
-		<footer>
-		  <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
-		  <p>&copy; {{ AUTHOR }} 2013</p>
-		  <a title="Real Time Web Analytics" href="http://getclicky.com/{{CLICKY_SITE_ID}}"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-		</footer>
-	  </div>
+            
+        </div>
+      </div>
+      <div class="content">
+            {% block indextitle %}<div class="page-header"><h1>{% block title %} {{ self.windowtitle() }} {% endblock %}</h1></div>{% endblock %}
+            {% block content %}{% endblock %}
+        <footer>
+          <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+          <p>&copy; {{ AUTHOR }} 2013</p>
+          <a title="Real Time Web Analytics" href="http://getclicky.com/{{CLICKY_SITE_ID}}"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+        </footer>
+      </div>
 
-	</div>
+    </div>
 <div class="container-fluid">
 {% include "analytics.html" %}
 </div>
