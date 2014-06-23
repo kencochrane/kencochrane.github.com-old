@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/developers-guide-for-running-django-apps-on-heroku.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2014-06-23T10:18:04-04:00</updated><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;script type="text/javascript"&gt;
+	var disqus_identifier = "blog/2011/11/developers-guide-for-running-django-apps-on-heroku/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+                        	&lt;div class='article'&gt;
+		&lt;div class="page-header"&gt;&lt;h1&gt;Developers guide to Running Django Applications on Heroku&lt;/h1&gt;&lt;/div&gt;
+		&lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;2011-11-30 10:00:00&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;heroku&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+		&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="http://Heroku.com"&gt;Heroku&lt;/a&gt; the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still in beta, but that shouldn't stop you from trying it out, and that is just what I'm going to do.&lt;/p&gt;
+&lt;p&gt;6 months ago I wrote a series of blog posts that reviewed all of the cool new django hosting services that were popping up. My goal was to look at them all, and compare them to find out what they had to offer, and to see if I could use them on my future projects. I'm going to review Heroku using the same process that I used to review those other services, so that I can we can compare apples to apples.&lt;/p&gt;
+&lt;p&gt;For those of you who are not familiar with my other blog posts, feel free to check them out now &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;dotcloud.com&lt;/a&gt;, &lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For those of you that are lazy, I'll sum it up pretty quickly. What I'm trying to do is pretty simple, I sign up for the service, and just looking at the documentation available, can I get my blog application up and running, and what did I have to do, in order for it to work. I'll describe each step along the way, as a helpful guide for others who might be trying to do the same with their application. If I come across an error, I will tell you what the error was, and how I fixed it, so that if you get the same error, hopefully what I did to fix my problem, will also fix yours.&lt;/p&gt;
+&lt;div class="section" id="heroku-django-documentation"&gt;
+&lt;h2&gt;Heroku Django Documentation&lt;/h2&gt;
+&lt;p&gt;Before you start using any new platform, you should take the time to read the documentation. I know it doesn't sound like fun,but trust me, it will save you a lot of pain and frustration later on. Here are some links that I found helpful.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Quickstart guide&lt;/strong&gt;: &lt;a class="reference external" href="http://devcenter.heroku.com/articles/quickstart"&gt;http://devcenter.heroku.com/articles/quickstart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python articles&lt;/strong&gt;: &lt;a class="reference external" href="http://devcenter.heroku.com/articles/python"&gt;http://devcenter.heroku.com/articles/python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Django article&lt;/strong&gt;: &lt;a class="reference external" href="http://devcenter.heroku.com/articles/django"&gt;http://devcenter.heroku.com/articles/django&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dev Center&lt;/strong&gt;: &lt;a class="reference external" href="http://devcenter.heroku.com/"&gt;http://devcenter.heroku.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="prerequisites"&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Heroku account&lt;/li&gt;
+&lt;li&gt;Heroku command line client&lt;/li&gt;
+&lt;li&gt;Python 2.7, virtualenv, pip, git&lt;/li&gt;
+&lt;li&gt;Must use pip to manage dependencies with a requirements.txt file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="signing-up-for-heroku"&gt;
+&lt;h2&gt;Signing up for Heroku&lt;/h2&gt;
+&lt;p&gt;Signing up was as simple as can be, all I needed to do was follow this link: &lt;a class="reference external" href="https://api.heroku.com/signup"&gt;https://api.heroku.com/signup&lt;/a&gt; and fill out my email address. Go into my email and click on the link they sent, which took me to a page that had me pick my password, and I was done. The whole process took less then 1 minute. Can't beat that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="verifying-you-heroku-account"&gt;
+&lt;h2&gt;Verifying you Heroku account&lt;/h2&gt;
+&lt;p&gt;When you sign up for an account, you have limited access to some features (add-ons, etc.) until you verify your account. Verifing your account is easy all you have to do is enter your credit card information. This proves to them you are real, and also allows you to use some of the paid features. I recommend that you verify your account so that you can get access to some of the nice free add-ons that are available.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="installing-the-heroku-command-line-client"&gt;
+&lt;h2&gt;Installing the heroku command line client&lt;/h2&gt;
+&lt;p&gt;I'm using a mac so I'm going to install the following version of the heroku command line client (toolbelt).
+&lt;a class="reference external" href="http://toolbelt.herokuapp.com/osx/download"&gt;http://toolbelt.herokuapp.com/osx/download&lt;/a&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Click on link, download the file.&lt;/li&gt;
+&lt;li&gt;Find the file that was downloaded (heroku-toolbelt.pkg) and double click it.&lt;/li&gt;
+&lt;li&gt;Follow prompts; enter password when prompted, and click close.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-heroku-command-line-client"&gt;
+&lt;h2&gt;Test heroku command line client&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Open terminial&lt;/li&gt;
+&lt;li&gt;Type &amp;quot;heroku version&amp;quot; you should see something like this &amp;quot;heroku-gem/2.14.0&amp;quot; if so, it worked. if not, you did something wrong.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="login-to-heroku-from-command-line-client"&gt;
+&lt;h2&gt;Login to heroku from command line client&lt;/h2&gt;
+&lt;p&gt;Logging into the client will try to find your ssh key, and upload it to heroku for pushing code later on. If you don't have a key it will prompt you to create one. If you have more then one it will ask you which one you want to use.&lt;/p&gt;
+&lt;div class="section" id="no-key-found-example"&gt;
+&lt;h3&gt;No key found example&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku login
+Enter your Heroku credentials.
+Email: adam@example.comPassword:
+Could not find an existing public key.
+Would you like to generate one? &lt;span class="o"&gt;[&lt;/span&gt;Yn&lt;span class="o"&gt;]&lt;/span&gt;
+Generating new SSH public key.
+Uploading ssh public key /Users/adam/.ssh/id_rsa.pub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="found-more-then-one-key-example"&gt;
+&lt;h3&gt;Found more then one key example&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku login
+Enter your Heroku credentials.
+Email: &amp;lt;my email&amp;gt;
+Password:
+Found the following SSH public keys:
+1&lt;span class="o"&gt;)&lt;/span&gt; apphosted.key.pub
+2&lt;span class="o"&gt;)&lt;/span&gt; id_rsa.pub
+Which would you like to use with your Heroku account? 2
+Uploading ssh public key /Users/ken/.ssh/id_rsa.pub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-your-django-application-ready"&gt;
+&lt;h2&gt;Getting your Django application ready&lt;/h2&gt;
+&lt;p&gt;Now that you have an account and the client installed, you are ready to get started. If you are starting from scratch I recommend following the steps in this tutorial. &lt;a class="reference external" href="http://devcenter.heroku.com/articles/django"&gt;http://devcenter.heroku.com/articles/django&lt;/a&gt; . If you are like me and already have an application that you want to install on to Heroku, keep reading.&lt;/p&gt;
+&lt;p&gt;Since I already have a project, I'm going to tell you what I needed to do in order to get my blog application up and running on heroku. I followed the instructions from the heroku tutorial and went from there. Heroku depends on git, so I'm using a copy of my blog app that is hosted on github: &lt;a class="reference external" href="https://github.com/kencochrane/kencochrane_blog_heroku"&gt;https://github.com/kencochrane/kencochrane_blog_heroku&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /Users/ken/projects/github
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://kencochrane@github.com/kencochrane/kencochrane_blog_heroku.git kencochrane_heroku
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;kencochrane_heroku
+
+&lt;span class="c"&gt;# making a new virtual environment using virtualenvwrapper.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv --no-site-packages --distribute kencochrane_heroku
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It should automatically activate the environment for you. If it doesn't, run this command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;workon kencochrane_heroku
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that I have my virtualenv, I need to install my requirements using pip.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creating-django-application-on-heroku"&gt;
+&lt;h2&gt;Creating django application on heroku&lt;/h2&gt;
+&lt;p&gt;Creating an application on heroku is easy, you just need to run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku create --stack cedar
+Creating some-name-4741... &lt;span class="k"&gt;done&lt;/span&gt;, stack is cedar
+http://some-name-4741.herokuapp.com/ | git@heroku.com:some-name-4741.git
+Git remote heroku added
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploying-django-application-to-heroku"&gt;
+&lt;h2&gt;Deploying django application to Heroku&lt;/h2&gt;
+&lt;p&gt;Once you are ready you can deploy your django application to Heroku.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If everything went well, it should look something like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+Counting objects: 209, &lt;span class="k"&gt;done&lt;/span&gt;.
+Delta compression using up to 4 threads.
+Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;176/176&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;209/209&lt;span class="o"&gt;)&lt;/span&gt;, 271.89 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
+Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+
+-----&amp;gt; Heroku receiving push
+-----&amp;gt; Python/Django app detected
+-----&amp;gt; Preparing virtualenv version 1.6.4
+       New python executable in ./bin/python
+       Installing setuptools............done.
+       Installing pip...............done.
+-----&amp;gt; Django settings injection
+       Injecting code into blog/settings.py to &lt;span class="nb"&gt;read &lt;/span&gt;from DATABASE_URL
+
+&amp;lt;removed a lot of output that doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t need to be shown&amp;gt;
+
+       Successfully installed South django-activitysync django-debug-toolbar django-disqus django-memcache-status django-tagging django-xmlrpc feedparser httplib2 oauth2 python-memcached python-twitter simplejson yolk docutils Pygments psycopg2 Django
+       Cleaning up...
+-----&amp;gt; Discovering process types
+       Procfile declares types         -&amp;gt; &lt;span class="o"&gt;(&lt;/span&gt;none&lt;span class="o"&gt;)&lt;/span&gt;
+       Default types &lt;span class="k"&gt;for &lt;/span&gt;Python/Django -&amp;gt; web
+-----&amp;gt; Compiled slug size is 10.3MB
+-----&amp;gt; Launching... &lt;span class="k"&gt;done&lt;/span&gt;, v5
+       http://some-name-4741.herokuapp.com deployed to Heroku
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploying-application-to-heroku-failed-now-what"&gt;
+&lt;h2&gt;Deploying application to Heroku failed, now what?&lt;/h2&gt;
+&lt;p&gt;The very first time you push to master you will get something like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+
+The authenticity of host &lt;span class="s1"&gt;&amp;#39;heroku.com (50.19.85.132)&amp;#39;&lt;/span&gt; can&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t be established.
+RSA key fingerprint is 8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad.
+Are you sure you want to &lt;span class="k"&gt;continue &lt;/span&gt;connecting &lt;span class="o"&gt;(&lt;/span&gt;yes/no&lt;span class="o"&gt;)&lt;/span&gt;? yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is normal, just type 'yes', and you will never be prompted for this again.&lt;/p&gt;
+&lt;div class="section" id="django-app-must-be-in-a-package-subdirectory"&gt;
+&lt;h3&gt;Django app must be in a package subdirectory&lt;/h3&gt;
+&lt;p&gt;If you django project isn't setup correctly, you will get an error like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+Counting objects: 199, &lt;span class="k"&gt;done&lt;/span&gt;.
+Delta compression using up to 4 threads.
+Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;167/167&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;199/199&lt;span class="o"&gt;)&lt;/span&gt;, 270.86 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
+Total 199 &lt;span class="o"&gt;(&lt;/span&gt;delta 26&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+
+
+-----&amp;gt; Heroku receiving push
+-----&amp;gt; Python app detected
+ !     Django app must be in a package subdirectory
+ !     Heroku push rejected, failed to compile Python app
+
+
+To git@heroku.com:some-name-4741.git
+ ! &lt;span class="o"&gt;[&lt;/span&gt;remote rejected&lt;span class="o"&gt;]&lt;/span&gt; master -&amp;gt; master &lt;span class="o"&gt;(&lt;/span&gt;pre-receive hook declined&lt;span class="o"&gt;)&lt;/span&gt;
+error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.com:some-name-4741.git&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This failed, because django app must be in a package subdirectory.. So you need to change the way my django app is setup. Move all of the files under a django project directory except the .git directory and .gitignore and requirements.txt files. For an example of what this looks like, check out the project directory structure on my repo in github.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="heroku-push-rejected-no-cedar-supported-app-detected"&gt;
+&lt;h3&gt;Heroku push rejected, no Cedar-supported app detected&lt;/h3&gt;
+&lt;p&gt;Another error you can get is this one. &amp;quot;Heroku push rejected, no Cedar-supported app detected&amp;quot;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+Counting objects: 204, &lt;span class="k"&gt;done&lt;/span&gt;.
+Delta compression using up to 4 threads.
+Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;171/171&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;204/204&lt;span class="o"&gt;)&lt;/span&gt;, 271.34 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
+Total 204 &lt;span class="o"&gt;(&lt;/span&gt;delta 27&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+
+-----&amp;gt; Heroku receiving push
+ !     Heroku push rejected, no Cedar-supported app detected
+
+To git@heroku.com:cold-summer-4741.git
+ ! &lt;span class="o"&gt;[&lt;/span&gt;remote rejected&lt;span class="o"&gt;]&lt;/span&gt; master -&amp;gt; master &lt;span class="o"&gt;(&lt;/span&gt;pre-receive hook declined&lt;span class="o"&gt;)&lt;/span&gt;
+error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.com:cold-summer-4741.git&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I had this error and I couldn't figure it out. After searching through all of the heroku python docs (all 2 of them), I didn't find anything, so I started doing some trial and error testing, and I finally figure out what was wrong. My django project directory was kencochrane_blog, and this had an underscore, and when I changed it to just kenblog (no more underscore), it worked. I couldn't find anything anywhere that said you can't use underscores for your django app name, so they might want to update their documentation, or possibly fix the bug. I'm not sure if this is by design or not, maybe someone can let me know.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="check-django-application-status-on-heroku"&gt;
+&lt;h2&gt;Check Django application status on heroku&lt;/h2&gt;
+&lt;p&gt;Now that you have pushed your application out onto Heroku how do you know if it is actually running? The Heroku client has a command called ps, which will tell you what your processes are doing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku ps
+
+Process       State               Command
+------------  ------------------  ------------------------------
+web.1         crashed &lt;span class="k"&gt;for &lt;/span&gt;2m      python kenblog/manage.py runserver 0...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My django application looks like it crashed. Most likely because I didn't setup the database yet, lets look at the logs to see what is causing the problems to be sure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="checking-django-application-logs-on-heroku"&gt;
+&lt;h2&gt;Checking Django application logs on Heroku&lt;/h2&gt;
+&lt;p&gt;The Heroku client has a nifty logs command that you can use to view the last chunk of logs for your application. It will combine all of your logs into one view, so that you don't have to have more then one log process running. You can call it directly and get an output similar to the shell command 'tail' and you can all use the '--tail' option to follow the logs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku logs --tail
+2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Deploy 5f194d2 by kencochrane@2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Release v7 created by kencochrane@
+2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from crashed to created
+2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from created to starting
+2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
+2011-11-27T18:40:03+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Starting process with &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;python kenblog/manage.py runserver 0.0.0.0:12033 --noreload&lt;span class="sb"&gt;`&lt;/span&gt;
+2011-11-27T18:40:04+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Unexpected error: &lt;span class="o"&gt;(&lt;/span&gt;&amp;lt;&lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;exceptions.NameError&amp;#39;&lt;/span&gt;&amp;gt;, NameError&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name &amp;#39;DATABASES&amp;#39; is not defined&amp;quot;&lt;/span&gt;,&lt;span class="o"&gt;)&lt;/span&gt;, &amp;lt;traceback object at 0x1a7b128&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
+2011-11-27T18:40:05+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: There is no South database module &lt;span class="s1"&gt;&amp;#39;south.db.None&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;your database. Please either choose a supported database, check &lt;span class="k"&gt;for &lt;/span&gt;SOUTH_DATABASE_ADAPTER&lt;span class="o"&gt;[&lt;/span&gt;S&lt;span class="o"&gt;]&lt;/span&gt; settings, or remove South from INSTALLED_APPS.
+2011-11-27T18:40:06+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to crashed
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Looks like it is an issue with the settings file. If you wanted to take a look at the settings file to see if we can find out what is wrong you can run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# (your path will be different)&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run cat kenblog/settings.py
+
+&amp;lt;normal settings file stuff with the following added at the end.&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;urlparse&lt;/span&gt;
+&lt;span class="n"&gt;urlparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uses_netloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;postgres&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;urlparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uses_netloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;mysql&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DATABASE_URL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlparse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DATABASE_URL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="n"&gt;DATABASES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;NAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:],&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;USER&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;PASSWORD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;HOST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;PORT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scheme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;postgres&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;DATABASES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.postgresql_psycopg2&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scheme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;mysql&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;DATABASES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.mysql&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Unexpected error:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exc_info&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is odd, not sure why this is like this since I'm seeing the DATABASES variable above. Let's check to see if the environment variables are there. (the output has been changed to protect the innocent, but you still get the picture). You can also use the command 'heroku config' if you just want to see your application configuration options.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run env
+Running env attached to terminal... up, run.6
+&lt;span class="nv"&gt;DATABASE_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;postgres://blah:somethingelse@ec2-555-55-555-555.compute-1.amazonaws.com/morestuff
+&lt;span class="nv"&gt;PORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;37265
+&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/app
+&lt;span class="nv"&gt;PYTHONUNBUFFERED&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="nv"&gt;TERM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xterm
+&lt;span class="nv"&gt;COLUMNS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;153
+
+&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;bin:/usr/local/bin:/usr/bin:/bin
+&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/app
+&lt;span class="nv"&gt;SHARED_DATABASE_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;postgres://blah:evenmorestuff@ec2-555-55-555-555.compute-1.amazonaws.com/morestuff
+&lt;span class="nv"&gt;LINES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;32
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This output looks good the DATABASE_URL env variable is there, so that is OK. Looking more closely at my settings.py file I didn't have a DATABASES variable because the last time I used this project, the other hosting provider didn't require that I have one. So I have added a blank DATABASES variable, and that seems to have fixed my issue. Heroku, should make the error message a little nicer, add more notes to their documentation, or even better make their code handle the case when there is no DATABASES variable in the settings file.  I have submitted a patch to fix this, so hopefully that will get rolled out in the near future. (&lt;a class="reference external" href="https://github.com/heroku/heroku-buildpack-python/pull/8"&gt;https://github.com/heroku/heroku-buildpack-python/pull/8&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Now if we redeploy the app and look at the logs, they look much better.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku logs
+2011-11-27T18:59:25+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Deploy 96be00f by kencochrane@
+2011-11-27T18:59:25+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Release v8 created by kencochrane@
+2011-11-27T18:59:25+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from crashed to created
+2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from created to starting
+2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
+2011-11-27T18:59:31+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: 0 errors found
+2011-11-27T18:59:31+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to up
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="running-django-management-commands-on-heroku"&gt;
+&lt;h2&gt;Running django management commands on Heroku&lt;/h2&gt;
+&lt;p&gt;Running django management commands are easy you just need to run the following command and replace &amp;lt;command&amp;gt; with the management command you want to run. There are a few examples below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run python kenblog/manage.py &amp;lt;&lt;span class="nb"&gt;command&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="running-django-shell-on-heroku"&gt;
+&lt;h3&gt;Running django shell on Heroku&lt;/h3&gt;
+&lt;p&gt;If you need to use the interactive python shell with django, you still can, you just need to run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run python kenblog/manage.py shell
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="syncing-django-database-on-heroku"&gt;
+&lt;h3&gt;Syncing Django Database on Heroku&lt;/h3&gt;
+&lt;p&gt;Now that our application is starting like it should let's sync the db.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run python kenblog/manage.py syncdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="running-django-south-migrations-on-heroku"&gt;
+&lt;h3&gt;Running Django South Migrations on Heroku&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku run python kenblog/manage.py migrate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now lets look at our processes now&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku ps
+Process       State               Command
+------------  ------------------  ------------------------------
+run.5         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;21m    cat kenblog/settings.py
+run.6         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;18m    env
+run.7         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py syncdb
+run.8         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py migrate
+web.1         up &lt;span class="k"&gt;for &lt;/span&gt;4m           python kenblog/manage.py runserver..
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Things are looking better, we are up, and it also shows our old commands that we ran.&lt;/p&gt;
+&lt;p&gt;if you need to work with the processes you have the following options.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ps:dynos &lt;span class="o"&gt;[&lt;/span&gt;QTY&lt;span class="o"&gt;]&lt;/span&gt;                 &lt;span class="c"&gt;# scale to QTY web processes&lt;/span&gt;
+ps:restart &lt;span class="o"&gt;[&lt;/span&gt;PROCESS&lt;span class="o"&gt;]&lt;/span&gt;           &lt;span class="c"&gt;# restart an app process&lt;/span&gt;
+ps:scale &lt;span class="nv"&gt;PROCESS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;AMOUNT1 ...  &lt;span class="c"&gt;# scale processes by the given amount&lt;/span&gt;
+ps:stop PROCESS                &lt;span class="c"&gt;# stop an app process&lt;/span&gt;
+ps:workers &lt;span class="o"&gt;[&lt;/span&gt;QTY&lt;span class="o"&gt;]&lt;/span&gt;               &lt;span class="c"&gt;# scale to QTY background processes&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="opening-your-django-application-in-a-web-browser"&gt;
+&lt;h2&gt;Opening your django application in a web browser&lt;/h2&gt;
+&lt;p&gt;If you run this command it will open a web browser and hopefully your site is running as it should&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku open
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="running-django-and-gunicorn-on-heroku"&gt;
+&lt;h2&gt;Running django and gunicorn on heroku&lt;/h2&gt;
+&lt;p&gt;By default heroku deploys with the built in django runserver, which isn't recommended for production. If you are playing around it is ok, but once you get past that, the first thing you should do is switch to something better like guincorn. Switching is quick and painless, and you will be glad that you did.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Add gunicorn==0.13.4 to your requirements file.&lt;/li&gt;
+&lt;li&gt;create a new file called Procfile at the same level as your requirements.txt file with the following in it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;web: python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:$PORT&amp;quot;&lt;/span&gt; -w 3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Add gunicorn to the installed_apps in settings.py&lt;/p&gt;
+&lt;p&gt;then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git commit -am &lt;span class="s2"&gt;&amp;quot;use gunicorn&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Looking at your logs you will see it up and running&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku logs
+2011-11-27T21:06:24+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation started
+2011-11-27T21:06:32+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Deploy 7b2eec1 by kencochrane@
+2011-11-27T21:06:32+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;api&lt;span class="o"&gt;]&lt;/span&gt;: Release v8 created by kencochrane@
+2011-11-27T21:06:32+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from created to starting
+2011-11-27T21:06:35+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Starting process with &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:4075&amp;quot;&lt;/span&gt; -w 3&lt;span class="sb"&gt;`&lt;/span&gt;
+2011-11-27T21:06:36+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Validating models...
+2011-11-27T21:06:37+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to up
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="running-django-celery-background-tasks-on-heroku"&gt;
+&lt;h2&gt;Running django/celery background tasks on Heroku&lt;/h2&gt;
+&lt;p&gt;Heroku offers you two types of processes, a web process and a worker process. Web processes are used for serving web pages, etc. Worker processes are used for items that run in the background. The heroku tutorial goes over how to setup background task using celery and kombu (&lt;a class="reference external" href="http://devcenter.heroku.com/articles/django"&gt;http://devcenter.heroku.com/articles/django&lt;/a&gt;) if you want more info I would check that out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="serving-django-static-media-on-heroku"&gt;
+&lt;h2&gt;Serving Django Static media on Heroku&lt;/h2&gt;
+&lt;p&gt;I'm not sure how to serve up static media on heroku, to get my app working I just used the built in &amp;quot;django.views.static.serve&amp;quot; views for now, this isn't ideal and you would want a more permanent solution. A more long term solution would be to push all static media into Amazon s3 and then use Amazon cloudfront to serve everything.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="uploading-files-to-heroku-with-django"&gt;
+&lt;h2&gt;Uploading files to Heroku with Django&lt;/h2&gt;
+&lt;p&gt;Heroku allows you to upload files to their app's &amp;quot;Emphemeral Filesystem&amp;quot;: &lt;a class="reference external" href="http://devcenter.heroku.com/articles/dyno-isolation#ephemeral_filesystem"&gt;http://devcenter.heroku.com/articles/dyno-isolation#ephemeral_filesystem&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;Which the app can use as a temporary scratchpad, but no files it writes are visible to any other &amp;quot;Each dyno gets its own ephemeral filesystem, with a fresh copy of the most recently deployed code. During its lifetime the dyno can use the filesystem as a temporary scratchpad, but no files it writes are visible to any other dyno (including other dynos in the application) and any files written will be discarded the moment the dyno is stopped or restarted.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;This means you can't use this space to store uploaded files, but it should allow you to upload it there for a minute, and then send it over to Amazon S3 for a more permant storage solution. You could use a tool like Django Queued storage for this: &lt;a class="reference external" href="https://github.com/jezdez/django-queued-storage"&gt;https://github.com/jezdez/django-queued-storage&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="databases"&gt;
+&lt;h2&gt;Databases&lt;/h2&gt;
+&lt;p&gt;Heroku gives each app a 5MB shared postgresql database for FREE. If you pay $15/month you get upgraded to 20GB of space. They also offer dedicated database instances if you need that. See this page for more details. &lt;a class="reference external" href="http://www.heroku.com/pricing#0-0"&gt;http://www.heroku.com/pricing#0-0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They also have a bunch of other addons (redis, mongodb, couchdb, amazon RDS) that you should be able to tie into, see the addons page for a complete list. &lt;a class="reference external" href="http://addons.heroku.com/"&gt;http://addons.heroku.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="setting-up-django-caching-on-herku"&gt;
+&lt;h2&gt;Setting up Django Caching on Herku&lt;/h2&gt;
+&lt;p&gt;To use memcache on Heroku, I went to the add-on page and installed the free memcache addon. Once I did this I can run the heroku config command to find out my config settings. I then use that information in my django settings file so that I can have access to caching in my app.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku config
+...
+&lt;span class="nv"&gt;MEMCACHE_PASSWORD&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; xxxxxxxxxxxx
+&lt;span class="nv"&gt;MEMCACHE_SERVERS&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; instance.hostname.net
+&lt;span class="nv"&gt;MEMCACHE_USERNAME&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; xxxxxxxxxxxx
+...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;They also offer redis if you prefer that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sending-email-from-django-on-heroku"&gt;
+&lt;h2&gt;Sending Email from django on Heroku&lt;/h2&gt;
+&lt;p&gt;If you need to send or receive email in your application there are a few email add-ons that you can use. Pick the one you want and then run the 'heroku config' command described above to get your settings, and update your django settings accordingly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-size"&gt;
+&lt;h2&gt;Application size&lt;/h2&gt;
+&lt;p&gt;You application and all of it's dependencies can't be more then 100MB in size.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="heroku-pricing"&gt;
+&lt;h2&gt;Heroku Pricing&lt;/h2&gt;
+&lt;p&gt;Directly from this page: &lt;a class="reference external" href="http://devcenter.heroku.com/articles/how-much-does-a-dyno-cost"&gt;http://devcenter.heroku.com/articles/how-much-does-a-dyno-cost&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dynos cost $0.05 per hour, prorated to the second. For example, an app with four dynos is charged $0.20 per hour for each hour that the four dynos are running.&lt;/p&gt;
+&lt;p&gt;Pricing is based on calendar time. If you set your app to four dynos, you will be charged $0.20 per hour regardless of the traffic your site serves during that time.&lt;/p&gt;
+&lt;p&gt;Each application receives 750 free dyno hours per month. For example if you have 1 web dyno running for all of April, and a worker dyno running half the time you would have 330 dyno-hours billed that month or $16.50 (720 web dyno hours + 360 worker dyno hours - 750 free dyno hours).&lt;/p&gt;
+&lt;p&gt;See this page for more details: &lt;a class="reference external" href="http://www.heroku.com/pricing#0-0"&gt;http://www.heroku.com/pricing#0-0&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I haven't really had much time to really play with Heroku, and stress test it at all, but I have to say it is pretty impressive to begin with. There are still some rough edges, but I'm sure they will have those smoothed out before they remove the beta tag. The thing that impresses me the most is all of the addons that you have access to out of the box. I'm not sure how many of these work with the new platform, or with django right now, but I'm sure it is only a matter of time before they are available.&lt;/p&gt;
+&lt;p&gt;I would highly recommend signing up and trying out their service, it is free so what do you have to lose?&lt;/p&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h3&gt;Update&lt;/h3&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to Heroku. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+		&lt;div&gt;
+			&lt;h2&gt;Comments&lt;/h2&gt;
+		 	&lt;a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane"&gt;Tweet&lt;/a&gt;&lt;script type="text/javascript" src="http://platform.twitter.com/widgets.js"&gt;&lt;/script&gt;
+			&lt;div id="disqus_thread"&gt;&lt;/div&gt;					&lt;div&gt;
+	&lt;/div&gt;	
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry></feed>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/my-experiences-with-epio.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2014-06-23T10:18:04-04:00</updated><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;script type="text/javascript"&gt;
+	var disqus_identifier = "blog/2011/04/my-experiences-with-epio/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+                        	&lt;div class='article'&gt;
+		&lt;div class="page-header"&gt;&lt;h1&gt;My Experiences with ep.io&lt;/h1&gt;&lt;/div&gt;
+		&lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;2011-04-18 21:09:57&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/epio.html"&gt;epio&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+		&lt;div&gt;&lt;p&gt;Over the last decade I have deployed my applications many different ways, I have used, self managed dedicated servers, fully managed dedicated servers, Virtual Privates Servers from Linode, RackSpace and Amazon, shared hosting from webfaction, and I also used Google App Engine. I have learned a lot of things along the way, but the one thing I learned the most is that managing the server and keeping it up and running isn't fun. The fun part is writing the applications, and watching them grow as people start to use them. If there was only a way to write the application and then let someone else manage all of the server stuff for you, for a reasonable price.&lt;/p&gt;
+&lt;p&gt;The Ruby on Rails folks have had services like this for a while, both Heroku and EngineYard are pretty popular and make hosting your Rails applications much easier. When Heroku was bought by salesforce.com for $212M, it opened people eyes, and started to get them thinking. Why can't we do that for Django? I have been wanting to build a Django service like this for a while now, but with limited time and not knowing where to begin, my idea went no where. Recently there have been a bunch of  new services that have popped up that provided turn key Django hosting, very similar in nature to Heroku, and Google App Engine (Python, and Java). This has gotten me very excited, and I plan on trying them all out.&lt;/p&gt;
+&lt;p&gt;One of these new services is called &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt;, and it is run by Andrew Godwin (of Django South fame) and Ben Firshman. They are trying to make the hosting as simple as possible, so that you don't have to worry about servers at all. You write your application, deploy it to their service and they handle the rest. If you need to scale up your application, add load balancing, add more disk space, they will take care of that. This allows you the developer to spend your valuable time writing code instead of doing server maintenance. Best of all their pricing is based on usage, and they have a free tier, so if you have an application that you put out there, but it isn't using any resources, or very few resources, it might not cost you anything at all. So there is nothing stopping you from trying it out.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; is still in beta, and not available to the public yet. The only way to get access is to put your name on a waiting list, and wait until you are sent an invite. I was lucky enough to get an invite early on, and I have been playing around with &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; for a new project that I'm working on.  I'm still in development with my application so it isn't public yet, but I have an app deployed and running. I personally feel that if you are lucky enough to be selected to a closed beta, that it is your duty to give as much feedback as possible, so that you can help make the application great. If you aren't going to be doing this, then you don't deserve the early access. That is why I'm writing this post, to help spread the word about ep.io, and to show people getting started with the service how easy it is to deploy their app.&lt;/p&gt;
+&lt;p&gt;Before you start using a service like &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt;, you need to do your research to make sure you know what it is you are getting with the service. Services like this aim to make hard tasks easy, and sometimes in doing so, they need to sacrifice features and flexibility. Knowing the pros and cons about a service before hand will help set your expectations accordingly so that you aren't disappointed later on in the process. It is important to note that as of this writing, they are still in beta, and thus still a work in progress, so if you are reading this, make sure you look at their website for the most up to date information. I will try and come back and update this post as the service deploys new features, and my experience with the service grows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Application setup:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Like most managed application services, you won't be able to deploy your application as is, you will need to make a few changes in order to get everything to work. Luckily for us, this step wasn't too hard. I used the documentation that ep.io provides along with the ep.io project skeleton (&lt;a class="reference external" href="https://github.com/idangazit/epio_skel"&gt;https://github.com/idangazit/epio_skel&lt;/a&gt;) as a good starting point. ep.io uses an ini based configuration file called epio.ini for all of your configuration information. The documentation does a pretty good job explaining the different sections, and if you look at the ep.io project skeleton, there is a good example of one already created for you.&lt;/p&gt;
+&lt;p&gt;ep.io controls all aspects of your environment and because of this you don't know what your database information is, but that is OK, because if you setup your django settings.py file correctly, they will handle all of that for you. Once again, checkout the skeleton project or the documentation for the recommended settings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dependencies:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If your project is already using virtualenv and pip, this shouldn't be too difficult. If not, you will need to read up a little on pip and it's requirements files (&lt;a class="reference external" href="http://pip.openplans.org/requirement-format.html"&gt;http://pip.openplans.org/requirement-format.html&lt;/a&gt;) in order to make sure you load all of your dependencies correctly. ep.io already has some of the most common libraries installed, for a full list, follow this link: &lt;a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries"&gt;http://www.ep.io/docs/runtime/#python-libraries&lt;/a&gt;. If you need a non pure-python library that isn't on their list, just let them know and if it is reasonable, they will most likely install it for you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Deployment:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ep.io offers a simple control panel so that you can see what apps you have installed, how much they are costing you, how many resources they are using (database, bandwidth, CPU, disk usage, etc). It also allows you to configure your domains, set application permissions, and view the console log. Besides that, you need to do everything using their command line client. Before you can use the client, you will need to install it, you can do that using either pip or easy install.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install -U epio
+
+&lt;span class="c"&gt;# or&lt;/span&gt;
+
+easy_install -U epio
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once you have the client installed, this is where the fun begins. With the client you can create, suspend, resume, upload or delete your app. You can also use the client to kick off remote commands on your server such as django syncdb. See the official documentation for full details: &lt;a class="reference external" href="http://www.ep.io/docs/client/"&gt;http://www.ep.io/docs/client/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here are some notes and examples.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#create app&lt;/span&gt;
+epio create &lt;span class="o"&gt;[&lt;/span&gt;&amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# suspend app&lt;/span&gt;
+epio &lt;span class="nb"&gt;suspend&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;#resume app&lt;/span&gt;
+epio resume &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# delete app&lt;/span&gt;
+epio delete &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# django syncdb&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; syncdb
+
+&lt;span class="c"&gt;# django run south migrations for all apps&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; migrate
+
+&lt;span class="c"&gt;# django run south migrations for just one app called chicken&lt;/span&gt;
+epio django &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; migrate chicken
+
+&lt;span class="c"&gt;# bash command&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; bash
+
+&lt;span class="c"&gt;# psql access to your database.&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; psql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Uploading App:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The epio upload command will use git in the background to sync up your local directory to your server. It will ignore the .pyc files and such, if you have other files and directories that you also want to ignore you can create a file called .epioignore and list the files and directories to ignore in it. The .epioignore file has the same syntax as a .gitignore file.&lt;/p&gt;
+&lt;p&gt;The upload command is fine for most cases, but if you are already using git or mercurial, you can push your changes directly to ep.io, this allows you to do more of a continuous deployment setup, where you want to push to a central repo, run a bunch of tests and if it works push out to production. See this link for more info on uploading via git and mercurial &lt;a class="reference external" href="http://www.ep.io/docs/vcss/"&gt;http://www.ep.io/docs/vcss/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Database:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The ep.io databases are behind a firewall for security purposes, and because of this, you don't have direct access to the database, so if you are used to using a GUI database client, you are out of luck. The only way to get to your database right now is using the psql command tool.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# psql access to your database.&lt;/span&gt;
+epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; psql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Getting data into your databases:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are two recommended ways for getting data into your database.&lt;/p&gt;
+&lt;p&gt;You can create a SQL dump file, and add it to your project, and upload. Once it is up on the server you can run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;epio run_command -- psql -f dumpname.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can also stream the dump over the network via SSH. (They suggest that you only do this with dumps that are 20MB or less in size.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;epio run_command psql &amp;lt; dumpname.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Background tasks:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ep.io supports both cronjobs and background tasks via Celery and Redis.&lt;/p&gt;
+&lt;p&gt;Cron is pretty easy to setup, you have a section in the epio.ini file called cron where you put your normal cron commands. The syntax isn't exactly the same, so see the documentation for the differences. &lt;a class="reference external" href="http://www.ep.io/docs/epioini/#cron-section"&gt;http://www.ep.io/docs/epioini/#cron-section&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can use either plain celery or django-celery, what ever you want, they support most features, but they currently don't support periodic tasks, they hope to get to that in the future. In the meantime just use a cron for those.&lt;/p&gt;
+&lt;div class="section" id="ep-io-vs-traditional-hosting"&gt;
+&lt;h2&gt;ep.io vs traditional hosting&lt;/h2&gt;
+&lt;p&gt;I originally wrote this Pro's and Con's section at stackoverflow.com, and I include it here as well.
+&lt;a class="reference external" href="http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323"&gt;http://stackoverflow.com/questions/5117395/django-hosting-on-ep-io/5648323#5648323&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="pros"&gt;
+&lt;h3&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;Server Management&lt;/em&gt;: You don't have to worry about your server setup at all, it handles everything for you. With a VPS, you would need to worry about making sure the server is up to date with security patches, and all that fun stuff, with this, you don't worry about anything, they take care of all that for you.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Deployment&lt;/em&gt;: It makes deploying an app and having it up and running really quickly. deploying a new version of an app is a piece of cake, I just need to run one maybe two commands, and it handles everything for me.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Pricing&lt;/em&gt;: you are only charged for what you use, so if you have a very low traffic website, it might not cost you anything at all.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Scaling&lt;/em&gt;: They handle scaling and load balancing for you out of the box, no need for you to worry about that. You still need to write your application so that it can scale efficiently, but if you do, they will handle the rest.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Background tasks&lt;/em&gt;: They have support for cronjobs as well as background workers using celery.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Customer support&lt;/em&gt;: I had a few questions, sent them an email, and had an answer really fast, they have been great, so much better then I would have expected. If you run your own VPS, you really don't have anyone to talk to, so this is a major plus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cons"&gt;
+&lt;h3&gt;&lt;strong&gt;Cons:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;DB access&lt;/em&gt;: You don't have direct access to the database, you can get to the psql shell, but you can't connect an external client GUI. This makes doing somethings a little more difficult or slow. But you can still use the django admin or fixtures to do a lot of things.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Limited services available&lt;/em&gt;: It currently only supports Postgresql and redis, so if you want to use MySQL, memcached, mongodb,etc you are out of luck.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Low level c libs&lt;/em&gt;: You can't install any dependencies that you want, similar to google app engine, they have some of the common c libs installed already, and if you want something different that isn't already installed you will need to contact them to get it added. &lt;a class="reference external" href="http://www.ep.io/docs/runtime/#python-libraries"&gt;http://www.ep.io/docs/runtime/#python-libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Email&lt;/em&gt;: You can't send or receive email, which means you will need to depend on a 3rd party for that, which is probably good practice anyway, but it just means more money.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;File system&lt;/em&gt;: You have a more limited file system available to you, and because of the distributed nature of the system you will need to be very careful when working from files. You can't (unless i missed it) connect to your account via (s)ftp to upload files, you will need to connect via the ep.io command line tool and either do an rsync or a push of a repo to get files up there.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h3&gt;Update:&lt;/h3&gt;
+&lt;p&gt;Read how this service stacks up against other services like it in my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to ep.io. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+		&lt;div&gt;
+			&lt;h2&gt;Comments&lt;/h2&gt;
+		 	&lt;a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane"&gt;Tweet&lt;/a&gt;&lt;script type="text/javascript" src="http://platform.twitter.com/widgets.js"&gt;&lt;/script&gt;
+			&lt;div id="disqus_thread"&gt;&lt;/div&gt;					&lt;div&gt;
+	&lt;/div&gt;	
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry></feed>

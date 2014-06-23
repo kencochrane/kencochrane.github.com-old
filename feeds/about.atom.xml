@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/about.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2014-06-23T10:18:04-04:00</updated><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li &gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+                        	&lt;div class='page'&gt;
+		&lt;div class="page-header"&gt;&lt;h1&gt;About Me&lt;/h1&gt;&lt;/div&gt;
+		&lt;div&gt;&lt;p&gt;My name is Ken Cochrane, I live in Maine and I'm a software developer.&lt;/p&gt;
+&lt;img alt="/static/KenCochrane.jpg" class="img-polaroid align-left" id="ken-cochrane" src="/static/KenCochrane.jpg" /&gt;
+&lt;p&gt;By day I work for &lt;a class="reference external" href="http://www.dotCloud.com"&gt;dotCloud.com&lt;/a&gt; and on nights and weekends I work for my software consulting company &lt;a class="reference external" href="http://zanbow.com"&gt;Zanbow inc&lt;/a&gt; where I write web based applications and iPhone apps.&lt;/p&gt;
+&lt;p&gt;This blog and all of it's content is available on github. Feel free to &lt;a class="reference external" href="https://github.com/kencochrane/kencochrane.github.com"&gt;fork it&lt;/a&gt;, add changes, corrections, and features, and then send me a pull request.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="http://www.linkedin.com/in/kencochrane"&gt;&lt;img alt="/static/linkedin_32.png" class="img-polaroid align-center" id="ken-cochrane-s-linked-in" src="/static/linkedin_32.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="http://twitter.com/kencochrane"&gt;&lt;img alt="/static/twitter_32.png" class="img-polaroid align-center" id="ken-cochrane-on-twitter" src="/static/twitter_32.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="http://stackoverflow.com/users/356788/ken-cochrane"&gt;&lt;img alt="http://stackoverflow.com/users/flair/356788.png" class="img-polaroid align-center" id="ken-cochrane-on-stack-overflow" src="http://stackoverflow.com/users/flair/356788.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://bitbucket.org/kencochrane"&gt;&lt;img alt="/static/bitbucket-icon.png" class="img-polaroid align-center" id="ken-cochrane-on-bitbucket" src="/static/bitbucket-icon.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://github.com/kencochrane"&gt;&lt;img alt="/static/github-logo.png" class="img-polaroid align-center" id="ken-cochrane-on-github" src="/static/github-logo.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="http://css.dzone.com/users/kencochrane"&gt;&lt;img alt="http://www.dzone.com/sites/all/files/big-mvbbutton.png" class="img-polaroid align-center" id="ken-cochrane-most-valuable-blogger-at-dzone" src="http://www.dzone.com/sites/all/files/big-mvbbutton.png" /&gt;&lt;/a&gt;
+&lt;div&gt; &lt;!-- Add these tags to the HEAD section of your page. --&gt;  &lt;link href="http://coderwall.com/stylesheets/jquery.coderwall.css" media="all" rel="stylesheet" type="text/css"&gt; &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt; &lt;script src="http://coderwall.com/javascripts/jquery.coderwall.js"&gt;&lt;/script&gt;  &lt;!-- You also need to place a container where you'd like the Coderwall badges to render. --&gt; &lt;section class="coderwall" data-coderwall-username="kencochrane" data-coderwall-orientation="horizontal"&gt;&lt;/section&gt;  &lt;br /&gt; &lt;/div&gt; &lt;div style="clear:both;"&gt;&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry></feed>

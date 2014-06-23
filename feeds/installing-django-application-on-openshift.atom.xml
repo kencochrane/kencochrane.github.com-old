@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/installing-django-application-on-openshift.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2014-06-23T10:18:04-04:00</updated><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;script type="text/javascript"&gt;
+	var disqus_identifier = "blog/2012/01/installing-django-application-on-openshift/";
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://kencochrane.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+                        	&lt;div class='article'&gt;
+		&lt;div class="page-header"&gt;&lt;h1&gt;Installing a Django application on Red Hat's OpenShift PAAS&lt;/h1&gt;&lt;/div&gt;
+		&lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/01/installing-django-application-on-openshift/"&gt;2012-01-14 14:05:52&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;djangocms&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;openshift&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+		&lt;div&gt;&lt;p&gt;It seems like everyone has their own &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Platform_as_a_service"&gt;PAAS&lt;/a&gt; solution these days, and if they don't have one yet, it is just a matter of time before they will. Red Hat has recently joined in on the fun with their &lt;a class="reference external" href="https://openshift.redhat.com"&gt;OpenShift&lt;/a&gt; platform.&lt;/p&gt;
+&lt;p&gt;I decided to take it for a test drive, and share my results with you. This service is still in beta and things are changing all of the time, so these notes might not work in the future, take that into consideration when using it as a guide.&lt;/p&gt;
+&lt;p&gt;There really isn't much python documentation for this platform, and what documentation there is, is either a little out of date, or missing some important steps. Hopefully this guide will help you get your application up and running.&lt;/p&gt;
+&lt;p&gt;OpenShift is divided into two parts, Flex and Express.&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://openshift.redhat.com/app/flex"&gt;Flex&lt;/a&gt;:&lt;/h2&gt;
+&lt;blockquote&gt;
+&amp;quot;Dedicated cloud solution.
+Get more control over your apps, or move your existing applications to the cloud with ease! Flex is a dedicated cloud solution that provides everything you need to easily scale, provision, deploy, and monitor your applications.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;Flex runs on top of your amazon EC2 account, and currently only supports Java and PHP. It is targeting the enterprise crowd and has more features compared to Express.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://openshift.redhat.com/app/express"&gt;Express&lt;/a&gt;:&lt;/h2&gt;
+&lt;blockquote&gt;
+&amp;quot;Shared cloud solution. Express is a free, cloud-based application platform for Java, Perl, PHP, Python, and Ruby applications. It's super-simple—your development environment is also your deployment environment: git push, and you're in the cloud!&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;Express runs on Red Hat's servers, and currently supports Java, Ruby, PHP, Perl and Python apps. It doesn't have the same features of Flex, but if you don't need those advanced features, then express might be fine for you. Since I'm interested in deploying python apps, and Express is the only one that supports python apps, that is the one I'll show you today.&lt;/p&gt;
+&lt;p&gt;To make things easier to show you how things work, I'll create a simple django application and walk you through the steps to deploying it. I'm going to deploy a djangoCMS to express that will connect to a mysql database.&lt;/p&gt;
+&lt;div class="section" id="steps"&gt;
+&lt;h3&gt;Steps:&lt;/h3&gt;
+&lt;div class="section" id="create-an-account"&gt;
+&lt;h4&gt;1. Create an account&lt;/h4&gt;
+&lt;p&gt;Create an account by filling out the form at &lt;a class="reference external" href="http://openshift.redhat.com/"&gt;http://openshift.redhat.com/&lt;/a&gt; and don't forget your username and password, you will need that later.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-perquisites"&gt;
+&lt;h4&gt;2. Install Perquisites:&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://git-scm.com/"&gt;git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://python.org"&gt;python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;openshift client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Git:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I'm not going to go over the steps to install git, for more info, you can get it from the git website. &lt;a class="reference external" href="http://git-scm.com/download"&gt;http://git-scm.com/download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are using a Mac or linux, it most likely already has python installed, if you are using windows, you you don't have python installed. Goto the python website and you will find instructions on how to install python on your system. &lt;a class="reference external" href="http://python.org/download/"&gt;http://python.org/download/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenShift client:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For instructions on how to Install the client go to this page.  &lt;a class="reference external" href="https://openshift.redhat.com/app/express#mac"&gt;https://openshift.redhat.com/app/express#mac&lt;/a&gt; Here are my steps for Mac OSX&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gem install json_pure
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gem install rhc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-a-domain"&gt;
+&lt;h4&gt;3. Create a domain.&lt;/h4&gt;
+&lt;p&gt;Now that you have everything installed, your first step is to create a domain. Run the following command and  replace $mydoman and $loginemail with your own domain and the login email you used when creating an account.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-domain -n &lt;span class="nv"&gt;$mydomain&lt;/span&gt; -l &lt;span class="nv"&gt;$loginemail&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-an-application"&gt;
+&lt;h4&gt;4. Create an application&lt;/h4&gt;
+&lt;p&gt;Now that you have a domain, you need to create an application that you can deploy to that domain. Running the following command will create a new wsgi application called 'blog'. You can name your application anything you want, within reason. We pick wsgi, because our python application will be wsgi compatible.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-app -a blog -t wsgi-3.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-mysql-to-your-app"&gt;
+&lt;h4&gt;5. Add mysql to your app&lt;/h4&gt;
+&lt;p&gt;We want to use mysql as our database backend for this blog, so we need to add mysql to our application using the command below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -a blog -e add-mysql-5.1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-phpmyadmin-to-help-you-manage-your-database"&gt;
+&lt;h4&gt;6. Add phpmyadmin to help you manage your database&lt;/h4&gt;
+&lt;p&gt;OpenShift doesn't give you direct access to your database, so you will need a way to manage your database a different way. They provide the ability to add PHPMyAdmin to your app so that you can get to your data. This step is optional, but recommended.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -a blog -e add-phpmyadmin-3.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="add-this-upstream-repo-from-github"&gt;
+&lt;h4&gt;7. Add this upstream repo from github&lt;/h4&gt;
+&lt;p&gt;When you create your application, it will create a directory with a bunch of other files and directories in it. If you were starting from scratch and building up your application you would start from here. To make things easier I created a project on github that will allow you to get up and running with DjangoCMS much faster. In order to use my project you will need to run the following commands so that it will pull down the code into your project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;blog
+&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add upstream -m master git://github.com/kencochrane/django-cms-openshift.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;git pull -s recursive -X theirs upstream master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once the code is downloaded, you can take a look at the code, change anything you want and when you are ready you can deploy the app.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploying-the-app"&gt;
+&lt;h4&gt;8. Deploying the app&lt;/h4&gt;
+&lt;p&gt;To deploy all you need to do is push the repo upstream into open shift. To this, you just need to run the following command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When it pushes you application into open shift it will do the following. (without jenkins add-on installed)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;stop app&lt;/li&gt;
+&lt;li&gt;*pre_build&lt;/li&gt;
+&lt;li&gt;*build&lt;/li&gt;
+&lt;li&gt;start_dbs&lt;/li&gt;
+&lt;li&gt;*deploy&lt;/li&gt;
+&lt;li&gt;start_app&lt;/li&gt;
+&lt;li&gt;*post_deploy&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The steps marked with a * are scripts that are located in &lt;em&gt;.openshift/action_hooks/&amp;lt;script_name&amp;gt;&lt;/em&gt; if you have something in those files it will run them, and if not, it will pass right by. These are very helpful if you want something to happen at points of the deployment process. For example, in the deploy script you will notice that I have some code to kick off the django syncdb, migrate, and collect static commands. These will run every time I deploy the app.&lt;/p&gt;
+&lt;p&gt;I have also created a django management command that will check to see if there is a django admin account created and if not, it will create one and set the default password. I had to do this because there is currently no way that I know of where you can kick off django management commands after the deployment is finished. It will only create the admin account once, and every other time it will just get ignored.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; It is important to note that if you want to do anything related to the database, you can't do it in the &lt;em&gt;pre_build&lt;/em&gt; or &lt;em&gt;build&lt;/em&gt; scripts, because the database isn't available yet. This one thing caused me lots of pain, because I couldn't figure out by my migrations were not working. If you do make the mistake of trying to do something database related in the &lt;em&gt;build&lt;/em&gt; script you will see an error like this.&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;remote: ERROR 2003 (HY000): Can't connect to MySQL server on 'xxx.x.xx.x' (111)&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;That's it, you can now checkout your application at (default admin account is admin/&amp;lt;password given at deploy time&amp;gt;):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;a class="reference external" href="http://blog-$yourdomain.rhcloud.com"&gt;http://blog-$yourdomain.rhcloud.com&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Once you visit the page you should see the djangoCMS default page. First things first, login to the django admin, and change the password from the default password to something secure. Then get started building your own app.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="helpful-tips"&gt;
+&lt;h3&gt;Helpful tips:&lt;/h3&gt;
+&lt;div class="section" id="viewing-logs"&gt;
+&lt;h4&gt;Viewing logs:&lt;/h4&gt;
+&lt;p&gt;If you would like to view your logs to see what is going on with your application you just need to run this command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-tail-files -a blog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-information"&gt;
+&lt;h4&gt;Application information:&lt;/h4&gt;
+&lt;p&gt;If you would like more information about your application you can run this command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-user-info
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also checkout the README file they add when you create an application, it is pretty helpful, and might answer some common questions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-dependencies"&gt;
+&lt;h4&gt;Application dependencies:&lt;/h4&gt;
+&lt;p&gt;OpenShift uses virtualenv but it doesn't use pip, it depends on the dependencies be listed in the setup.py file. During the deploy process I did notice that it installed pip, so it might be possible to add a requirements.txt file, and then in your build action_hook script call pip install -r &amp;lt;path&amp;gt;/requirements.txt but I'm not sure if this is supported, or if it will cause problems, so it might be best to stick with what they have for now.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="static-media"&gt;
+&lt;h4&gt;Static media:&lt;/h4&gt;
+&lt;p&gt;If you look in wsgi/static/.htaccess there a rewrite rule to get the media to work correctly, you can use this trick for other apache tricks if you want. For more information on this checkout the README file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-is-it-open-shift-running"&gt;
+&lt;h4&gt;What is it open shift running:&lt;/h4&gt;
+&lt;p&gt;Red Hat linux with Apache / mod_wsgi, and mysql 5.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-type-of-apps-do-they-support"&gt;
+&lt;h4&gt;What type of apps do they support?&lt;/h4&gt;
+&lt;p&gt;Here is the current link which can be found if you run this commands and look at the types.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-create-app -h
+
+raw-0.1, php-5.3, jbossas-7.0, rack-1.1, jenkins-1.4, perl-5.10, wsgi-3.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-else-does-it-support"&gt;
+&lt;h4&gt;What else does it support?&lt;/h4&gt;
+&lt;p&gt;Things are changing all of the time, but if you run this command you will get a list of the current supported addons.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rhc-ctl-app -L
+
+List of supported embedded cartridges:
+
+Obtaining list of cartridges &lt;span class="o"&gt;(&lt;/span&gt;please excuse the delay&lt;span class="o"&gt;)&lt;/span&gt;...
+
+    - metrics-0.1
+    - mysql-5.1
+    - jenkins-client-1.4
+    - 10gen-mms-agent-0.1
+    - phpmyadmin-3.4
+    - rockmongo-1.1
+    - mongodb-2.0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="web-based-control-panel"&gt;
+&lt;h4&gt;Web based control panel:&lt;/h4&gt;
+&lt;p&gt;They offer a web based control panel to do some of the things you can do with the command line, which will be nice, but it doesn't work right now. It doesn't display the correct information, and it doesn't even show the applications I have created, so I don't trust it. Hopefully these issues will get fixed in the future, and this tool will make it easier for less technical people to get started.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h4&gt;Conclusion:&lt;/h4&gt;
+&lt;p&gt;It is nice to see another platform on the market, it is still pretty rough, and there isn't much documentation, but I found it usable. I'm sure once they stabilize things, they will spend more time on the documentation side of things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-helpful-openshift-links"&gt;
+&lt;h4&gt;Other Helpful OpenShift links:&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/kencochrane/django-cms-openshift"&gt;My GitHub repo for this article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openshift/django-example"&gt;https://github.com/openshift/django-example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/"&gt;http://blog.ianweller.org/2011/05/12/openshift-express-first-thoughts/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="my-other-articles-related-to-paas"&gt;
+&lt;h4&gt;My other articles related to PAAS:&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;My Experiences with ep.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;AppHosted.com Django Hosting Service Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;My Day in Gondor.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;Deploying my Django application to DotCloud.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;Installing DjangoCMS on Heroku in 13 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;Installing DjangoCMS on dotCloud in 12 easy steps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Developers guide to Running Django Applications on Heroku&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h4&gt;Update&lt;/h4&gt;
+&lt;p&gt;2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud a competitor to openShift. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+		&lt;div&gt;
+			&lt;h2&gt;Comments&lt;/h2&gt;
+		 	&lt;a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane"&gt;Tweet&lt;/a&gt;&lt;script type="text/javascript" src="http://platform.twitter.com/widgets.js"&gt;&lt;/script&gt;
+			&lt;div id="disqus_thread"&gt;&lt;/div&gt;					&lt;div&gt;
+	&lt;/div&gt;	
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry></feed>

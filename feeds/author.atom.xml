@@ -1,0 +1,2187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/author.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2014-06-23T10:18:04-04:00</updated><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li &gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+            &lt;div class="page-header"&gt;&lt;h1&gt;KenCochrane.net &lt;small&gt;Ken Cochrane&lt;/small&gt;&lt;/h1&gt;&lt;/div&gt;            
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2010/05/Automated-Install-Script-for-memcached-on-RHEL5/"&gt;&lt;h2&gt;Automated Install Script for memcached on RHEL5&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2010/05/Automated-Install-Script-for-memcached-on-RHEL5/"&gt;2010-05-14 16:34:38&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;memcached&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;RHEL5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/install.html"&gt;install&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/script.html"&gt;script&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I created this script that will download memcached build,install and set it up to start up automatically on reboot. It also installs the init.d script to manage memcache so you can restart etc.&lt;/p&gt;
+&lt;p&gt;You can either copy and paste it into your shell prompt using a user that has install privileges (root,admin,etc) or you can copy into a .sh file and execute it.&lt;/p&gt;
+&lt;p&gt;The code for most of this was take from this blog post: &lt;a class="reference external" href="http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/"&gt;http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/&lt;/a&gt; it doesn't seem to be around anymore so I put it here for ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2010/05/Automated-Install-Script-for-memcached-on-RHEL5/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2010/05/Django-Project-Release-History/"&gt;&lt;h2&gt;Django Project Release History&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2010/05/Django-Project-Release-History/"&gt;2010-05-17 12:44:43&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I was curious so I went ahead and found out all of the official &lt;a class="reference external" href="http://www.djangoproject.com/"&gt;Django&lt;/a&gt;. releases and  when they were released and how long it took between each release.&lt;/p&gt;
+&lt;p&gt;There have been 7 major releases and 8 minor releases in the past 5 years. I wonder how this
+compares to other projects like &lt;a class="reference external" href="http://rubyonrails.org/"&gt;Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="22%" /&gt;
+&lt;col width="22%" /&gt;
+&lt;col width="57%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Release #&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;# of months since last release&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Open Sourced&lt;/td&gt;
+&lt;td&gt;Jul 15, 2005&lt;/td&gt;
+&lt;td&gt;n/a&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.90&lt;/td&gt;
+&lt;td&gt;Nov 16, 2005&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.91&lt;/td&gt;
+&lt;td&gt;Jan 11, 2006&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.95&lt;/td&gt;
+&lt;td&gt;Jul 29, 2006&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.95.1&lt;/td&gt;
+&lt;td&gt;Jan 21, 2007&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.96&lt;/td&gt;
+&lt;td&gt;Mar 23, 2007 ...&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2010/05/Django-Project-Release-History/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;&lt;h2&gt;AppHosted.com Django Hosting Service Review&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;2011-05-18 12:17:48&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;apphosted&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;This post is the fourth in my series about the new Django hosting services that just recently hit the market. Previously I have reviewed &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt; , &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt; , and &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;dotCloud.com&lt;/a&gt; .This post reviews &lt;a class="reference external" href="http://AppHosted.com"&gt;AppHosted.com&lt;/a&gt; , another similar service that is currently in beta. I was lucky enough to get a sneak peak of this service before it was released to the general public, and here are my notes and impressions for the short time I had to play with the new service.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://AppHosted.com"&gt;AppHosted.com&lt;/a&gt; uses a similar concept as the other django hosting services, they provide you with ...&lt;/p&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/02/dear-recruiters/"&gt;&lt;h2&gt;Dear Recruiters&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/02/dear-recruiters/"&gt;2013-02-06 20:17:48&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;recruiters&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Dear Recruiters,&lt;/p&gt;
+&lt;p&gt;You are probably reading this because I sent you a link in response to a recent job you contacted me about. Since most of you know nothing about me (even though most of this information is on my &lt;a class="reference external" href="http://www.linkedin.com/in/kencochrane"&gt;LinkedIn&lt;/a&gt; page). I'm going to tell you a little bit about myself, and after reading this if you feel the job that you are trying to fill, is a good match for me, then feel free to respond. If you are going to respond, please make sure you follow the criteria I listed at the bottom of the page ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/02/dear-recruiters/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/"&gt;&lt;h2&gt;Deploying my Django application to dotCloud: Part 2&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/"&gt;2012-03-23 14:58:01&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;As I mentioned in a &lt;a class="reference external" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;recent blog post&lt;/a&gt;, in the 11 months since I wrote my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;first post on dotCloud&lt;/a&gt;, I now work there. Besides me working there, there has been a lot of other changes at &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt;, and I wanted to take the time to update my original post so that it was up to date and had all the recent information. I'm going to completely rewrite the old blog post here, with updated information, and leave the old one around for posterity.&lt;/p&gt;
+&lt;p&gt;dotCloud's goal is to provide a bunch of different independent services that you can ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;&lt;h2&gt;Deploying my Django application to dotCloud&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;2011-04-26 07:07:55&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;div class="warning"&gt;
+&lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p&gt;This post is out of date, please read the new updated one:&lt;/p&gt;
+&lt;p class="last"&gt;&lt;a class="reference external" href="http://kencochrane.net/blog/2012/03/deploying-a-django-application-on-dotcloud/"&gt;Deploying my Django application to dotCloud Part 2&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I have recently wrote about &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt; and &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt;, two new python/django hosting services that are currently in beta. Another new service that has just recently hit the scene and is causing a lot of waves is &lt;a class="reference external" href="http://dotcloud.com"&gt;DotCloud.com&lt;/a&gt;. DotCloud is a little different for a number of reasons. Their service isn't targeting any one technology stack like ep.io and gondor.io with Python/Django/wsgi.&lt;/p&gt;
+&lt;p&gt;DotCloud's goal is to provide a bunch of ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;&lt;h2&gt;Developers guide to Running Django Applications on Heroku&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;2011-11-30 10:00:00&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;heroku&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;&lt;a class="reference external" href="http://Heroku.com"&gt;Heroku&lt;/a&gt; the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still in beta, but that shouldn't stop you from trying it out, and that is just what I'm going to do.&lt;/p&gt;
+&lt;p&gt;6 months ago I wrote a series of blog posts that reviewed all of the cool new django hosting services that were popping up. My goal was to ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/01/developers-guide-to-pci-compliant-web-applications/"&gt;&lt;h2&gt;The Developers Guide to PCI Compliant Web applications&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/01/developers-guide-to-pci-compliant-web-applications/"&gt;2012-01-25 17:10:54&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/pci.html"&gt;pci&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;&lt;em&gt;Work in progress last updated: 12-07-2012 by Ken Cochrane&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update: 12-07-2012&lt;/strong&gt; I have added the youtube video and slides from a recent talk I did on Building PCI Complaint Django Applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update: 04-05-2012&lt;/strong&gt; This article has been &lt;a class="reference external" href="http://www.ituring.com.cn/article/1372"&gt;translated into chinese&lt;/a&gt; , by Wujun Shen (吴峻申)&lt;/p&gt;
+&lt;p&gt;When I first started working at &lt;a class="reference external" href="http://CashStar.com"&gt;CashStar.com&lt;/a&gt; three and a half years ago, I had heard about PCI before, but I didn't really know what that meant. Since we were building an ecommerce platform that was going to be accepting credit cards over the internet, I knew we needed to make sure we were ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/01/developers-guide-to-pci-compliant-web-applications/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2010/05/django-12-has-been-released/"&gt;&lt;h2&gt;Django 1.2 has been Released!&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2010/05/django-12-has-been-released/"&gt;2010-05-17 16:12:11&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;div class="section" id="django-1-2-has-been-released"&gt;
+&lt;h2&gt;Django 1.2 has been released&lt;/h2&gt;
+&lt;p&gt;I have been waiting for this release for a while now, mostly because it includes some of the features I have been dying to get my hands on. The ones I like the most are&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;support for multiple databases&lt;/li&gt;
+&lt;li&gt;smart-if template tag&lt;/li&gt;
+&lt;li&gt;The new Email Backends&lt;/li&gt;
+&lt;li&gt;relaxed requirements for usernames.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is a list for some of the features, and a little bit about each one.&lt;/p&gt;
+&lt;div class="section" id="support-for-multiple-databases"&gt;
+&lt;h3&gt;Support for multiple databases&lt;/h3&gt;
+&lt;blockquote&gt;
+Django 1.2 adds the ability to use more than one database in your Django project. Queries can be issued at a  specific database ...&lt;/blockquote&gt;&lt;/div&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2010/05/django-12-has-been-released/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/03/django-13-has-been-released/"&gt;&lt;h2&gt;Django 1.3 has been released&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/03/django-13-has-been-released/"&gt;2011-03-23 21:38:19&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;It includes the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Class-based views&lt;/li&gt;
+&lt;li&gt;Logging&lt;/li&gt;
+&lt;li&gt;Extended static files handling&lt;/li&gt;
+&lt;li&gt;unittest2 support&lt;/li&gt;
+&lt;li&gt;Transaction context managers&lt;/li&gt;
+&lt;li&gt;Configurable delete-cascade&lt;/li&gt;
+&lt;li&gt;Contextual markers and comments for translatable strings&lt;/li&gt;
+&lt;li&gt;Improvements to built-in template tags&lt;/li&gt;
+&lt;li&gt;Caching changes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information checkout the official release notes: &lt;a class="reference external" href="http://docs.djangoproject.com/en/dev/releases/1.3/"&gt;http://docs.djangoproject.com/en/dev/releases/1.3/&lt;/a&gt;&lt;/p&gt;
+ &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/03/django-13-has-been-released/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+
+&lt;div class="pagination"&gt;
+&lt;ul&gt;
+            &lt;li class="prev disabled"&gt;&lt;a href="#"&gt;&amp;larr; Previous&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane.html"&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane4.html"&gt;4&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="next"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;Next &amp;rarr;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li &gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+            &lt;div class="page-header"&gt;&lt;h1&gt;KenCochrane.net &lt;small&gt;Ken Cochrane&lt;/small&gt;&lt;/h1&gt;&lt;/div&gt;            
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/08/django-clickstream/"&gt;&lt;h2&gt;django-clickstream&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/08/django-clickstream/"&gt;2011-08-12 10:48:29&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;clickstream&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Track a visitors movements across your site.&lt;/p&gt;
+&lt;p&gt;Possible uses:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;See what they were doing before they got an error.&lt;/li&gt;
+&lt;li&gt;Use it for analytics and usability testing to see how people are moving around your site, and where you are losing people.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Inspired by OpenSymphony's Java project of the same name. &lt;a class="reference external" href="http://code.google.com/p/clickstream/"&gt;http://code.google.com/p/clickstream/&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="requirements"&gt;
+&lt;h2&gt;Requirements&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Django 1.1 or newer&lt;/li&gt;
+&lt;li&gt;Django sessions need to be enabled&lt;/li&gt;
+&lt;li&gt;Django south 0.7 or newer for migrations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="settings"&gt;
+&lt;h3&gt;Settings&lt;/h3&gt;
+&lt;div class="section" id="custom-settings"&gt;
+&lt;h4&gt;Custom Settings&lt;/h4&gt;
+&lt;p&gt;Add the following properties to your settings file if you want to override the default settings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="clickstream-ignore-paths"&gt;
+&lt;h4&gt;CLICKSTREAM_IGNORE_PATHS&lt;/h4&gt;
+&lt;p&gt;Default = ()&lt;/p&gt;
+&lt;p&gt;Takes a ...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/08/django-clickstream/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/06/django-gunicorn-nginx-supervisord-fabric-centos55/"&gt;&lt;h2&gt;Setting up Django with Green Unicorn, nginx, supervisord and fabric on CentOS 5.5&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/06/django-gunicorn-nginx-supervisord-fabric-centos55/"&gt;2011-06-27 06:48:18&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;gunicorn&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;supervisord&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;fabric&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;centos5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;nginx&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;When I first started working with django I deployed my apps using apache and mod_python. Then after a little while I started playing with nginx and switched my setup so that nginx was serving the static content and reverse proxied requests back to apache and mod_python. Not too long after that, I switched out mod_python with mod_wsgi and ran mod_wsgi in daemon mode.&lt;/p&gt;
+&lt;p&gt;This setup worked well for a while, but one thing I never really liked was the fact that I needed to run apache which is pretty heavy even when you strip out all the unused modules. Apache ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/06/django-gunicorn-nginx-supervisord-fabric-centos55/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;&lt;h2&gt;Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;2011-06-06 22:03:59&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;apphosted&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/epio.html"&gt;epio&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;gondor&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;djangozoom&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;heroku&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;div class="section" id="updates"&gt;
+&lt;h2&gt;Updates&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
+&lt;li&gt;Updated 1/26/2012: Updated Gondor.io with info from Donald Stufft.&lt;/li&gt;
+&lt;li&gt;Updated 01/24/2012: changed gondor.io to include SSL support&lt;/li&gt;
+&lt;li&gt;Updated 01/01/2012: Added Heroku and updated ep.io, gondor.io, and dotcloud.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;For the past 6 weeks I have been trying out all of the new django/python hosting services ...&lt;/p&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/05/django-job-opening-cashstar-portland-me/"&gt;&lt;h2&gt;Django Job Opening @ CashStar.com (Portland, ME)&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/05/django-job-opening-cashstar-portland-me/"&gt;2011-05-15 17:23:23&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;cashstar&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;jobs&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I work for a company called &lt;a class="reference external" href="http://CashStar.com"&gt;CashStar&lt;/a&gt;, most people have never heard of us, but a lot of people have used our products without even knowing it. CashStar is the man behind the curtain so to speak. We created an e-gift card platform that is used by some of the largest companies in the United States. Here is a short list of some of our customers: The Home Depot, Gap, Old Navy, Banana Republic, Staples, Coach, Starbucks, CVS, Chilis, Regal Cinemas, Pottery Barn, The CheeseCake Factory, Dell, Pizza Hut, and many more. To see the full list follow this link ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/05/django-job-opening-cashstar-portland-me/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/09/djangomainecom-django-user-group-portland-maine/"&gt;&lt;h2&gt;DjangoMaine.com - Django User group in Portland Maine&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/09/djangomainecom-django-user-group-portland-maine/"&gt;2011-09-26 22:04:10&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;django-maine&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;When I was at DjangoCon a few weeks ago, it was great hanging out with all of the fellow Djangonauts talking about Django and all of other great technologies. Now that I'm home, I have decided to get off my butt and do something I should have done a while ago.&lt;/p&gt;
+&lt;p&gt;Without further ado, I am pleased to announce the creation of DjangoMaine.com, a new Django user group based in Portland Maine. We plan on meeting monthly to discuss Django and other python related technologies. We are currently looking for members, and topic ideas for future meetings. If ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/09/djangomainecom-django-user-group-portland-maine/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;&lt;h2&gt;DjangoZoom.com Review&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;2011-06-05 11:17:11&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;djangozoom&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;This is part five in my series on django hosting services. Previously, I looked at &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;dotcloud.com&lt;/a&gt; and now I'm looking at &lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;DjangoZoom.com is the brain child of Nate Aune and Shimon Rura and is based in Boston, Massachusetts. It was founded in 2010 at &lt;a class="reference external" href="http://startupweekend.org/"&gt;StartupWeekend Boston&lt;/a&gt; and was a finalist in the &lt;a class="reference external" href="http://www.masschallenge.org/"&gt;MassChallenge&lt;/a&gt;. Their office is in the &lt;a class="reference external" href="http://dogpatchlabs.com/"&gt;Dogpatch Labs&lt;/a&gt; space for startups in Cambridge, Massachusetts. They are currently still in a closed beta, but they were nice enough to send me an invite to check it out.&lt;/p&gt;
+&lt;p&gt;Normally ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/06/djangozoom-com-review/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/01/getting-djangocms-up-and-running-on-stackato/"&gt;&lt;h2&gt;Getting DjangoCMS up and running on ActiveState's Stackato&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/01/getting-djangocms-up-and-running-on-stackato/"&gt;2012-01-15 13:30:13&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;djangocms&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;stackato&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;ActiveState has recently started their own PAAS based on &lt;a class="reference external" href="http://cloudfoundry.org/"&gt;CloudFoundry&lt;/a&gt; this blog post is to help you get up and running quickly with a Django CMS installation, and hopefully give you enough information to get your own applications on there as well.&lt;/p&gt;
+&lt;p&gt;To keep things simple, I'll just go through the steps that are required in order to get this up and running and add some comments along the way. If I missed anything or if you have any questions, please ask in the comments.&lt;/p&gt;
+&lt;div class="section" id="running-on-stackato"&gt;
+&lt;h2&gt;Running on Stackato&lt;/h2&gt;
+&lt;div class="section" id="register-for-an-account"&gt;
+&lt;h3&gt;1. Register for an account&lt;/h3&gt;
+&lt;p&gt;Go to &lt;a class="reference external" href="http://community.activestate.com/stackato"&gt;http://community.activestate.com ...&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/01/getting-djangocms-up-and-running-on-stackato/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/08/ill-never-work-for-a-big-company-again/"&gt;&lt;h2&gt;I'll never work for a big company again&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/08/ill-never-work-for-a-big-company-again/"&gt;2011-08-31 22:28:30&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/work.html"&gt;work&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/startup.html"&gt;startup&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I recently had my 3 year anniversary at &lt;a class="reference external" href="http://CashStar.com"&gt;CashStar&lt;/a&gt;, and it got me thinking about how fast the last 3 years have gone. When I first started at CashStar there were only a handful of people, and we had nothing, and it was great. We had no products, no customers, which might sound bad at first, but we also didn't have any customer, or production support issues to slow us down. We could go into work and put in 8 really productive hours, and feel good about yourself when you left that day.&lt;/p&gt;
+&lt;p&gt;Over time, we built our products ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/08/ill-never-work-for-a-big-company-again/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;&lt;h2&gt;I'm now working for dotCloud&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;2012-03-23 12:20:29&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;cashstar&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/job.html"&gt;job&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;A lot has happened in the 11 months since I wrote my &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;first blog article on dotCloud&lt;/a&gt;. There was an Egyptian revolution, a royal wedding, a new iPhone and iPad, Osama bin Laden was killed, and on a more personal note, I left my job at CashStar and I now work for &lt;a class="reference external" href="http://www.dotCloud.com"&gt;dotCloud&lt;/a&gt;. In the grand scheme of things, my job change was nothing compared to those big events of the past 11 months, but it was pretty big for me.&lt;/p&gt;
+&lt;p&gt;I had worked for CashStar.com for over 3.5 years, and I was there from pretty much the ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/03/im-now-working-for-dotcloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/01/installing-django-application-on-openshift/"&gt;&lt;h2&gt;Installing a Django application on Red Hat's OpenShift PAAS&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/01/installing-django-application-on-openshift/"&gt;2012-01-14 14:05:52&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;djangocms&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;openshift&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;It seems like everyone has their own &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Platform_as_a_service"&gt;PAAS&lt;/a&gt; solution these days, and if they don't have one yet, it is just a matter of time before they will. Red Hat has recently joined in on the fun with their &lt;a class="reference external" href="https://openshift.redhat.com"&gt;OpenShift&lt;/a&gt; platform.&lt;/p&gt;
+&lt;p&gt;I decided to take it for a test drive, and share my results with you. This service is still in beta and things are changing all of the time, so these notes might not work in the future, take that into consideration when using it as a guide.&lt;/p&gt;
+&lt;p&gt;There really isn't much python documentation for this platform ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/01/installing-django-application-on-openshift/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+
+&lt;div class="pagination"&gt;
+&lt;ul&gt;
+                    &lt;li class="prev"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane.html"&gt;&amp;larr; Previous&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane.html"&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane4.html"&gt;4&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="next"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;Next &amp;rarr;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li &gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+            &lt;div class="page-header"&gt;&lt;h1&gt;KenCochrane.net &lt;small&gt;Ken Cochrane&lt;/small&gt;&lt;/h1&gt;&lt;/div&gt;            
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;&lt;h2&gt;Installing DjangoCMS on dotCloud in 12 easy steps&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;2011-12-31 13:26:42&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;djangocms&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Do you want to use Django-cms on dotcloud but don't know where to start? All you need to do is follow these 12 easy steps, they will get you on your way.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create a place to store your project&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkdir -p ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the projects directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Clone git repo from github, requires git client.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ git clone git://github.com/kencochrane/django-cms-dotcloud.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the new project directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd django-cms-dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkvirtualenv --no-site-packages --distribute django-cms-dotcloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Installing the dotCloud client  &lt;a class="reference external" href="http://docs.dotcloud.com/firststeps/install/"&gt;http://docs.dotcloud.com/firststeps/install/&lt;/a&gt; (here are the steps ...&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/12/installing-djangocms-dotcloud-12-easy-steps/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;&lt;h2&gt;Installing DjangoCMS on Heroku in 13 easy steps&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;2011-12-31 14:25:11&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;djangocms&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;heroku&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create a place to store your project&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkdir -p ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the projects directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd ~/projects&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Clone git repo from github, requires git client.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ git clone git://github.com/kencochrane/django-cms-heroku.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Go into the new project directory&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ cd django-cms-heroku&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Creating the virtualenv (using virtualenvwrapper, virtualenv, and pip)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ mkvirtualenv --no-site-packages --distribute django-cms-heroku&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Sign-Up for a Heroku account. &lt;a class="reference external" href="https://api.heroku.com/signup"&gt;https://api.heroku.com/signup&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Install the Heroku ...&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/02/intro-to-python-and-django-presentation/"&gt;&lt;h2&gt;Intro to Python and Django Presentation&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/02/intro-to-python-and-django-presentation/"&gt;2013-02-19 08:24:24&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;djangomaine&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I recently gave a talk at a &lt;a class="reference external" href="http://www.DjangoMaine.com"&gt;DjangoMaine&lt;/a&gt; meetup introducing folks to &lt;a class="reference external" href="http://python.org"&gt;Python&lt;/a&gt; and &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;. There wasn't enough time to go over everything, so I tried to pick and choose the parts that I felt where important to go over, in order to have a good overview of what Python and Django is all about.&lt;/p&gt;
+&lt;p&gt;I hope this was useful to the folks that attended. If so, it would be really helpful to know what parts you would like to know more about. Then we can have some follow up talks doing a deeper dive into those select topics ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/02/intro-to-python-and-django-presentation/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2010/05/mercurial-1_5_1-on-RHEL5-using-python2_5/"&gt;&lt;h2&gt;Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2010/05/mercurial-1_5_1-on-RHEL5-using-python2_5/"&gt;2010-05-13 20:09:33&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;Mercurial&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;RHEL5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;div class="section" id="installing-mercurial-1-5-1-on-red-hat-enterprise-linux-5-rhel5-using-python-2-5"&gt;
+&lt;h2&gt;Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5&lt;/h2&gt;
+&lt;p&gt;My RHEL5 setup uses python2.5 which I compiled from source, since RHEL5 only comes with python2.4.&lt;/p&gt;
+&lt;p&gt;Because I didn't use the built in python 2.4 version I couldn't do the simple&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead I need to build mercurial from source, which isn't too bad. Just do the following.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;as Root&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://mercurial.selenic.com/release/mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvzf mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 ...&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2010/05/mercurial-1_5_1-on-RHEL5-using-python2_5/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;&lt;h2&gt;My Day in Gondor.io&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;2011-04-22 06:12:41&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;gondor&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;The other day I wrote about a new &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;Django hosting service called ep.io&lt;/a&gt;
+, after I made that post, I was lucky enough to get an invite for the private beta of &lt;a class="reference external" href="http://gondor.io"&gt;gondor.io&lt;/a&gt;, which is similar to &lt;a class="reference external" href="http://ep.io"&gt;ep.io&lt;/a&gt; but from the folks over at &lt;a class="reference external" href="http://eldarion.com/"&gt;Eldarion&lt;/a&gt;. In order to test out the service I decided to take my Dango blog application and deploy it to Gondor and I kept notes along the way, here are those notes.&lt;/p&gt;
+&lt;p&gt;The sign up process was pretty typical, register and then validate your email address. Once into the system you are offered the ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;&lt;h2&gt;My Experiences with ep.io&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;2011-04-18 21:09:57&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/epio.html"&gt;epio&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/paas.html"&gt;paas&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Over the last decade I have deployed my applications many different ways, I have used, self managed dedicated servers, fully managed dedicated servers, Virtual Privates Servers from Linode, RackSpace and Amazon, shared hosting from webfaction, and I also used Google App Engine. I have learned a lot of things along the way, but the one thing I learned the most is that managing the server and keeping it up and running isn't fun. The fun part is writing the applications, and watching them grow as people start to use them. If there was only a way to write the ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/12/new-pelican-based-blog/"&gt;&lt;h2&gt;New Pelican Based Blog&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/12/new-pelican-based-blog/"&gt;2012-12-09 03:17:48&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;pelican&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/blog.html"&gt;blog&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I have recently changed my Django based blog to a statically generated blog based on &lt;a class="reference external" href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, and hosted by &lt;a class="reference external" href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;. This is for a couple of reasons.&lt;/p&gt;
+&lt;p&gt;The first reason was because my blog is really simple, it was just a bunch of reStructuredText documents that were converted to HTML. I didn't need the Django-admin features and I always felt it was a little overkill for my blog.&lt;/p&gt;
+&lt;p&gt;The second reason was because I wanted to host my blog contents on GitHub so that others could change/update/edit my blog posts and send me pull requests if ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/12/new-pelican-based-blog/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/04/restart-apache-mac-os-x/"&gt;&lt;h2&gt;Restart Apache in Mac OS X&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/restart-apache-mac-os-x/"&gt;2011-04-16 10:01:02&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;macosx&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/apache.html"&gt;apache&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I always seem to forget this, so I'm going to post it here for easy reference.&lt;/p&gt;
+&lt;p&gt;To restart the Apache webserver service you can run the following command in a Mac OS X Terminal window:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo /usr/sbin/apachectl restart
+&lt;/pre&gt;&lt;/div&gt;
+ &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/04/restart-apache-mac-os-x/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/"&gt;&lt;h2&gt;Getting Docker up and running on a RaspberryPi&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/"&gt;2013-05-17 15:30:24&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/docker.html"&gt;docker&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;raspberrypi&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;kernel&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;aufs&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;lxc&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/go.html"&gt;go&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;raspbian&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
+&lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+&lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;LXC&lt;/li&gt;
+&lt;li&gt;AUFS&lt;/li&gt;
+&lt;li&gt;Go ...&lt;/li&gt;&lt;/ul&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/"&gt;&lt;h2&gt;Running Docker on Digital Ocean with Ubuntu&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/"&gt;2013-06-07 12:24:24&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/docker.html"&gt;docker&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;digital-ocean&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;ubuntu&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;kernel&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;lxc&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;aufs&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+
+&lt;div class="pagination"&gt;
+&lt;ul&gt;
+                    &lt;li class="prev"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;&amp;larr; Previous&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane.html"&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane4.html"&gt;4&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="next"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane4.html"&gt;Next &amp;rarr;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry><entry><title>unnamed</title><link href="http://kencochrane.net/blog/2014/06/unnamed/" rel="alternate"></link><updated>2014-06-23T10:18:04-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2014-06-23:blog/2014/06/unnamed/</id><summary type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;KenCochrane.net&lt;/title&gt;
+    &lt;meta name="description" content=""&gt;
+    &lt;meta name="author" content="Ken Cochrane"&gt;
+        &lt;link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" /&gt;
+            &lt;link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" /&gt;
+            &lt;link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt;
+    &lt;link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon"&gt; 
+
+    &lt;!-- Le HTML5 shim, for IE6-8 support of HTML elements --&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script src="http://kencochrane.net/theme/html5.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+    &lt;!-- Le styles --&gt;
+    &lt;link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/local.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet"&gt;
+    &lt;style type="text/css"&gt;
+
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;div class="topbar"&gt;
+      &lt;div class="topbar-inner"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;a class="brand" href="http://kencochrane.net/index.html"&gt;KenCochrane.net&lt;/a&gt;
+            &lt;ul class="nav"&gt;
+                                                                            &lt;li&gt;&lt;a href="http://kencochrane.net/about/index.html"&gt;About Me&lt;/a&gt;&lt;/li&gt;
+                                            &lt;li&gt;&lt;a href="http://kencochrane.net/projects/index.html"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+                                                                        &lt;li &gt;&lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+                                 &lt;li&gt;&lt;iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/kencochrane/widget.html"
+        width="48pt" height="22pt"&gt;&lt;/iframe&gt;
+                  &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="pull-right"&gt;&lt;a href="http://kencochrane.net/archives.html"&gt;[archives]&lt;/a&gt; &lt;a href="http://kencochrane.net/tags.html"&gt;[tags]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container-fluid"&gt;
+      &lt;div class="sidebar"&gt;
+        &lt;div class="well"&gt;
+                                    &lt;div class="social"&gt;
+            &lt;h3&gt;Social&lt;/h3&gt;
+            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="http://twitter.com/kencochrane"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="https://github.com/kencochrane"&gt;github&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"&gt;atom feed&lt;/a&gt;&lt;/li&gt;
+                                                    &lt;li&gt;&lt;a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate"&gt;rss feed&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;h4&gt;&lt;i class="icon-tags icon-large"&gt;&lt;/i&gt;Tags&lt;/h4&gt;
+            &lt;ul&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;dotcloud
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;upgrade
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/fabric.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;fabric
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/epio.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;epio
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/heroku.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;heroku
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;deployment
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;RHEL5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/digital-ocean.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;digital-ocean
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mercurial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;Mercurial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;hosting
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;ubuntu
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/percona.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;percona
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspbian.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspbian
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django-maine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django-maine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pci.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pci
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/job.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;job
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;guidebook
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/blog.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;blog
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/pelican.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;pelican
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/raspberrypi.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;raspberrypi
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/docker.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;docker
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rackspace
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;tutorial
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/nginx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;nginx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gondor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gondor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/cashstar.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;cashstar
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/memcached.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;memcached
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangomaine.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangomaine
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisor
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/stackato.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;stackato
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/openshift.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;openshift
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;kernel
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/recruiters.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;recruiters
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangocms.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangocms
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;gunicorn
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/install.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;install
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;centos5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apphosted.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apphosted
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/django.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;django
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/startup.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;startup
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/apache.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;apache
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/supervisord.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;supervisord
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/linux.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;linux
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/clickstream.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;clickstream
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/python.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;python
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;mysql
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;aufs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/work.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;work
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/script.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;script
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;rhel5
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;sentry
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/macosx.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;macosx
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/jobs.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;jobs
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-3"&gt;
+                    &lt;a href="http://kencochrane.net/tag/djangozoom.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;djangozoom
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/go.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;go
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-4"&gt;
+                    &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;newrelic
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-2"&gt;
+                    &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;lxc
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                            &lt;li class="tag-1"&gt;
+                    &lt;a href="http://kencochrane.net/tag/paas.html"&gt;
+                        &lt;i class="icon-tag icon-large"&gt;&lt;/i&gt;paas
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                        &lt;/ul&gt;
+            
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+            &lt;div class="page-header"&gt;&lt;h1&gt;KenCochrane.net &lt;small&gt;Ken Cochrane&lt;/small&gt;&lt;/h1&gt;&lt;/div&gt;            
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;&lt;h2&gt;Running Docker on Rackspace with Ubuntu&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;2013-05-11 12:17:48&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/docker.html"&gt;docker&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;rackspace&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;ubuntu&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;kernel&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/lxc.html"&gt;lxc&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/aufs.html"&gt;aufs&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I have been playing with &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; a lot lately, and it got me wondering how hard it would be to run Docker on the different Cloud providers. I noticed there were already directions on how to install on &lt;a class="reference external" href="http://docs.docker.io/en/latest/installation/amazon.html"&gt;Amazon EC2&lt;/a&gt; but nothing for the Rackspace Cloud.&lt;/p&gt;
+&lt;p&gt;If you would like to run &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on the &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt; using &lt;a class="reference external" href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt; you're in luck. I just spent the afternoon figuring out how to get it installed on Ubuntu 12.04, 12.10, and 13.04, and I have included my notes below. 13.04 is the easiest to get up and ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2012/01/running-sentry-on-dotcloud/"&gt;&lt;h2&gt;Running sentry on DotCloud&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2012/01/running-sentry-on-dotcloud/"&gt;2012-01-28 23:00:33&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/dotcloud.html"&gt;dotcloud&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/sentry.html"&gt;sentry&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/dcramer/sentry"&gt;Sentry&lt;/a&gt; is a realtime event logging and aggregation platform. At it’s core it specializes in monitoring errors and extracting all the information needed to do a proper post-mortum without any of the hassle of the standard user feedback loop.&lt;/p&gt;
+&lt;p&gt;The main feature of sentry and the ability to send all of your application logs to one place, and then aggregate them, so that you only get one error email for the same error. This will keep your mailbox from flooding, when something goes wrong.&lt;/p&gt;
+&lt;p&gt;Putting your logging server on a different server or network then your production servers is ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2012/01/running-sentry-on-dotcloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/12/standardizing-python-wsgi-deployment/"&gt;&lt;h2&gt;Standardizing Python WSGI deployment&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/12/standardizing-python-wsgi-deployment/"&gt;2011-12-30 13:49:26&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/deployment.html"&gt;deployment&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/hosting.html"&gt;hosting&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Over the past year I have been testing all of the new python platform as a service companies that have popped up, and I have posted my notes on my blog so that everyone can learn from my experiences.  &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/"&gt;ep.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/"&gt;apphosted.com&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/"&gt;gondor.io&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/"&gt;dotcloud.com&lt;/a&gt;, &lt;a class="reference external" href="http://DjangoZoom.com"&gt;DjangoZoom.com&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/"&gt;Heroku&lt;/a&gt;, &lt;a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/"&gt;Django hosting roundup&lt;/a&gt;,&lt;/p&gt;
+&lt;p&gt;All and all, the platforms were very similar, they allowed you to easily host your python/django project without having to worry about managing a server or other typical system administration duties. Some of the services were more advanced and had more features then others, but since ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/12/standardizing-python-wsgi-deployment/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/08/the-docker-guidebook/"&gt;&lt;h2&gt;The Docker Guidebook&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/08/the-docker-guidebook/"&gt;2013-08-23 10:48:29&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/docker.html"&gt;docker&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/tutorial.html"&gt;tutorial&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/guidebook.html"&gt;guidebook&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;div class="section" id="introduction"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id83"&gt;1&amp;nbsp;&amp;nbsp;&amp;nbsp;Introduction&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The goal of this guidebook is to introduce you to &lt;a class="reference external" href="http://docker.io"&gt;Docker&lt;/a&gt;, show you what it can do, and how to get it up and running on your system, and how to use it to make your life better.&lt;/p&gt;
+&lt;p&gt;This guide is still very rough, and needs a lot of work, but because it is open source and available on &lt;a class="reference external" href="https://github.com/kencochrane/docker-guidebook"&gt;github.com&lt;/a&gt; you can help make it better. If you would like to add to it or fix something, please &lt;a class="reference external" href="https://github.com/kencochrane/docker-guidebook"&gt;fork it&lt;/a&gt; and submit a pull request.&lt;/p&gt;
+&lt;p&gt;One of the goals of this project is to make it available ...&lt;/p&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/08/the-docker-guidebook/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/"&gt;&lt;h2&gt;Upgrading the Ubuntu linux kernel on Rackspace cloud&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/"&gt;2013-05-12 12:41:48&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/rackspace.html"&gt;rackspace&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/kernel.html"&gt;kernel&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/ubuntu.html"&gt;ubuntu&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Yesterday I wrote a &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;blog post&lt;/a&gt; on how to install &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on to &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt;, and one of the steps was to upgrade the kernel to the lastest one so that Docker would be nice and stable. The problem that I found out was that there wasn't much information how to upgrade the kernel on the Rackspace Cloud servers, so I thought I would put the steps here.&lt;/p&gt;
+&lt;p&gt;The goal here is to upgrade Ubuntu 12.04 and 12.10 so that it has the same kernel as 13.04. Here are the steps.&lt;/p&gt;
+&lt;div class="section" id="ubuntu-12-04"&gt;
+&lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Build an ...&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/"&gt;&lt;h2&gt;Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/"&gt;2011-04-14 10:55:09&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/percona.html"&gt;percona&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;mysql&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;upgrade&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;centos5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;rhel5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.percona.com/redir/downloads/percona-release/percona-release-0.0-1.i386.rpm
+sudo rpm -Uhv percona-release-0.0-1.i386.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/"&gt;&lt;h2&gt;Upgrading Percona MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/"&gt;2011-02-15 09:07:26&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/percona.html"&gt;percona&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/mysql.html"&gt;mysql&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/upgrade.html"&gt;upgrade&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/centos5.html"&gt;centos5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/rhel5.html"&gt;rhel5&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/linux.html"&gt;linux&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I have been using the Percona build of MySQL 5.0.x for a little while now, and I have been impressed. Now it is time to upgrade to the new stable MySQL 5.1.x version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you have the percona repo installed on your machine, if not see follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to remove the old MySQL 5 ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/12/using-new-relic-with-supervisord-and-gunicorn/"&gt;&lt;h2&gt;Using New Relic with supervisord and gunicorn&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/12/using-new-relic-with-supervisord-and-gunicorn/"&gt;2011-12-30 14:53:35&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/django.html"&gt;django&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/supervisor.html"&gt;supervisor&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/gunicorn.html"&gt;gunicorn&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/newrelic.html"&gt;newrelic&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;New Relic recently added support for python to their awesome web application performance tool, and I have been playing with it on a number of projects.&lt;/p&gt;
+&lt;p&gt;Installing and configuring new relic is pretty well covered in their own &lt;a class="reference external" href="http://newrelic.com/docs/python/"&gt;documentation&lt;/a&gt;, so there is no reason for me to repeat that here. One thing that isn't covered in the documentation is how to use new relic if you are using supervisord to control your gunicorn processes, and I'll take this time right now to show you what I did.&lt;/p&gt;
+&lt;p&gt;Setting up new relic with supervisord and gunicorn is pretty easy ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/12/using-new-relic-with-supervisord-and-gunicorn/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;div class='article'&gt;
+    &lt;a href="http://kencochrane.net/blog/2011/12/what-are-the-best-python-companies-to-work-for/"&gt;&lt;h2&gt;What are the best python companies to work for?&lt;/h2&gt;&lt;/a&gt;
+    &lt;div class="well small"&gt;Permalink: &lt;a class="more" href="http://kencochrane.net/blog/2011/12/what-are-the-best-python-companies-to-work-for/"&gt;2011-12-30 14:08:16&lt;/a&gt;
+by &lt;a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html"&gt;Ken Cochrane&lt;/a&gt; in &lt;a href="http://kencochrane.net/category/blog.html"&gt;blog&lt;/a&gt;
+tags: &lt;a href="http://kencochrane.net/tag/python.html"&gt;python&lt;/a&gt; &lt;a href="http://kencochrane.net/tag/work.html"&gt;work&lt;/a&gt; &lt;/div&gt;
+    &lt;div class="summary"&gt;&lt;p&gt;I was looking at the pycon US 2012 website when I stumbled upon the huge list of &lt;a class="reference external" href="https://us.pycon.org/2012/sponsors/"&gt;sponsors&lt;/a&gt;, which is really impressive. It got me thinking. Are all of these companies using python? If so, which ones are the best companies to work for?&lt;/p&gt;
+&lt;p&gt;If it was up to you, and location and money wasn't a factor, what company would you work for and why? If you already work at one of these companies, can you share what it is you use python for, and what it is like working there?&lt;/p&gt;
+&lt;p&gt;Here is a list of companies that use ...&lt;/p&gt; &lt;a class="btn primary xsmall" href="http://kencochrane.net/blog/2011/12/what-are-the-best-python-companies-to-work-for/"&gt;more…&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+
+&lt;div class="pagination"&gt;
+&lt;ul&gt;
+                    &lt;li class="prev"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;&amp;larr; Previous&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane.html"&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane2.html"&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=""&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane3.html"&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="active"&gt;&lt;a href="http://kencochrane.net/author/ken-cochrane4.html"&gt;4&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="next disabled"&gt;&lt;a href="#"&gt;&amp;rarr; Next&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+        &lt;footer&gt;
+          &lt;p&gt; Powered by &lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, theme based on &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap, from Twitter&lt;/a&gt;.&lt;/p&gt;
+          &lt;p&gt;&amp;copy; Ken Cochrane 2013&lt;/p&gt;
+          &lt;a title="Real Time Web Analytics" href="http://getclicky.com/66415850"&gt;&lt;img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /&gt;&lt;/a&gt;
+        &lt;/footer&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;div class="container-fluid"&gt;
+&lt;script&gt;var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66415850);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+&lt;/script&gt;
+&lt;noscript&gt;&lt;p&gt;&lt;img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66415850ns.gif" /&gt;&lt;/p&gt;&lt;/noscript&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</summary></entry></feed>
