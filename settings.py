@@ -18,10 +18,14 @@ FEED_ALL_RSS = 'rss/all.rss'
 THEME='kencochrane/ken_theme'
 TWITTER_USERNAME = 'KenCochrane'
 PLUGIN_PATH = '/Users/ken/projects/github/pelican-plugins'
-PLUGINS = ['gravatar',
-           'github_activity',
-           'related_posts',
-           'html_rst_directive']
+# PLUGINS = ['gravatar',
+#            'github_activity',
+#            'related_posts',
+#            'html_rst_directive']
+PLUGINS = ['pelican.plugins.gravatar',
+           'pelican.plugins.github_activity',
+           'pelican.plugins.related_posts',
+           'pelican.plugins.html_rst_directive']
 ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{slug}/index.html'
 PAGE_URL = '{slug}/index.html'
