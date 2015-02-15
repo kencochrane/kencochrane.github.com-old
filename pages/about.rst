@@ -10,9 +10,9 @@ My name is Ken Cochrane, I live in Maine and I'm a software developer.
    :align: left
    :class: img-polaroid
 
-By day I work for `dotCloud.com <http://www.dotCloud.com>`_ and on nights and weekends I work for my software consulting company `Zanbow inc <http://zanbow.com>`_ where I write web based applications and iPhone apps.
+By day I work for `Docker.com <http://www.docker.com>`_ and on nights and weekends I work for my software consulting company `Zanbow inc <http://zanbow.com>`_ where I write web based applications and iPhone apps.
 
-This blog and all of it's content is available on github. Feel free to `fork it <https://github.com/kencochrane/kencochrane.github.com>`_, add changes, corrections, and features, and then send me a pull request. 
+This blog and all of it's content is available on github. Feel free to `fork it <https://github.com/kencochrane/kencochrane.github.com>`_, add changes, corrections, and features, and then send me a pull request.
 
 
 
@@ -62,10 +62,7 @@ This blog and all of it's content is available on github. Feel free to `fork it 
 
     <!-- You also need to place a container where you'd like the Coderwall badges to render. -->
     <section class="coderwall" data-coderwall-username="kencochrane" data-coderwall-orientation="horizontal"></section>
-    
+
     <br />
     </div>
     <div style="clear:both;"></div>
-
-
-
