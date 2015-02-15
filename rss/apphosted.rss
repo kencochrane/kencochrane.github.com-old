@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/apphosted.rss" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/apphosted.rss" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
 &lt;h2&gt;Updates&lt;/h2&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
@@ -118,13 +118,13 @@
 &lt;span class="nv"&gt;$ &lt;/span&gt;pip install metroclient
 
 Downloading/unpacking metroclient
-Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package metroclient
+Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package metroclient
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: httplib2 in /Users/ken/.virtualenvs/apphosted/lib/python2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: paramiko in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: pycrypto&amp;gt;&lt;span class="o"&gt;=&lt;/span&gt;1.9 in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from paramiko-&amp;gt;metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Installing collected packages: metroclient
-Running setup.py install &lt;span class="k"&gt;for &lt;/span&gt;metroclient
-changing mode of build/scripts-2.6/metro from 644 to 755
+Running setup.py install &lt;span class="k"&gt;for&lt;/span&gt; metroclient
+changing mode of build/scripts-2.6/metro from &lt;span class="m"&gt;644&lt;/span&gt; to 755
 changing mode of /Users/ken/.virtualenvs/apphosted/bin/metro to 755
 Successfully installed metroclient
 &lt;/pre&gt;&lt;/div&gt;
@@ -151,10 +151,10 @@ Application directory &lt;span class="o"&gt;(&lt;/span&gt;i.e. path to project&l
 Application name: kencochraneblog
 Application version: 0.1
 Application description: Ken&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s AppHosted Blog
-Application modules &lt;span class="o"&gt;(&lt;/span&gt;extra; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;South&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.7.3, django-activitysync&lt;span class="o"&gt;==&lt;/span&gt;0.2.2, django-debug-toolbar&lt;span class="o"&gt;==&lt;/span&gt;0.8.4, django-disqus&lt;span class="o"&gt;==&lt;/span&gt;0.3.4, django-memcache-status&lt;span class="o"&gt;==&lt;/span&gt;1.0.1, django-tagging&lt;span class="o"&gt;==&lt;/span&gt;0.3.1, django-xmlrpc&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;feedparser&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;4.1, &lt;span class="nv"&gt;httplib2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6.0, &lt;span class="nv"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.0, python-memcached&lt;span class="o"&gt;==&lt;/span&gt;1.47, python-twitter&lt;span class="o"&gt;==&lt;/span&gt;0.8.1, &lt;span class="nv"&gt;simplejson&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;2.1.2, &lt;span class="nv"&gt;wsgiref&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;yolk&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.4.1, &lt;span class="nv"&gt;docutils&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6, &lt;span class="nv"&gt;Pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.3.1
+Application modules &lt;span class="o"&gt;(&lt;/span&gt;extra&lt;span class="p"&gt;;&lt;/span&gt; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;South&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.7.3, django-activitysync&lt;span class="o"&gt;==&lt;/span&gt;0.2.2, django-debug-toolbar&lt;span class="o"&gt;==&lt;/span&gt;0.8.4, django-disqus&lt;span class="o"&gt;==&lt;/span&gt;0.3.4, django-memcache-status&lt;span class="o"&gt;==&lt;/span&gt;1.0.1, django-tagging&lt;span class="o"&gt;==&lt;/span&gt;0.3.1, django-xmlrpc&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;feedparser&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;4.1, &lt;span class="nv"&gt;httplib2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6.0, &lt;span class="nv"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.0, python-memcached&lt;span class="o"&gt;==&lt;/span&gt;1.47, python-twitter&lt;span class="o"&gt;==&lt;/span&gt;0.8.1, &lt;span class="nv"&gt;simplejson&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;2.1.2, &lt;span class="nv"&gt;wsgiref&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;yolk&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.4.1, &lt;span class="nv"&gt;docutils&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6, &lt;span class="nv"&gt;Pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.3.1
 WSGI module &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
 Paste config &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
-Fixtures &lt;span class="o"&gt;(&lt;/span&gt;optional; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;:
+Fixtures &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="p"&gt;;&lt;/span&gt; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;:
 Sync database and load fixtures? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: y
 Use SSL? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n
 Force SSL: &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n

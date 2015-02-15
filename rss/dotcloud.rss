@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/dotcloud.rss" rel="self"></atom:link><lastBuildDate>Fri, 17 May 2013 15:30:24 -0400</lastBuildDate><item><title>Getting Docker up and running on a RaspberryPi</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/</link><description>&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
-&lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/dotcloud.rss" rel="self"></atom:link><lastBuildDate>Fri, 17 May 2013 15:30:24 -0400</lastBuildDate><item><title>Getting Docker up and running on a RaspberryPi</title><link>http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/</link><description>&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
+&lt;img alt="" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
 &lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Linux&lt;/li&gt;
@@ -142,7 +142,7 @@ patching file fs/Kconfig
 patching file fs/Makefile
 patching file include/linux/Kbuild
 Hunk &lt;span class="c"&gt;#1 FAILED at 66.&lt;/span&gt;
-1 out of 1 hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+&lt;span class="m"&gt;1&lt;/span&gt; out of &lt;span class="m"&gt;1&lt;/span&gt; hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then you will need to manually update include/linux/Kbuild because the patch failed.&lt;/p&gt;
 &lt;p&gt;First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h&lt;/p&gt;
@@ -174,21 +174,21 @@ index fa21760..ee029e3 100644
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; Memory Resource Controller for Control Groups (&lt;em&gt;and its three child options&lt;/em&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_1.png" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
 &lt;p&gt;(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; cpuset support&lt;/li&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Character Devices -&amp;gt; Support multiple instances of devpts&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_2.png" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Network Device Support -&amp;gt; Virtual ethernet pair device&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_3.png" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;File Systems --&amp;gt; Miscellaneous filesystems -&amp;gt;select &amp;quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&amp;quot; (mine was the the very bottom)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
 &lt;ol class="arabic simple" start="12"&gt;
 &lt;li&gt;Build Kernel&lt;/li&gt;
 &lt;/ol&gt;
@@ -246,9 +246,9 @@ requesting all changes
 adding changesets
 adding manifests
 adding file changes
-added 14430 changesets with 52478 changes to 7406 files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
+added &lt;span class="m"&gt;14430&lt;/span&gt; changesets with &lt;span class="m"&gt;52478&lt;/span&gt; changes to &lt;span class="m"&gt;7406&lt;/span&gt; files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
 updating to branch default
-3520 files updated, 0 files merged, 0 files removed, 0 files unresolved
+&lt;span class="m"&gt;3520&lt;/span&gt; files updated, &lt;span class="m"&gt;0&lt;/span&gt; files merged, &lt;span class="m"&gt;0&lt;/span&gt; files removed, &lt;span class="m"&gt;0&lt;/span&gt; files unresolved
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/src
 &lt;span class="nv"&gt;$ &lt;/span&gt;./all.bash
@@ -256,7 +256,7 @@ updating to branch default
 ALL TESTS PASSED
 
 ---
-Installed Go &lt;span class="k"&gt;for &lt;/span&gt;linux/arm in /home/dfc/go
+Installed Go &lt;span class="k"&gt;for&lt;/span&gt; linux/arm in /home/dfc/go
 Installed commands in /home/dfc/go/bin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing&lt;/p&gt;
@@ -267,7 +267,7 @@ Installed commands in /home/dfc/go/bin
 &lt;p&gt;The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/bin
 &lt;span class="nv"&gt;$ &lt;/span&gt;go version
-go version devel +30c566874b83 Wed May 08 16:06:25 2013 -0700 linux/arm
+go version devel +30c566874b83 Wed May &lt;span class="m"&gt;08&lt;/span&gt; 16:06:25 &lt;span class="m"&gt;2013&lt;/span&gt; -0700 linux/arm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ol class="arabic simple" start="15"&gt;
 &lt;li&gt;Installing Docker&lt;/li&gt;
@@ -343,7 +343,7 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes. (see below if you want to install via package)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -442,7 +442,7 @@ Linux docker-12-10 3.5.0-25-generic &lt;span class="c"&gt;#39-Ubuntu SMP Mon Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -522,7 +522,7 @@ Linux docker-1304 3.8.0-19-generic &lt;span class="c"&gt;#29-Ubuntu SMP Wed Apr 
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -650,27 +650,27 @@ git clone git://github.com/kencochrane/kencochranenet_dotcloud.git kencochranene
 
 &lt;span class="c"&gt;# mysql -u root -p&lt;/span&gt;
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or &lt;span class="se"&gt;\g&lt;/span&gt;.
+Welcome to the MySQL monitor.  Commands end with &lt;span class="p"&gt;;&lt;/span&gt; or &lt;span class="se"&gt;\g&lt;/span&gt;.
 Your MySQL connection id is 34
 Server version: 5.1.41-3ubuntu12.10 &lt;span class="o"&gt;(&lt;/span&gt;Ubuntu&lt;span class="o"&gt;)&lt;/span&gt;
 
 &lt;span class="c"&gt;# create the user and database and give user permissions to database.&lt;/span&gt;
 
-Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
+Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
 
-mysql&amp;gt; create database blogdb;
-Query OK, 1 row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create database blogdb&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;1&lt;/span&gt; row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; flush privileges;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;;Bye
+mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;Bye
 Shared connection to database closed.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Does that look familiar? I have it here in case you want to do it the long way.&lt;/p&gt;
@@ -1392,27 +1392,27 @@ state: running
 
 &lt;span class="c"&gt;# mysql -u root -p&lt;/span&gt;
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or &lt;span class="se"&gt;\g&lt;/span&gt;.
+Welcome to the MySQL monitor.  Commands end with &lt;span class="p"&gt;;&lt;/span&gt; or &lt;span class="se"&gt;\g&lt;/span&gt;.
 Your MySQL connection id is 34
 Server version: 5.1.41-3ubuntu12.10 &lt;span class="o"&gt;(&lt;/span&gt;Ubuntu&lt;span class="o"&gt;)&lt;/span&gt;
 
 &lt;span class="c"&gt;# create the user and database and give user permissions to database.&lt;/span&gt;
 
-Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
+Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
 
-mysql&amp;gt; create database blogdb;
-Query OK, 1 row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create database blogdb&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;1&lt;/span&gt; row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; flush privileges;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;;Bye
+mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;Bye
 Shared connection to mysql.kencochrane.dotcloud.com closed.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now that we have our database all setup, we need to change our settings file so that it has all of the new information. Here is what mine looks like.&lt;/p&gt;
@@ -1476,11 +1476,11 @@ Please try again later. If the problem persists, send an email to support@dotclo
 &lt;span class="c"&gt;# hg&lt;/span&gt;
 remote: Warning: Permanently added &lt;span class="s1"&gt;&amp;#39;[uploader.dotcloud.com]:1060,[174.129.15.77]:1060&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;RSA&lt;span class="o"&gt;)&lt;/span&gt; to the list of known hosts.
 pushing to ssh://dotcloud@uploader.dotcloud.com:1060/kencochrane.blog
-searching &lt;span class="k"&gt;for &lt;/span&gt;changes
+searching &lt;span class="k"&gt;for&lt;/span&gt; changes
 remote: adding changesets
 remote: adding manifests
 remote: adding file changes
-remote: added 1 changesets with 3 changes to 3 files
+remote: added &lt;span class="m"&gt;1&lt;/span&gt; changesets with &lt;span class="m"&gt;3&lt;/span&gt; changes to &lt;span class="m"&gt;3&lt;/span&gt; files
 Scheduling build
 Fetching logs...
 Build started...
@@ -1494,17 +1494,17 @@ mkdir: cannot create directory &lt;span class="sb"&gt;`&lt;/span&gt;126:afdea903
 &lt;span class="s1"&gt;# hg&lt;/span&gt;
 &lt;span class="s1"&gt;remote: Warning: Permanently added &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;uploader.dotcloud.com&lt;span class="o"&gt;]&lt;/span&gt;:1060,&lt;span class="o"&gt;[&lt;/span&gt;174.129.15.77&lt;span class="o"&gt;]&lt;/span&gt;:1060&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;RSA&lt;span class="o"&gt;)&lt;/span&gt; to the list of known hosts.
 pushing to ssh://dotcloud@uploader.dotcloud.com:1060/kencochrane.blog
-searching &lt;span class="k"&gt;for &lt;/span&gt;changes
+searching &lt;span class="k"&gt;for&lt;/span&gt; changes
 no changes found
 Scheduling build
 Fetching logs...
 Build started...
 .
-. all of the files &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for &lt;/span&gt;space&lt;span class="o"&gt;)&lt;/span&gt;
+. all of the files &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for&lt;/span&gt; space&lt;span class="o"&gt;)&lt;/span&gt;
 .
 Fetched code revision 126:afdea9036e83
 .
-. all the requirments &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for &lt;/span&gt;space&lt;span class="o"&gt;)&lt;/span&gt;
+. all the requirments &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for&lt;/span&gt; space&lt;span class="o"&gt;)&lt;/span&gt;
 .
 Cleaning up...
 Reloading nginx configuration: nginx.

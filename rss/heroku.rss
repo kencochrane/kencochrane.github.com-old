@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/heroku.rss" rel="self"></atom:link><lastBuildDate>Sat, 31 Dec 2011 14:25:11 -0500</lastBuildDate><item><title>Installing DjangoCMS on Heroku in 13 easy steps</title><link>http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/</link><description>&lt;p&gt;Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/heroku.rss" rel="self"></atom:link><lastBuildDate>Sat, 31 Dec 2011 14:25:11 -0500</lastBuildDate><item><title>Installing DjangoCMS on Heroku in 13 easy steps</title><link>http://kencochrane.net/blog/2011/12/installing-djangocms-on-heroku-in-13-easy-steps/</link><description>&lt;p&gt;Do you want to use Django-cms on Heroku but don't know where to start? All you need to do is follow these 13 easy steps, and they will get you on your way.&lt;/p&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;Create a place to store your project&lt;/p&gt;
 &lt;blockquote&gt;
@@ -179,7 +179,7 @@ Uploading ssh public key /Users/ken/.ssh/id_rsa.pub
 &lt;p&gt;Creating an application on heroku is easy, you just need to run the following command.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku create --stack cedar
 Creating some-name-4741... &lt;span class="k"&gt;done&lt;/span&gt;, stack is cedar
-http://some-name-4741.herokuapp.com/ | git@heroku.com:some-name-4741.git
+http://some-name-4741.herokuapp.com/ &lt;span class="p"&gt;|&lt;/span&gt; git@heroku.com:some-name-4741.git
 Git remote heroku added
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -191,10 +191,10 @@ Git remote heroku added
 &lt;p&gt;If everything went well, it should look something like this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 209, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;176/176&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;209/209&lt;span class="o"&gt;)&lt;/span&gt;, 271.89 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;209&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 -----&amp;gt; Heroku receiving push
 -----&amp;gt; Python/Django app detected
@@ -211,7 +211,7 @@ Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt
        Cleaning up...
 -----&amp;gt; Discovering process types
        Procfile declares types         -&amp;gt; &lt;span class="o"&gt;(&lt;/span&gt;none&lt;span class="o"&gt;)&lt;/span&gt;
-       Default types &lt;span class="k"&gt;for &lt;/span&gt;Python/Django -&amp;gt; web
+       Default types &lt;span class="k"&gt;for&lt;/span&gt; Python/Django -&amp;gt; web
 -----&amp;gt; Compiled slug size is 10.3MB
 -----&amp;gt; Launching... &lt;span class="k"&gt;done&lt;/span&gt;, v5
        http://some-name-4741.herokuapp.com deployed to Heroku
@@ -224,7 +224,7 @@ Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt
 
 The authenticity of host &lt;span class="s1"&gt;&amp;#39;heroku.com (50.19.85.132)&amp;#39;&lt;/span&gt; can&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t be established.
 RSA key fingerprint is 8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad.
-Are you sure you want to &lt;span class="k"&gt;continue &lt;/span&gt;connecting &lt;span class="o"&gt;(&lt;/span&gt;yes/no&lt;span class="o"&gt;)&lt;/span&gt;? yes
+Are you sure you want to &lt;span class="k"&gt;continue&lt;/span&gt; connecting &lt;span class="o"&gt;(&lt;/span&gt;yes/no&lt;span class="o"&gt;)&lt;/span&gt;? yes
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is normal, just type 'yes', and you will never be prompted for this again.&lt;/p&gt;
 &lt;div class="section" id="django-app-must-be-in-a-package-subdirectory"&gt;
@@ -232,10 +232,10 @@ Are you sure you want to &lt;span class="k"&gt;continue &lt;/span&gt;connecting 
 &lt;p&gt;If you django project isn't setup correctly, you will get an error like this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 199, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;167/167&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;199/199&lt;span class="o"&gt;)&lt;/span&gt;, 270.86 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 199 &lt;span class="o"&gt;(&lt;/span&gt;delta 26&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;199&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 26&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 
 -----&amp;gt; Heroku receiving push
@@ -255,10 +255,10 @@ error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.co
 &lt;p&gt;Another error you can get is this one. &amp;quot;Heroku push rejected, no Cedar-supported app detected&amp;quot;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 204, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;171/171&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;204/204&lt;span class="o"&gt;)&lt;/span&gt;, 271.34 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 204 &lt;span class="o"&gt;(&lt;/span&gt;delta 27&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;204&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 27&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 -----&amp;gt; Heroku receiving push
  !     Heroku push rejected, no Cedar-supported app detected
@@ -277,7 +277,7 @@ error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.co
 
 Process       State               Command
 ------------  ------------------  ------------------------------
-web.1         crashed &lt;span class="k"&gt;for &lt;/span&gt;2m      python kenblog/manage.py runserver 0...
+web.1         crashed &lt;span class="k"&gt;for&lt;/span&gt; 2m      python kenblog/manage.py runserver 0...
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;My django application looks like it crashed. Most likely because I didn't setup the database yet, lets look at the logs to see what is causing the problems to be sure.&lt;/p&gt;
 &lt;/div&gt;
@@ -291,7 +291,7 @@ web.1         crashed &lt;span class="k"&gt;for &lt;/span&gt;2m      python kenb
 2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
 2011-11-27T18:40:03+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Starting process with &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;python kenblog/manage.py runserver 0.0.0.0:12033 --noreload&lt;span class="sb"&gt;`&lt;/span&gt;
 2011-11-27T18:40:04+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Unexpected error: &lt;span class="o"&gt;(&lt;/span&gt;&amp;lt;&lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;exceptions.NameError&amp;#39;&lt;/span&gt;&amp;gt;, NameError&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name &amp;#39;DATABASES&amp;#39; is not defined&amp;quot;&lt;/span&gt;,&lt;span class="o"&gt;)&lt;/span&gt;, &amp;lt;traceback object at 0x1a7b128&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
-2011-11-27T18:40:05+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: There is no South database module &lt;span class="s1"&gt;&amp;#39;south.db.None&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;your database. Please either choose a supported database, check &lt;span class="k"&gt;for &lt;/span&gt;SOUTH_DATABASE_ADAPTER&lt;span class="o"&gt;[&lt;/span&gt;S&lt;span class="o"&gt;]&lt;/span&gt; settings, or remove South from INSTALLED_APPS.
+2011-11-27T18:40:05+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: There is no South database module &lt;span class="s1"&gt;&amp;#39;south.db.None&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; your database. Please either choose a supported database, check &lt;span class="k"&gt;for&lt;/span&gt; SOUTH_DATABASE_ADAPTER&lt;span class="o"&gt;[&lt;/span&gt;S&lt;span class="o"&gt;]&lt;/span&gt; settings, or remove South from INSTALLED_APPS.
 2011-11-27T18:40:06+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to crashed
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Looks like it is an issue with the settings file. If you wanted to take a look at the settings file to see if we can find out what is wrong you can run the following command.&lt;/p&gt;
@@ -343,7 +343,7 @@ Running env attached to terminal... up, run.6
 2011-11-27T18:59:25+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from crashed to created
 2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from created to starting
 2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
-2011-11-27T18:59:31+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: 0 errors found
+2011-11-27T18:59:31+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="m"&gt;0&lt;/span&gt; errors found
 2011-11-27T18:59:31+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to up
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -372,11 +372,11 @@ Running env attached to terminal... up, run.6
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku ps
 Process       State               Command
 ------------  ------------------  ------------------------------
-run.5         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;21m    cat kenblog/settings.py
-run.6         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;18m    env
-run.7         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py syncdb
-run.8         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py migrate
-web.1         up &lt;span class="k"&gt;for &lt;/span&gt;4m           python kenblog/manage.py runserver..
+run.5         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 21m    cat kenblog/settings.py
+run.6         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 18m    env
+run.7         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 1m     python kenblog/manage.py syncdb
+run.8         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 1m     python kenblog/manage.py migrate
+web.1         up &lt;span class="k"&gt;for&lt;/span&gt; 4m           python kenblog/manage.py runserver..
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Things are looking better, we are up, and it also shows our old commands that we ran.&lt;/p&gt;
 &lt;p&gt;if you need to work with the processes you have the following options.&lt;/p&gt;
@@ -401,7 +401,7 @@ ps:workers &lt;span class="o"&gt;[&lt;/span&gt;QTY&lt;span class="o"&gt;]&lt;/sp
 &lt;li&gt;Add gunicorn==0.13.4 to your requirements file.&lt;/li&gt;
 &lt;li&gt;create a new file called Procfile at the same level as your requirements.txt file with the following in it.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;web: python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:$PORT&amp;quot;&lt;/span&gt; -w 3
+&lt;div class="highlight"&gt;&lt;pre&gt;web: python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:&lt;/span&gt;&lt;span class="nv"&gt;$PORT&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -w 3
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add gunicorn to the installed_apps in settings.py&lt;/p&gt;
 &lt;p&gt;then&lt;/p&gt;

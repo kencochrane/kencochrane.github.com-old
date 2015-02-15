@@ -13,7 +13,7 @@
     {% endif %}
     {% block extra_head %}{% endblock extra_head %}
     <link rel="icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon"> 
+    <link rel="shortcut icon" href="{{ SITEURL }}/static/favicon.ico" type="image/x-icon">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -63,9 +63,9 @@
                 {% for cat, null in categories %}
                     <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
                 {% endfor %}
-                 <li><iframe style="border: 0; margin: 0; padding: 0;"
-        src="https://www.gittip.com/kencochrane/widget.html"
-        width="48pt" height="22pt"></iframe>
+                 <li><script data-gratipay-username="kencochrane"
+        data-gratipay-widget="button"
+        src="//grtp.co/v1.js"></script>
                   </li>
             </ul>
             <p class="pull-right"><a href="{{ SITEURL }}/archives.html">[archives]</a> <a href="{{ SITEURL }}/tags.html">[tags]</a></p>
@@ -111,7 +111,7 @@
                 </li>
             {% endfor %}
             </ul>
-            
+
         </div>
       </div>
       <div class="content">

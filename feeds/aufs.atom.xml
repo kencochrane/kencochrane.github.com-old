@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/aufs.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-06-07T12:24:24-04:00</updated><entry><title>Running Docker on Digital Ocean with Ubuntu</title><link href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/" rel="alternate"></link><updated>2013-06-07T12:24:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</id><summary type="html">&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="|filename|/content/running-docker-on-rackspace-cloud.rst"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an Ubuntu 12.04 and 13.04 VPS up and running with Docker.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/aufs.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-06-07T12:24:24-04:00</updated><entry><title>Running Docker on Digital Ocean with Ubuntu</title><link href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/" rel="alternate"></link><updated>2013-06-07T12:24:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</id><summary type="html">&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an Ubuntu 12.04 and 13.04 VPS up and running with Docker.&lt;/p&gt;
 &lt;div class="section" id="step-1-register"&gt;
 &lt;h2&gt;Step 1: Register&lt;/h2&gt;
 &lt;p&gt;First things first, if you don't already have a Digital Ocean account, you will need to create one. If you &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;follow this link&lt;/a&gt;, click sign up and enter this promo code &lt;strong&gt;VPSERS10&lt;/strong&gt;, you will be given a $10 credit to try out the service.&lt;/p&gt;
@@ -7,12 +7,12 @@
 &lt;div class="section" id="step-2-billing"&gt;
 &lt;h2&gt;Step 2: Billing&lt;/h2&gt;
 &lt;p&gt;To prevent abuse, Digital Ocean requires that you enter a credit card before you can spin up a server. Go ahead and do that now. Once you put in your information you should see a screen like this.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/startup.png" class="img-polaroid align-center" id="digital-ocean-control-panel" src="/static/digital-ocean/startup.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel" src="/static/digital-ocean/startup.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="step-3-ssh-keys"&gt;
 &lt;h2&gt;Step 3 SSH keys&lt;/h2&gt;
 &lt;p&gt;To make your life easier, I would add a public SSH key to your account. If you don't add an SSH key then you will be emailed a root password when the server is setup. It is easier and more secure to add your public key, and then select that key when building the server, and they will automatically add the key to your server for you. If you don't have a SSH key, don't worry they are easy to create. Just do a quick web search, and there are a ton of different guide out there to help you get one setup.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/ssh_key.png" class="img-polaroid align-center" id="digital-ocean-control-panel-add-ssh-key" src="/static/digital-ocean/ssh_key.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-add-ssh-key" src="/static/digital-ocean/ssh_key.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="step-4-create-droplet"&gt;
 &lt;h2&gt;Step 4: Create Droplet&lt;/h2&gt;
@@ -26,9 +26,9 @@
 &lt;li&gt;Enable VirtIO&lt;/li&gt;
 &lt;li&gt;Click the big &amp;quot;Create Droplet&amp;quot; button at the bottom.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img alt="/static/digital-ocean/select_distro_ubuntu_12_04.png" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
 &lt;p&gt;Droplet getting created&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/create_droplet.png" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
 &lt;p&gt;After about 60 seconds you should have a cloudlet created with an IP address. Now pick the distribution you picked below and follow the rest of the directions.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="ubuntu-12-04-64bit-server"&gt;
@@ -36,9 +36,9 @@
 &lt;div class="section" id="upgrade-kernel"&gt;
 &lt;h3&gt;Upgrade kernel&lt;/h3&gt;
 &lt;p&gt;The default kernel with 12.04 doesn't work well with Docker so we are going to upgrade to the same one that is used by 13.04. To do this you will go into your control panel for your droplet, and go into the settings tab and change the kernel pull down to &amp;quot;Ubuntu 13.04-x64-vmlinuz-3.8.0-23-generic&amp;quot; and click change.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/change_kernel.png" class="img-polaroid align-center" id="digital-ocean-control-panel-change-kernel" src="/static/digital-ocean/change_kernel.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-change-kernel" src="/static/digital-ocean/change_kernel.png" /&gt;
 &lt;p&gt;In order for the kernel change to take affect you will need to power cycle the droplet. Click on the power tab, and then hit the &amp;quot;Power Cycle&amp;quot; button.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/power_cycle.png" class="img-polaroid align-center" id="digital-ocean-control-panel-power-cycle" src="/static/digital-ocean/power_cycle.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-power-cycle" src="/static/digital-ocean/power_cycle.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="login-to-server"&gt;
 &lt;h3&gt;Login to server&lt;/h3&gt;
@@ -53,7 +53,7 @@ Linux docker-1 3.8.0-23-generic &lt;span class="c"&gt;#34-Ubuntu SMP Wed May 29 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install linux-image-generic-lts-raring
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="kernel-menu" src="/static/digital-ocean/kernel_menu.png" /&gt;
 &lt;p&gt;Install Docker from the Docker PPA&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install python-software-properties &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo add-apt-repository ppa:dotcloud/lxc-docker
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
@@ -79,7 +79,7 @@ hello world
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install linux-image-extra-&lt;span class="sb"&gt;`&lt;/span&gt;uname -r&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu-2" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="kernel-menu-2" src="/static/digital-ocean/kernel_menu.png" /&gt;
 &lt;p&gt;Install Docker&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install software-properties-common
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo add-apt-repository ppa:dotcloud/lxc-docker
@@ -105,7 +105,7 @@ hello world
 &lt;p&gt;Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below or visit #docker on freenode&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="docker"></category><category term="digital-ocean"></category><category term="ubuntu"></category><category term="kernel"></category><category term="lxc"></category><category term="aufs"></category></entry><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
-&lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
 &lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Linux&lt;/li&gt;
@@ -247,7 +247,7 @@ patching file fs/Kconfig
 patching file fs/Makefile
 patching file include/linux/Kbuild
 Hunk &lt;span class="c"&gt;#1 FAILED at 66.&lt;/span&gt;
-1 out of 1 hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+&lt;span class="m"&gt;1&lt;/span&gt; out of &lt;span class="m"&gt;1&lt;/span&gt; hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then you will need to manually update include/linux/Kbuild because the patch failed.&lt;/p&gt;
 &lt;p&gt;First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h&lt;/p&gt;
@@ -279,21 +279,21 @@ index fa21760..ee029e3 100644
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; Memory Resource Controller for Control Groups (&lt;em&gt;and its three child options&lt;/em&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_1.png" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
 &lt;p&gt;(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; cpuset support&lt;/li&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Character Devices -&amp;gt; Support multiple instances of devpts&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_2.png" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Network Device Support -&amp;gt; Virtual ethernet pair device&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_3.png" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;File Systems --&amp;gt; Miscellaneous filesystems -&amp;gt;select &amp;quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&amp;quot; (mine was the the very bottom)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
 &lt;ol class="arabic simple" start="12"&gt;
 &lt;li&gt;Build Kernel&lt;/li&gt;
 &lt;/ol&gt;
@@ -351,9 +351,9 @@ requesting all changes
 adding changesets
 adding manifests
 adding file changes
-added 14430 changesets with 52478 changes to 7406 files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
+added &lt;span class="m"&gt;14430&lt;/span&gt; changesets with &lt;span class="m"&gt;52478&lt;/span&gt; changes to &lt;span class="m"&gt;7406&lt;/span&gt; files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
 updating to branch default
-3520 files updated, 0 files merged, 0 files removed, 0 files unresolved
+&lt;span class="m"&gt;3520&lt;/span&gt; files updated, &lt;span class="m"&gt;0&lt;/span&gt; files merged, &lt;span class="m"&gt;0&lt;/span&gt; files removed, &lt;span class="m"&gt;0&lt;/span&gt; files unresolved
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/src
 &lt;span class="nv"&gt;$ &lt;/span&gt;./all.bash
@@ -361,7 +361,7 @@ updating to branch default
 ALL TESTS PASSED
 
 ---
-Installed Go &lt;span class="k"&gt;for &lt;/span&gt;linux/arm in /home/dfc/go
+Installed Go &lt;span class="k"&gt;for&lt;/span&gt; linux/arm in /home/dfc/go
 Installed commands in /home/dfc/go/bin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing&lt;/p&gt;
@@ -372,7 +372,7 @@ Installed commands in /home/dfc/go/bin
 &lt;p&gt;The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/bin
 &lt;span class="nv"&gt;$ &lt;/span&gt;go version
-go version devel +30c566874b83 Wed May 08 16:06:25 2013 -0700 linux/arm
+go version devel +30c566874b83 Wed May &lt;span class="m"&gt;08&lt;/span&gt; 16:06:25 &lt;span class="m"&gt;2013&lt;/span&gt; -0700 linux/arm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ol class="arabic simple" start="15"&gt;
 &lt;li&gt;Installing Docker&lt;/li&gt;
@@ -448,7 +448,7 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes. (see below if you want to install via package)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -547,7 +547,7 @@ Linux docker-12-10 3.5.0-25-generic &lt;span class="c"&gt;#39-Ubuntu SMP Mon Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -627,7 +627,7 @@ Linux docker-1304 3.8.0-19-generic &lt;span class="c"&gt;#29-Ubuntu SMP Wed Apr 
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;

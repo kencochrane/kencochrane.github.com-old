@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/gondor.rss" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/gondor.rss" rel="self"></atom:link><lastBuildDate>Mon, 06 Jun 2011 22:03:59 -0400</lastBuildDate><item><title>Django Hosting Roundup: (Ep.io vs Gondor.io vs DotCloud vs Heroku vs AppHosted vs DjangoZoom) Who wins?</title><link>http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/</link><description>&lt;div class="section" id="updates"&gt;
 &lt;h2&gt;Updates&lt;/h2&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Updated 2/16/2012: Full disclosure. On Feb 16th 2012, I accepted a job with dotCloud. I plan on keeping this blog post up to date and impartial. If you think there are any errors, please let me know in the comments below.&lt;/li&gt;
@@ -104,7 +104,7 @@
 &lt;span class="nv"&gt;password&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;my_password&amp;gt;
 
 &lt;span class="c"&gt;# change the permissions so that only you can access it.&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;chmod 600 ~/.gondor
+&lt;span class="nv"&gt;$ &lt;/span&gt;chmod &lt;span class="m"&gt;600&lt;/span&gt; ~/.gondor
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Like all cool projects these days, gondor uses pip and virtualenv, I'm assuming you already have virtualenv and pip installed so I'll move onto the fun stuff.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make my virtualenv called gondor&lt;/span&gt;
@@ -205,11 +205,11 @@ pip has failed installing your requirements. Here is the output we saw:
 Downloading/unpacking &lt;span class="nv"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.5 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 1&lt;span class="o"&gt;))&lt;/span&gt;
 Creating supposed download cache at /var/gondor/instances/.cache-i194/pip-download
   Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FD%2FDjango%2FDjango-1.2.5.tar.gz
-  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package Django
+  Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package Django
 
 Downloading/unpacking MySQL-python&lt;span class="o"&gt;==&lt;/span&gt;1.2.3c1 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 2&lt;span class="o"&gt;))&lt;/span&gt;
   Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FM%2FMySQL-python%2FMySQL-python-1.2.3c1.tar.gz
-  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package MySQL-python
+  Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package MySQL-python
     sh: mysql_config: not found
     Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
       File &lt;span class="s2"&gt;&amp;quot;&amp;lt;string&amp;gt;&amp;quot;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;

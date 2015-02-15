@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/redis.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2015-02-15T11:05:01-05:00</updated><entry><title>Introducing Django Defender</title><link href="http://kencochrane.net/blog/2015/02/introducing-django-defender/" rel="alternate"></link><updated>2015-02-15T11:05:01-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2015-02-15:blog/2015/02/introducing-django-defender/</id><summary type="html">&lt;p&gt;Normally websites do very few logins, someone logs in once and their session
+is good for a bunch of hours. Since it's a one time thing, it doesn't matter
+if it isn't very fast. At &lt;a class="reference external" href="https://www.docker.com"&gt;Docker&lt;/a&gt; our authentication
+system handles requests for both the &lt;a class="reference external" href="https://hub.docker.com"&gt;Docker Hub&lt;/a&gt;,
+as well as all Docker Engine commands that interact with the Docker Hub
+(docker push, pull, etc). This Authentication system handles thousands of login
+attempts every minute, so any slow down in the login process has a large impact
+on our system.&lt;/p&gt;
+&lt;p&gt;We are always looking at ways to improve the security of our systems, and one of
+the things we looked at implementing was a way to prevent brute force login attempts.
+The first thing we did was look to see if there was an open source solution
+available that would do what we needed. The Docker Hub along with the
+authentication system is written in Python using &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;
+.
+So we did some research to see what was the best solution available to us. We quickly
+came to &lt;a class="reference external" href="https://github.com/django-pci/django-axes"&gt;django-axes&lt;/a&gt;, which is a great library, and had everything we were looking for. Best of all, it wasn't that hard to add to our system.&lt;/p&gt;
+&lt;p&gt;When we started using django-axes our
+traffic was pretty normal, but with the explosive growth of Docker we have seen
+a huge increases in traffic. As the traffic increased, we started noticing that
+login times were slowing down. Upon further inspection we noticed that with
+django-axes turned on it was adding a 200 to 300ms overheard compared to when it
+was turned off. We did some more digging to see what was causing all of the
+delay, and we found out the reason is because django-axes stores all of its
+information in the database and in order to determine if someone is blocked you
+need to do a bunch of queries, and the more login attempts, the larger the axes database
+tables get, and thus the queries get slower, and in turn slows down the login process.&lt;/p&gt;
+&lt;p&gt;Our first attempts to speed things up was to add more database indexes,
+and to run a script that kept the axes database tables small. This worked for a
+little while, but as the traffic increased, it stopped working. It was quickly
+determined that we would need to replace django-axes. We looked around at other
+brute force libraries, and there was nothing that offered what we needed for
+features, was fast, and well maintained.&lt;/p&gt;
+&lt;p&gt;Since we couldn't find anything, I started working on a replacement. On one of my
+many cross country flights, I started working on a replacement. In order to make
+the process quicker, it started as a fork of django-axes, where I removed the
+stuff we didn't need, and then replaced the slow parts with faster ones. The
+main goal was to avoid hitting the database in order to determine if the user
+was blocked. Since we are big fans of &lt;a class="reference external" href="http://redis.io"&gt;Redis&lt;/a&gt;, and we were using it
+in other places already, we decided to use Redis as our backend for storing all
+of our data for determining if someone is blocked. We also allow the logging of
+login attempts to the database, but to speed things up, we defer this to a
+background celery task.&lt;/p&gt;
+&lt;p&gt;After a few cross country flights, and some help from some of my co-workers, we
+now have a library, that we are using on the Docker Hub. We have been using it
+for about a month now, and the results have been great. With this new library we are
+seeing under a 10ms impact on our logins, which is really great. We are able to
+have the features we need without the overhead.&lt;/p&gt;
+&lt;p&gt;Now that we have proven the project to be successful, we have decided to open
+source the library, so that others can also use it, and contribute back any features
+or improvements they might find important.&lt;/p&gt;
+&lt;p&gt;So without further ado, I'm proud to introduce Django Defender, a brute force
+login preventions library built for speed.&lt;/p&gt;
+&lt;p&gt;We have labeled the first version 0.1, but it is very stable and already
+production ready. We have very good code coverage (95%+) and we have tests
+and support for a number of different Python and Django versions.&lt;/p&gt;
+&lt;p&gt;We also have django admin pages that can be used to manage the blocked users
+and IP addresses.&lt;/p&gt;
+&lt;p&gt;Please try it out, and let us know if you have any questions.&lt;/p&gt;
+&lt;div class="section" id="links"&gt;
+&lt;h2&gt;Links:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Source code&lt;/strong&gt;: &lt;a class="reference external" href="https://github.com/kencochrane/django-defender"&gt;https://github.com/kencochrane/django-defender&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PyPi&lt;/strong&gt;: &lt;a class="reference external" href="https://pypi.python.org/pypi/django-defender"&gt;https://pypi.python.org/pypi/django-defender&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="version-support"&gt;
+&lt;h2&gt;Version Support:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;: 2.6.x, 2.7.x, 3.3.x, 3.4.x, PyPy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Django&lt;/strong&gt;: 1.6.x, 1.7.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-in-0-1"&gt;
+&lt;h2&gt;What's in 0.1:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Configurable: When to block, What to do when blocked.&lt;/li&gt;
+&lt;li&gt;Uses Redis for data store.&lt;/li&gt;
+&lt;li&gt;Blocking IP and usernames when too many login attempts&lt;/li&gt;
+&lt;li&gt;Logging of access attempts to database.&lt;/li&gt;
+&lt;li&gt;Celery for writing access attempt logs to the database in the background&lt;/li&gt;
+&lt;li&gt;Admin pages (integrated with Django admin), to manage the blocked IP's and usernames.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-install"&gt;
+&lt;h2&gt;How to install:&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;tt class="docutils literal"&gt;pip install &lt;span class="pre"&gt;django-defender&lt;/span&gt;&lt;/tt&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="admin-screen-shots"&gt;
+&lt;h2&gt;Admin Screen shots:&lt;/h2&gt;
+&lt;img alt="" src="https://cloud.githubusercontent.com/assets/261601/5950540/8895b570-a729-11e4-9dc3-6b00e46c8043.png" /&gt;
+&lt;img alt="" src="https://cloud.githubusercontent.com/assets/261601/5950541/88a35194-a729-11e4-981b-3a55b44ef9d5.png" /&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="python"></category><category term="defender"></category><category term="redis"></category></entry></feed>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/tag_blog.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2012-12-09T03:17:48-05:00</updated><entry><title>New Pelican Based Blog</title><link href="http://kencochrane.net/blog/2012/12/new-pelican-based-blog/" rel="alternate"></link><updated>2012-12-09T03:17:48-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2012-12-09:blog/2012/12/new-pelican-based-blog/</id><summary type="html">&lt;p&gt;I have recently changed my Django based blog to a statically generated blog based on &lt;a class="reference external" href="http://getpelican.com"&gt;Pelican&lt;/a&gt;, and hosted by &lt;a class="reference external" href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;. This is for a couple of reasons.&lt;/p&gt;
+&lt;p&gt;The first reason was because my blog is really simple, it was just a bunch of reStructuredText documents that were converted to HTML. I didn't need the Django-admin features and I always felt it was a little overkill for my blog.&lt;/p&gt;
+&lt;p&gt;The second reason was because I wanted to host my blog contents on GitHub so that others could change/update/edit my blog posts and send me pull requests if they have something good to add. Doing this with my old blog would have been hard, but it will be really easy with this current setup.&lt;/p&gt;
+&lt;p&gt;I was looking through all of the different static generators, and boy there are a lot of them. I decided to pick pelican because it did what I needed, and was real easy to setup and use.&lt;/p&gt;
+&lt;p&gt;My requirements for a site generator:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Python: I wanted it python based, in case it needed any changes, I wouldn't need much of a learning curve learning a new language.&lt;/li&gt;
+&lt;li&gt;Open Source: I wanted to have the ability to change it to add my own features in case it doesn't have them to start. Plus Open Source code rules.&lt;/li&gt;
+&lt;li&gt;reStructureText: I wanted to write my blog posts in ReST.&lt;/li&gt;
+&lt;li&gt;Themes: I wanted some out of the box themes that I could pick from and customize&lt;/li&gt;
+&lt;li&gt;Easy: I wanted something with minimum setup and overhead to get started.&lt;/li&gt;
+&lt;li&gt;Maintain Links: I wanted to keep the same URL structure from my old blog so I wouldn't get lots of 404 errors once I converted.&lt;/li&gt;
+&lt;li&gt;Active development: I wanted a project that is currently under active development.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After I did some quick searches, I found Pelican, and I liked what I saw. I wrote a simple python script that pull out my blog posts from my old blog and generated the initial ReST docs, which got me most of the way there.&lt;/p&gt;
+&lt;p&gt;Once I got the content pulled out, I just needed to pick a theme, and configure the settings. Then setup my github pages site, and push all the code. The last change was to change my DNS records, and then I was done.&lt;/p&gt;
+&lt;p&gt;Now anytime I want to write a blog post, all I have to do is add a new ReST doc and rerun the build command, and commit my changes, and push my repo. Then github automatically updates my site. Simple as that.&lt;/p&gt;
+&lt;p&gt;I'll run it from github for a little while and see how I like it. I might end up changing hosting, since github has very limited features, and doesn't allow you to add any rewrite rules or anything custom. I could have just as easily hosted on AWS s3, or &lt;a class="reference external" href="http://dotCloud.com"&gt;dotCloud&lt;/a&gt;, but I wanted to try this out first since it was pretty easy to setup.&lt;/p&gt;
+&lt;p&gt;If you switched to a static site generator, or are thinking about doing it, let me know what you think and what tools you are using.&lt;/p&gt;
+</summary><category term="pelican"></category><category term="blog"></category></entry></feed>

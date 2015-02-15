@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/tag_upgrade.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2011-04-14T10:55:09-04:00</updated><entry><title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link href="http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/" rel="alternate"></link><updated>2011-04-14T10:55:09-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-04-14:blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</id><summary type="html">&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
+&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/downloads
+wget http://www.percona.com/redir/downloads/percona-release/percona-release-0.0-1.i386.rpm
+sudo rpm -Uhv percona-release-0.0-1.i386.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum remove -y mysql-server mysql mysql-devel mysql-test mysql-bench
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now install the new Percona MySQL 5.1.x binaries. (depending on your connection this might take a few minutes)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now if your upgrade was anything like mine it had a bunch of errors like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;REPAIR TABLE table_name&amp;quot;&lt;/span&gt; or dump/reload to fix it!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We just need to run this command for each table that threw an error and it should fix it. (If you have lots of data this might take a while, I had some tables that took over 2 hours)&lt;/p&gt;
+&lt;p&gt;Once you think that you have all of the tables fixed, you can run this command and it will check all of your tables and let you know if you are good or not. If you still have errors, repeat the steps above until all tables pass.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysqlcheck -A --check-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
+</summary><category term="percona"></category><category term="mysql"></category><category term="upgrade"></category><category term="centos5"></category><category term="rhel5"></category><category term="linux"></category></entry><entry><title>Upgrading Percona MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link href="http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/" rel="alternate"></link><updated>2011-02-15T09:07:26-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-02-15:blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</id><summary type="html">&lt;p&gt;I have been using the Percona build of MySQL 5.0.x for a little while now, and I have been impressed. Now it is time to upgrade to the new stable MySQL 5.1.x version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+&lt;p&gt;First we need to stop mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm assuming that you have the percona repo installed on your machine, if not see follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum remove -y Percona-SQL*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now install the new Percona MySQL 5.1.x binaries. (depending on your connection this might take a few minutes)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now if your upgrade was anything like mine it had a bunch of errors like this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;REPAIR TABLE table_name&amp;quot;&lt;/span&gt; or dump/reload to fix it!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We just need to run this command for each table that threw an error and it should fix it. (If you have lots of data this might take a while, I had some tables that took over 2 hours)&lt;/p&gt;
+&lt;p&gt;Once you think that you have all of the tables fixed, you can run this command and it will check all of your tables and let you know if you are good or not. If you still have errors, repeat the steps above until all tables pass.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mysqlcheck -A --check-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
+</summary><category term="percona"></category><category term="mysql"></category><category term="upgrade"></category><category term="centos5"></category><category term="rhel5"></category><category term="linux"></category></entry></feed>

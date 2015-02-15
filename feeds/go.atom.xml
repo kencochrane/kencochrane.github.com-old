@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/go.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-05-17T15:30:24-04:00</updated><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
-&lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
 &lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Linux&lt;/li&gt;
@@ -142,7 +142,7 @@ patching file fs/Kconfig
 patching file fs/Makefile
 patching file include/linux/Kbuild
 Hunk &lt;span class="c"&gt;#1 FAILED at 66.&lt;/span&gt;
-1 out of 1 hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+&lt;span class="m"&gt;1&lt;/span&gt; out of &lt;span class="m"&gt;1&lt;/span&gt; hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then you will need to manually update include/linux/Kbuild because the patch failed.&lt;/p&gt;
 &lt;p&gt;First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h&lt;/p&gt;
@@ -174,21 +174,21 @@ index fa21760..ee029e3 100644
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; Memory Resource Controller for Control Groups (&lt;em&gt;and its three child options&lt;/em&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_1.png" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
 &lt;p&gt;(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; cpuset support&lt;/li&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Character Devices -&amp;gt; Support multiple instances of devpts&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_2.png" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Network Device Support -&amp;gt; Virtual ethernet pair device&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_3.png" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;File Systems --&amp;gt; Miscellaneous filesystems -&amp;gt;select &amp;quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&amp;quot; (mine was the the very bottom)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
 &lt;ol class="arabic simple" start="12"&gt;
 &lt;li&gt;Build Kernel&lt;/li&gt;
 &lt;/ol&gt;
@@ -246,9 +246,9 @@ requesting all changes
 adding changesets
 adding manifests
 adding file changes
-added 14430 changesets with 52478 changes to 7406 files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
+added &lt;span class="m"&gt;14430&lt;/span&gt; changesets with &lt;span class="m"&gt;52478&lt;/span&gt; changes to &lt;span class="m"&gt;7406&lt;/span&gt; files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
 updating to branch default
-3520 files updated, 0 files merged, 0 files removed, 0 files unresolved
+&lt;span class="m"&gt;3520&lt;/span&gt; files updated, &lt;span class="m"&gt;0&lt;/span&gt; files merged, &lt;span class="m"&gt;0&lt;/span&gt; files removed, &lt;span class="m"&gt;0&lt;/span&gt; files unresolved
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/src
 &lt;span class="nv"&gt;$ &lt;/span&gt;./all.bash
@@ -256,7 +256,7 @@ updating to branch default
 ALL TESTS PASSED
 
 ---
-Installed Go &lt;span class="k"&gt;for &lt;/span&gt;linux/arm in /home/dfc/go
+Installed Go &lt;span class="k"&gt;for&lt;/span&gt; linux/arm in /home/dfc/go
 Installed commands in /home/dfc/go/bin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing&lt;/p&gt;
@@ -267,7 +267,7 @@ Installed commands in /home/dfc/go/bin
 &lt;p&gt;The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/bin
 &lt;span class="nv"&gt;$ &lt;/span&gt;go version
-go version devel +30c566874b83 Wed May 08 16:06:25 2013 -0700 linux/arm
+go version devel +30c566874b83 Wed May &lt;span class="m"&gt;08&lt;/span&gt; 16:06:25 &lt;span class="m"&gt;2013&lt;/span&gt; -0700 linux/arm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ol class="arabic simple" start="15"&gt;
 &lt;li&gt;Installing Docker&lt;/li&gt;

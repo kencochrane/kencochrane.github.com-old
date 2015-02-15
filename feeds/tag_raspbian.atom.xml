@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/tag_raspbian.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-05-17T15:30:24-04:00</updated><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
+&lt;img alt="" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+&lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;LXC&lt;/li&gt;
+&lt;li&gt;AUFS&lt;/li&gt;
+&lt;li&gt;Go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Getting it up and running isn't going to be easy. The Linux kernels that come with the different Linux distros for the RaspberryPi, are kind of old, and don't come with AUFS built in. The RaspberryPi also runs on an ARM based chip, and it is only 32bit. Currently Docker only supports 64bit OS's. There are plans to add 32 bit support in the future, but it isn't there yet.&lt;/p&gt;
+&lt;p&gt;Doing some research I was able to find blog posts on how to get LXC and AUFS up and running on the RaspberryPi. Using those guides, I was able to make some progress but I'm not all of the way there yet. I'm hoping to describe my steps here so that others can see what I have done, and if they want, help me get over the hump.&lt;/p&gt;
+&lt;div class="section" id="goals"&gt;
+&lt;h2&gt;Goals&lt;/h2&gt;
+&lt;p&gt;My goals for the project is to:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;provide a prebuilt image that people can download that has everything they needed in order to get started.&lt;/li&gt;
+&lt;li&gt;I also want to provide a prebuilt kernel, people can download and use without having to build their own.&lt;/li&gt;
+&lt;li&gt;Port Docker to 32bit so that it will run on RaspberryPi and provide a Debian package for easy install.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instructions"&gt;
+&lt;h2&gt;Instructions&lt;/h2&gt;
+&lt;p&gt;Here are the steps that I used to make it so that my RaspberryPi could run Docker. These are still a work in progress, so please let me know if you have any issues, or you found a better way to do this.&lt;/p&gt;
+&lt;div class="section" id="install-linux-os"&gt;
+&lt;h3&gt;Install Linux OS&lt;/h3&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Download &lt;a class="reference external" href="http://www.raspberrypi.org/downloads"&gt;Raspbian&lt;/a&gt; and &lt;a class="reference external" href="http://elinux.org/RPi_Easy_SD_Card_Setup"&gt;make an SD card&lt;/a&gt; (I used the 2013-02-09-wheezy-raspbian.zip image)&lt;/li&gt;
+&lt;li&gt;Once you have the SD card, put it in the Pi and boot it up.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update-and-prepare-raspbian"&gt;
+&lt;h3&gt;Update and Prepare Raspbian&lt;/h3&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Switch to Root User on the Pi. These commands must be run as root. You can also use &amp;quot;su&amp;quot; or &amp;quot;sudo&amp;quot;, what ever you prefer:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo su root
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Expand to fill SD card and reboot after entering:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;raspi-config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Update Raspbian&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get update
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get dist-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="4"&gt;
+&lt;li&gt;Install git&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install git-core
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;Update Firmware&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The clone will take a while. You might consider cloning on a desktop machine to save time. Just transfer the firmware/boot and modules/ directories from your desktop PC to the Pi after the checkout. Be aware that checking out on some OS's that are case insensitive, may result in some files being missing. If you see funky issues, this might be the cause.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone git://github.com/raspberrypi/firmware.git
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;firmware/boot
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp * /boot
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ../modules
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp -r * /lib/modules
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="6"&gt;
+&lt;li&gt;Increase the Swap File Size&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I found that in order to check out the source on the Pi, you’ll need a swap file with the 256MB Pi, otherwise it will run out of RAM during the checkout (with fatal: index-pack failed).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# use your favorite editor here.&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;pico /etc/dphys-swapfile
+
+&lt;span class="c"&gt;# change to 500 (MB)&lt;/span&gt;
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo dphys-swapfile setup
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="7"&gt;
+&lt;li&gt;Prepare to Build Kernel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We are going to use the 3.6 kernel since it is the lastest stable one. There is an effort to get &lt;a class="reference external" href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=87&amp;amp;t=40664"&gt;3.8 working&lt;/a&gt;, it isn't 100% there yet, for more info see.&lt;/p&gt;
+&lt;p&gt;The clone will take a while. Again, you may consider using a desktop PC. Of course, if you do that, you’ll need to issue the “zcat” command from your Pi and copy the resulting “.config” file to the “linux” directory on your desktop PC.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir raspberrypi
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;raspberrypi
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone git://github.com/raspberrypi/linux.git
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;linux
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;zcat /proc/config.gz &amp;gt; .config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="8"&gt;
+&lt;li&gt;Decrease the Swap Space File&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pico /etc/dphys-swapfile
+
+&lt;span class="c"&gt;# change to 100 (MB)&lt;/span&gt;
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo dphys-swapfile setup
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="9"&gt;
+&lt;li&gt;Install Packages for Kernel Compilation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install ncurses-dev
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="10"&gt;
+&lt;li&gt;Adding AUFS Patches&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/raspberrypi/linux
+
+git clone git://aufs.git.sourceforge.net/gitroot/aufs/aufs3-standalone.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;aufs3-standalone
+git checkout origin/aufs3.6
+cp -rp *.patch ../
+cp -rp fs ../
+cp -rp Documentation/ ../
+cp -rp include/ ../
+&lt;span class="nb"&gt;cd&lt;/span&gt; ..
+
+patch -p1 &amp;lt; aufs3-base.patch
+patch -p1 &amp;lt; aufs3-proc_map.patch
+patch -p1 &amp;lt; aufs3-standalone.patch
+patch -p1 &amp;lt; aufs3-kbuild.patch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you get this error&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;root@raspberrypi:/opt/raspberrypi/linux# patch -p1 &amp;lt; aufs3-kbuild.patch
+patching file fs/Kconfig
+patching file fs/Makefile
+patching file include/linux/Kbuild
+Hunk &lt;span class="c"&gt;#1 FAILED at 66.&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt; out of &lt;span class="m"&gt;1&lt;/span&gt; hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then you will need to manually update include/linux/Kbuild because the patch failed.&lt;/p&gt;
+&lt;p&gt;First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;header-y +&lt;span class="o"&gt;=&lt;/span&gt; aufs_type.h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;here is my git diff:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;diff --git a/include/linux/Kbuild b/include/linux/Kbuild
+index fa21760..ee029e3 100644
+--- a/include/linux/Kbuild
++++ b/include/linux/Kbuild
+@@ -66,6 +66,7 @@ header-y +&lt;span class="o"&gt;=&lt;/span&gt; atmppp.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; atmsap.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; atmsvc.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; audit.h
++header-y +&lt;span class="o"&gt;=&lt;/span&gt; aufs_type.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; auto_fs.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; auto_fs4.h
+ header-y +&lt;span class="o"&gt;=&lt;/span&gt; auxvec.h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="11"&gt;
+&lt;li&gt;Configuring Kernel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You’ll now need to set some kernel options to support LXC, via the menu config tool.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/raspberrypi/linx
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;make menuconfig
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You need to enable these options:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; Memory Resource Controller for Control Groups (&lt;em&gt;and its three child options&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
+&lt;p&gt;(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; cpuset support&lt;/li&gt;
+&lt;li&gt;Device Drivers -&amp;gt; Character Devices -&amp;gt; Support multiple instances of devpts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Device Drivers -&amp;gt; Network Device Support -&amp;gt; Virtual ethernet pair device&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;File Systems --&amp;gt; Miscellaneous filesystems -&amp;gt;select &amp;quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&amp;quot; (mine was the the very bottom)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
+&lt;ol class="arabic simple" start="12"&gt;
+&lt;li&gt;Build Kernel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This could take many hours if you compile on the Pi, there are ways to &lt;a class="reference external" href="http://elinux.org/RPi_Kernel_Compilation#2._Cross_compiling_from_Linux"&gt;compile on another machine&lt;/a&gt; and transfer the kernel to the Pi when completed. If you are in a hurry, use this approach.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;make
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;make modules_install
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/raspberrypi
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone git://github.com/raspberrypi/tools.git
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;tools/mkimage
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;python ./imagetool-uncompressed.py /opt/raspberrypi/linux/arch/arm/boot/Image
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp /boot/kernel.img /boot/kernel-old.img
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;cp kernel.img /boot/
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="13"&gt;
+&lt;li&gt;Download Latest LXC&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The LXC tools provided with Raspbian are out-of-date, so let's update to the latest version.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir /opt/lxc
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/lxc
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/lxc/lxc.git
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get install automake libcap-dev
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;lxc
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;./autogen.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./configure &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Testing the Install&lt;/p&gt;
+&lt;p&gt;Check LXC is happy with your kernel:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;lxc-checkconfig
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;User namespace should be “missing” (it checks for a kernel option that no longer exists) and Cgroup namespace should say “required”.&lt;/p&gt;
+&lt;ol class="arabic simple" start="14"&gt;
+&lt;li&gt;Installing Go&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you install Go using the Go package that is available (apt-get install golang). You will get a floating point issue. For more information about the floating point issues see this page.  &lt;a class="reference external" href="http://www.raspberrypi.org/phpBB3/viewtopic.php?p=129647"&gt;http://www.raspberrypi.org/phpBB3/viewtopic.php?p=129647&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To get it to work, we will compile Go from source. Feel free to change the location on where we are installing it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install -y mercurial gcc libc6-dev
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;hg clone -u default https://code.google.com/p/go &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go
+warning: code.google.com certificate with fingerprint 9f:af:b9:ce:b5:10:97:c0:5d:16:90:11:63:78:fa:2f:37:f4:96:79 not verified &lt;span class="o"&gt;(&lt;/span&gt;check hostfingerprints or web.cacerts config setting&lt;span class="o"&gt;)&lt;/span&gt;
+destination directory: go
+requesting all changes
+adding changesets
+adding manifests
+adding file changes
+added &lt;span class="m"&gt;14430&lt;/span&gt; changesets with &lt;span class="m"&gt;52478&lt;/span&gt; changes to &lt;span class="m"&gt;7406&lt;/span&gt; files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
+updating to branch default
+&lt;span class="m"&gt;3520&lt;/span&gt; files updated, &lt;span class="m"&gt;0&lt;/span&gt; files merged, &lt;span class="m"&gt;0&lt;/span&gt; files removed, &lt;span class="m"&gt;0&lt;/span&gt; files unresolved
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/src
+&lt;span class="nv"&gt;$ &lt;/span&gt;./all.bash
+
+ALL TESTS PASSED
+
+---
+Installed Go &lt;span class="k"&gt;for&lt;/span&gt; linux/arm in /home/dfc/go
+Installed commands in /home/dfc/go/bin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go
+&lt;span class="nv"&gt;$ &lt;/span&gt;./make.bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;as an alternative to ./all.bash.&lt;/p&gt;
+&lt;p&gt;The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/bin
+&lt;span class="nv"&gt;$ &lt;/span&gt;go version
+go version devel +30c566874b83 Wed May &lt;span class="m"&gt;08&lt;/span&gt; 16:06:25 &lt;span class="m"&gt;2013&lt;/span&gt; -0700 linux/arm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="15"&gt;
+&lt;li&gt;Installing Docker&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;apt-get -y install wget bsdtar curl git
+
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/docker/go/
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$GOPATH&lt;/span&gt;/bin:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir -p &lt;span class="nv"&gt;$GOPATH&lt;/span&gt;/src/github.com/dotcloud
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$GOPATH&lt;/span&gt;/src/github.com/dotcloud
+&lt;span class="nv"&gt;$ &lt;/span&gt;git clone git://github.com/dotcloud/docker.git  &lt;span class="c"&gt;# or clone your own fork/branch&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;docker
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;go get -v github.com/dotcloud/docker/...
+&lt;span class="nv"&gt;$ &lt;/span&gt;go install -v github.com/dotcloud/docker/...
+
+&lt;span class="nv"&gt;$ &lt;/span&gt;docker version
+&lt;span class="nv"&gt;$ &lt;/span&gt;docker -d
+The docker runtime currently only supports amd64 &lt;span class="o"&gt;(&lt;/span&gt;not arm&lt;span class="o"&gt;)&lt;/span&gt;. This will change in the future. Aborting.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Docker is installed but due to current limitations it won't run. It is a start, we now have a development environment to start hacking on Docker to get it to work with the RaspberryPi.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-next"&gt;
+&lt;h2&gt;What's Next&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Now we have everything up and running, we need to change docker so that it will work on the ARM with only 32bit support.&lt;/li&gt;
+&lt;li&gt;I need to take my compiled kernel and make it downloadable to others&lt;/li&gt;
+&lt;li&gt;I need to make an SD card image of my setup for easy download, so that people can get started easier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="want-to-help"&gt;
+&lt;h2&gt;Want to Help?&lt;/h2&gt;
+&lt;p&gt;If you want to help me with this, please send me a message on twitter &lt;a class="reference external" href="https://twitter.com/kencochrane"&gt;&amp;#64;KenCochrane&lt;/a&gt; and also add your name to this &lt;a class="reference external" href="https://github.com/dotcloud/docker/issues/636"&gt;Docker issue&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="resources"&gt;
+&lt;h2&gt;Resources:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;LXC: &lt;a class="reference external" href="http://raspberrypicloud.wordpress.com/2013/03/12/building-an-lxc-friendly-kernel-for-the-raspberry-pi/"&gt;http://raspberrypicloud.wordpress.com/2013/03/12/building-an-lxc-friendly-kernel-for-the-raspberry-pi/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;AUFS: &lt;a class="reference external" href="http://rpitc.blogspot.sg/p/kernel-rebuild.html"&gt;http://rpitc.blogspot.sg/p/kernel-rebuild.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Go: &lt;a class="reference external" href="http://dave.cheney.net/tag/go-golang-raspberrypi"&gt;http://dave.cheney.net/tag/go-golang-raspberrypi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Docker: &lt;a class="reference external" href="http://docs.docker.io/en/latest/contributing/devenvironment.html"&gt;http://docs.docker.io/en/latest/contributing/devenvironment.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary><category term="docker"></category><category term="dotcloud"></category><category term="raspberrypi"></category><category term="linux"></category><category term="kernel"></category><category term="aufs"></category><category term="lxc"></category><category term="go"></category><category term="raspbian"></category></entry></feed>

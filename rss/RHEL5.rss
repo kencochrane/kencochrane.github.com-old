@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/rhel5.rss" rel="self"></atom:link><lastBuildDate>Thu, 14 Apr 2011 10:55:09 -0400</lastBuildDate><item><title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link>http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</link><description>&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KenCochrane.net</title><link>http://kencochrane.net/</link><description></description><atom:link href="http://kencochrane.net/rss/rhel5.rss" rel="self"></atom:link><lastBuildDate>Thu, 14 Apr 2011 10:55:09 -0400</lastBuildDate><item><title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link>http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</link><description>&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
 &lt;p&gt;First we need to stop mysql&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
@@ -16,8 +16,8 @@ sudo rpm -Uhv percona-release-0.0-1.i386.rpm
 &lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
-110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
@@ -28,7 +28,7 @@ error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
-note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -40,7 +40,7 @@ note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table d
 &lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Thu, 14 Apr 2011 10:55:09 -0400</pubDate><guid>tag:kencochrane.net,2011-04-14:blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</guid><category>percona</category><category>mysql</category><category>upgrade</category><category>centos5</category><category>rhel5</category><category>linux</category></item><item><title>Upgrading Percona MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link>http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</link><description>&lt;p&gt;I have been using the Percona build of MySQL 5.0.x for a little while now, and I have been impressed. Now it is time to upgrade to the new stable MySQL 5.1.x version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
 &lt;p&gt;First we need to stop mysql&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm assuming that you have the percona repo installed on your machine, if not see follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
@@ -50,8 +50,8 @@ note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table d
 &lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
-110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
@@ -62,7 +62,7 @@ error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
-note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -72,4 +72,225 @@ note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table d
 &lt;div class="highlight"&gt;&lt;pre&gt;mysqlcheck -A --check-upgrade
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Hopefully everything passed for you, and you now have a fully upgraded database. It is important to note that there is another option besides running the table alter. You could have dumped all of the data prior to the upgraded and then restored it once the database was upgraded. This process would most likely take a lot longer.&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Tue, 15 Feb 2011 09:07:26 -0500</pubDate><guid>tag:kencochrane.net,2011-02-15:blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</guid><category>percona</category><category>mysql</category><category>upgrade</category><category>centos5</category><category>rhel5</category><category>linux</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Tue, 15 Feb 2011 09:07:26 -0500</pubDate><guid>tag:kencochrane.net,2011-02-15:blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</guid><category>percona</category><category>mysql</category><category>upgrade</category><category>centos5</category><category>rhel5</category><category>linux</category></item><item><title>Automated Install Script for memcached on RHEL5</title><link>http://kencochrane.net/blog/2010/05/Automated-Install-Script-for-memcached-on-RHEL5/</link><description>&lt;p&gt;I created this script that will download memcached build,install and set it up to start up automatically on reboot. It also installs the init.d script to manage memcache so you can restart etc.&lt;/p&gt;
+&lt;p&gt;You can either copy and paste it into your shell prompt using a user that has install privileges (root,admin,etc) or you can copy into a .sh file and execute it.&lt;/p&gt;
+&lt;p&gt;The code for most of this was take from this blog post: &lt;a class="reference external" href="http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/"&gt;http://www.vbseo.com/blogs/danny-bembibre/daemon-scripts-memcached-44/&lt;/a&gt; it doesn't seem to be around anymore so I put it here for anyone else looking for this very helpful info.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+tar -xvzf memcached-1.4.5.tar.gz
+&lt;span class="nb"&gt;cd &lt;/span&gt;memcached-1.4.5
+./configure
+make
+make &lt;span class="nb"&gt;test&lt;/span&gt;
+make install
+
+touch /etc/memcached.conf
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;#Memory a user&lt;/span&gt;
+&lt;span class="s"&gt;-m 64&lt;/span&gt;
+&lt;span class="s"&gt;# default port&lt;/span&gt;
+&lt;span class="s"&gt;-p 11211&lt;/span&gt;
+&lt;span class="s"&gt;# user to run daemon nobody/apache/www-data&lt;/span&gt;
+&lt;span class="s"&gt;-u nobody&lt;/span&gt;
+&lt;span class="s"&gt;# only listen locally&lt;/span&gt;
+&lt;span class="s"&gt;-l 127.0.0.1&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /etc/init.d/memcached
+chmod +x /etc/init.d/memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/init.d/memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# memcached    This shell script takes care of starting and stopping&lt;/span&gt;
+&lt;span class="s"&gt;#              standalone memcached.&lt;/span&gt;
+&lt;span class="s"&gt;#&lt;/span&gt;
+&lt;span class="s"&gt;# chkconfig: - 80 12&lt;/span&gt;
+&lt;span class="s"&gt;# description: memcached is a high-performance, distributed memory&lt;/span&gt;
+&lt;span class="s"&gt;#              object caching system, generic in nature, but&lt;/span&gt;
+&lt;span class="s"&gt;#              intended for use in speeding up dynamic web&lt;/span&gt;
+&lt;span class="s"&gt;#              applications by alleviating database load.&lt;/span&gt;
+&lt;span class="s"&gt;# processname: memcached&lt;/span&gt;
+&lt;span class="s"&gt;# config: /etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;# Source function library.&lt;/span&gt;
+&lt;span class="s"&gt;. /etc/rc.d/init.d/functions&lt;/span&gt;
+&lt;span class="s"&gt;PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin&lt;/span&gt;
+&lt;span class="s"&gt;DAEMON=/usr/local/bin/memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONBOOTSTRAP=/usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;DAEMONCONF=/etc/memcached.conf&lt;/span&gt;
+&lt;span class="s"&gt;NAME=memcached&lt;/span&gt;
+&lt;span class="s"&gt;DESC=memcached&lt;/span&gt;
+&lt;span class="s"&gt;PIDFILE=/var/run/$NAME.pid&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMON ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;[ -x $DAEMONBOOTSTRAP ] || exit 0&lt;/span&gt;
+&lt;span class="s"&gt;RETVAL=0&lt;/span&gt;
+&lt;span class="s"&gt;start() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Starting $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; daemon $DAEMONBOOTSTRAP $DAEMONCONF&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; touch $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;stop() {&lt;/span&gt;
+&lt;span class="s"&gt; echo -n $&amp;quot;Shutting down $DESC: &amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt; killproc $NAME&lt;/span&gt;
+&lt;span class="s"&gt; RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt; echo&lt;/span&gt;
+&lt;span class="s"&gt; [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; rm -f $PIDFILE&lt;/span&gt;
+&lt;span class="s"&gt; return $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# See how we were called.&lt;/span&gt;
+&lt;span class="s"&gt;case &amp;quot;$1&amp;quot; in&lt;/span&gt;
+&lt;span class="s"&gt; start)&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; stop)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; restart|reload)&lt;/span&gt;
+&lt;span class="s"&gt;  stop&lt;/span&gt;
+&lt;span class="s"&gt;  start&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; status)&lt;/span&gt;
+&lt;span class="s"&gt;  status $prog&lt;/span&gt;
+&lt;span class="s"&gt;  RETVAL=$?&lt;/span&gt;
+&lt;span class="s"&gt;  ;;&lt;/span&gt;
+&lt;span class="s"&gt; *)&lt;/span&gt;
+&lt;span class="s"&gt;  echo $&amp;quot;Usage: $0 {start|stop|restart|status}&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;  exit 1&lt;/span&gt;
+&lt;span class="s"&gt;esac&lt;/span&gt;
+&lt;span class="s"&gt;exit $RETVAL&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+touch /usr/local/bin/start-memcached
+chmod +x /usr/local/bin/start-memcached
+
+cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /usr/local/bin/start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;#!/usr/bin/perl -w&lt;/span&gt;
+&lt;span class="s"&gt;# start-memcached&lt;/span&gt;
+&lt;span class="s"&gt;# 2003/2004 - Jay Bonci &amp;lt;jaybonci@debian.org&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;# This script handles the parsing of the /etc/memcached.conf file&lt;/span&gt;
+&lt;span class="s"&gt;# and was originally created for the Debian distribution.&lt;/span&gt;
+&lt;span class="s"&gt;# Anyone may use this little script under the same terms as&lt;/span&gt;
+&lt;span class="s"&gt;# memcached itself.&lt;/span&gt;
+&lt;span class="s"&gt;use strict;&lt;/span&gt;
+&lt;span class="s"&gt;if ($&amp;gt; != 0 and $&amp;lt; != 0) {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Only root wants to run start-memcached.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $etcfile = shift || &amp;quot;/etc/memcached.conf&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $params = [];&lt;/span&gt;
+&lt;span class="s"&gt;my $etchandle;&lt;/span&gt;
+&lt;span class="s"&gt;# This script assumes that memcached is located at /usr/bin/memcached, and&lt;/span&gt;
+&lt;span class="s"&gt;# that the pidfile is writable at /var/run/memcached.pid&lt;/span&gt;
+&lt;span class="s"&gt;my $memcached = &amp;quot;/usr/local/bin/memcached&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;my $pidfile = &amp;quot;/var/run/memcached.pid&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;# If we don&amp;#39;t get a valid logfile parameter in the /etc/memcached.conf file,&lt;/span&gt;
+&lt;span class="s"&gt;# we&amp;#39;ll just throw away all of our in-daemon output. We need to re-tie it so&lt;/span&gt;
+&lt;span class="s"&gt;# that non-bash shells will not hang on logout. Thanks to Michael Renner for&lt;/span&gt;
+&lt;span class="s"&gt;# the tip&lt;/span&gt;
+&lt;span class="s"&gt;my $fd_reopened = &amp;quot;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;sub handle_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;sub reopen_logfile {&lt;/span&gt;
+&lt;span class="s"&gt; my ($logfile) = @_;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDERR, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDOUT, &amp;quot;&amp;gt;&amp;gt;$logfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; open *STDIN, &amp;quot;&amp;gt;&amp;gt;/dev/null&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; $fd_reopened = $logfile;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;# This is set up in place here to support other non -[a-z] directives&lt;/span&gt;
+&lt;span class="s"&gt;my $conf_directives = {&lt;/span&gt;
+&lt;span class="s"&gt; &amp;quot;logfile&amp;quot; =&amp;gt; \&amp;amp;handle_logfile&lt;/span&gt;
+&lt;span class="s"&gt;};&lt;/span&gt;
+&lt;span class="s"&gt;if (open $etchandle, $etcfile) {&lt;/span&gt;
+&lt;span class="s"&gt; foreach my $line (&amp;lt;$etchandle&amp;gt;) {&lt;/span&gt;
+&lt;span class="s"&gt;  $line =~ s/\#.*//go;&lt;/span&gt;
+&lt;span class="s"&gt;  $line = join &amp;#39; &amp;#39;, split &amp;#39; &amp;#39;, $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next unless $line;&lt;/span&gt;
+&lt;span class="s"&gt;  next if $line =~ /^\-[dh]/o;&lt;/span&gt;
+&lt;span class="s"&gt;  if ($line =~ /^[^\-]/o) {&lt;/span&gt;
+&lt;span class="s"&gt;   my ($directive, $arg) = $line =~ /^(.*?)\s+(.*)/;&lt;/span&gt;
+&lt;span class="s"&gt;   $conf_directives-&amp;gt;{$directive}-&amp;gt;($arg);&lt;/span&gt;
+&lt;span class="s"&gt;   next;&lt;/span&gt;
+&lt;span class="s"&gt;  }&lt;/span&gt;
+&lt;span class="s"&gt;  push @$params, $line;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;unshift @$params, &amp;quot;-u root&amp;quot; unless (grep $_ eq &amp;#39;-u&amp;#39;, @$params);&lt;/span&gt;
+&lt;span class="s"&gt;$params = join &amp;quot; &amp;quot;, @$params;&lt;/span&gt;
+&lt;span class="s"&gt;if (-e $pidfile) {&lt;/span&gt;
+&lt;span class="s"&gt; open PIDHANDLE, &amp;quot;$pidfile&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; my $localpid = &amp;lt;PIDHANDLE&amp;gt;;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt; chomp $localpid;&lt;/span&gt;
+&lt;span class="s"&gt; if (-d &amp;quot;/proc/$localpid&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt;  print STDERR &amp;quot;memcached is already running.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;  exit;&lt;/span&gt;
+&lt;span class="s"&gt; } else {&lt;/span&gt;
+&lt;span class="s"&gt;  `rm -f $localpid`;&lt;/span&gt;
+&lt;span class="s"&gt; }&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;my $pid = fork();&lt;/span&gt;
+&lt;span class="s"&gt;if ($pid == 0) {&lt;/span&gt;
+&lt;span class="s"&gt; reopen_logfile($fd_reopened);&lt;/span&gt;
+&lt;span class="s"&gt; exec &amp;quot;$memcached $params&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt; exit(0);&lt;/span&gt;
+&lt;span class="s"&gt;} elsif (open PIDHANDLE,&amp;quot;&amp;gt;$pidfile&amp;quot;) {&lt;/span&gt;
+&lt;span class="s"&gt; print PIDHANDLE $pid;&lt;/span&gt;
+&lt;span class="s"&gt; close PIDHANDLE;&lt;/span&gt;
+&lt;span class="s"&gt;} else {&lt;/span&gt;
+&lt;span class="s"&gt; print STDERR &amp;quot;Can&amp;#39;t write pidfile to $pidfile.\n&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+
+/etc/init.d/memcached restart
+/sbin/chkconfig memcached on
+&lt;/pre&gt;&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Fri, 14 May 2010 16:34:38 -0400</pubDate><guid>tag:kencochrane.net,2010-05-14:blog/2010/05/Automated-Install-Script-for-memcached-on-RHEL5/</guid><category>linux</category><category>memcached</category><category>RHEL5</category><category>install</category><category>script</category></item><item><title>Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5</title><link>http://kencochrane.net/blog/2010/05/mercurial-1_5_1-on-RHEL5-using-python2_5/</link><description>&lt;div class="section" id="installing-mercurial-1-5-1-on-red-hat-enterprise-linux-5-rhel5-using-python-2-5"&gt;
+&lt;h2&gt;Installing Mercurial 1.5.1 on Red Hat Enterprise Linux 5 (RHEL5) using Python 2.5&lt;/h2&gt;
+&lt;p&gt;My RHEL5 setup uses python2.5 which I compiled from source, since RHEL5 only comes with python2.4.&lt;/p&gt;
+&lt;p&gt;Because I didn't use the built in python 2.4 version I couldn't do the simple&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install mercurial
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead I need to build mercurial from source, which isn't too bad. Just do the following.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;as Root&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://mercurial.selenic.com/release/mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvzf mercurial-1.5.1.tar.gz
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you get the following error:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python2.5 setup.py build
+&lt;span class="nv"&gt;$ &lt;/span&gt;Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t import standard bz2 &lt;span class="o"&gt;(&lt;/span&gt;incomplete Python install&lt;span class="o"&gt;)&lt;/span&gt;.
+     make:  &lt;span class="o"&gt;[&lt;/span&gt;build&lt;span class="o"&gt;]&lt;/span&gt; Error 1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then when you installed python 2.5 you didn't have the bzip2 libs installed so it didn't include them in the python2.5 install. No big deal all you need to do is install those libs and then recomplile python 2.5&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;install bzip2 libs&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yum install bzip2 bzip2-devel bzip2-libs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Download 2.5.4 from python.org&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;tar -xvjf Python-2.5.4.tar.bz2
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;Python-2.5.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;switch to root:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./configure
+&lt;span class="nv"&gt;$ &lt;/span&gt;make
+&lt;span class="nv"&gt;$ &lt;/span&gt;make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once complete (this will take a few minutes) rerun the steps above and then you should be good.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;go back to where you untared the mercurial bundle&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;mercurial-1.5.1
+&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="nv"&gt;PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;python2.5 install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check to make sure you are running 1.5.1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hg --version
+     Mercurial Distributed SCM &lt;span class="o"&gt;(&lt;/span&gt;version 1.5.1&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That is all, now you are running Mercurial 1.5.1 on RHEL5 with python2.5!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Ken Cochrane</dc:creator><pubDate>Thu, 13 May 2010 20:09:33 -0400</pubDate><guid>tag:kencochrane.net,2010-05-13:blog/2010/05/mercurial-1_5_1-on-RHEL5-using-python2_5/</guid><category>Mercurial</category><category>RHEL5</category><category>python</category><category>linux</category></item></channel></rss>

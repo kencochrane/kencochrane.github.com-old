@@ -1,5 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/all.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2013-08-23T10:48:29-04:00</updated><entry><title>The Docker Guidebook</title><link href="http://kencochrane.net/blog/2013/08/the-docker-guidebook/" rel="alternate"></link><updated>2013-08-23T10:48:29-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-08-23:blog/2013/08/the-docker-guidebook/</id><summary type="html">&lt;img alt="static/docker_logo.png" src="static/docker_logo.png" /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>KenCochrane.net</title><link href="http://kencochrane.net/" rel="alternate"></link><link href="http://kencochrane.net/feeds/all.atom.xml" rel="self"></link><id>http://kencochrane.net/</id><updated>2015-02-15T11:05:01-05:00</updated><entry><title>Introducing Django Defender</title><link href="http://kencochrane.net/blog/2015/02/introducing-django-defender/" rel="alternate"></link><updated>2015-02-15T11:05:01-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2015-02-15:blog/2015/02/introducing-django-defender/</id><summary type="html">&lt;p&gt;Normally websites do very few logins, someone logs in once and their session
+is good for a bunch of hours. Since it's a one time thing, it doesn't matter
+if it isn't very fast. At &lt;a class="reference external" href="https://www.docker.com"&gt;Docker&lt;/a&gt; our authentication
+system handles requests for both the &lt;a class="reference external" href="https://hub.docker.com"&gt;Docker Hub&lt;/a&gt;,
+as well as all Docker Engine commands that interact with the Docker Hub
+(docker push, pull, etc). This Authentication system handles thousands of login
+attempts every minute, so any slow down in the login process has a large impact
+on our system.&lt;/p&gt;
+&lt;p&gt;We are always looking at ways to improve the security of our systems, and one of
+the things we looked at implementing was a way to prevent brute force login attempts.
+The first thing we did was look to see if there was an open source solution
+available that would do what we needed. The Docker Hub along with the
+authentication system is written in Python using &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;
+.
+So we did some research to see what was the best solution available to us. We quickly
+came to &lt;a class="reference external" href="https://github.com/django-pci/django-axes"&gt;django-axes&lt;/a&gt;, which is a great library, and had everything we were looking for. Best of all, it wasn't that hard to add to our system.&lt;/p&gt;
+&lt;p&gt;When we started using django-axes our
+traffic was pretty normal, but with the explosive growth of Docker we have seen
+a huge increases in traffic. As the traffic increased, we started noticing that
+login times were slowing down. Upon further inspection we noticed that with
+django-axes turned on it was adding a 200 to 300ms overheard compared to when it
+was turned off. We did some more digging to see what was causing all of the
+delay, and we found out the reason is because django-axes stores all of its
+information in the database and in order to determine if someone is blocked you
+need to do a bunch of queries, and the more login attempts, the larger the axes database
+tables get, and thus the queries get slower, and in turn slows down the login process.&lt;/p&gt;
+&lt;p&gt;Our first attempts to speed things up was to add more database indexes,
+and to run a script that kept the axes database tables small. This worked for a
+little while, but as the traffic increased, it stopped working. It was quickly
+determined that we would need to replace django-axes. We looked around at other
+brute force libraries, and there was nothing that offered what we needed for
+features, was fast, and well maintained.&lt;/p&gt;
+&lt;p&gt;Since we couldn't find anything, I started working on a replacement. On one of my
+many cross country flights, I started working on a replacement. In order to make
+the process quicker, it started as a fork of django-axes, where I removed the
+stuff we didn't need, and then replaced the slow parts with faster ones. The
+main goal was to avoid hitting the database in order to determine if the user
+was blocked. Since we are big fans of &lt;a class="reference external" href="http://redis.io"&gt;Redis&lt;/a&gt;, and we were using it
+in other places already, we decided to use Redis as our backend for storing all
+of our data for determining if someone is blocked. We also allow the logging of
+login attempts to the database, but to speed things up, we defer this to a
+background celery task.&lt;/p&gt;
+&lt;p&gt;After a few cross country flights, and some help from some of my co-workers, we
+now have a library, that we are using on the Docker Hub. We have been using it
+for about a month now, and the results have been great. With this new library we are
+seeing under a 10ms impact on our logins, which is really great. We are able to
+have the features we need without the overhead.&lt;/p&gt;
+&lt;p&gt;Now that we have proven the project to be successful, we have decided to open
+source the library, so that others can also use it, and contribute back any features
+or improvements they might find important.&lt;/p&gt;
+&lt;p&gt;So without further ado, I'm proud to introduce &lt;a class="reference external" href="https://github.com/kencochrane/django-defender"&gt;Django Defender&lt;/a&gt;, a brute force
+login preventions library built for speed.&lt;/p&gt;
+&lt;p&gt;We have labeled the first version 0.1, but it is very stable and already
+production ready. We have very good code coverage (95%+) and we have tests
+and support for a number of different Python and Django versions.&lt;/p&gt;
+&lt;p&gt;We also have django admin pages that can be used to manage the blocked users
+and IP addresses.&lt;/p&gt;
+&lt;p&gt;Please try it out, and let us know if you have any questions.&lt;/p&gt;
+&lt;div class="section" id="links"&gt;
+&lt;h2&gt;Links:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Source code&lt;/strong&gt;: &lt;a class="reference external" href="https://github.com/kencochrane/django-defender"&gt;https://github.com/kencochrane/django-defender&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PyPi&lt;/strong&gt;: &lt;a class="reference external" href="https://pypi.python.org/pypi/django-defender"&gt;https://pypi.python.org/pypi/django-defender&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="version-support"&gt;
+&lt;h2&gt;Version Support:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;: 2.6.x, 2.7.x, 3.3.x, 3.4.x, PyPy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Django&lt;/strong&gt;: 1.6.x, 1.7.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-in-0-1"&gt;
+&lt;h2&gt;What's in 0.1:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Configurable: When to block, What to do when blocked.&lt;/li&gt;
+&lt;li&gt;Uses Redis for data store.&lt;/li&gt;
+&lt;li&gt;Blocking IP and usernames when too many login attempts&lt;/li&gt;
+&lt;li&gt;Logging of access attempts to database.&lt;/li&gt;
+&lt;li&gt;Celery for writing access attempt logs to the database in the background&lt;/li&gt;
+&lt;li&gt;Admin pages (integrated with Django admin), to manage the blocked IP's and usernames.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-install"&gt;
+&lt;h2&gt;How to install:&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;tt class="docutils literal"&gt;pip install &lt;span class="pre"&gt;django-defender&lt;/span&gt;&lt;/tt&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="admin-screen-shots"&gt;
+&lt;h2&gt;Admin Screen shots:&lt;/h2&gt;
+&lt;img alt="" src="https://cloud.githubusercontent.com/assets/261601/5950540/8895b570-a729-11e4-9dc3-6b00e46c8043.png" /&gt;
+&lt;img alt="" src="https://cloud.githubusercontent.com/assets/261601/5950541/88a35194-a729-11e4-981b-3a55b44ef9d5.png" /&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="python"></category><category term="defender"></category><category term="redis"></category></entry><entry><title>Uploading a Video to Facebook from AWS S3 using python</title><link href="http://kencochrane.net/blog/2015/02/upload-video-to-facebook-from-s3-using-python/" rel="alternate"></link><updated>2015-02-14T12:05:01-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2015-02-14:blog/2015/02/upload-video-to-facebook-from-s3-using-python/</id><summary type="html">&lt;p&gt;If you have some video files stored in Amazon S3 and you want to upload those
+videos to a Facebook page, using their video API here is some python code that
+I used recently.&lt;/p&gt;
+&lt;p&gt;I spent a good chunk of a day trying to get this too work, so I'm posting this
+here to help anyone else who is trying to do the same.&lt;/p&gt;
+&lt;p&gt;This code isn't using any special facebook libraries it is just using normal
+python along with the requests library. It should be a good enough example
+to figure out how to do most things.&lt;/p&gt;
+&lt;p&gt;It is important to note that you will need a valid access token with correct
+permissions in order to get this to work, and that isn't covered in this blog
+post.&lt;/p&gt;
+&lt;p&gt;Another thing that is important to note, that this uses a different API host
+then the rest of the facebook API. Instead of &lt;tt class="docutils literal"&gt;graph.facebook.com&lt;/tt&gt; it uses
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;graph-video.facebook.com&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Facebook Video API&lt;/strong&gt;: &lt;a class="reference external" href="https://developers.facebook.com/docs/graph-api/reference/v2.2/user/videos/"&gt;https://developers.facebook.com/docs/graph-api/reference/v2.2/user/videos/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Facebook Access Tokens&lt;/strong&gt;: &lt;a class="reference external" href="https://developers.facebook.com/docs/facebook-login/access-tokens"&gt;https://developers.facebook.com/docs/facebook-login/access-tokens&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="requirements"&gt;
+&lt;h2&gt;Requirements:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install requests requests-toolbelt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code"&gt;
+&lt;h2&gt;Code:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;base64&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;requests_toolbelt&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MultipartEncoder&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;uuid&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+
+
+&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getLogger&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;download_file_to_tmp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source_url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    download `source_url` to /tmp return the full path, doing it in chunks so&lt;/span&gt;
+&lt;span class="sd"&gt;    that we don&amp;#39;t have to store everything in memory.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;download {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source_url&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;tmp_location&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/tmp/s3_downloads&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# come up with a random name to avoid clashes.&lt;/span&gt;
+    &lt;span class="n"&gt;rand_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uuid&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uuid4&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_hex&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+    &lt;span class="n"&gt;local_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source_url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="c"&gt;# get the extension if it has one&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;local_filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;ext&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;local_filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;tmp_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;{0}.{1}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ext&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;tmp_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;{0}.mp4&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;temp_media_location&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_location&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tmp_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c"&gt;# make the temp directory&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_location&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;makedirs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_location&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;headers = {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_media_location&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;chunk&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter_content&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c"&gt;# filter out keep-alive new chunks&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flush&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fsync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;finished download to {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_media_location&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;temp_media_location&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;remove_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Given a valid file path remove it &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;upload_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;page_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;poster_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;access_token&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    ``video_url``: this is where the video is in s3.&lt;/span&gt;
+&lt;span class="sd"&gt;    ``page_id``:  me or a page_id for the page you want to post too.&lt;/span&gt;
+&lt;span class="sd"&gt;    ``poster_url``:  the url to the poster (thumbnail) for this video&lt;/span&gt;
+&lt;span class="sd"&gt;    ``access_token``: your facebook access token with permissions to upload&lt;/span&gt;
+&lt;span class="sd"&gt;        to the page you want to post too.&lt;/span&gt;
+&lt;span class="sd"&gt;    ``description``:  the description of the video you are posting.&lt;/span&gt;
+&lt;span class="sd"&gt;    ``title``:  the title of the video you are posting&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# download to data&lt;/span&gt;
+    &lt;span class="n"&gt;local_video_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;download_file_to_tmp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;video_file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;local_video_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;video_file_name&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;video_file_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;video_file_name has no ext {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_file_name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="c"&gt;# if it doesn&amp;#39;t have an extension add one to it.&lt;/span&gt;
+        &lt;span class="n"&gt;video_file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;{0}.mp4&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_file_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;video_file_name converted to {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_file_name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c"&gt;# download to data&lt;/span&gt;
+    &lt;span class="n"&gt;local_poster_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;download_file_to_tmp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;poster_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# need to encode it.&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_poster_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;rb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;image_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;poster_encoded_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;base64&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;b64encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+    &lt;span class="c"&gt;# need binary rep of this, not sure if this would do it&lt;/span&gt;
+
+    &lt;span class="c"&gt;# put it all together to post to facebook&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;page_id&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;page_id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;me&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;me/videos&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;{0}/videos&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;fb_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;https://graph-video.facebook.com/{0}?access_token={1}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+             &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;access_token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;video_file = {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_video_file&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;thumb_file = {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_poster_file&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;start upload to facebook&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# multipart chunked uploads&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MultipartEncoder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;#39;thumb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;poster_encoded_string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;#39;source&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;video_file_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_video_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))}&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fb_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;j_res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;facebook_video_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j_res&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;facebook_video_id = {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;facebook_video_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Facebook upload error: {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c"&gt;# delete the tmp files&lt;/span&gt;
+    &lt;span class="n"&gt;remove_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_video_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;remove_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_poster_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;facebook_video_id&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="facebook"></category><category term="video"></category><category term="python"></category><category term="api"></category><category term="s3"></category><category term="aws"></category><category term="requests"></category></entry><entry><title>The Docker Guidebook</title><link href="http://kencochrane.net/blog/2013/08/the-docker-guidebook/" rel="alternate"></link><updated>2013-08-23T10:48:29-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-08-23:blog/2013/08/the-docker-guidebook/</id><summary type="html">&lt;img alt="" src="static/docker_logo.png" /&gt;
 &lt;div class="section" id="introduction"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id83"&gt;1&amp;nbsp;&amp;nbsp;&amp;nbsp;Introduction&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The goal of this tutorial is to introduce you to &lt;a class="reference external" href="http://docker.io"&gt;Docker&lt;/a&gt;, show you what it can do, and how to get it up and running on your system, and how to use it to make your life better.&lt;/p&gt;
@@ -2291,7 +2531,7 @@ $ docker wait 335c587d6ad1
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="docker"></category><category term="tutorial"></category><category term="guidebook"></category></entry><entry><title>Running Docker on Digital Ocean with Ubuntu</title><link href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/" rel="alternate"></link><updated>2013-06-07T12:24:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</id><summary type="html">&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="|filename|/content/running-docker-on-rackspace-cloud.rst"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an Ubuntu 12.04 and 13.04 VPS up and running with Docker.&lt;/p&gt;
+</summary><category term="docker"></category><category term="tutorial"></category><category term="guidebook"></category></entry><entry><title>Running Docker on Digital Ocean with Ubuntu</title><link href="http://kencochrane.net/blog/2013/06/running-docker-on-digital-ocean/" rel="alternate"></link><updated>2013-06-07T12:24:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-06-07:blog/2013/06/running-docker-on-digital-ocean/</id><summary type="html">&lt;p&gt;I recently wrote a post on how to get &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; up and &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;running on Rackspace&lt;/a&gt; and since then I have received some requests on how to get it up and running on other hosts. One of those hosts is &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;Digital Ocean&lt;/a&gt; a hot new Cloud hosting provider that offers a 512MB 20GB SSD VPS for only $5.00 / month. A really great deal, and also a great price if you want to play around with some new tool and not have to worry about possibly breaking a production server. This post should guide you though the process of getting an Ubuntu 12.04 and 13.04 VPS up and running with Docker.&lt;/p&gt;
 &lt;div class="section" id="step-1-register"&gt;
 &lt;h2&gt;Step 1: Register&lt;/h2&gt;
 &lt;p&gt;First things first, if you don't already have a Digital Ocean account, you will need to create one. If you &lt;a class="reference external" href="https://www.digitalocean.com/?refcode=3313a09727d4"&gt;follow this link&lt;/a&gt;, click sign up and enter this promo code &lt;strong&gt;VPSERS10&lt;/strong&gt;, you will be given a $10 credit to try out the service.&lt;/p&gt;
@@ -2299,12 +2539,12 @@ $ docker wait 335c587d6ad1
 &lt;div class="section" id="step-2-billing"&gt;
 &lt;h2&gt;Step 2: Billing&lt;/h2&gt;
 &lt;p&gt;To prevent abuse, Digital Ocean requires that you enter a credit card before you can spin up a server. Go ahead and do that now. Once you put in your information you should see a screen like this.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/startup.png" class="img-polaroid align-center" id="digital-ocean-control-panel" src="/static/digital-ocean/startup.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel" src="/static/digital-ocean/startup.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="step-3-ssh-keys"&gt;
 &lt;h2&gt;Step 3 SSH keys&lt;/h2&gt;
 &lt;p&gt;To make your life easier, I would add a public SSH key to your account. If you don't add an SSH key then you will be emailed a root password when the server is setup. It is easier and more secure to add your public key, and then select that key when building the server, and they will automatically add the key to your server for you. If you don't have a SSH key, don't worry they are easy to create. Just do a quick web search, and there are a ton of different guide out there to help you get one setup.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/ssh_key.png" class="img-polaroid align-center" id="digital-ocean-control-panel-add-ssh-key" src="/static/digital-ocean/ssh_key.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-add-ssh-key" src="/static/digital-ocean/ssh_key.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="step-4-create-droplet"&gt;
 &lt;h2&gt;Step 4: Create Droplet&lt;/h2&gt;
@@ -2318,9 +2558,9 @@ $ docker wait 335c587d6ad1
 &lt;li&gt;Enable VirtIO&lt;/li&gt;
 &lt;li&gt;Click the big &amp;quot;Create Droplet&amp;quot; button at the bottom.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img alt="/static/digital-ocean/select_distro_ubuntu_12_04.png" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-select-distro" src="/static/digital-ocean/select_distro_ubuntu_12_04.png" /&gt;
 &lt;p&gt;Droplet getting created&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/create_droplet.png" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-create-droplet" src="/static/digital-ocean/create_droplet.png" /&gt;
 &lt;p&gt;After about 60 seconds you should have a cloudlet created with an IP address. Now pick the distribution you picked below and follow the rest of the directions.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="ubuntu-12-04-64bit-server"&gt;
@@ -2328,9 +2568,9 @@ $ docker wait 335c587d6ad1
 &lt;div class="section" id="upgrade-kernel"&gt;
 &lt;h3&gt;Upgrade kernel&lt;/h3&gt;
 &lt;p&gt;The default kernel with 12.04 doesn't work well with Docker so we are going to upgrade to the same one that is used by 13.04. To do this you will go into your control panel for your droplet, and go into the settings tab and change the kernel pull down to &amp;quot;Ubuntu 13.04-x64-vmlinuz-3.8.0-23-generic&amp;quot; and click change.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/change_kernel.png" class="img-polaroid align-center" id="digital-ocean-control-panel-change-kernel" src="/static/digital-ocean/change_kernel.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-change-kernel" src="/static/digital-ocean/change_kernel.png" /&gt;
 &lt;p&gt;In order for the kernel change to take affect you will need to power cycle the droplet. Click on the power tab, and then hit the &amp;quot;Power Cycle&amp;quot; button.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/power_cycle.png" class="img-polaroid align-center" id="digital-ocean-control-panel-power-cycle" src="/static/digital-ocean/power_cycle.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="digital-ocean-control-panel-power-cycle" src="/static/digital-ocean/power_cycle.png" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="login-to-server"&gt;
 &lt;h3&gt;Login to server&lt;/h3&gt;
@@ -2345,7 +2585,7 @@ Linux docker-1 3.8.0-23-generic &lt;span class="c"&gt;#34-Ubuntu SMP Wed May 29 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install linux-image-generic-lts-raring
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="kernel-menu" src="/static/digital-ocean/kernel_menu.png" /&gt;
 &lt;p&gt;Install Docker from the Docker PPA&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install python-software-properties &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo add-apt-repository ppa:dotcloud/lxc-docker
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
@@ -2371,7 +2611,7 @@ hello world
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install linux-image-extra-&lt;span class="sb"&gt;`&lt;/span&gt;uname -r&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this, just pick the default (already selected) and hit OK.&lt;/p&gt;
-&lt;img alt="/static/digital-ocean/kernel_menu.png" class="img-polaroid align-center" id="kernel-menu-2" src="/static/digital-ocean/kernel_menu.png" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="kernel-menu-2" src="/static/digital-ocean/kernel_menu.png" /&gt;
 &lt;p&gt;Install Docker&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install software-properties-common
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo add-apt-repository ppa:dotcloud/lxc-docker
@@ -2397,7 +2637,7 @@ hello world
 &lt;p&gt;Hopefully now you have the knowledge to go and setup your own Docker server on Digital Ocean. If you have any issues, or questions feel free to submit the questions below or visit #docker on freenode&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="docker"></category><category term="digital-ocean"></category><category term="ubuntu"></category><category term="kernel"></category><category term="lxc"></category><category term="aufs"></category></entry><entry><title>Getting Docker up and running on a RaspberryPi</title><link href="http://kencochrane.net/blog/2013/05/running-docker-on-a-raspberrypi/" rel="alternate"></link><updated>2013-05-17T15:30:24-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-17:blog/2013/05/running-docker-on-a-raspberrypi/</id><summary type="html">&lt;p&gt;This year I attended &lt;a class="reference external" href="https://us.pycon.org/2013/"&gt;PyCon US&lt;/a&gt; and I was lucky enough to get a FREE &lt;a class="reference external" href="http://www.raspberrypi.org"&gt;RaspberryPi&lt;/a&gt;. At the same conference &lt;a class="reference external" href="http://www.dotcloud.com"&gt;dotCloud&lt;/a&gt; (The company I work for), was giving a lightning talk for a project that we have been working on, called Docker. &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; is a tool that allows you to better manage your Linux Containers (&lt;a class="reference external" href="http://lxc.sourceforge.net"&gt;LXC&lt;/a&gt;). Shortly after I got the RaspberryPi, I started wondering if it would be possible to run Docker on it.&lt;/p&gt;
-&lt;img alt="/static/rpi/RaspberryPi.jpg" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
+&lt;img alt="" class="img-polaroid align-center" id="raspberrypi-image" src="/static/rpi/RaspberryPi.jpg" /&gt;
 &lt;p&gt;I did some digging and technically speaking the Pi should be able to run Docker, it satisfies all of the requirements.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Linux&lt;/li&gt;
@@ -2539,7 +2779,7 @@ patching file fs/Kconfig
 patching file fs/Makefile
 patching file include/linux/Kbuild
 Hunk &lt;span class="c"&gt;#1 FAILED at 66.&lt;/span&gt;
-1 out of 1 hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
+&lt;span class="m"&gt;1&lt;/span&gt; out of &lt;span class="m"&gt;1&lt;/span&gt; hunk FAILED -- saving rejects to file include/linux/Kbuild.rej
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then you will need to manually update include/linux/Kbuild because the patch failed.&lt;/p&gt;
 &lt;p&gt;First I reverted change on the file, and manually added. the line (below) to line 66, below audit.h&lt;/p&gt;
@@ -2571,21 +2811,21 @@ index fa21760..ee029e3 100644
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; Memory Resource Controller for Control Groups (&lt;em&gt;and its three child options&lt;/em&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_1.png" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-1-memory-controller" src="/static/rpi/raspberrypi_kernel_config_1.png" /&gt;
 &lt;p&gt;(this has high overhead;only enable if you really need it, or else enable and remember to disable using the Kernel command line option “cgroup_disable=memory”) (image not shown)&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;General -&amp;gt; Control Group Support -&amp;gt; cpuset support&lt;/li&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Character Devices -&amp;gt; Support multiple instances of devpts&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_2.png" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-2-devpts" src="/static/rpi/raspberrypi_kernel_config_2.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Device Drivers -&amp;gt; Network Device Support -&amp;gt; Virtual ethernet pair device&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/raspberrypi_kernel_config_3.png" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-3-virtual-ethernet-pair-device" src="/static/rpi/raspberrypi_kernel_config_3.png" /&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;File Systems --&amp;gt; Miscellaneous filesystems -&amp;gt;select &amp;quot;Aufs (Advanced multi layered unification filesystem) support (NEW)&amp;quot; (mine was the the very bottom)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
+&lt;img alt="" class="img-polaroid align-left" id="linux-kernel-config-4-aufs" src="/static/rpi/docker_rasberrypi_aufs_kernel_config.png" /&gt;
 &lt;ol class="arabic simple" start="12"&gt;
 &lt;li&gt;Build Kernel&lt;/li&gt;
 &lt;/ol&gt;
@@ -2643,9 +2883,9 @@ requesting all changes
 adding changesets
 adding manifests
 adding file changes
-added 14430 changesets with 52478 changes to 7406 files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
+added &lt;span class="m"&gt;14430&lt;/span&gt; changesets with &lt;span class="m"&gt;52478&lt;/span&gt; changes to &lt;span class="m"&gt;7406&lt;/span&gt; files &lt;span class="o"&gt;(&lt;/span&gt;+5 heads&lt;span class="o"&gt;)&lt;/span&gt;
 updating to branch default
-3520 files updated, 0 files merged, 0 files removed, 0 files unresolved
+&lt;span class="m"&gt;3520&lt;/span&gt; files updated, &lt;span class="m"&gt;0&lt;/span&gt; files merged, &lt;span class="m"&gt;0&lt;/span&gt; files removed, &lt;span class="m"&gt;0&lt;/span&gt; files unresolved
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/src
 &lt;span class="nv"&gt;$ &lt;/span&gt;./all.bash
@@ -2653,7 +2893,7 @@ updating to branch default
 ALL TESTS PASSED
 
 ---
-Installed Go &lt;span class="k"&gt;for &lt;/span&gt;linux/arm in /home/dfc/go
+Installed Go &lt;span class="k"&gt;for&lt;/span&gt; linux/arm in /home/dfc/go
 Installed commands in /home/dfc/go/bin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there was an error relating to out of memory, or you couldn’t configure an appropriate swap device, you can skip the test suite by executing&lt;/p&gt;
@@ -2664,7 +2904,7 @@ Installed commands in /home/dfc/go/bin
 &lt;p&gt;The go command needs to be added to your $PATH, you should also edit your profile script (.bashrc, etc) to include these changes.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$HOME&lt;/span&gt;/go/bin
 &lt;span class="nv"&gt;$ &lt;/span&gt;go version
-go version devel +30c566874b83 Wed May 08 16:06:25 2013 -0700 linux/arm
+go version devel +30c566874b83 Wed May &lt;span class="m"&gt;08&lt;/span&gt; 16:06:25 &lt;span class="m"&gt;2013&lt;/span&gt; -0700 linux/arm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ol class="arabic simple" start="15"&gt;
 &lt;li&gt;Installing Docker&lt;/li&gt;
@@ -2710,7 +2950,7 @@ The docker runtime currently only supports amd64 &lt;span class="o"&gt;(&lt;/spa
 &lt;li&gt;Docker: &lt;a class="reference external" href="http://docs.docker.io/en/latest/contributing/devenvironment.html"&gt;http://docs.docker.io/en/latest/contributing/devenvironment.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary><category term="docker"></category><category term="dotcloud"></category><category term="raspberrypi"></category><category term="linux"></category><category term="kernel"></category><category term="aufs"></category><category term="lxc"></category><category term="go"></category><category term="raspbian"></category></entry><entry><title>Upgrading the Ubuntu linux kernel on Rackspace cloud</title><link href="http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/" rel="alternate"></link><updated>2013-05-12T12:41:48-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-12:blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/</id><summary type="html">&lt;p&gt;Yesterday I wrote a &lt;a class="reference external" href="|filename|/content/running-docker-on-rackspace-cloud.rst"&gt;blog post&lt;/a&gt; on how to install &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on to &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt;, and one of the steps was to upgrade the kernel to the lastest one so that Docker would be nice and stable. The problem that I found out was that there wasn't much information how to upgrade the kernel on the Rackspace Cloud servers, so I thought I would put the steps here.&lt;/p&gt;
+</summary><category term="docker"></category><category term="dotcloud"></category><category term="raspberrypi"></category><category term="linux"></category><category term="kernel"></category><category term="aufs"></category><category term="lxc"></category><category term="go"></category><category term="raspbian"></category></entry><entry><title>Upgrading the Ubuntu linux kernel on Rackspace cloud</title><link href="http://kencochrane.net/blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/" rel="alternate"></link><updated>2013-05-12T12:41:48-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2013-05-12:blog/2013/05/upgrading-linux-kernel-ubuntu-rackspace-cloud/</id><summary type="html">&lt;p&gt;Yesterday I wrote a &lt;a class="reference external" href="http://kencochrane.net/blog/2013/05/running-docker-on-rackspace-cloud/"&gt;blog post&lt;/a&gt; on how to install &lt;a class="reference external" href="http://www.docker.io"&gt;Docker&lt;/a&gt; on to &lt;a class="reference external" href="http://www.rackspace.com/cloud/servers/"&gt;RackSpace Cloud&lt;/a&gt;, and one of the steps was to upgrade the kernel to the lastest one so that Docker would be nice and stable. The problem that I found out was that there wasn't much information how to upgrade the kernel on the Rackspace Cloud servers, so I thought I would put the steps here.&lt;/p&gt;
 &lt;p&gt;The goal here is to upgrade Ubuntu 12.04 and 12.10 so that it has the same kernel as 13.04. Here are the steps.&lt;/p&gt;
 &lt;div class="section" id="ubuntu-12-04"&gt;
 &lt;h2&gt;Ubuntu 12.04&lt;/h2&gt;
@@ -2872,7 +3112,7 @@ Linux docker-12-04 3.2.0-38-virtual &lt;span class="c"&gt;#61-Ubuntu SMP Tue Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes. (see below if you want to install via package)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -2971,7 +3211,7 @@ Linux docker-12-10 3.5.0-25-generic &lt;span class="c"&gt;#39-Ubuntu SMP Mon Feb
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -3051,7 +3291,7 @@ Linux docker-1304 3.8.0-19-generic &lt;span class="c"&gt;#29-Ubuntu SMP Wed Apr 
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;Now lets install Docker and it's dependencies. To keep things simple, we will use the Docker install script. It will take a couple of minutes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io | sudo sh -x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;curl get.docker.io &lt;span class="p"&gt;|&lt;/span&gt; sudo sh -x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -3262,27 +3502,27 @@ git clone git://github.com/kencochrane/kencochranenet_dotcloud.git kencochranene
 
 &lt;span class="c"&gt;# mysql -u root -p&lt;/span&gt;
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or &lt;span class="se"&gt;\g&lt;/span&gt;.
+Welcome to the MySQL monitor.  Commands end with &lt;span class="p"&gt;;&lt;/span&gt; or &lt;span class="se"&gt;\g&lt;/span&gt;.
 Your MySQL connection id is 34
 Server version: 5.1.41-3ubuntu12.10 &lt;span class="o"&gt;(&lt;/span&gt;Ubuntu&lt;span class="o"&gt;)&lt;/span&gt;
 
 &lt;span class="c"&gt;# create the user and database and give user permissions to database.&lt;/span&gt;
 
-Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
+Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
 
-mysql&amp;gt; create database blogdb;
-Query OK, 1 row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create database blogdb&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;1&lt;/span&gt; row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; flush privileges;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;;Bye
+mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;Bye
 Shared connection to database closed.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Does that look familiar? I have it here in case you want to do it the long way.&lt;/p&gt;
@@ -5001,7 +5241,7 @@ Uploading ssh public key /Users/ken/.ssh/id_rsa.pub
 &lt;p&gt;Creating an application on heroku is easy, you just need to run the following command.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku create --stack cedar
 Creating some-name-4741... &lt;span class="k"&gt;done&lt;/span&gt;, stack is cedar
-http://some-name-4741.herokuapp.com/ | git@heroku.com:some-name-4741.git
+http://some-name-4741.herokuapp.com/ &lt;span class="p"&gt;|&lt;/span&gt; git@heroku.com:some-name-4741.git
 Git remote heroku added
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -5013,10 +5253,10 @@ Git remote heroku added
 &lt;p&gt;If everything went well, it should look something like this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 209, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;176/176&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;209/209&lt;span class="o"&gt;)&lt;/span&gt;, 271.89 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;209&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 -----&amp;gt; Heroku receiving push
 -----&amp;gt; Python/Django app detected
@@ -5033,7 +5273,7 @@ Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt
        Cleaning up...
 -----&amp;gt; Discovering process types
        Procfile declares types         -&amp;gt; &lt;span class="o"&gt;(&lt;/span&gt;none&lt;span class="o"&gt;)&lt;/span&gt;
-       Default types &lt;span class="k"&gt;for &lt;/span&gt;Python/Django -&amp;gt; web
+       Default types &lt;span class="k"&gt;for&lt;/span&gt; Python/Django -&amp;gt; web
 -----&amp;gt; Compiled slug size is 10.3MB
 -----&amp;gt; Launching... &lt;span class="k"&gt;done&lt;/span&gt;, v5
        http://some-name-4741.herokuapp.com deployed to Heroku
@@ -5046,7 +5286,7 @@ Total 209 &lt;span class="o"&gt;(&lt;/span&gt;delta 28&lt;span class="o"&gt;)&lt
 
 The authenticity of host &lt;span class="s1"&gt;&amp;#39;heroku.com (50.19.85.132)&amp;#39;&lt;/span&gt; can&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t be established.
 RSA key fingerprint is 8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad.
-Are you sure you want to &lt;span class="k"&gt;continue &lt;/span&gt;connecting &lt;span class="o"&gt;(&lt;/span&gt;yes/no&lt;span class="o"&gt;)&lt;/span&gt;? yes
+Are you sure you want to &lt;span class="k"&gt;continue&lt;/span&gt; connecting &lt;span class="o"&gt;(&lt;/span&gt;yes/no&lt;span class="o"&gt;)&lt;/span&gt;? yes
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is normal, just type 'yes', and you will never be prompted for this again.&lt;/p&gt;
 &lt;div class="section" id="django-app-must-be-in-a-package-subdirectory"&gt;
@@ -5054,10 +5294,10 @@ Are you sure you want to &lt;span class="k"&gt;continue &lt;/span&gt;connecting 
 &lt;p&gt;If you django project isn't setup correctly, you will get an error like this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 199, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;167/167&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;199/199&lt;span class="o"&gt;)&lt;/span&gt;, 270.86 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 199 &lt;span class="o"&gt;(&lt;/span&gt;delta 26&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;199&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 26&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 
 -----&amp;gt; Heroku receiving push
@@ -5077,10 +5317,10 @@ error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.co
 &lt;p&gt;Another error you can get is this one. &amp;quot;Heroku push rejected, no Cedar-supported app detected&amp;quot;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git push heroku master
 Counting objects: 204, &lt;span class="k"&gt;done&lt;/span&gt;.
-Delta compression using up to 4 threads.
+Delta compression using up to &lt;span class="m"&gt;4&lt;/span&gt; threads.
 Compressing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;171/171&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="k"&gt;done&lt;/span&gt;.
 Writing objects: 100% &lt;span class="o"&gt;(&lt;/span&gt;204/204&lt;span class="o"&gt;)&lt;/span&gt;, 271.34 KiB, &lt;span class="k"&gt;done&lt;/span&gt;.
-Total 204 &lt;span class="o"&gt;(&lt;/span&gt;delta 27&lt;span class="o"&gt;)&lt;/span&gt;, reused 192 &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
+Total &lt;span class="m"&gt;204&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 27&lt;span class="o"&gt;)&lt;/span&gt;, reused &lt;span class="m"&gt;192&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;delta 23&lt;span class="o"&gt;)&lt;/span&gt;
 
 -----&amp;gt; Heroku receiving push
  !     Heroku push rejected, no Cedar-supported app detected
@@ -5099,7 +5339,7 @@ error: failed to push some refs to &lt;span class="s1"&gt;&amp;#39;git@heroku.co
 
 Process       State               Command
 ------------  ------------------  ------------------------------
-web.1         crashed &lt;span class="k"&gt;for &lt;/span&gt;2m      python kenblog/manage.py runserver 0...
+web.1         crashed &lt;span class="k"&gt;for&lt;/span&gt; 2m      python kenblog/manage.py runserver 0...
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;My django application looks like it crashed. Most likely because I didn't setup the database yet, lets look at the logs to see what is causing the problems to be sure.&lt;/p&gt;
 &lt;/div&gt;
@@ -5113,7 +5353,7 @@ web.1         crashed &lt;span class="k"&gt;for &lt;/span&gt;2m      python kenb
 2011-11-27T18:40:00+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
 2011-11-27T18:40:03+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Starting process with &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;python kenblog/manage.py runserver 0.0.0.0:12033 --noreload&lt;span class="sb"&gt;`&lt;/span&gt;
 2011-11-27T18:40:04+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: Unexpected error: &lt;span class="o"&gt;(&lt;/span&gt;&amp;lt;&lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;exceptions.NameError&amp;#39;&lt;/span&gt;&amp;gt;, NameError&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name &amp;#39;DATABASES&amp;#39; is not defined&amp;quot;&lt;/span&gt;,&lt;span class="o"&gt;)&lt;/span&gt;, &amp;lt;traceback object at 0x1a7b128&amp;gt;&lt;span class="o"&gt;)&lt;/span&gt;
-2011-11-27T18:40:05+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: There is no South database module &lt;span class="s1"&gt;&amp;#39;south.db.None&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;your database. Please either choose a supported database, check &lt;span class="k"&gt;for &lt;/span&gt;SOUTH_DATABASE_ADAPTER&lt;span class="o"&gt;[&lt;/span&gt;S&lt;span class="o"&gt;]&lt;/span&gt; settings, or remove South from INSTALLED_APPS.
+2011-11-27T18:40:05+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: There is no South database module &lt;span class="s1"&gt;&amp;#39;south.db.None&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; your database. Please either choose a supported database, check &lt;span class="k"&gt;for&lt;/span&gt; SOUTH_DATABASE_ADAPTER&lt;span class="o"&gt;[&lt;/span&gt;S&lt;span class="o"&gt;]&lt;/span&gt; settings, or remove South from INSTALLED_APPS.
 2011-11-27T18:40:06+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to crashed
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Looks like it is an issue with the settings file. If you wanted to take a look at the settings file to see if we can find out what is wrong you can run the following command.&lt;/p&gt;
@@ -5165,7 +5405,7 @@ Running env attached to terminal... up, run.6
 2011-11-27T18:59:25+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from crashed to created
 2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from created to starting
 2011-11-27T18:59:26+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;slugc&lt;span class="o"&gt;]&lt;/span&gt;: Slug compilation finished
-2011-11-27T18:59:31+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: 0 errors found
+2011-11-27T18:59:31+00:00 app&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="m"&gt;0&lt;/span&gt; errors found
 2011-11-27T18:59:31+00:00 heroku&lt;span class="o"&gt;[&lt;/span&gt;web.1&lt;span class="o"&gt;]&lt;/span&gt;: State changed from starting to up
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -5194,11 +5434,11 @@ Running env attached to terminal... up, run.6
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;heroku ps
 Process       State               Command
 ------------  ------------------  ------------------------------
-run.5         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;21m    cat kenblog/settings.py
-run.6         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;18m    env
-run.7         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py syncdb
-run.8         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for &lt;/span&gt;1m     python kenblog/manage.py migrate
-web.1         up &lt;span class="k"&gt;for &lt;/span&gt;4m           python kenblog/manage.py runserver..
+run.5         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 21m    cat kenblog/settings.py
+run.6         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 18m    env
+run.7         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 1m     python kenblog/manage.py syncdb
+run.8         &lt;span class="nb"&gt;complete &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; 1m     python kenblog/manage.py migrate
+web.1         up &lt;span class="k"&gt;for&lt;/span&gt; 4m           python kenblog/manage.py runserver..
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Things are looking better, we are up, and it also shows our old commands that we ran.&lt;/p&gt;
 &lt;p&gt;if you need to work with the processes you have the following options.&lt;/p&gt;
@@ -5223,7 +5463,7 @@ ps:workers &lt;span class="o"&gt;[&lt;/span&gt;QTY&lt;span class="o"&gt;]&lt;/sp
 &lt;li&gt;Add gunicorn==0.13.4 to your requirements file.&lt;/li&gt;
 &lt;li&gt;create a new file called Procfile at the same level as your requirements.txt file with the following in it.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;web: python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:$PORT&amp;quot;&lt;/span&gt; -w 3
+&lt;div class="highlight"&gt;&lt;pre&gt;web: python kenblog/manage.py run_gunicorn -b &lt;span class="s2"&gt;&amp;quot;0.0.0.0:&lt;/span&gt;&lt;span class="nv"&gt;$PORT&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -w 3
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add gunicorn to the installed_apps in settings.py&lt;/p&gt;
 &lt;p&gt;then&lt;/p&gt;
@@ -5559,7 +5799,7 @@ mkdir -p /etc/nginx
 ln -s /opt/django/apps/my_app/current/my_app/server/etc/nginx.conf /etc/nginx/nginx.conf
 ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
 ln -s /opt/django/apps/my_app/current/my_app/server/init.d/nginx /etc/init.d/nginx
-chmod 755 /etc/init.d/nginx
+chmod &lt;span class="m"&gt;755&lt;/span&gt; /etc/init.d/nginx
 chkconfig --add nginx
 chkconfig nginx on
 &lt;/pre&gt;&lt;/div&gt;
@@ -5569,7 +5809,7 @@ chkconfig nginx on
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# as root&lt;/span&gt;
 ln -s /opt/django/apps/my_app/current/my_app/server/etc/supervisord.conf  /etc/supervisord.conf
 ln -s /opt/django/apps/my_app/current/my_app/server/init.d/supervisord /etc/init.d/supervisord
-chmod 755 /etc/init.d/supervisord
+chmod &lt;span class="m"&gt;755&lt;/span&gt; /etc/init.d/supervisord
 chkconfig --add supervisord
 chkconfig supervisord on
 &lt;/pre&gt;&lt;/div&gt;
@@ -5581,7 +5821,7 @@ chkconfig supervisord on
 &lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables"&gt;http://cloudservers.rackspacecloud.com/index.php/Introduction_to_iptables&lt;/a&gt;
 &lt;a class="reference external" href="http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset"&gt;http://cloudservers.rackspacecloud.com/index.php/Sample_iptables_ruleset&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Open http port 80&lt;/span&gt;
-iptables -I RH-Firewall-1-INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I RH-Firewall-1-INPUT -p tcp --dport &lt;span class="m"&gt;80&lt;/span&gt; -j ACCEPT
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="bashrc-file-changes"&gt;
@@ -5592,14 +5832,14 @@ iptables -I RH-Firewall-1-INPUT -p tcp --dport 80 -j ACCEPT
 &lt;span class="c"&gt;#&lt;/span&gt;
 &lt;span class="c"&gt;# User specific aliases and functions&lt;/span&gt;
 has_virtualenv&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e .venv &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;        &lt;/span&gt;deactivate &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e .venv &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        deactivate &amp;gt;/dev/null 2&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;1
         &lt;span class="nb"&gt;source &lt;/span&gt;bin/activate
     &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
 
 venv_cd &lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$@&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; has_virtualenv
+    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; has_virtualenv
 &lt;span class="o"&gt;}&lt;/span&gt;
 
 &lt;span class="nb"&gt;alias cd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;venv_cd&amp;quot;&lt;/span&gt;
@@ -5882,13 +6122,13 @@ my_app                           RUNNING    pid 13594, uptime 0:00:05
 &lt;span class="nv"&gt;$ &lt;/span&gt;pip install metroclient
 
 Downloading/unpacking metroclient
-Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package metroclient
+Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package metroclient
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: httplib2 in /Users/ken/.virtualenvs/apphosted/lib/python2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: paramiko in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Requirement already satisfied &lt;span class="o"&gt;(&lt;/span&gt;use --upgrade to upgrade&lt;span class="o"&gt;)&lt;/span&gt;: pycrypto&amp;gt;&lt;span class="o"&gt;=&lt;/span&gt;1.9 in /Library/Python/2.6/site-packages &lt;span class="o"&gt;(&lt;/span&gt;from paramiko-&amp;gt;metroclient&lt;span class="o"&gt;)&lt;/span&gt;
 Installing collected packages: metroclient
-Running setup.py install &lt;span class="k"&gt;for &lt;/span&gt;metroclient
-changing mode of build/scripts-2.6/metro from 644 to 755
+Running setup.py install &lt;span class="k"&gt;for&lt;/span&gt; metroclient
+changing mode of build/scripts-2.6/metro from &lt;span class="m"&gt;644&lt;/span&gt; to 755
 changing mode of /Users/ken/.virtualenvs/apphosted/bin/metro to 755
 Successfully installed metroclient
 &lt;/pre&gt;&lt;/div&gt;
@@ -5915,10 +6155,10 @@ Application directory &lt;span class="o"&gt;(&lt;/span&gt;i.e. path to project&l
 Application name: kencochraneblog
 Application version: 0.1
 Application description: Ken&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s AppHosted Blog
-Application modules &lt;span class="o"&gt;(&lt;/span&gt;extra; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;South&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.7.3, django-activitysync&lt;span class="o"&gt;==&lt;/span&gt;0.2.2, django-debug-toolbar&lt;span class="o"&gt;==&lt;/span&gt;0.8.4, django-disqus&lt;span class="o"&gt;==&lt;/span&gt;0.3.4, django-memcache-status&lt;span class="o"&gt;==&lt;/span&gt;1.0.1, django-tagging&lt;span class="o"&gt;==&lt;/span&gt;0.3.1, django-xmlrpc&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;feedparser&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;4.1, &lt;span class="nv"&gt;httplib2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6.0, &lt;span class="nv"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.0, python-memcached&lt;span class="o"&gt;==&lt;/span&gt;1.47, python-twitter&lt;span class="o"&gt;==&lt;/span&gt;0.8.1, &lt;span class="nv"&gt;simplejson&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;2.1.2, &lt;span class="nv"&gt;wsgiref&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;yolk&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.4.1, &lt;span class="nv"&gt;docutils&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6, &lt;span class="nv"&gt;Pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.3.1
+Application modules &lt;span class="o"&gt;(&lt;/span&gt;extra&lt;span class="p"&gt;;&lt;/span&gt; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;South&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.7.3, django-activitysync&lt;span class="o"&gt;==&lt;/span&gt;0.2.2, django-debug-toolbar&lt;span class="o"&gt;==&lt;/span&gt;0.8.4, django-disqus&lt;span class="o"&gt;==&lt;/span&gt;0.3.4, django-memcache-status&lt;span class="o"&gt;==&lt;/span&gt;1.0.1, django-tagging&lt;span class="o"&gt;==&lt;/span&gt;0.3.1, django-xmlrpc&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;feedparser&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;4.1, &lt;span class="nv"&gt;httplib2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6.0, &lt;span class="nv"&gt;oauth2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.0, python-memcached&lt;span class="o"&gt;==&lt;/span&gt;1.47, python-twitter&lt;span class="o"&gt;==&lt;/span&gt;0.8.1, &lt;span class="nv"&gt;simplejson&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;2.1.2, &lt;span class="nv"&gt;wsgiref&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.1.2, &lt;span class="nv"&gt;yolk&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.4.1, &lt;span class="nv"&gt;docutils&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;0.6, &lt;span class="nv"&gt;Pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.3.1
 WSGI module &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
 Paste config &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="o"&gt;)&lt;/span&gt;:
-Fixtures &lt;span class="o"&gt;(&lt;/span&gt;optional; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;:
+Fixtures &lt;span class="o"&gt;(&lt;/span&gt;optional&lt;span class="p"&gt;;&lt;/span&gt; comma-separated&lt;span class="o"&gt;)&lt;/span&gt;:
 Sync database and load fixtures? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: y
 Use SSL? &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n
 Force SSL: &lt;span class="o"&gt;(&lt;/span&gt;y/n&lt;span class="o"&gt;)&lt;/span&gt;: n
@@ -6198,27 +6438,27 @@ state: running
 
 &lt;span class="c"&gt;# mysql -u root -p&lt;/span&gt;
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or &lt;span class="se"&gt;\g&lt;/span&gt;.
+Welcome to the MySQL monitor.  Commands end with &lt;span class="p"&gt;;&lt;/span&gt; or &lt;span class="se"&gt;\g&lt;/span&gt;.
 Your MySQL connection id is 34
 Server version: 5.1.41-3ubuntu12.10 &lt;span class="o"&gt;(&lt;/span&gt;Ubuntu&lt;span class="o"&gt;)&lt;/span&gt;
 
 &lt;span class="c"&gt;# create the user and database and give user permissions to database.&lt;/span&gt;
 
-Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for &lt;/span&gt;help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
+Type &lt;span class="s1"&gt;&amp;#39;help;&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;\h&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help. Type &lt;span class="s1"&gt;&amp;#39;\c&amp;#39;&lt;/span&gt; to clear the current input statement.
 
-mysql&amp;gt; create database blogdb;
-Query OK, 1 row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create database blogdb&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;1&lt;/span&gt; row affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; create user &lt;span class="s1"&gt;&amp;#39;blog_username&amp;#39;&lt;/span&gt; identified by &lt;span class="s1"&gt;&amp;#39;strong_password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.05 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; grant all on blogdb.* to &lt;span class="s1"&gt;&amp;#39;blog_user&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.04 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; flush privileges;
-Query OK, 0 rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
+mysql&amp;gt; flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
+Query OK, &lt;span class="m"&gt;0&lt;/span&gt; rows affected &lt;span class="o"&gt;(&lt;/span&gt;0.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 
-mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;;Bye
+mysql&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;Bye
 Shared connection to mysql.kencochrane.dotcloud.com closed.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now that we have our database all setup, we need to change our settings file so that it has all of the new information. Here is what mine looks like.&lt;/p&gt;
@@ -6282,11 +6522,11 @@ Please try again later. If the problem persists, send an email to support@dotclo
 &lt;span class="c"&gt;# hg&lt;/span&gt;
 remote: Warning: Permanently added &lt;span class="s1"&gt;&amp;#39;[uploader.dotcloud.com]:1060,[174.129.15.77]:1060&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;RSA&lt;span class="o"&gt;)&lt;/span&gt; to the list of known hosts.
 pushing to ssh://dotcloud@uploader.dotcloud.com:1060/kencochrane.blog
-searching &lt;span class="k"&gt;for &lt;/span&gt;changes
+searching &lt;span class="k"&gt;for&lt;/span&gt; changes
 remote: adding changesets
 remote: adding manifests
 remote: adding file changes
-remote: added 1 changesets with 3 changes to 3 files
+remote: added &lt;span class="m"&gt;1&lt;/span&gt; changesets with &lt;span class="m"&gt;3&lt;/span&gt; changes to &lt;span class="m"&gt;3&lt;/span&gt; files
 Scheduling build
 Fetching logs...
 Build started...
@@ -6300,17 +6540,17 @@ mkdir: cannot create directory &lt;span class="sb"&gt;`&lt;/span&gt;126:afdea903
 &lt;span class="s1"&gt;# hg&lt;/span&gt;
 &lt;span class="s1"&gt;remote: Warning: Permanently added &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;uploader.dotcloud.com&lt;span class="o"&gt;]&lt;/span&gt;:1060,&lt;span class="o"&gt;[&lt;/span&gt;174.129.15.77&lt;span class="o"&gt;]&lt;/span&gt;:1060&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;RSA&lt;span class="o"&gt;)&lt;/span&gt; to the list of known hosts.
 pushing to ssh://dotcloud@uploader.dotcloud.com:1060/kencochrane.blog
-searching &lt;span class="k"&gt;for &lt;/span&gt;changes
+searching &lt;span class="k"&gt;for&lt;/span&gt; changes
 no changes found
 Scheduling build
 Fetching logs...
 Build started...
 .
-. all of the files &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for &lt;/span&gt;space&lt;span class="o"&gt;)&lt;/span&gt;
+. all of the files &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for&lt;/span&gt; space&lt;span class="o"&gt;)&lt;/span&gt;
 .
 Fetched code revision 126:afdea9036e83
 .
-. all the requirments &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for &lt;/span&gt;space&lt;span class="o"&gt;)&lt;/span&gt;
+. all the requirments &lt;span class="o"&gt;(&lt;/span&gt;trimmed &lt;span class="k"&gt;for&lt;/span&gt; space&lt;span class="o"&gt;)&lt;/span&gt;
 .
 Cleaning up...
 Reloading nginx configuration: nginx.
@@ -6357,7 +6597,7 @@ Shared connection to blog.kencochrane.dotcloud.com closed.
 &lt;span class="nv"&gt;password&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &amp;lt;my_password&amp;gt;
 
 &lt;span class="c"&gt;# change the permissions so that only you can access it.&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;chmod 600 ~/.gondor
+&lt;span class="nv"&gt;$ &lt;/span&gt;chmod &lt;span class="m"&gt;600&lt;/span&gt; ~/.gondor
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Like all cool projects these days, gondor uses pip and virtualenv, I'm assuming you already have virtualenv and pip installed so I'll move onto the fun stuff.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make my virtualenv called gondor&lt;/span&gt;
@@ -6458,11 +6698,11 @@ pip has failed installing your requirements. Here is the output we saw:
 Downloading/unpacking &lt;span class="nv"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.2.5 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 1&lt;span class="o"&gt;))&lt;/span&gt;
 Creating supposed download cache at /var/gondor/instances/.cache-i194/pip-download
   Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FD%2FDjango%2FDjango-1.2.5.tar.gz
-  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package Django
+  Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package Django
 
 Downloading/unpacking MySQL-python&lt;span class="o"&gt;==&lt;/span&gt;1.2.3c1 &lt;span class="o"&gt;(&lt;/span&gt;from -r mysite/requirements/project.txt &lt;span class="o"&gt;(&lt;/span&gt;line 2&lt;span class="o"&gt;))&lt;/span&gt;
   Storing download in cache at ./.cache-i194/pip-download/http%3A%2F%2Fpypi.python.org%2Fpackages%2Fsource%2FM%2FMySQL-python%2FMySQL-python-1.2.3c1.tar.gz
-  Running setup.py egg_info &lt;span class="k"&gt;for &lt;/span&gt;package MySQL-python
+  Running setup.py egg_info &lt;span class="k"&gt;for&lt;/span&gt; package MySQL-python
     sh: mysql_config: not found
     Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
       File &lt;span class="s2"&gt;&amp;quot;&amp;lt;string&amp;gt;&amp;quot;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;
@@ -6632,7 +6872,7 @@ epio run_command &lt;span class="o"&gt;[&lt;/span&gt;-a &amp;lt;app_name&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 </summary><category term="macosx"></category><category term="apache"></category></entry><entry><title>Upgrading MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link href="http://kencochrane.net/blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/" rel="alternate"></link><updated>2011-04-14T10:55:09-04:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-04-14:blog/2011/04/upgrading-mysql-50x-percona-mysql-51x-rhel5-or-cen/</id><summary type="html">&lt;p&gt;Upgrade the stock MySQL 5.0.x build to the new stable MySQL 5.1.x Percona version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
 &lt;p&gt;First we need to stop mysql&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm assuming that you don't have the percona repo installed on your machine, if not follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p /tmp/downloads
@@ -6647,8 +6887,8 @@ sudo rpm -Uhv percona-release-0.0-1.i386.rpm
 &lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
-110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
@@ -6659,7 +6899,7 @@ error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
-note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -6684,7 +6924,7 @@ note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table d
 &lt;p&gt;For more information checkout the official release notes: &lt;a class="reference external" href="http://docs.djangoproject.com/en/dev/releases/1.3/"&gt;http://docs.djangoproject.com/en/dev/releases/1.3/&lt;/a&gt;&lt;/p&gt;
 </summary><category term="django"></category><category term="python"></category></entry><entry><title>Upgrading Percona MySQL 5.0.x to Percona MySQL 5.1.x RHEL5 or CENTOS 5</title><link href="http://kencochrane.net/blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/" rel="alternate"></link><updated>2011-02-15T09:07:26-05:00</updated><author><name>Ken Cochrane</name></author><id>tag:kencochrane.net,2011-02-15:blog/2011/02/upgrading-percona-mysql-50x-percona-mysql-51x-rhel/</id><summary type="html">&lt;p&gt;I have been using the Percona build of MySQL 5.0.x for a little while now, and I have been impressed. Now it is time to upgrade to the new stable MySQL 5.1.x version.  Here are my notes on upgrading on Red Hat Enterprise Linux 5 (RHEL5) or CentOS5.&lt;/p&gt;
 &lt;p&gt;First we need to stop mysql&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop;
+&lt;div class="highlight"&gt;&lt;pre&gt;service mysql stop&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm assuming that you have the percona repo installed on your machine, if not see follow this link on how to set it up. &lt;a class="reference external" href="http://www.percona.com/docs/wiki/percona-server:release:start"&gt;Setting up Percona RPM Repo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Now we need to remove the old MySQL 5.0 binaries. (Don't worry this will leave your data.)&lt;/p&gt;
@@ -6694,8 +6934,8 @@ note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table d
 &lt;div class="highlight"&gt;&lt;pre&gt;yum install -y Percona-Server-devel-51 Percona-Server-shared-51 Percona-Server-test-51 Percona-Server-client-51 Percona-Server-server-51
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;During the install it will throw out some warnings, make sure you write those down, and make the changes that it recommends. Here are a few of mine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
-110208 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log_slow_queries&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--slow_query_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--slow_query_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
+&lt;span class="m"&gt;110208&lt;/span&gt; 16:44:52 &lt;span class="o"&gt;[&lt;/span&gt;Warning&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--log&amp;#39;&lt;/span&gt; is deprecated and will be removed in a future release. Please use &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;--general_log&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;--general_log_file&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; instead.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Assuming the install went well, now we need to upgrade the data to the new format. (replace &amp;lt;mysql admin user&amp;gt; with your mysql admin username, and enter password when prompted)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mysql_upgrade -u &amp;lt;mysql admin username&amp;gt; -p
@@ -6706,7 +6946,7 @@ error    : Table upgrade required. Please &lt;span class="k"&gt;do&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When you try to repair the table you get this.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;db_name.table_name
-note     : The storage engine &lt;span class="k"&gt;for &lt;/span&gt;the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
+note     : The storage engine &lt;span class="k"&gt;for&lt;/span&gt; the table doesn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t support repair
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Thanks to Peter Zaitsev &lt;a class="reference external" href="http://www.mysqlperformanceblog.com/2010/05/14/mysql_upgrade-and-innodb-tables/"&gt;mysql_upgrade and Innodb Tables&lt;/a&gt; we know that we can do the following to fix it.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;db_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;table_name&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INNODB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;

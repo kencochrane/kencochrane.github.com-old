@@ -5,24 +5,21 @@
     <title>KenCochrane.net</title>
     <meta name="description" content="">
     <meta name="author" content="Ken Cochrane">
-    
-    
+    <link href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="KenCochrane.net Atom Feed" />
     <link href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate" title="KenCochrane.net RSS Feed" />
-    
-    
-    <link rel="icon" href="../../../.././static/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../../../.././static/favicon.ico" type="image/x-icon"> 
+    <link rel="icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://kencochrane.net/static/favicon.ico" type="image/x-icon">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-        <script src="../../../.././theme/html5.js"></script>
+        <script src="http://kencochrane.net/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../../../.././theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../.././theme/local.css" rel="stylesheet">
-    <link href="../../../.././theme/css/font-awesome.css" rel="stylesheet">
-    <link href="../../../.././theme/pygments.css" rel="stylesheet">
+    <link href="http://kencochrane.net/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://kencochrane.net/theme/local.css" rel="stylesheet">
+    <link href="http://kencochrane.net/theme/css/font-awesome.css" rel="stylesheet">
+    <link href="http://kencochrane.net/theme/pygments.css" rel="stylesheet">
     <style type="text/css">
 
       .sidebar-nav {
@@ -41,7 +38,6 @@
         font-size: 6pt;
      }
     </style>
-    
 <script type="text/javascript">
 	var disqus_identifier = "blog/2011/11/developers-guide-for-running-django-apps-on-heroku/";
 	(function() {
@@ -50,32 +46,22 @@
 		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	})();
 </script>
-
 </head>
 <body>
-    
     <div class="topbar">
       <div class="topbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="../../../.././index.html">KenCochrane.net</a>
+          <a class="brand" href="http://kencochrane.net/index.html">KenCochrane.net</a>
             <ul class="nav">
-                
-                
-                    
-                        <li><a href="../../../.././about/index.html">About Me</a></li>
-                    
-                        <li><a href="../../../.././projects/index.html">Projects</a></li>
-                    
-                
-                
-                    <li class="active"><a href="../../../.././category/blog.html">blog</a></li>
-                
-                 <li><iframe style="border: 0; margin: 0; padding: 0;"
-        src="https://www.gittip.com/kencochrane/widget.html"
-        width="48pt" height="22pt"></iframe>
+                        <li><a href="http://kencochrane.net/about/index.html">About Me</a></li>
+                        <li><a href="http://kencochrane.net/projects/index.html">Projects</a></li>
+                    <li class="active"><a href="http://kencochrane.net/category/blog.html">blog</a></li>
+                 <li><script data-gratipay-username="kencochrane"
+        data-gratipay-widget="button"
+        src="//grtp.co/v1.js"></script>
                   </li>
             </ul>
-            <p class="pull-right"><a href="../../../.././archives.html">[archives]</a> <a href="../../../.././tags.html">[tags]</a></p>
+            <p class="pull-right"><a href="http://kencochrane.net/archives.html">[archives]</a> <a href="http://kencochrane.net/tags.html">[tags]</a></p>
         </div>
       </div>
     </div>
@@ -83,388 +69,353 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-            
-            
             <div class="social">
             <h3>Social</h3>
             <ul>
-                
                 <li><a href="http://twitter.com/kencochrane">twitter</a></li>
-                
                 <li><a href="https://github.com/kencochrane">github</a></li>
-                
-                
-                
+                    <li><a href="http://kencochrane.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                     <li><a href="http://kencochrane.net/rss/all.rss" type="application/rss+xml" rel="alternate">rss feed</a></li>
-                
             </ul>
             </div>
-            
 
             <h4><i class="icon-tags icon-large"></i>Tags</h4>
             <ul>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/openshift.html">
-                        <i class="icon-tag icon-large"></i>openshift
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/kernel.html">
-                        <i class="icon-tag icon-large"></i>kernel
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/mercurial.html">
-                        <i class="icon-tag icon-large"></i>Mercurial
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/ubuntu.html">
-                        <i class="icon-tag icon-large"></i>ubuntu
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/nginx.html">
-                        <i class="icon-tag icon-large"></i>nginx
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/stackato.html">
-                        <i class="icon-tag icon-large"></i>stackato
-                    </a>
-                </li>
-            
                 <li class="tag-3">
-                    <a href="../../../.././tag/percona.html">
-                        <i class="icon-tag icon-large"></i>percona
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/newrelic.html">
-                        <i class="icon-tag icon-large"></i>newrelic
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/raspbian.html">
-                        <i class="icon-tag icon-large"></i>raspbian
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/apache.html">
-                        <i class="icon-tag icon-large"></i>apache
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/fabric.html">
-                        <i class="icon-tag icon-large"></i>fabric
-                    </a>
-                </li>
-            
-                <li class="tag-1">
-                    <a href="../../../.././tag/dotcloud.html">
-                        <i class="icon-tag icon-large"></i>dotcloud
-                    </a>
-                </li>
-            
-                <li class="tag-1">
-                    <a href="../../../.././tag/deployment.html">
-                        <i class="icon-tag icon-large"></i>deployment
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/lxc.html">
-                        <i class="icon-tag icon-large"></i>lxc
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/macosx.html">
-                        <i class="icon-tag icon-large"></i>macosx
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/work.html">
-                        <i class="icon-tag icon-large"></i>work
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/apphosted.html">
-                        <i class="icon-tag icon-large"></i>apphosted
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/go.html">
-                        <i class="icon-tag icon-large"></i>go
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/jobs.html">
-                        <i class="icon-tag icon-large"></i>jobs
-                    </a>
-                </li>
-            
-                <li class="tag-1">
-                    <a href="../../../.././tag/python.html">
-                        <i class="icon-tag icon-large"></i>python
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/linux.html">
-                        <i class="icon-tag icon-large"></i>linux
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/install.html">
-                        <i class="icon-tag icon-large"></i>install
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/docker.html">
-                        <i class="icon-tag icon-large"></i>docker
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/sentry.html">
-                        <i class="icon-tag icon-large"></i>sentry
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/upgrade.html">
-                        <i class="icon-tag icon-large"></i>upgrade
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/djangomaine.html">
-                        <i class="icon-tag icon-large"></i>djangomaine
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/centos5.html">
-                        <i class="icon-tag icon-large"></i>centos5
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/gondor.html">
-                        <i class="icon-tag icon-large"></i>gondor
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/recruiters.html">
-                        <i class="icon-tag icon-large"></i>recruiters
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/rhel5.html">
-                        <i class="icon-tag icon-large"></i>RHEL5
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/digital-ocean.html">
-                        <i class="icon-tag icon-large"></i>digital-ocean
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/supervisor.html">
-                        <i class="icon-tag icon-large"></i>supervisor
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/job.html">
-                        <i class="icon-tag icon-large"></i>job
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/heroku.html">
-                        <i class="icon-tag icon-large"></i>heroku
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/djangocms.html">
-                        <i class="icon-tag icon-large"></i>djangocms
-                    </a>
-                </li>
-            
-                <li class="tag-2">
-                    <a href="../../../.././tag/aufs.html">
-                        <i class="icon-tag icon-large"></i>aufs
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/cashstar.html">
-                        <i class="icon-tag icon-large"></i>cashstar
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/script.html">
-                        <i class="icon-tag icon-large"></i>script
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/pelican.html">
-                        <i class="icon-tag icon-large"></i>pelican
-                    </a>
-                </li>
-            
-                <li class="tag-1">
-                    <a href="../../../.././tag/hosting.html">
-                        <i class="icon-tag icon-large"></i>hosting
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/startup.html">
-                        <i class="icon-tag icon-large"></i>startup
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/rhel5.html">
-                        <i class="icon-tag icon-large"></i>rhel5
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/clickstream.html">
-                        <i class="icon-tag icon-large"></i>clickstream
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/gunicorn.html">
-                        <i class="icon-tag icon-large"></i>gunicorn
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/raspberrypi.html">
-                        <i class="icon-tag icon-large"></i>raspberrypi
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/pci.html">
-                        <i class="icon-tag icon-large"></i>pci
-                    </a>
-                </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/epio.html">
+                    <a href="http://kencochrane.net/tag/epio.html">
                         <i class="icon-tag icon-large"></i>epio
                     </a>
                 </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/rackspace.html">
-                        <i class="icon-tag icon-large"></i>rackspace
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/centos5.html">
+                        <i class="icon-tag icon-large"></i>centos5
                     </a>
                 </li>
-            
-                <li class="tag-1">
-                    <a href="../../../.././tag/django.html">
-                        <i class="icon-tag icon-large"></i>django
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/startup.html">
+                        <i class="icon-tag icon-large"></i>startup
                     </a>
                 </li>
-            
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/pelican.html">
+                        <i class="icon-tag icon-large"></i>pelican
+                    </a>
+                </li>
                 <li class="tag-3">
-                    <a href="../../../.././tag/djangozoom.html">
+                    <a href="http://kencochrane.net/tag/djangozoom.html">
                         <i class="icon-tag icon-large"></i>djangozoom
                     </a>
                 </li>
-            
-                <li class="tag-3">
-                    <a href="../../../.././tag/mysql.html">
-                        <i class="icon-tag icon-large"></i>mysql
-                    </a>
-                </li>
-            
                 <li class="tag-4">
-                    <a href="../../../.././tag/memcached.html">
-                        <i class="icon-tag icon-large"></i>memcached
+                    <a href="http://kencochrane.net/tag/recruiters.html">
+                        <i class="icon-tag icon-large"></i>recruiters
                     </a>
                 </li>
-            
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/ubuntu.html">
+                        <i class="icon-tag icon-large"></i>ubuntu
+                    </a>
+                </li>
                 <li class="tag-4">
-                    <a href="../../../.././tag/blog.html">
-                        <i class="icon-tag icon-large"></i>blog
+                    <a href="http://kencochrane.net/tag/stackato.html">
+                        <i class="icon-tag icon-large"></i>stackato
                     </a>
                 </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/django-maine.html">
-                        <i class="icon-tag icon-large"></i>django-maine
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/tutorial.html">
-                        <i class="icon-tag icon-large"></i>tutorial
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/guidebook.html">
-                        <i class="icon-tag icon-large"></i>guidebook
-                    </a>
-                </li>
-            
-                <li class="tag-4">
-                    <a href="../../../.././tag/supervisord.html">
-                        <i class="icon-tag icon-large"></i>supervisord
-                    </a>
-                </li>
-            
                 <li class="tag-1">
-                    <a href="../../../.././tag/paas.html">
+                    <a href="http://kencochrane.net/tag/paas.html">
                         <i class="icon-tag icon-large"></i>paas
                     </a>
                 </li>
-            
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/kernel.html">
+                        <i class="icon-tag icon-large"></i>kernel
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/raspbian.html">
+                        <i class="icon-tag icon-large"></i>raspbian
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/apphosted.html">
+                        <i class="icon-tag icon-large"></i>apphosted
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/digital-ocean.html">
+                        <i class="icon-tag icon-large"></i>digital-ocean
+                    </a>
+                </li>
+                <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/django.html">
+                        <i class="icon-tag icon-large"></i>django
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/memcached.html">
+                        <i class="icon-tag icon-large"></i>memcached
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/supervisord.html">
+                        <i class="icon-tag icon-large"></i>supervisord
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/nginx.html">
+                        <i class="icon-tag icon-large"></i>nginx
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/job.html">
+                        <i class="icon-tag icon-large"></i>job
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/gondor.html">
+                        <i class="icon-tag icon-large"></i>gondor
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/dotcloud.html">
+                        <i class="icon-tag icon-large"></i>dotcloud
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/s3.html">
+                        <i class="icon-tag icon-large"></i>s3
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/redis.html">
+                        <i class="icon-tag icon-large"></i>redis
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/blog.html">
+                        <i class="icon-tag icon-large"></i>blog
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/requests.html">
+                        <i class="icon-tag icon-large"></i>requests
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/aws.html">
+                        <i class="icon-tag icon-large"></i>aws
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/raspberrypi.html">
+                        <i class="icon-tag icon-large"></i>raspberrypi
+                    </a>
+                </li>
+                <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/hosting.html">
+                        <i class="icon-tag icon-large"></i>hosting
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/djangocms.html">
+                        <i class="icon-tag icon-large"></i>djangocms
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/lxc.html">
+                        <i class="icon-tag icon-large"></i>lxc
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/work.html">
+                        <i class="icon-tag icon-large"></i>work
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/sentry.html">
+                        <i class="icon-tag icon-large"></i>sentry
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/jobs.html">
+                        <i class="icon-tag icon-large"></i>jobs
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/install.html">
+                        <i class="icon-tag icon-large"></i>install
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/heroku.html">
+                        <i class="icon-tag icon-large"></i>heroku
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/pci.html">
+                        <i class="icon-tag icon-large"></i>pci
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/tutorial.html">
+                        <i class="icon-tag icon-large"></i>tutorial
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/aufs.html">
+                        <i class="icon-tag icon-large"></i>aufs
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/video.html">
+                        <i class="icon-tag icon-large"></i>video
+                    </a>
+                </li>
+                <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/deployment.html">
+                        <i class="icon-tag icon-large"></i>deployment
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/clickstream.html">
+                        <i class="icon-tag icon-large"></i>clickstream
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/linux.html">
+                        <i class="icon-tag icon-large"></i>linux
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/script.html">
+                        <i class="icon-tag icon-large"></i>script
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/facebook.html">
+                        <i class="icon-tag icon-large"></i>facebook
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/percona.html">
+                        <i class="icon-tag icon-large"></i>percona
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/cashstar.html">
+                        <i class="icon-tag icon-large"></i>cashstar
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/newrelic.html">
+                        <i class="icon-tag icon-large"></i>newrelic
+                    </a>
+                </li>
+                <li class="tag-1">
+                    <a href="http://kencochrane.net/tag/python.html">
+                        <i class="icon-tag icon-large"></i>python
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/defender.html">
+                        <i class="icon-tag icon-large"></i>defender
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/upgrade.html">
+                        <i class="icon-tag icon-large"></i>upgrade
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/api.html">
+                        <i class="icon-tag icon-large"></i>api
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/openshift.html">
+                        <i class="icon-tag icon-large"></i>openshift
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/docker.html">
+                        <i class="icon-tag icon-large"></i>docker
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/apache.html">
+                        <i class="icon-tag icon-large"></i>apache
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/rackspace.html">
+                        <i class="icon-tag icon-large"></i>rackspace
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/django-maine.html">
+                        <i class="icon-tag icon-large"></i>django-maine
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/mercurial.html">
+                        <i class="icon-tag icon-large"></i>Mercurial
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/macosx.html">
+                        <i class="icon-tag icon-large"></i>macosx
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/fabric.html">
+                        <i class="icon-tag icon-large"></i>fabric
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/guidebook.html">
+                        <i class="icon-tag icon-large"></i>guidebook
+                    </a>
+                </li>
+                <li class="tag-2">
+                    <a href="http://kencochrane.net/tag/rhel5.html">
+                        <i class="icon-tag icon-large"></i>rhel5
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/supervisor.html">
+                        <i class="icon-tag icon-large"></i>supervisor
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/go.html">
+                        <i class="icon-tag icon-large"></i>go
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/gunicorn.html">
+                        <i class="icon-tag icon-large"></i>gunicorn
+                    </a>
+                </li>
+                <li class="tag-4">
+                    <a href="http://kencochrane.net/tag/djangomaine.html">
+                        <i class="icon-tag icon-large"></i>djangomaine
+                    </a>
+                </li>
+                <li class="tag-3">
+                    <a href="http://kencochrane.net/tag/mysql.html">
+                        <i class="icon-tag icon-large"></i>mysql
+                    </a>
+                </li>
             </ul>
-            
+
         </div>
       </div>
       <div class="content">
-            
-            
 	<div class='article'>
 		<div class="page-header"><h1>Developers guide to Running Django Applications on Heroku</h1></div>
-		<div class="well small">Permalink: <a class="more" href="../../../.././blog/2011/11/developers-guide-for-running-django-apps-on-heroku/">2011-11-30 10:00:00</a>
-by <a class="url fn" href="../../../.././author/ken-cochrane.html">Ken Cochrane</a>
- in <a href="../../../.././category/blog.html">blog</a>
-tags: <a href="../../../.././tag/django.html">django</a> <a href="../../../.././tag/python.html">python</a> <a href="../../../.././tag/heroku.html">heroku</a> <a href="../../../.././tag/hosting.html">hosting</a> <a href="../../../.././tag/deployment.html">deployment</a> <a href="../../../.././tag/paas.html">paas</a> </div>
+		<div class="well small">Permalink: <a class="more" href="http://kencochrane.net/blog/2011/11/developers-guide-for-running-django-apps-on-heroku/">2011-11-30 10:00:00-05:00</a>
+by <a class="url fn" href="http://kencochrane.net/author/ken-cochrane.html">Ken Cochrane</a> in <a href="http://kencochrane.net/category/blog.html">blog</a>
+tags: <a href="http://kencochrane.net/tag/django.html">django</a> <a href="http://kencochrane.net/tag/python.html">python</a> <a href="http://kencochrane.net/tag/heroku.html">heroku</a> <a href="http://kencochrane.net/tag/hosting.html">hosting</a> <a href="http://kencochrane.net/tag/deployment.html">deployment</a> <a href="http://kencochrane.net/tag/paas.html">paas</a> </div>
 		<div><p><a class="reference external" href="http://Heroku.com">Heroku</a> the platform as a service (PAAS) company, very popular in the Ruby on Rails community, has now started opening up their platform to languages besides Ruby. They now offer support for Python, Java, Clojure, Node.js, and Scala on their new Cedar stack. Heroku's Cedar stack is still in beta, but that shouldn't stop you from trying it out, and that is just what I'm going to do.</p>
 <p>6 months ago I wrote a series of blog posts that reviewed all of the cool new django hosting services that were popping up. My goal was to look at them all, and compare them to find out what they had to offer, and to see if I could use them on my future projects. I'm going to review Heroku using the same process that I used to review those other services, so that I can we can compare apples to apples.</p>
 <p>For those of you who are not familiar with my other blog posts, feel free to check them out now <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-experiences-with-epio/">ep.io</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/05/apphosted-com-django-hosting-review/">apphosted.com</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/04/my-day-gondorio/">gondor.io</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/04/deploying-my-django-application-to-dotcloud/">dotcloud.com</a>, <a class="reference external" href="http://DjangoZoom.com">DjangoZoom.com</a>, <a class="reference external" href="http://kencochrane.net/blog/2011/06/django-hosting-roundup-who-wins/">Django hosting roundup</a>.</p>
@@ -565,7 +516,7 @@ Uploading ssh public key /Users/ken/.ssh/id_rsa.pub
 <p>Creating an application on heroku is easy, you just need to run the following command.</p>
 <div class="highlight"><pre><span class="nv">$ </span>heroku create --stack cedar
 Creating some-name-4741... <span class="k">done</span>, stack is cedar
-http://some-name-4741.herokuapp.com/ | git@heroku.com:some-name-4741.git
+http://some-name-4741.herokuapp.com/ <span class="p">|</span> git@heroku.com:some-name-4741.git
 Git remote heroku added
 </pre></div>
 </div>
@@ -577,10 +528,10 @@ Git remote heroku added
 <p>If everything went well, it should look something like this.</p>
 <div class="highlight"><pre><span class="nv">$ </span>git push heroku master
 Counting objects: 209, <span class="k">done</span>.
-Delta compression using up to 4 threads.
+Delta compression using up to <span class="m">4</span> threads.
 Compressing objects: 100% <span class="o">(</span>176/176<span class="o">)</span>, <span class="k">done</span>.
 Writing objects: 100% <span class="o">(</span>209/209<span class="o">)</span>, 271.89 KiB, <span class="k">done</span>.
-Total 209 <span class="o">(</span>delta 28<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+Total <span class="m">209</span> <span class="o">(</span>delta 28<span class="o">)</span>, reused <span class="m">192</span> <span class="o">(</span>delta 23<span class="o">)</span>
 
 -----&gt; Heroku receiving push
 -----&gt; Python/Django app detected
@@ -597,7 +548,7 @@ Total 209 <span class="o">(</span>delta 28<span class="o">)</span>, reused 192 <
        Cleaning up...
 -----&gt; Discovering process types
        Procfile declares types         -&gt; <span class="o">(</span>none<span class="o">)</span>
-       Default types <span class="k">for </span>Python/Django -&gt; web
+       Default types <span class="k">for</span> Python/Django -&gt; web
 -----&gt; Compiled slug size is 10.3MB
 -----&gt; Launching... <span class="k">done</span>, v5
        http://some-name-4741.herokuapp.com deployed to Heroku
@@ -610,7 +561,7 @@ Total 209 <span class="o">(</span>delta 28<span class="o">)</span>, reused 192 <
 
 The authenticity of host <span class="s1">&#39;heroku.com (50.19.85.132)&#39;</span> can<span class="err">&#39;</span>t be established.
 RSA key fingerprint is 8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad.
-Are you sure you want to <span class="k">continue </span>connecting <span class="o">(</span>yes/no<span class="o">)</span>? yes
+Are you sure you want to <span class="k">continue</span> connecting <span class="o">(</span>yes/no<span class="o">)</span>? yes
 </pre></div>
 <p>This is normal, just type 'yes', and you will never be prompted for this again.</p>
 <div class="section" id="django-app-must-be-in-a-package-subdirectory">
@@ -618,10 +569,10 @@ Are you sure you want to <span class="k">continue </span>connecting <span class=
 <p>If you django project isn't setup correctly, you will get an error like this.</p>
 <div class="highlight"><pre><span class="nv">$ </span>git push heroku master
 Counting objects: 199, <span class="k">done</span>.
-Delta compression using up to 4 threads.
+Delta compression using up to <span class="m">4</span> threads.
 Compressing objects: 100% <span class="o">(</span>167/167<span class="o">)</span>, <span class="k">done</span>.
 Writing objects: 100% <span class="o">(</span>199/199<span class="o">)</span>, 270.86 KiB, <span class="k">done</span>.
-Total 199 <span class="o">(</span>delta 26<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+Total <span class="m">199</span> <span class="o">(</span>delta 26<span class="o">)</span>, reused <span class="m">192</span> <span class="o">(</span>delta 23<span class="o">)</span>
 
 
 -----&gt; Heroku receiving push
@@ -641,10 +592,10 @@ error: failed to push some refs to <span class="s1">&#39;git@heroku.com:some-nam
 <p>Another error you can get is this one. &quot;Heroku push rejected, no Cedar-supported app detected&quot;</p>
 <div class="highlight"><pre><span class="nv">$ </span>git push heroku master
 Counting objects: 204, <span class="k">done</span>.
-Delta compression using up to 4 threads.
+Delta compression using up to <span class="m">4</span> threads.
 Compressing objects: 100% <span class="o">(</span>171/171<span class="o">)</span>, <span class="k">done</span>.
 Writing objects: 100% <span class="o">(</span>204/204<span class="o">)</span>, 271.34 KiB, <span class="k">done</span>.
-Total 204 <span class="o">(</span>delta 27<span class="o">)</span>, reused 192 <span class="o">(</span>delta 23<span class="o">)</span>
+Total <span class="m">204</span> <span class="o">(</span>delta 27<span class="o">)</span>, reused <span class="m">192</span> <span class="o">(</span>delta 23<span class="o">)</span>
 
 -----&gt; Heroku receiving push
  !     Heroku push rejected, no Cedar-supported app detected
@@ -663,7 +614,7 @@ error: failed to push some refs to <span class="s1">&#39;git@heroku.com:cold-sum
 
 Process       State               Command
 ------------  ------------------  ------------------------------
-web.1         crashed <span class="k">for </span>2m      python kenblog/manage.py runserver 0...
+web.1         crashed <span class="k">for</span> 2m      python kenblog/manage.py runserver 0...
 </pre></div>
 <p>My django application looks like it crashed. Most likely because I didn't setup the database yet, lets look at the logs to see what is causing the problems to be sure.</p>
 </div>
@@ -677,7 +628,7 @@ web.1         crashed <span class="k">for </span>2m      python kenblog/manage.p
 2011-11-27T18:40:00+00:00 heroku<span class="o">[</span>slugc<span class="o">]</span>: Slug compilation finished
 2011-11-27T18:40:03+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: Starting process with <span class="nb">command</span> <span class="sb">`</span>python kenblog/manage.py runserver 0.0.0.0:12033 --noreload<span class="sb">`</span>
 2011-11-27T18:40:04+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: Unexpected error: <span class="o">(</span>&lt;<span class="nb">type</span> <span class="s1">&#39;exceptions.NameError&#39;</span>&gt;, NameError<span class="o">(</span><span class="s2">&quot;name &#39;DATABASES&#39; is not defined&quot;</span>,<span class="o">)</span>, &lt;traceback object at 0x1a7b128&gt;<span class="o">)</span>
-2011-11-27T18:40:05+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: There is no South database module <span class="s1">&#39;south.db.None&#39;</span> <span class="k">for </span>your database. Please either choose a supported database, check <span class="k">for </span>SOUTH_DATABASE_ADAPTER<span class="o">[</span>S<span class="o">]</span> settings, or remove South from INSTALLED_APPS.
+2011-11-27T18:40:05+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: There is no South database module <span class="s1">&#39;south.db.None&#39;</span> <span class="k">for</span> your database. Please either choose a supported database, check <span class="k">for</span> SOUTH_DATABASE_ADAPTER<span class="o">[</span>S<span class="o">]</span> settings, or remove South from INSTALLED_APPS.
 2011-11-27T18:40:06+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from starting to crashed
 </pre></div>
 <p>Looks like it is an issue with the settings file. If you wanted to take a look at the settings file to see if we can find out what is wrong you can run the following command.</p>
@@ -729,7 +680,7 @@ Running env attached to terminal... up, run.6
 2011-11-27T18:59:25+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from crashed to created
 2011-11-27T18:59:26+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from created to starting
 2011-11-27T18:59:26+00:00 heroku<span class="o">[</span>slugc<span class="o">]</span>: Slug compilation finished
-2011-11-27T18:59:31+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: 0 errors found
+2011-11-27T18:59:31+00:00 app<span class="o">[</span>web.1<span class="o">]</span>: <span class="m">0</span> errors found
 2011-11-27T18:59:31+00:00 heroku<span class="o">[</span>web.1<span class="o">]</span>: State changed from starting to up
 </pre></div>
 </div>
@@ -758,11 +709,11 @@ Running env attached to terminal... up, run.6
 <div class="highlight"><pre><span class="nv">$ </span>heroku ps
 Process       State               Command
 ------------  ------------------  ------------------------------
-run.5         <span class="nb">complete </span><span class="k">for </span>21m    cat kenblog/settings.py
-run.6         <span class="nb">complete </span><span class="k">for </span>18m    env
-run.7         <span class="nb">complete </span><span class="k">for </span>1m     python kenblog/manage.py syncdb
-run.8         <span class="nb">complete </span><span class="k">for </span>1m     python kenblog/manage.py migrate
-web.1         up <span class="k">for </span>4m           python kenblog/manage.py runserver..
+run.5         <span class="nb">complete </span><span class="k">for</span> 21m    cat kenblog/settings.py
+run.6         <span class="nb">complete </span><span class="k">for</span> 18m    env
+run.7         <span class="nb">complete </span><span class="k">for</span> 1m     python kenblog/manage.py syncdb
+run.8         <span class="nb">complete </span><span class="k">for</span> 1m     python kenblog/manage.py migrate
+web.1         up <span class="k">for</span> 4m           python kenblog/manage.py runserver..
 </pre></div>
 <p>Things are looking better, we are up, and it also shows our old commands that we ran.</p>
 <p>if you need to work with the processes you have the following options.</p>
@@ -787,7 +738,7 @@ ps:workers <span class="o">[</span>QTY<span class="o">]</span>               <sp
 <li>Add gunicorn==0.13.4 to your requirements file.</li>
 <li>create a new file called Procfile at the same level as your requirements.txt file with the following in it.</li>
 </ol>
-<div class="highlight"><pre>web: python kenblog/manage.py run_gunicorn -b <span class="s2">&quot;0.0.0.0:$PORT&quot;</span> -w 3
+<div class="highlight"><pre>web: python kenblog/manage.py run_gunicorn -b <span class="s2">&quot;0.0.0.0:</span><span class="nv">$PORT</span><span class="s2">&quot;</span> -w 3
 </pre></div>
 <p>Add gunicorn to the installed_apps in settings.py</p>
 <p>then</p>
@@ -865,14 +816,9 @@ ps:workers <span class="o">[</span>QTY<span class="o">]</span>               <sp
 </div>
 		<div>
 			<h2>Comments</h2>
-		 	
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="KenCochrane">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-
-			<div id="disqus_thread"></div>
-			
-		<div>
+<div id="disqus_thread"></div>		<div>
 	</div>	
-
         <footer>
           <p> Powered by <a href="http://getpelican.com">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
           <p>&copy; Ken Cochrane 2014</p>
@@ -881,9 +827,7 @@ ps:workers <span class="o">[</span>QTY<span class="o">]</span>               <sp
 
     </div>
 <div class="container-fluid">
-
 <script>var _gaq=[['_setAccount','UA-67696-11'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-
 </div>
 </body>
 </html>
